@@ -1,0 +1,1038 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3700B87429718E9F005D975D /* FishDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700B87329718E9F005D975D /* FishDetailsTableViewCell.swift */; };
+		3700B87629719652005D975D /* BugDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700B87529719652005D975D /* BugDetailsTableViewCell.swift */; };
+		3702B44A296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B449296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift */; };
+		3702B44C296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B44B296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift */; };
+		3702B44E296EE22F008AB36D /* FinkHeavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3702B44D296EE223008AB36D /* FinkHeavy.ttf */; };
+		3702B452296EFD68008AB36D /* FishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B451296EFD68008AB36D /* FishViewModel.swift */; };
+		3702B454296EFE40008AB36D /* MainViewCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B453296EFE40008AB36D /* MainViewCollectionReusableView.swift */; };
+		3702B456296EFF67008AB36D /* FishCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B455296EFF67008AB36D /* FishCollectionViewCell.swift */; };
+		3702B459296F01F2008AB36D /* FishDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B458296F01F2008AB36D /* FishDetailsViewController.swift */; };
+		3702B45B296F02F7008AB36D /* BugViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B45A296F02F7008AB36D /* BugViewModel.swift */; };
+		3702B460296F07BE008AB36D /* BugCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B45F296F07BE008AB36D /* BugCollectionViewCell.swift */; };
+		3702B462296F09BB008AB36D /* BugDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B461296F09BB008AB36D /* BugDetailsViewController.swift */; };
+		3702B464296F0C4B008AB36D /* FossilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B463296F0C4B008AB36D /* FossilViewModel.swift */; };
+		3702B466296F0CDF008AB36D /* FossilCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B465296F0CDF008AB36D /* FossilCollectionViewCell.swift */; };
+		3702B46D296F1010008AB36D /* FossilDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702B46C296F1010008AB36D /* FossilDetailsViewController.swift */; };
+		370385D52979369A002CC431 /* SeaCreatures.json in Resources */ = {isa = PBXBuildFile; fileRef = 370385D42979369A002CC431 /* SeaCreatures.json */; };
+		370385D6297936CC002CC431 /* SeaCreatures.json in Resources */ = {isa = PBXBuildFile; fileRef = 370385D42979369A002CC431 /* SeaCreatures.json */; };
+		370385DB2979370C002CC431 /* Fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 370385DA2979370C002CC431 /* Fossils.json */; };
+		370385DC29793710002CC431 /* Fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 370385DA2979370C002CC431 /* Fossils.json */; };
+		370385DE29793738002CC431 /* SeaCreaturesMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385DD29793738002CC431 /* SeaCreaturesMapping.swift */; };
+		370385E0297937CF002CC431 /* BugsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385DF297937CF002CC431 /* BugsMapping.swift */; };
+		370385E12979389E002CC431 /* Bugs.json in Resources */ = {isa = PBXBuildFile; fileRef = 370385E42979389E002CC431 /* Bugs.json */; };
+		370385E22979389E002CC431 /* Bugs.json in Resources */ = {isa = PBXBuildFile; fileRef = 370385E42979389E002CC431 /* Bugs.json */; };
+		370385E629793CC9002CC431 /* FishViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385E529793CC9002CC431 /* FishViewModelTests.swift */; };
+		370385E929793D66002CC431 /* CurrentCalendarMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385E829793D65002CC431 /* CurrentCalendarMock.swift */; };
+		370385EB29793D75002CC431 /* ServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385EA29793D75002CC431 /* ServiceMock.swift */; };
+		370385ED29793E31002CC431 /* DispatchQueueMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385EC29793E31002CC431 /* DispatchQueueMock.swift */; };
+		370385EF29793F5F002CC431 /* SeaCreatureViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385EE29793F5F002CC431 /* SeaCreatureViewModelTests.swift */; };
+		370385F12979411D002CC431 /* BugViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385F02979411D002CC431 /* BugViewModelTests.swift */; };
+		370385F32979423F002CC431 /* FossilsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385F22979423F002CC431 /* FossilsMapping.swift */; };
+		370385F5297942DF002CC431 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385F4297942DF002CC431 /* Constant.swift */; };
+		370385F729794487002CC431 /* FossilViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385F629794487002CC431 /* FossilViewModelTests.swift */; };
+		3703860129799077002CC431 /* ErrorViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703860029799077002CC431 /* ErrorViewDelegate.swift */; };
+		3703860329799102002CC431 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703860229799102002CC431 /* ErrorView.swift */; };
+		3703860629799A79002CC431 /* UIView-Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860529799A79002CC431 /* UIView-Shimmer */; };
+		3703860929799AA3002CC431 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860829799AA3002CC431 /* Realm */; };
+		3703860B29799AA3002CC431 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860A29799AA3002CC431 /* RealmSwift */; };
+		3704921029801C6100B58CC7 /* ButtonObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704920F29801C6100B58CC7 /* ButtonObject.swift */; };
+		370492122980274300B58CC7 /* OwnedDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370492112980274300B58CC7 /* OwnedDashboardViewController.swift */; };
+		370492142980278C00B58CC7 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370492132980278C00B58CC7 /* DashboardView.swift */; };
+		37137585296C58F500F39C83 /* ImageVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137584296C58F500F39C83 /* ImageVIew.swift */; };
+		37137587296C67F600F39C83 /* StringReplaceCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137586296C67F600F39C83 /* StringReplaceCharacter.swift */; };
+		374732CA2976D990005363BE /* DatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374732C92976D990005363BE /* DatabaseViewModel.swift */; };
+		37747C09297EFEB400514352 /* DetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37747C08297EFEB400514352 /* DetailsDelegate.swift */; };
+		378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378DC60829704F030062107C /* DetailsCollectionViewCell.swift */; };
+		37A29F812978442000E043F0 /* FishesMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A29F802978442000E043F0 /* FishesMapping.swift */; };
+		37A29F83297844F300E043F0 /* DecodableBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A29F82297844F300E043F0 /* DecodableBundle.swift */; };
+		37A7135E29681A6F0075BF25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7135D29681A6F0075BF25 /* AppDelegate.swift */; };
+		37A7136029681A6F0075BF25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7135F29681A6F0075BF25 /* SceneDelegate.swift */; };
+		37A7136729681A700075BF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A7136629681A700075BF25 /* Assets.xcassets */; };
+		37A7136A29681A700075BF25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A7136829681A700075BF25 /* LaunchScreen.storyboard */; };
+		37A7137429681DA60075BF25 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137329681DA60075BF25 /* TabBarViewController.swift */; };
+		37A7137629681F130075BF25 /* SeaCreatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137529681F130075BF25 /* SeaCreatureViewController.swift */; };
+		37A7137829681F1C0075BF25 /* BugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137729681F1C0075BF25 /* BugViewController.swift */; };
+		37A7137A29681F2B0075BF25 /* FossilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137929681F2B0075BF25 /* FossilViewController.swift */; };
+		37A7138229682B9B0075BF25 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137C29682B9B0075BF25 /* Networking.swift */; };
+		37A7138329682B9B0075BF25 /* NetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137D29682B9B0075BF25 /* NetworkingProtocol.swift */; };
+		37A7138429682B9B0075BF25 /* ACNHServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137E29682B9B0075BF25 /* ACNHServiceProtocol.swift */; };
+		37A7138529682B9B0075BF25 /* ACNHService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137F29682B9B0075BF25 /* ACNHService.swift */; };
+		37A7138629682B9B0075BF25 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138029682B9B0075BF25 /* NetworkingError.swift */; };
+		37A7138729682B9B0075BF25 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138129682B9B0075BF25 /* DispatchQueue.swift */; };
+		37A7138E29682C940075BF25 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138929682C940075BF25 /* Name.swift */; };
+		37A7139D29682CF40075BF25 /* BugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139B29682CF40075BF25 /* BugData.swift */; };
+		37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139C29682CF40075BF25 /* BugAvailability.swift */; };
+		37A713A029682CFC0075BF25 /* FossilData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139F29682CFC0075BF25 /* FossilData.swift */; };
+		37A713A329682D090075BF25 /* SeaCreatureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A713A129682D090075BF25 /* SeaCreatureData.swift */; };
+		37A713A429682D090075BF25 /* SeaAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A713A229682D090075BF25 /* SeaAvailability.swift */; };
+		37A713AC29682DBB0075BF25 /* FishData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A713AA29682DBB0075BF25 /* FishData.swift */; };
+		37A713AD29682DBB0075BF25 /* FishAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A713AB29682DBB0075BF25 /* FishAvailability.swift */; };
+		37ACFB6E29685CDE008B065C /* SeaCreatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACFB6D29685CDE008B065C /* SeaCreatureViewModel.swift */; };
+		37ACFB7029685DAB008B065C /* FishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACFB6F29685DAB008B065C /* FishViewController.swift */; };
+		37ACFB7929686A9E008B065C /* SeaCreatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACFB7829686A9E008B065C /* SeaCreatureCollectionViewCell.swift */; };
+		37B02E14296D5EEF0084178D /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B02E13296D5EEF0084178D /* CalendarProtocol.swift */; };
+		37B02E16296D5F820084178D /* CurrentCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B02E15296D5F820084178D /* CurrentCalendar.swift */; };
+		37C4134029785BBE001F6EE0 /* Fishes.json in Resources */ = {isa = PBXBuildFile; fileRef = 37C4134229785BBE001F6EE0 /* Fishes.json */; };
+		37C4134329785BDC001F6EE0 /* Fishes.json in Resources */ = {isa = PBXBuildFile; fileRef = 37C4134229785BBE001F6EE0 /* Fishes.json */; };
+		37D197BC296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */; };
+		37DD38DB298137B90013BF3A /* FossilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37A29F7B297842E100E043F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A7135229681A6F0075BF25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37A7135929681A6F0075BF25;
+			remoteInfo = ACNHGuide;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3700B87329718E9F005D975D /* FishDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		3700B87529719652005D975D /* BugDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		3702B449296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureDetailsViewController.swift; sourceTree = "<group>"; };
+		3702B44B296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		3702B44D296EE223008AB36D /* FinkHeavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FinkHeavy.ttf; sourceTree = "<group>"; };
+		3702B451296EFD68008AB36D /* FishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishViewModel.swift; sourceTree = "<group>"; };
+		3702B453296EFE40008AB36D /* MainViewCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCollectionReusableView.swift; sourceTree = "<group>"; };
+		3702B455296EFF67008AB36D /* FishCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishCollectionViewCell.swift; sourceTree = "<group>"; };
+		3702B458296F01F2008AB36D /* FishDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewController.swift; sourceTree = "<group>"; };
+		3702B45A296F02F7008AB36D /* BugViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugViewModel.swift; sourceTree = "<group>"; };
+		3702B45F296F07BE008AB36D /* BugCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugCollectionViewCell.swift; sourceTree = "<group>"; };
+		3702B461296F09BB008AB36D /* BugDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewController.swift; sourceTree = "<group>"; };
+		3702B463296F0C4B008AB36D /* FossilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilViewModel.swift; sourceTree = "<group>"; };
+		3702B465296F0CDF008AB36D /* FossilCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilCollectionViewCell.swift; sourceTree = "<group>"; };
+		3702B46C296F1010008AB36D /* FossilDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewController.swift; sourceTree = "<group>"; };
+		370385D42979369A002CC431 /* SeaCreatures.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SeaCreatures.json; sourceTree = "<group>"; };
+		370385DA2979370C002CC431 /* Fossils.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Fossils.json; sourceTree = "<group>"; };
+		370385DD29793738002CC431 /* SeaCreaturesMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreaturesMapping.swift; sourceTree = "<group>"; };
+		370385DF297937CF002CC431 /* BugsMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugsMapping.swift; sourceTree = "<group>"; };
+		370385E32979389E002CC431 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Bugs.json; sourceTree = "<group>"; };
+		370385E529793CC9002CC431 /* FishViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishViewModelTests.swift; sourceTree = "<group>"; };
+		370385E829793D65002CC431 /* CurrentCalendarMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCalendarMock.swift; sourceTree = "<group>"; };
+		370385EA29793D75002CC431 /* ServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMock.swift; sourceTree = "<group>"; };
+		370385EC29793E31002CC431 /* DispatchQueueMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueMock.swift; sourceTree = "<group>"; };
+		370385EE29793F5F002CC431 /* SeaCreatureViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureViewModelTests.swift; sourceTree = "<group>"; };
+		370385F02979411D002CC431 /* BugViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugViewModelTests.swift; sourceTree = "<group>"; };
+		370385F22979423F002CC431 /* FossilsMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilsMapping.swift; sourceTree = "<group>"; };
+		370385F4297942DF002CC431 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		370385F629794487002CC431 /* FossilViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilViewModelTests.swift; sourceTree = "<group>"; };
+		3703860029799077002CC431 /* ErrorViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewDelegate.swift; sourceTree = "<group>"; };
+		3703860229799102002CC431 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		3704920F29801C6100B58CC7 /* ButtonObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonObject.swift; sourceTree = "<group>"; };
+		370492112980274300B58CC7 /* OwnedDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedDashboardViewController.swift; sourceTree = "<group>"; };
+		370492132980278C00B58CC7 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		37137584296C58F500F39C83 /* ImageVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVIew.swift; sourceTree = "<group>"; };
+		37137586296C67F600F39C83 /* StringReplaceCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringReplaceCharacter.swift; sourceTree = "<group>"; };
+		374732C92976D990005363BE /* DatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewModel.swift; sourceTree = "<group>"; };
+		37747C08297EFEB400514352 /* DetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDelegate.swift; sourceTree = "<group>"; };
+		378DC60829704F030062107C /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		37A29F77297842E100E043F0 /* ACNHGuideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACNHGuideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A29F802978442000E043F0 /* FishesMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishesMapping.swift; sourceTree = "<group>"; };
+		37A29F82297844F300E043F0 /* DecodableBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableBundle.swift; sourceTree = "<group>"; };
+		37A7135A29681A6F0075BF25 /* ACNHGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACNHGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A7135D29681A6F0075BF25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		37A7135F29681A6F0075BF25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		37A7136629681A700075BF25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		37A7136929681A700075BF25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		37A7136B29681A700075BF25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37A7137329681DA60075BF25 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		37A7137529681F130075BF25 /* SeaCreatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureViewController.swift; sourceTree = "<group>"; };
+		37A7137729681F1C0075BF25 /* BugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugViewController.swift; sourceTree = "<group>"; };
+		37A7137929681F2B0075BF25 /* FossilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilViewController.swift; sourceTree = "<group>"; };
+		37A7137C29682B9B0075BF25 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		37A7137D29682B9B0075BF25 /* NetworkingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingProtocol.swift; sourceTree = "<group>"; };
+		37A7137E29682B9B0075BF25 /* ACNHServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNHServiceProtocol.swift; sourceTree = "<group>"; };
+		37A7137F29682B9B0075BF25 /* ACNHService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNHService.swift; sourceTree = "<group>"; };
+		37A7138029682B9B0075BF25 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		37A7138129682B9B0075BF25 /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
+		37A7138929682C940075BF25 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
+		37A7139B29682CF40075BF25 /* BugData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugData.swift; sourceTree = "<group>"; };
+		37A7139C29682CF40075BF25 /* BugAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugAvailability.swift; sourceTree = "<group>"; };
+		37A7139F29682CFC0075BF25 /* FossilData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FossilData.swift; sourceTree = "<group>"; };
+		37A713A129682D090075BF25 /* SeaCreatureData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeaCreatureData.swift; sourceTree = "<group>"; };
+		37A713A229682D090075BF25 /* SeaAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeaAvailability.swift; sourceTree = "<group>"; };
+		37A713AA29682DBB0075BF25 /* FishData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishData.swift; sourceTree = "<group>"; };
+		37A713AB29682DBB0075BF25 /* FishAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishAvailability.swift; sourceTree = "<group>"; };
+		37ACFB6D29685CDE008B065C /* SeaCreatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureViewModel.swift; sourceTree = "<group>"; };
+		37ACFB6F29685DAB008B065C /* FishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishViewController.swift; sourceTree = "<group>"; };
+		37ACFB7829686A9E008B065C /* SeaCreatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureCollectionViewCell.swift; sourceTree = "<group>"; };
+		37B02E13296D5EEF0084178D /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
+		37B02E15296D5F820084178D /* CurrentCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCalendar.swift; sourceTree = "<group>"; };
+		37C4134129785BBE001F6EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Fishes.json; sourceTree = "<group>"; };
+		37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CAGradientLayer.swift"; sourceTree = "<group>"; };
+		37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilTableViewCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37A29F74297842E100E043F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37A7135729681A6F0075BF25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3703860B29799AA3002CC431 /* RealmSwift in Frameworks */,
+				3703860929799AA3002CC431 /* Realm in Frameworks */,
+				3703860629799A79002CC431 /* UIView-Shimmer in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3702B445296EACF2008AB36D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				37ACFB6D29685CDE008B065C /* SeaCreatureViewModel.swift */,
+				37A7137529681F130075BF25 /* SeaCreatureViewController.swift */,
+				37ACFB7829686A9E008B065C /* SeaCreatureCollectionViewCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3702B448296EAE12008AB36D /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				3702B449296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift */,
+				3702B44B296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		3702B457296F01D8008AB36D /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				3702B458296F01F2008AB36D /* FishDetailsViewController.swift */,
+				3700B87329718E9F005D975D /* FishDetailsTableViewCell.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		3702B45C296F0521008AB36D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3702B451296EFD68008AB36D /* FishViewModel.swift */,
+				37ACFB6F29685DAB008B065C /* FishViewController.swift */,
+				3702B455296EFF67008AB36D /* FishCollectionViewCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3702B45D296F0539008AB36D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3702B45A296F02F7008AB36D /* BugViewModel.swift */,
+				37A7137729681F1C0075BF25 /* BugViewController.swift */,
+				3702B45F296F07BE008AB36D /* BugCollectionViewCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3702B45E296F053F008AB36D /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				3702B461296F09BB008AB36D /* BugDetailsViewController.swift */,
+				3700B87529719652005D975D /* BugDetailsTableViewCell.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		3702B469296F0FD9008AB36D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3702B463296F0C4B008AB36D /* FossilViewModel.swift */,
+				37A7137929681F2B0075BF25 /* FossilViewController.swift */,
+				3702B465296F0CDF008AB36D /* FossilCollectionViewCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3702B46A296F0FEE008AB36D /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				3702B46C296F1010008AB36D /* FossilDetailsViewController.swift */,
+				37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		370385D129793607002CC431 /* SeaCreature */ = {
+			isa = PBXGroup;
+			children = (
+				370385EE29793F5F002CC431 /* SeaCreatureViewModelTests.swift */,
+				370385DD29793738002CC431 /* SeaCreaturesMapping.swift */,
+				370385D42979369A002CC431 /* SeaCreatures.json */,
+			);
+			path = SeaCreature;
+			sourceTree = "<group>";
+		};
+		370385D229793610002CC431 /* Bug */ = {
+			isa = PBXGroup;
+			children = (
+				370385F02979411D002CC431 /* BugViewModelTests.swift */,
+				370385DF297937CF002CC431 /* BugsMapping.swift */,
+				370385E42979389E002CC431 /* Bugs.json */,
+			);
+			path = Bug;
+			sourceTree = "<group>";
+		};
+		370385D329793639002CC431 /* Fossil */ = {
+			isa = PBXGroup;
+			children = (
+				370385F629794487002CC431 /* FossilViewModelTests.swift */,
+				370385F22979423F002CC431 /* FossilsMapping.swift */,
+				370385DA2979370C002CC431 /* Fossils.json */,
+			);
+			path = Fossil;
+			sourceTree = "<group>";
+		};
+		370385E729793D51002CC431 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				370385EA29793D75002CC431 /* ServiceMock.swift */,
+				370385E829793D65002CC431 /* CurrentCalendarMock.swift */,
+				370385EC29793E31002CC431 /* DispatchQueueMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		3704920E297FF6E200B58CC7 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3703860029799077002CC431 /* ErrorViewDelegate.swift */,
+				37747C08297EFEB400514352 /* DetailsDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		37137583296C58C800F39C83 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				37137584296C58F500F39C83 /* ImageVIew.swift */,
+				37137586296C67F600F39C83 /* StringReplaceCharacter.swift */,
+				37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */,
+				37A29F82297844F300E043F0 /* DecodableBundle.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		374732C62976A832005363BE /* RealmDataBase */ = {
+			isa = PBXGroup;
+			children = (
+				374732C92976D990005363BE /* DatabaseViewModel.swift */,
+				374732D12977158E005363BE /* Object */,
+			);
+			path = RealmDataBase;
+			sourceTree = "<group>";
+		};
+		374732D12977158E005363BE /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				3704920F29801C6100B58CC7 /* ButtonObject.swift */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		378DC5FF297026000062107C /* Owned */ = {
+			isa = PBXGroup;
+			children = (
+				370492112980274300B58CC7 /* OwnedDashboardViewController.swift */,
+				370492132980278C00B58CC7 /* DashboardView.swift */,
+			);
+			path = Owned;
+			sourceTree = "<group>";
+		};
+		37A29F78297842E100E043F0 /* ACNHGuideTests */ = {
+			isa = PBXGroup;
+			children = (
+				370385F4297942DF002CC431 /* Constant.swift */,
+				370385E729793D51002CC431 /* Mock */,
+				37A29F842978460E00E043F0 /* Fish */,
+				370385D129793607002CC431 /* SeaCreature */,
+				370385D229793610002CC431 /* Bug */,
+				370385D329793639002CC431 /* Fossil */,
+			);
+			path = ACNHGuideTests;
+			sourceTree = "<group>";
+		};
+		37A29F842978460E00E043F0 /* Fish */ = {
+			isa = PBXGroup;
+			children = (
+				370385E529793CC9002CC431 /* FishViewModelTests.swift */,
+				37A29F802978442000E043F0 /* FishesMapping.swift */,
+				37C4134229785BBE001F6EE0 /* Fishes.json */,
+			);
+			path = Fish;
+			sourceTree = "<group>";
+		};
+		37A7135129681A6F0075BF25 = {
+			isa = PBXGroup;
+			children = (
+				37A7135C29681A6F0075BF25 /* ACNHGuide */,
+				37A29F78297842E100E043F0 /* ACNHGuideTests */,
+				37A7135B29681A6F0075BF25 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		37A7135B29681A6F0075BF25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37A7135A29681A6F0075BF25 /* ACNHGuide.app */,
+				37A29F77297842E100E043F0 /* ACNHGuideTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37A7135C29681A6F0075BF25 /* ACNHGuide */ = {
+			isa = PBXGroup;
+			children = (
+				37A7136B29681A700075BF25 /* Info.plist */,
+				37A7137229681B130075BF25 /* Ressources */,
+				37137583296C58C800F39C83 /* Extension */,
+				374732C62976A832005363BE /* RealmDataBase */,
+				37A7138829682BCD0075BF25 /* ACNHData */,
+				37A7137B29682B130075BF25 /* Networking */,
+				37B02E13296D5EEF0084178D /* CalendarProtocol.swift */,
+				37B02E15296D5F820084178D /* CurrentCalendar.swift */,
+				37A7137329681DA60075BF25 /* TabBarViewController.swift */,
+				3702B453296EFE40008AB36D /* MainViewCollectionReusableView.swift */,
+				378DC60829704F030062107C /* DetailsCollectionViewCell.swift */,
+				3703860229799102002CC431 /* ErrorView.swift */,
+				3704920E297FF6E200B58CC7 /* Delegate */,
+				37ACFB712968646E008B065C /* Fish */,
+				37ACFB7229686477008B065C /* SeaCreature */,
+				37ACFB732968648E008B065C /* Bug */,
+				37ACFB7429686493008B065C /* Fossil */,
+				378DC5FF297026000062107C /* Owned */,
+			);
+			path = ACNHGuide;
+			sourceTree = "<group>";
+		};
+		37A7137229681B130075BF25 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				37A7135D29681A6F0075BF25 /* AppDelegate.swift */,
+				37A7135F29681A6F0075BF25 /* SceneDelegate.swift */,
+				37A7136829681A700075BF25 /* LaunchScreen.storyboard */,
+				37A7136629681A700075BF25 /* Assets.xcassets */,
+				3702B44D296EE223008AB36D /* FinkHeavy.ttf */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		37A7137B29682B130075BF25 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				37A7137E29682B9B0075BF25 /* ACNHServiceProtocol.swift */,
+				37A7137F29682B9B0075BF25 /* ACNHService.swift */,
+				37A7137D29682B9B0075BF25 /* NetworkingProtocol.swift */,
+				37A7137C29682B9B0075BF25 /* Networking.swift */,
+				37A7138029682B9B0075BF25 /* NetworkingError.swift */,
+				37A7138129682B9B0075BF25 /* DispatchQueue.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		37A7138829682BCD0075BF25 /* ACNHData */ = {
+			isa = PBXGroup;
+			children = (
+				37A713A529682D7A0075BF25 /* FishData */,
+				37A7139A29682CE60075BF25 /* SeaCreatureData */,
+				37A7139829682CE10075BF25 /* BugData */,
+				37A7139929682CE30075BF25 /* FossilData */,
+				37A7138929682C940075BF25 /* Name.swift */,
+			);
+			path = ACNHData;
+			sourceTree = "<group>";
+		};
+		37A7139829682CE10075BF25 /* BugData */ = {
+			isa = PBXGroup;
+			children = (
+				37A7139C29682CF40075BF25 /* BugAvailability.swift */,
+				37A7139B29682CF40075BF25 /* BugData.swift */,
+			);
+			path = BugData;
+			sourceTree = "<group>";
+		};
+		37A7139929682CE30075BF25 /* FossilData */ = {
+			isa = PBXGroup;
+			children = (
+				37A7139F29682CFC0075BF25 /* FossilData.swift */,
+			);
+			path = FossilData;
+			sourceTree = "<group>";
+		};
+		37A7139A29682CE60075BF25 /* SeaCreatureData */ = {
+			isa = PBXGroup;
+			children = (
+				37A713A229682D090075BF25 /* SeaAvailability.swift */,
+				37A713A129682D090075BF25 /* SeaCreatureData.swift */,
+			);
+			path = SeaCreatureData;
+			sourceTree = "<group>";
+		};
+		37A713A529682D7A0075BF25 /* FishData */ = {
+			isa = PBXGroup;
+			children = (
+				37A713AB29682DBB0075BF25 /* FishAvailability.swift */,
+				37A713AA29682DBB0075BF25 /* FishData.swift */,
+			);
+			path = FishData;
+			sourceTree = "<group>";
+		};
+		37ACFB712968646E008B065C /* Fish */ = {
+			isa = PBXGroup;
+			children = (
+				3702B45C296F0521008AB36D /* Main */,
+				3702B457296F01D8008AB36D /* Details */,
+			);
+			path = Fish;
+			sourceTree = "<group>";
+		};
+		37ACFB7229686477008B065C /* SeaCreature */ = {
+			isa = PBXGroup;
+			children = (
+				3702B445296EACF2008AB36D /* Main */,
+				3702B448296EAE12008AB36D /* Details */,
+			);
+			path = SeaCreature;
+			sourceTree = "<group>";
+		};
+		37ACFB732968648E008B065C /* Bug */ = {
+			isa = PBXGroup;
+			children = (
+				3702B45D296F0539008AB36D /* Main */,
+				3702B45E296F053F008AB36D /* Details */,
+			);
+			path = Bug;
+			sourceTree = "<group>";
+		};
+		37ACFB7429686493008B065C /* Fossil */ = {
+			isa = PBXGroup;
+			children = (
+				3702B469296F0FD9008AB36D /* Main */,
+				3702B46A296F0FEE008AB36D /* Details */,
+			);
+			path = Fossil;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		37A29F76297842E100E043F0 /* ACNHGuideTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37A29F7D297842E100E043F0 /* Build configuration list for PBXNativeTarget "ACNHGuideTests" */;
+			buildPhases = (
+				37A29F73297842E100E043F0 /* Sources */,
+				37A29F74297842E100E043F0 /* Frameworks */,
+				37A29F75297842E100E043F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37A29F7C297842E100E043F0 /* PBXTargetDependency */,
+			);
+			name = ACNHGuideTests;
+			productName = ACNHGuideTests;
+			productReference = 37A29F77297842E100E043F0 /* ACNHGuideTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		37A7135929681A6F0075BF25 /* ACNHGuide */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37A7136E29681A700075BF25 /* Build configuration list for PBXNativeTarget "ACNHGuide" */;
+			buildPhases = (
+				37A7135629681A6F0075BF25 /* Sources */,
+				37A7135729681A6F0075BF25 /* Frameworks */,
+				37A7135829681A6F0075BF25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ACNHGuide;
+			packageProductDependencies = (
+				3703860529799A79002CC431 /* UIView-Shimmer */,
+				3703860829799AA3002CC431 /* Realm */,
+				3703860A29799AA3002CC431 /* RealmSwift */,
+			);
+			productName = ACNHGuide;
+			productReference = 37A7135A29681A6F0075BF25 /* ACNHGuide.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		37A7135229681A6F0075BF25 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					37A29F76297842E100E043F0 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 37A7135929681A6F0075BF25;
+					};
+					37A7135929681A6F0075BF25 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 37A7135529681A6F0075BF25 /* Build configuration list for PBXProject "ACNHGuide" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 37A7135129681A6F0075BF25;
+			packageReferences = (
+				3703860429799A79002CC431 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */,
+				3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
+			productRefGroup = 37A7135B29681A6F0075BF25 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				37A7135929681A6F0075BF25 /* ACNHGuide */,
+				37A29F76297842E100E043F0 /* ACNHGuideTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		37A29F75297842E100E043F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				370385E22979389E002CC431 /* Bugs.json in Resources */,
+				370385D52979369A002CC431 /* SeaCreatures.json in Resources */,
+				37C4134029785BBE001F6EE0 /* Fishes.json in Resources */,
+				370385DB2979370C002CC431 /* Fossils.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37A7135829681A6F0075BF25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				370385E12979389E002CC431 /* Bugs.json in Resources */,
+				37A7136A29681A700075BF25 /* LaunchScreen.storyboard in Resources */,
+				37C4134329785BDC001F6EE0 /* Fishes.json in Resources */,
+				37A7136729681A700075BF25 /* Assets.xcassets in Resources */,
+				3702B44E296EE22F008AB36D /* FinkHeavy.ttf in Resources */,
+				370385DC29793710002CC431 /* Fossils.json in Resources */,
+				370385D6297936CC002CC431 /* SeaCreatures.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		37A29F73297842E100E043F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				370385F32979423F002CC431 /* FossilsMapping.swift in Sources */,
+				370385DE29793738002CC431 /* SeaCreaturesMapping.swift in Sources */,
+				370385ED29793E31002CC431 /* DispatchQueueMock.swift in Sources */,
+				370385E0297937CF002CC431 /* BugsMapping.swift in Sources */,
+				37A29F812978442000E043F0 /* FishesMapping.swift in Sources */,
+				370385E929793D66002CC431 /* CurrentCalendarMock.swift in Sources */,
+				370385F12979411D002CC431 /* BugViewModelTests.swift in Sources */,
+				370385E629793CC9002CC431 /* FishViewModelTests.swift in Sources */,
+				370385F729794487002CC431 /* FossilViewModelTests.swift in Sources */,
+				370385EB29793D75002CC431 /* ServiceMock.swift in Sources */,
+				370385EF29793F5F002CC431 /* SeaCreatureViewModelTests.swift in Sources */,
+				370385F5297942DF002CC431 /* Constant.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37A7135629681A6F0075BF25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37A7138329682B9B0075BF25 /* NetworkingProtocol.swift in Sources */,
+				37A713AD29682DBB0075BF25 /* FishAvailability.swift in Sources */,
+				3702B456296EFF67008AB36D /* FishCollectionViewCell.swift in Sources */,
+				37137587296C67F600F39C83 /* StringReplaceCharacter.swift in Sources */,
+				3703860329799102002CC431 /* ErrorView.swift in Sources */,
+				3703860129799077002CC431 /* ErrorViewDelegate.swift in Sources */,
+				37A7139D29682CF40075BF25 /* BugData.swift in Sources */,
+				3702B452296EFD68008AB36D /* FishViewModel.swift in Sources */,
+				37A713AC29682DBB0075BF25 /* FishData.swift in Sources */,
+				37B02E16296D5F820084178D /* CurrentCalendar.swift in Sources */,
+				3702B46D296F1010008AB36D /* FossilDetailsViewController.swift in Sources */,
+				3702B466296F0CDF008AB36D /* FossilCollectionViewCell.swift in Sources */,
+				37ACFB7929686A9E008B065C /* SeaCreatureCollectionViewCell.swift in Sources */,
+				3704921029801C6100B58CC7 /* ButtonObject.swift in Sources */,
+				37A7137629681F130075BF25 /* SeaCreatureViewController.swift in Sources */,
+				37A7137829681F1C0075BF25 /* BugViewController.swift in Sources */,
+				37A7138529682B9B0075BF25 /* ACNHService.swift in Sources */,
+				37B02E14296D5EEF0084178D /* CalendarProtocol.swift in Sources */,
+				3700B87629719652005D975D /* BugDetailsTableViewCell.swift in Sources */,
+				37A7137A29681F2B0075BF25 /* FossilViewController.swift in Sources */,
+				37A7138229682B9B0075BF25 /* Networking.swift in Sources */,
+				37D197BC296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift in Sources */,
+				37A7138429682B9B0075BF25 /* ACNHServiceProtocol.swift in Sources */,
+				37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */,
+				37A7137429681DA60075BF25 /* TabBarViewController.swift in Sources */,
+				37A7135E29681A6F0075BF25 /* AppDelegate.swift in Sources */,
+				37A713A429682D090075BF25 /* SeaAvailability.swift in Sources */,
+				37DD38DB298137B90013BF3A /* FossilTableViewCell.swift in Sources */,
+				370492142980278C00B58CC7 /* DashboardView.swift in Sources */,
+				37ACFB6E29685CDE008B065C /* SeaCreatureViewModel.swift in Sources */,
+				37A7138629682B9B0075BF25 /* NetworkingError.swift in Sources */,
+				374732CA2976D990005363BE /* DatabaseViewModel.swift in Sources */,
+				3702B44A296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift in Sources */,
+				37ACFB7029685DAB008B065C /* FishViewController.swift in Sources */,
+				37A713A029682CFC0075BF25 /* FossilData.swift in Sources */,
+				370492122980274300B58CC7 /* OwnedDashboardViewController.swift in Sources */,
+				37A7138729682B9B0075BF25 /* DispatchQueue.swift in Sources */,
+				3702B44C296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift in Sources */,
+				3702B464296F0C4B008AB36D /* FossilViewModel.swift in Sources */,
+				37A7138E29682C940075BF25 /* Name.swift in Sources */,
+				3702B454296EFE40008AB36D /* MainViewCollectionReusableView.swift in Sources */,
+				3702B459296F01F2008AB36D /* FishDetailsViewController.swift in Sources */,
+				3700B87429718E9F005D975D /* FishDetailsTableViewCell.swift in Sources */,
+				37137585296C58F500F39C83 /* ImageVIew.swift in Sources */,
+				37A713A329682D090075BF25 /* SeaCreatureData.swift in Sources */,
+				37A29F83297844F300E043F0 /* DecodableBundle.swift in Sources */,
+				37A7136029681A6F0075BF25 /* SceneDelegate.swift in Sources */,
+				37747C09297EFEB400514352 /* DetailsDelegate.swift in Sources */,
+				3702B45B296F02F7008AB36D /* BugViewModel.swift in Sources */,
+				378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */,
+				3702B460296F07BE008AB36D /* BugCollectionViewCell.swift in Sources */,
+				3702B462296F09BB008AB36D /* BugDetailsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37A29F7C297842E100E043F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37A7135929681A6F0075BF25 /* ACNHGuide */;
+			targetProxy = 37A29F7B297842E100E043F0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		370385E42979389E002CC431 /* Bugs.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				370385E32979389E002CC431 /* Base */,
+			);
+			name = Bugs.json;
+			sourceTree = "<group>";
+		};
+		37A7136829681A700075BF25 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37A7136929681A700075BF25 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		37C4134229785BBE001F6EE0 /* Fishes.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37C4134129785BBE001F6EE0 /* Base */,
+			);
+			name = Fishes.json;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		37A29F7E297842E100E043F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 78PX5NWF8H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuideTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ACNHGuide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ACNHGuide";
+			};
+			name = Debug;
+		};
+		37A29F7F297842E100E043F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 78PX5NWF8H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuideTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ACNHGuide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ACNHGuide";
+			};
+			name = Release;
+		};
+		37A7136C29681A700075BF25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		37A7136D29681A700075BF25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		37A7136F29681A700075BF25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 78PX5NWF8H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ACNHGuide/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuide;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		37A7137029681A700075BF25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 78PX5NWF8H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ACNHGuide/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuide;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		37A29F7D297842E100E043F0 /* Build configuration list for PBXNativeTarget "ACNHGuideTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37A29F7E297842E100E043F0 /* Debug */,
+				37A29F7F297842E100E043F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37A7135529681A6F0075BF25 /* Build configuration list for PBXProject "ACNHGuide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37A7136C29681A700075BF25 /* Debug */,
+				37A7136D29681A700075BF25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37A7136E29681A700075BF25 /* Build configuration list for PBXNativeTarget "ACNHGuide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37A7136F29681A700075BF25 /* Debug */,
+				37A7137029681A700075BF25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3703860429799A79002CC431 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/omerfarukozturk/UIView-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3703860529799A79002CC431 /* UIView-Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3703860429799A79002CC431 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */;
+			productName = "UIView-Shimmer";
+		};
+		3703860829799AA3002CC431 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		3703860A29799AA3002CC431 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 37A7135229681A6F0075BF25 /* Project object */;
+}
