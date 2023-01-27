@@ -9,7 +9,7 @@ import UIKit
 
 final class DetailsCollectionViewCell: UICollectionViewCell {
     
-    private(set) var imageValueImageView: UIImageView = {
+    private let imageValueImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 13
@@ -17,17 +17,18 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private(set) var titleValueLabel: UILabel = {
+    private let titleValueLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont(name: "FinkHeavy", size: 16)
+        label.font = UIFont(name: "FinkHeavy", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private(set) var valueLabel: UILabel = {
+    private let valueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "FinkHeavy", size: 16)
+        label.numberOfLines = 0
+        label.font = UIFont(name: "FinkHeavy", size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -60,9 +61,9 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
     func configureBugCell(imageNamed: String, title: String, value: String) {
         imageValueImageView.image = UIImage(named: imageNamed)
         titleValueLabel.text = title
-        titleValueLabel.textColor = UIColor(named: "ColorGreenDark")
+        titleValueLabel.textColor = UIColor(named: "ColorGreenGrass")
         valueLabel.text = value
-        valueLabel.textColor = UIColor(named: "ColorGreenGrass")
+        valueLabel.textColor = UIColor(named: "ColorGreenDark")
     }
     
     func configureFosssilCell(fossil: FossilData) {

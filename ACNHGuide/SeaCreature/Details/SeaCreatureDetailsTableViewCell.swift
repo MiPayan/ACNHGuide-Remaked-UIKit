@@ -8,7 +8,13 @@
 import UIKit
 
 final class SeaCreatureDetailsTableViewCell: UITableViewCell {
-
+    
+    private var seaCreaturesData: SeaCreatureData? {
+        didSet {
+            self.detailsCollectionView.reloadData()
+        }
+    }
+    
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +44,7 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         return view
     }()
-
+    
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +53,7 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
         return button
     }()
-            
+    
     private let seaCreatureCatchPhraseLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -104,12 +110,13 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(seaCreatureData: SeaCreatureData) {
-        guard let urlString = URL(string: seaCreatureData.iconURI) else { return }
+    func configureDetailsCell(seaCreaturesData: SeaCreatureData) {
+        self.seaCreaturesData = seaCreaturesData
+        guard let urlString = URL(string: seaCreaturesData.iconURI) else { return }
         seaCreatureImageView.loadImage(url: urlString)
-        seaCreatureFilenameLabel.text = seaCreatureData.fileName.replaceCharacter("_", by: " ").capitalized
-        seaCreatureCatchPhraseLabel.text =  "\" \(seaCreatureData.catchPhrase) \""
-        seaCreatureMuseumPhraseLabel.text = seaCreatureData.museumPhrase
+        seaCreatureFilenameLabel.text = seaCreaturesData.fileName.replaceCharacter("_", by: " ").capitalized
+        seaCreatureCatchPhraseLabel.text =  "\" \(seaCreaturesData.catchPhrase) \""
+        seaCreatureMuseumPhraseLabel.text = seaCreaturesData.museumPhrase
     }
 }
 
@@ -181,15 +188,22 @@ extension SeaCreatureDetailsTableViewCell: UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let detailsCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "AdaptiveDetailsCell",
-            for: indexPath
-        ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
+        guard let seaCreaturesData,
+              let detailsCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "AdaptiveDetailsCell",
+                for: indexPath
+              ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
         let imageNamed = ["Bells", "SeaCreatureShadow", "Timer", "Speedmeter", "North", "South"][indexPath.row]
         let title = ["Price", "Shadow", "Time", "Speed", "Northern hemisphere", "Southern hemisphere"][indexPath.row]
-//        let value = [String(seaCreature.price), seaCreature.shadow, seaCreature.availability.time, seaCreature.speed, seaCreature.availability.monthNorthern, seaCreature.availability.monthSouthern][indexPath.row]
-        
-        detailsCell.configureSeaCreatureCell(imageNamed: imageNamed, title: title, value: "600")
+        let value = [
+            String(seaCreaturesData.price),
+            seaCreaturesData.shadow,
+            seaCreaturesData.availability.time,
+            seaCreaturesData.speed,
+            seaCreaturesData.availability.monthNorthern,
+            seaCreaturesData.availability.monthSouthern
+        ][indexPath.row]
+        detailsCell.configureSeaCreatureCell(imageNamed: imageNamed, title: title, value: value)
         return detailsCell
     }
 }

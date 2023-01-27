@@ -8,7 +8,7 @@
 import XCTest
 @testable import ACNHGuide
 
-final class CurrentCalendarMock: CalendarProtocol {
+final class CurrentCalendarMock: CalendarDelegate {
     
     var invockedMakeCurrentCalendarCount = 0
     var stubbedMakeCurrentCalendar: (Int, Int)!

@@ -49,7 +49,7 @@ extension SeaCreatureDetailsViewController: UITableViewDataSource {
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? SeaCreatureDetailsTableViewCell else { return UITableViewCell() }
-        detailsCell.configureDetailsCell(seaCreatureData: seaCreature)
+        detailsCell.configureDetailsCell(seaCreaturesData: seaCreature)
         return detailsCell
     }
 }

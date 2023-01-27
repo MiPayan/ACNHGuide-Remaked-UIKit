@@ -9,6 +9,12 @@ import UIKit
 
 final class BugDetailsTableViewCell: UITableViewCell {
     
+    private var bugsData: BugData? {
+        didSet {
+            detailsCollectionView.reloadData()
+        }
+    }
+    
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -104,12 +110,13 @@ final class BugDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(bugData: BugData) {
-        guard let urlString = URL(string: bugData.iconURI) else { return }
+    func configureDetailsCell(bugsData: BugData) {
+        self.bugsData = bugsData
+        guard let urlString = URL(string: bugsData.iconURI) else { return }
         bugImageView.loadImage(url: urlString)
-        bugFilenameLabel.text = bugData.fileName.replaceCharacter("_", by: " ").capitalized
-        bugCatchPhraseLabel.text =  "\" \(bugData.catchPhrase) \""
-        bugMuseumPhraseLabel.text = bugData.museumPhrase
+        bugFilenameLabel.text = bugsData.fileName.replaceCharacter("_", by: " ").capitalized
+        bugCatchPhraseLabel.text =  "\" \(bugsData.catchPhrase) \""
+        bugMuseumPhraseLabel.text = bugsData.museumPhrase
     }
 }
 
@@ -181,15 +188,17 @@ extension BugDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let detailsCell = collectionView.dequeueReusableCell(
+        guard let bugsData,
+              let detailsCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "AdaptiveDetailsCell",
             for: indexPath
         ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
+        
         let imageNamed = ["Bells", "Grass", "Timer", "Rarity", "North", "South"][indexPath.row]
         let title = ["Price", "Location", "Time", "Rarity", "Northern hemisphere", "Southern hemisphere"][indexPath.row]
-        //        let value = [String(seaCreature.price), seaCreature.shadow, seaCreature.availability.time, seaCreature.speed, seaCreature.availability.monthNorthern, seaCreature.availability.monthSouthern][indexPath.row]
+        let value = [String(bugsData.price), bugsData.availability.location, bugsData.availability.time, bugsData.availability.rarity, bugsData.availability.monthNorthern, bugsData.availability.monthSouthern][indexPath.row]
         
-        detailsCell.configureBugCell(imageNamed: imageNamed, title: title, value: "600")
+        detailsCell.configureBugCell(imageNamed: imageNamed, title: title, value: value)
         return detailsCell
     }
 }

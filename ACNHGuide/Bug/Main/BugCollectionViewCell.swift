@@ -8,7 +8,8 @@
 import UIKit
 
 final class BugCollectionViewCell: UICollectionViewCell {
-    private(set) var bugFilenameLabel: UILabel = {
+    
+    private let bugFilenameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -18,26 +19,26 @@ final class BugCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private(set) var bugImageView: UIImageView = {
+    private let bugImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
-    private(set) var bugPriceLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.font = UIFont(name: "FinkHeavy", size: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+
+    private var isSaved = false
+    private lazy var saveButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "leaf"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+        return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
-        addConstraints()
         setContentView()
     }
     
@@ -49,7 +50,6 @@ final class BugCollectionViewCell: UICollectionViewCell {
         guard let urlString = URL(string: bug.iconURI) else { return }
         bugFilenameLabel.text = bug.fileName.replaceCharacter("_", by: " ").capitalized
         bugImageView.loadImage(url: urlString)
-        bugPriceLabel.text = String(bug.price)
     }
 }
 
@@ -60,27 +60,28 @@ private extension BugCollectionViewCell {
         self.clipsToBounds = true
     }
     
+    @objc func isTapped() {
+        isSaved.toggle()
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+    }
+    
     func addSubviews() {
         addSubview(bugFilenameLabel)
         addSubview(bugImageView)
-        addSubview(bugPriceLabel)
-    }
-    
-    
-    func addConstraints() {
+        addSubview(saveButton)
         NSLayoutConstraint.activate([
             bugFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             bugFilenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             bugFilenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             
-            bugImageView.topAnchor.constraint(equalTo: bugFilenameLabel.bottomAnchor, constant: 8),
+            bugImageView.topAnchor.constraint(equalTo: bugFilenameLabel.bottomAnchor, constant: 4),
             bugImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             bugImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             
-            bugPriceLabel.topAnchor.constraint(equalTo: bugImageView.bottomAnchor, constant: 8),
-            bugPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bugPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            bugPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+            saveButton.topAnchor.constraint(equalTo: bugImageView.bottomAnchor, constant: 4),
+            saveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }
 }

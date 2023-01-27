@@ -129,7 +129,6 @@ extension FossilViewController: UICollectionViewDelegate {
         let detailsViewController = FossilDetailsViewController()
         detailsViewController.fossilData = selectedData
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
-        print("Selected item at \(indexPath.row)")
     }
 }
 

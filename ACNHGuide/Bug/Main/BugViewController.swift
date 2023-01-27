@@ -177,6 +177,6 @@ extension BugViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGSize {
         guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
         let widthPerItem = collectionView.frame.width / 3 - layout.minimumInteritemSpacing
-        return CGSize(width: widthPerItem - 8, height: 160)
+        return CGSize(width: widthPerItem - 8, height: 140)
     }
 }

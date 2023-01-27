@@ -8,7 +8,7 @@
 import XCTest
 @testable import ACNHGuide
 
-final class DispatchQueueMock: DispatchQueueProtocol {
+final class DispatchQueueMock: DispatchQueueDelegate {
     func async(execute work: @escaping @convention(block) () -> Void) {
         work()
     }

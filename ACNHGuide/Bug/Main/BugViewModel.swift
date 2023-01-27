@@ -10,16 +10,16 @@ import Foundation
 final class BugViewModel {
     
     private let service: ACNHServiceProtocol
-    private let mainDispatchQueue: DispatchQueueProtocol
-    private let currentCalendar: CalendarProtocol
+    private let mainDispatchQueue: DispatchQueueDelegate
+    private let currentCalendar: CalendarDelegate
     private(set) var bugData = [BugData]()
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     
     init(
         service: ACNHServiceProtocol = ACNHService(),
-        mainDispatchQueue: DispatchQueueProtocol = DispatchQueue.main,
-        currentCalendar: CalendarProtocol = CurrentCalendar()
+        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
+        currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
         self.service = service
         self.mainDispatchQueue = mainDispatchQueue

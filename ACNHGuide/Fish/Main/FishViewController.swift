@@ -26,7 +26,6 @@ final class FishViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.reloadData()
         return collectionView
     }()
     
@@ -173,4 +172,3 @@ extension FishViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: widthPerItem - 8, height: 140)
     }
 }
-

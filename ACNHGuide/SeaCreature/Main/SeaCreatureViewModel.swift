@@ -10,16 +10,16 @@ import Foundation
 final class SeaCreatureViewModel {
     
     private let service: ACNHServiceProtocol
-    private let mainDispatchQueue: DispatchQueueProtocol
-    private let currentCalendar: CalendarProtocol
+    private let mainDispatchQueue: DispatchQueueDelegate
+    private let currentCalendar: CalendarDelegate
     private(set) var seaCreaturesData = [SeaCreatureData]()
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     
     init(
         service: ACNHServiceProtocol = ACNHService(),
-        mainDispatchQueue: DispatchQueueProtocol = DispatchQueue.main,
-        currentCalendar: CalendarProtocol = CurrentCalendar()
+        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
+        currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
         self.service = service
         self.mainDispatchQueue = mainDispatchQueue
@@ -34,7 +34,6 @@ final class SeaCreatureViewModel {
                 case .success(let seaCreature):
                     self.seaCreaturesData = seaCreature
                     self.successHandler()
-                    
                 case .failure(_):
                     self.failureHandler()
                 }

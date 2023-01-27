@@ -9,6 +9,12 @@ import UIKit
 
 final class FishDetailsTableViewCell: UITableViewCell {
     
+    private var fishesData: FishData? {
+        didSet {
+            self.detailsCollectionView.reloadData()
+        }
+    }
+    
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +44,7 @@ final class FishDetailsTableViewCell: UITableViewCell {
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         return view
     }()
-
+    
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -104,18 +110,19 @@ final class FishDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(fishData: FishData) {
-        guard let urlString = URL(string: fishData.iconURI) else { return }
+    func configureDetailsCell(fishesData: FishData) {
+        self.fishesData = fishesData
+        guard let urlString = URL(string: fishesData.iconURI) else { return }
         fishImageView.loadImage(url: urlString)
-        fishFilenameLabel.text = fishData.fileName.replaceCharacter("_", by: " ").capitalized
-        fishCatchPhraseLabel.text =  "\" \(fishData.catchPhrase) \""
-        fishMuseumPhraseLabel.text = fishData.museumPhrase
+        fishFilenameLabel.text = fishesData.fileName.replaceCharacter("_", by: " ").capitalized
+        fishCatchPhraseLabel.text =  "\" \(fishesData.catchPhrase) \""
+        fishMuseumPhraseLabel.text = fishesData.museumPhrase
     }
 }
 
 private extension FishDetailsTableViewCell {
     @objc func didTapSaveButton() {
-//        TODO: - Save action
+        //        TODO: - Save action
     }
     
     func addSubviews() {
@@ -161,7 +168,7 @@ private extension FishDetailsTableViewCell {
             detailsCollectionView.topAnchor.constraint(equalTo: fishCatchPhraseLabel.bottomAnchor, constant: 16),
             detailsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             detailsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            detailsCollectionView.heightAnchor.constraint(equalToConstant: 218),
+            detailsCollectionView.heightAnchor.constraint(equalToConstant: 278),
             
             museumTitleLabel.topAnchor.constraint(equalTo: detailsCollectionView.bottomAnchor, constant: 16),
             museumTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -181,15 +188,23 @@ extension FishDetailsTableViewCell: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let detailsCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "AdaptiveDetailsCell",
-            for: indexPath
-        ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
-        let imageNamed = ["Bells", "FishingRod", "FishShadow", "Timer", "Speedmeter", "North", "South"][indexPath.row]
-        let title = ["Price", "Location", "Shadow", "Time", "Speed", "Northern hemisphere", "Southern hemisphere"][indexPath.row]
-        //        let value = [String(seaCreature.price), seaCreature.shadow, seaCreature.availability.time, seaCreature.speed, seaCreature.availability.monthNorthern, seaCreature.availability.monthSouthern][indexPath.row]
-        
-        detailsCell.configureFishCell(imageNamed: imageNamed, title: title, value: "600")
+        guard let fishesData,
+              let detailsCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "AdaptiveDetailsCell",
+                for: indexPath
+              ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
+        let imageNamed = ["Bells", "FishingRod", "FishShadow", "Timer", "Rarity", "North", "South"][indexPath.row]
+        let title = ["Price", "Location", "Shadow", "Time", "Rarity", "Northern hemisphere", "Southern hemisphere"][indexPath.row]
+        let value = [
+            String(fishesData.price),
+            fishesData.availability.location,
+            fishesData.shadow,
+            fishesData.availability.time,
+            fishesData.availability.rarity,
+            fishesData.availability.monthNorthern,
+            fishesData.availability.monthSouthern
+        ][indexPath.row]
+        detailsCell.configureFishCell(imageNamed: imageNamed, title: title, value: value)
         return detailsCell
     }
 }

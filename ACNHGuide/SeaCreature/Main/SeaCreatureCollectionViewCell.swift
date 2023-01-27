@@ -9,7 +9,7 @@ import UIKit
 
 final class SeaCreatureCollectionViewCell: UICollectionViewCell {
     
-    private(set) var seaCreatureFilenameLabel: UILabel = {
+    private let seaCreatureFilenameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -19,26 +19,27 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private(set) var seaCreatureImageView: UIImageView = {
+    private let seaCreatureImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    private(set) var seaCreaturePriceLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.font = UIFont(name: "FinkHeavy", size: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private var isSaved = false
+    private lazy var saveButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "leaf"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+        return button
     }()
-    
+
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
-        addConstraints()
         setContentView()
     }
     
@@ -50,7 +51,6 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         guard let urlString = URL(string: seaCreature.iconURI) else { return }
         seaCreatureFilenameLabel.text = seaCreature.fileName.replaceCharacter("_", by: " ").capitalized
         seaCreatureImageView.loadImage(url: urlString)
-        seaCreaturePriceLabel.text = String(seaCreature.price)
     }
 }
 
@@ -61,27 +61,29 @@ private extension SeaCreatureCollectionViewCell {
         self.clipsToBounds = true
     }
     
+    @objc func isTapped() {
+        isSaved.toggle()
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+    }
+
     func addSubviews() {
         addSubview(seaCreatureFilenameLabel)
         addSubview(seaCreatureImageView)
-        addSubview(seaCreaturePriceLabel)
-    }
-    
-    
-    func addConstraints() {
+        addSubview(saveButton)
+        
         NSLayoutConstraint.activate([
             seaCreatureFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             seaCreatureFilenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             seaCreatureFilenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             
-            seaCreatureImageView.topAnchor.constraint(equalTo: seaCreatureFilenameLabel.bottomAnchor, constant: 8),
+            seaCreatureImageView.topAnchor.constraint(equalTo: seaCreatureFilenameLabel.bottomAnchor, constant: 4),
             seaCreatureImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             seaCreatureImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             
-            seaCreaturePriceLabel.topAnchor.constraint(equalTo: seaCreatureImageView.bottomAnchor, constant: 8),
-            seaCreaturePriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            seaCreaturePriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            seaCreaturePriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+            saveButton.topAnchor.constraint(equalTo: seaCreatureImageView.bottomAnchor, constant: 4),
+            saveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }
 }

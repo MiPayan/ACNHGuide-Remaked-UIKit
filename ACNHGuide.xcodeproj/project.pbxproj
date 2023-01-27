@@ -46,10 +46,11 @@
 		3703860B29799AA3002CC431 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860A29799AA3002CC431 /* RealmSwift */; };
 		3704921029801C6100B58CC7 /* ButtonObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704920F29801C6100B58CC7 /* ButtonObject.swift */; };
 		370492122980274300B58CC7 /* OwnedDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370492112980274300B58CC7 /* OwnedDashboardViewController.swift */; };
-		370492142980278C00B58CC7 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370492132980278C00B58CC7 /* DashboardView.swift */; };
 		37137585296C58F500F39C83 /* ImageVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137584296C58F500F39C83 /* ImageVIew.swift */; };
 		37137587296C67F600F39C83 /* StringReplaceCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137586296C67F600F39C83 /* StringReplaceCharacter.swift */; };
 		374732CA2976D990005363BE /* DatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374732C92976D990005363BE /* DatabaseViewModel.swift */; };
+		376035862983E181001498C3 /* FishDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376035852983E181001498C3 /* FishDetailsViewModel.swift */; };
+		3760358829842754001498C3 /* OwnedDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760358729842754001498C3 /* OwnedDashboardViewModel.swift */; };
 		37747C09297EFEB400514352 /* DetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37747C08297EFEB400514352 /* DetailsDelegate.swift */; };
 		378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378DC60829704F030062107C /* DetailsCollectionViewCell.swift */; };
 		37A29F812978442000E043F0 /* FishesMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A29F802978442000E043F0 /* FishesMapping.swift */; };
@@ -67,7 +68,7 @@
 		37A7138429682B9B0075BF25 /* ACNHServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137E29682B9B0075BF25 /* ACNHServiceProtocol.swift */; };
 		37A7138529682B9B0075BF25 /* ACNHService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137F29682B9B0075BF25 /* ACNHService.swift */; };
 		37A7138629682B9B0075BF25 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138029682B9B0075BF25 /* NetworkingError.swift */; };
-		37A7138729682B9B0075BF25 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138129682B9B0075BF25 /* DispatchQueue.swift */; };
+		37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */; };
 		37A7138E29682C940075BF25 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138929682C940075BF25 /* Name.swift */; };
 		37A7139D29682CF40075BF25 /* BugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139B29682CF40075BF25 /* BugData.swift */; };
 		37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139C29682CF40075BF25 /* BugAvailability.swift */; };
@@ -79,12 +80,13 @@
 		37ACFB6E29685CDE008B065C /* SeaCreatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACFB6D29685CDE008B065C /* SeaCreatureViewModel.swift */; };
 		37ACFB7029685DAB008B065C /* FishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACFB6F29685DAB008B065C /* FishViewController.swift */; };
 		37ACFB7929686A9E008B065C /* SeaCreatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ACFB7829686A9E008B065C /* SeaCreatureCollectionViewCell.swift */; };
-		37B02E14296D5EEF0084178D /* CalendarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B02E13296D5EEF0084178D /* CalendarProtocol.swift */; };
+		37B02E14296D5EEF0084178D /* CalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B02E13296D5EEF0084178D /* CalendarDelegate.swift */; };
 		37B02E16296D5F820084178D /* CurrentCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B02E15296D5F820084178D /* CurrentCalendar.swift */; };
 		37C4134029785BBE001F6EE0 /* Fishes.json in Resources */ = {isa = PBXBuildFile; fileRef = 37C4134229785BBE001F6EE0 /* Fishes.json */; };
 		37C4134329785BDC001F6EE0 /* Fishes.json in Resources */ = {isa = PBXBuildFile; fileRef = 37C4134229785BBE001F6EE0 /* Fishes.json */; };
 		37D197BC296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */; };
 		37DD38DB298137B90013BF3A /* FossilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */; };
+		37DD38DD298187440013BF3A /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,10 +133,11 @@
 		3703860229799102002CC431 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		3704920F29801C6100B58CC7 /* ButtonObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonObject.swift; sourceTree = "<group>"; };
 		370492112980274300B58CC7 /* OwnedDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedDashboardViewController.swift; sourceTree = "<group>"; };
-		370492132980278C00B58CC7 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		37137584296C58F500F39C83 /* ImageVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVIew.swift; sourceTree = "<group>"; };
 		37137586296C67F600F39C83 /* StringReplaceCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringReplaceCharacter.swift; sourceTree = "<group>"; };
 		374732C92976D990005363BE /* DatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewModel.swift; sourceTree = "<group>"; };
+		376035852983E181001498C3 /* FishDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModel.swift; sourceTree = "<group>"; };
+		3760358729842754001498C3 /* OwnedDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedDashboardViewModel.swift; sourceTree = "<group>"; };
 		37747C08297EFEB400514352 /* DetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDelegate.swift; sourceTree = "<group>"; };
 		378DC60829704F030062107C /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		37A29F77297842E100E043F0 /* ACNHGuideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACNHGuideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +158,7 @@
 		37A7137E29682B9B0075BF25 /* ACNHServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNHServiceProtocol.swift; sourceTree = "<group>"; };
 		37A7137F29682B9B0075BF25 /* ACNHService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNHService.swift; sourceTree = "<group>"; };
 		37A7138029682B9B0075BF25 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
-		37A7138129682B9B0075BF25 /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
+		37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueueDelegate.swift; sourceTree = "<group>"; };
 		37A7138929682C940075BF25 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
 		37A7139B29682CF40075BF25 /* BugData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugData.swift; sourceTree = "<group>"; };
 		37A7139C29682CF40075BF25 /* BugAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugAvailability.swift; sourceTree = "<group>"; };
@@ -167,11 +170,12 @@
 		37ACFB6D29685CDE008B065C /* SeaCreatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureViewModel.swift; sourceTree = "<group>"; };
 		37ACFB6F29685DAB008B065C /* FishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishViewController.swift; sourceTree = "<group>"; };
 		37ACFB7829686A9E008B065C /* SeaCreatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureCollectionViewCell.swift; sourceTree = "<group>"; };
-		37B02E13296D5EEF0084178D /* CalendarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarProtocol.swift; sourceTree = "<group>"; };
+		37B02E13296D5EEF0084178D /* CalendarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDelegate.swift; sourceTree = "<group>"; };
 		37B02E15296D5F820084178D /* CurrentCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCalendar.swift; sourceTree = "<group>"; };
 		37C4134129785BBE001F6EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Fishes.json; sourceTree = "<group>"; };
 		37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CAGradientLayer.swift"; sourceTree = "<group>"; };
 		37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilTableViewCell.swift; sourceTree = "<group>"; };
+		37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				3702B451296EFD68008AB36D /* FishViewModel.swift */,
+				376035852983E181001498C3 /* FishDetailsViewModel.swift */,
 				37ACFB6F29685DAB008B065C /* FishViewController.swift */,
 				3702B455296EFF67008AB36D /* FishCollectionViewCell.swift */,
 			);
@@ -314,6 +319,8 @@
 		3704920E297FF6E200B58CC7 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
+				37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */,
+				37B02E13296D5EEF0084178D /* CalendarDelegate.swift */,
 				3703860029799077002CC431 /* ErrorViewDelegate.swift */,
 				37747C08297EFEB400514352 /* DetailsDelegate.swift */,
 			);
@@ -351,8 +358,9 @@
 		378DC5FF297026000062107C /* Owned */ = {
 			isa = PBXGroup;
 			children = (
+				3760358729842754001498C3 /* OwnedDashboardViewModel.swift */,
 				370492112980274300B58CC7 /* OwnedDashboardViewController.swift */,
-				370492132980278C00B58CC7 /* DashboardView.swift */,
+				37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */,
 			);
 			path = Owned;
 			sourceTree = "<group>";
@@ -407,12 +415,11 @@
 				374732C62976A832005363BE /* RealmDataBase */,
 				37A7138829682BCD0075BF25 /* ACNHData */,
 				37A7137B29682B130075BF25 /* Networking */,
-				37B02E13296D5EEF0084178D /* CalendarProtocol.swift */,
 				37B02E15296D5F820084178D /* CurrentCalendar.swift */,
 				37A7137329681DA60075BF25 /* TabBarViewController.swift */,
+				3703860229799102002CC431 /* ErrorView.swift */,
 				3702B453296EFE40008AB36D /* MainViewCollectionReusableView.swift */,
 				378DC60829704F030062107C /* DetailsCollectionViewCell.swift */,
-				3703860229799102002CC431 /* ErrorView.swift */,
 				3704920E297FF6E200B58CC7 /* Delegate */,
 				37ACFB712968646E008B065C /* Fish */,
 				37ACFB7229686477008B065C /* SeaCreature */,
@@ -443,7 +450,6 @@
 				37A7137D29682B9B0075BF25 /* NetworkingProtocol.swift */,
 				37A7137C29682B9B0075BF25 /* Networking.swift */,
 				37A7138029682B9B0075BF25 /* NetworkingError.swift */,
-				37A7138129682B9B0075BF25 /* DispatchQueue.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -685,7 +691,7 @@
 				37A7137629681F130075BF25 /* SeaCreatureViewController.swift in Sources */,
 				37A7137829681F1C0075BF25 /* BugViewController.swift in Sources */,
 				37A7138529682B9B0075BF25 /* ACNHService.swift in Sources */,
-				37B02E14296D5EEF0084178D /* CalendarProtocol.swift in Sources */,
+				37B02E14296D5EEF0084178D /* CalendarDelegate.swift in Sources */,
 				3700B87629719652005D975D /* BugDetailsTableViewCell.swift in Sources */,
 				37A7137A29681F2B0075BF25 /* FossilViewController.swift in Sources */,
 				37A7138229682B9B0075BF25 /* Networking.swift in Sources */,
@@ -696,7 +702,7 @@
 				37A7135E29681A6F0075BF25 /* AppDelegate.swift in Sources */,
 				37A713A429682D090075BF25 /* SeaAvailability.swift in Sources */,
 				37DD38DB298137B90013BF3A /* FossilTableViewCell.swift in Sources */,
-				370492142980278C00B58CC7 /* DashboardView.swift in Sources */,
+				37DD38DD298187440013BF3A /* DashboardTableViewCell.swift in Sources */,
 				37ACFB6E29685CDE008B065C /* SeaCreatureViewModel.swift in Sources */,
 				37A7138629682B9B0075BF25 /* NetworkingError.swift in Sources */,
 				374732CA2976D990005363BE /* DatabaseViewModel.swift in Sources */,
@@ -704,13 +710,14 @@
 				37ACFB7029685DAB008B065C /* FishViewController.swift in Sources */,
 				37A713A029682CFC0075BF25 /* FossilData.swift in Sources */,
 				370492122980274300B58CC7 /* OwnedDashboardViewController.swift in Sources */,
-				37A7138729682B9B0075BF25 /* DispatchQueue.swift in Sources */,
+				37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */,
 				3702B44C296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift in Sources */,
 				3702B464296F0C4B008AB36D /* FossilViewModel.swift in Sources */,
 				37A7138E29682C940075BF25 /* Name.swift in Sources */,
 				3702B454296EFE40008AB36D /* MainViewCollectionReusableView.swift in Sources */,
 				3702B459296F01F2008AB36D /* FishDetailsViewController.swift in Sources */,
 				3700B87429718E9F005D975D /* FishDetailsTableViewCell.swift in Sources */,
+				3760358829842754001498C3 /* OwnedDashboardViewModel.swift in Sources */,
 				37137585296C58F500F39C83 /* ImageVIew.swift in Sources */,
 				37A713A329682D090075BF25 /* SeaCreatureData.swift in Sources */,
 				37A29F83297844F300E043F0 /* DecodableBundle.swift in Sources */,
@@ -719,6 +726,7 @@
 				3702B45B296F02F7008AB36D /* BugViewModel.swift in Sources */,
 				378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */,
 				3702B460296F07BE008AB36D /* BugCollectionViewCell.swift in Sources */,
+				376035862983E181001498C3 /* FishDetailsViewModel.swift in Sources */,
 				3702B462296F09BB008AB36D /* BugDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CurrentCalendar: CalendarProtocol {
+final class CurrentCalendar: CalendarDelegate {
     
     func makeCurrentCalendar() -> (Int, Int) {
         let date = Date()

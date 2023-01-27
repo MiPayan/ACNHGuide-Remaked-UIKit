@@ -9,7 +9,7 @@ import UIKit
 
 final class FishCollectionViewCell: UICollectionViewCell {
     
-    private(set) var fishFilenameLabel: UILabel = {
+    private let fishFilenameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -19,7 +19,7 @@ final class FishCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private(set) var fishImageView: UIImageView = {
+    private let fishImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -51,12 +51,6 @@ final class FishCollectionViewCell: UICollectionViewCell {
         fishFilenameLabel.text = fish.fileName.replaceCharacter("_", by: " ").capitalized
         fishImageView.loadImage(url: urlString)
     }
-    
-    @objc func isTapped() {
-        isSaved.toggle()
-        let imageString = isSaved ? "leaf.fill" : "leaf"
-        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
-    }
 }
 
 private extension FishCollectionViewCell {
@@ -66,21 +60,26 @@ private extension FishCollectionViewCell {
         self.clipsToBounds = true
     }
     
+    @objc func isTapped() {
+        isSaved.toggle()
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+    }
+    
     func addSubviews() {
         addSubview(fishFilenameLabel)
         addSubview(fishImageView)
         addSubview(saveButton)
-        
         NSLayoutConstraint.activate([
             fishFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             fishFilenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             fishFilenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-
-            fishImageView.topAnchor.constraint(equalTo: fishFilenameLabel.bottomAnchor),
+            
+            fishImageView.topAnchor.constraint(equalTo: fishFilenameLabel.bottomAnchor, constant: 4),
             fishImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             fishImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            fishImageView.bottomAnchor.constraint(equalTo: saveButton.topAnchor),
             
+            saveButton.topAnchor.constraint(equalTo: fishImageView.bottomAnchor, constant: 4),
             saveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             saveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])

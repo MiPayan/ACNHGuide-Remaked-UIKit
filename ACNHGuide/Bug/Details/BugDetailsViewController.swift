@@ -10,19 +10,19 @@ import UIKit
 final class BugDetailsViewController: UIViewController {
     
     var bugData: BugData?
-    private var bugTableView: UITableView = {
+    private lazy var bugTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(BugDetailsTableViewCell.self, forCellReuseIdentifier: "DetailsCell")
         tableView.allowsSelection = false
         tableView.backgroundColor = UIColor(named: "ColorSand")
+        tableView.dataSource = self
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addConstraints()
-        bugTableView.dataSource = self
     }
     
     private func addConstraints() {
@@ -47,7 +47,7 @@ extension BugDetailsViewController: UITableViewDataSource {
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? BugDetailsTableViewCell else { return UITableViewCell() }
-        detailsCell.configureDetailsCell(bugData: bugData)
+        detailsCell.configureDetailsCell(bugsData: bugData)
         return detailsCell
     }
 }
