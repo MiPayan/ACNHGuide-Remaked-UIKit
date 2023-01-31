@@ -17,7 +17,6 @@ final class OwnedDashboardViewController: UIViewController {
         tableView.backgroundColor = UIColor(named: "ColorSand")
         tableView.allowsSelection = false
         tableView.dataSource = self
-        tableView.delegate = self
         return tableView
     }()
     
@@ -68,8 +67,4 @@ extension OwnedDashboardViewController: UITableViewDataSource {
         }
         return dashboardCell
     }
-}
-
-extension OwnedDashboardViewController: UITableViewDelegate {
-    
 }

@@ -153,10 +153,10 @@ extension SeaCreatureViewController: UICollectionViewDelegate {
         let detailsViewController = SeaCreatureDetailsViewController()
         if indexPath.section == 0 {
             let selectedNorthernData = seaCreatureViewModel.makeSeaCreaturesFromTheNorthernHemisphere()[indexPath.row]
-            detailsViewController.seaCretureData = selectedNorthernData
+            detailsViewController.seaCreatureData = selectedNorthernData
         } else {
             let selectedSouthernData = seaCreatureViewModel.makeSeaCreaturesFromTheSouthernHemisphere()[indexPath.row]
-            detailsViewController.seaCretureData = selectedSouthernData
+            detailsViewController.seaCreatureData = selectedSouthernData
         }
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }

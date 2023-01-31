@@ -9,6 +9,12 @@ import UIKit
 
 final class FossilTableViewCell: UITableViewCell {
     
+    private var fossilDetailsViewModel: FossilDetailsViewModel? {
+        didSet {
+            detailsCollectionView.reloadData()
+        }
+    }
+    
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +54,23 @@ final class FossilTableViewCell: UITableViewCell {
         return button
     }()
     
+    private lazy var detailsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 16
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(DetailsCollectionViewCell.self, forCellWithReuseIdentifier: "AdaptiveDetailsCell")
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        collectionView.backgroundColor = .clear
+        collectionView.allowsSelection = false
+        collectionView.isScrollEnabled = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        return collectionView
+    }()
+    
     private let museumTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -77,11 +100,13 @@ final class FossilTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(fossilData: FossilData) {
-        guard let urlString = URL(string: fossilData.imageURI) else { return }
-        fossilImageView.loadImage(url: urlString)
-        fossilFilenameLabel.text = fossilData.fileName.replaceCharacter("_", by: " ").capitalized
-        fossilMuseumPhraseLabel.text = fossilData.museumPhrase
+    func configureDetailsCell(fossilDetailsViewModel: FossilDetailsViewModel) {
+        self.fossilDetailsViewModel = fossilDetailsViewModel
+        if let url = fossilDetailsViewModel.imageURL {
+            fossilImageView.loadImage(url: url)
+        }
+        fossilFilenameLabel.text = fossilDetailsViewModel.filename
+        fossilMuseumPhraseLabel.text = fossilDetailsViewModel.museumPhrase
     }
 }
 
@@ -96,9 +121,9 @@ private extension FossilTableViewCell {
         containerView.addSubview(fossilImageView)
         containerView.addSubview(containerSaveButtonView)
         containerSaveButtonView.addSubview(saveButton)
+        addSubview(detailsCollectionView)
         addSubview(museumTitleLabel)
         addSubview(fossilMuseumPhraseLabel)
-        
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -123,7 +148,12 @@ private extension FossilTableViewCell {
             saveButton.trailingAnchor.constraint(equalTo: containerSaveButtonView.trailingAnchor, constant: -20),
             saveButton.bottomAnchor.constraint(equalTo: containerSaveButtonView.bottomAnchor, constant: -8),
             
-            museumTitleLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 16),
+            detailsCollectionView.topAnchor.constraint(equalTo: containerView.bottomAnchor),
+            detailsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            detailsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            detailsCollectionView.heightAnchor.constraint(equalToConstant: 76),
+            
+            museumTitleLabel.topAnchor.constraint(equalTo: detailsCollectionView.bottomAnchor, constant: 16),
             museumTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             museumTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
@@ -132,5 +162,47 @@ private extension FossilTableViewCell {
             fossilMuseumPhraseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             fossilMuseumPhraseLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
+    }
+}
+
+extension FossilTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let fossilDetailsViewModel,
+              let detailsCell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "AdaptiveDetailsCell",
+                for: indexPath
+              ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
+        detailsCell.configureCell(
+            imageNamed: "Bells",
+            title: "Price",
+            titleColorNamed: "ColorBrownHeart",
+            value: fossilDetailsViewModel.price,
+            valueColorNamed: "ColorBrownHeart"
+        )
+        return detailsCell
+    }
+}
+
+extension FossilTableViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8.0, left: 32.0, bottom: 8.0, right: 32.0)
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
+        let widthPerItem = collectionView.frame.width / 2 - layout.minimumInteritemSpacing
+        return CGSize(width: widthPerItem - 24, height: 60)
     }
 }

@@ -32,7 +32,7 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "leaf"), for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(isTappedTheSaveButton), for: .touchUpInside)
         return button
     }()
 
@@ -61,7 +61,7 @@ private extension SeaCreatureCollectionViewCell {
         self.clipsToBounds = true
     }
     
-    @objc func isTapped() {
+    @objc func isTappedTheSaveButton() {
         isSaved.toggle()
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)

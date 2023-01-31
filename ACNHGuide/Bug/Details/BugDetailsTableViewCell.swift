@@ -9,7 +9,7 @@ import UIKit
 
 final class BugDetailsTableViewCell: UITableViewCell {
     
-    private var bugsData: BugData? {
+    private var bugDetailsViewModel: BugDetailsViewModel? {
         didSet {
             detailsCollectionView.reloadData()
         }
@@ -110,13 +110,14 @@ final class BugDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(bugsData: BugData) {
-        self.bugsData = bugsData
-        guard let urlString = URL(string: bugsData.iconURI) else { return }
-        bugImageView.loadImage(url: urlString)
-        bugFilenameLabel.text = bugsData.fileName.replaceCharacter("_", by: " ").capitalized
-        bugCatchPhraseLabel.text =  "\" \(bugsData.catchPhrase) \""
-        bugMuseumPhraseLabel.text = bugsData.museumPhrase
+    func configureDetailsCell(bugDetailsViewModel: BugDetailsViewModel) {
+        self.bugDetailsViewModel = bugDetailsViewModel
+        if let url = bugDetailsViewModel.iconURL {
+            bugImageView.loadImage(url: url)
+        }
+        bugFilenameLabel.text = bugDetailsViewModel.fileName
+        bugCatchPhraseLabel.text = bugDetailsViewModel.catchPhrase
+        bugMuseumPhraseLabel.text = bugDetailsViewModel.museumPhrase
     }
 }
 
@@ -188,21 +189,21 @@ extension BugDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let bugsData,
+        guard let bugDetailsViewModel,
               let detailsCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "AdaptiveDetailsCell",
             for: indexPath
         ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
-        
-        let imageNamed = ["Bells", "Grass", "Timer", "Rarity", "North", "South"][indexPath.row]
-        let title = ["Price", "Location", "Time", "Rarity", "Northern hemisphere", "Southern hemisphere"][indexPath.row]
-        let value = [String(bugsData.price), bugsData.availability.location, bugsData.availability.time, bugsData.availability.rarity, bugsData.availability.monthNorthern, bugsData.availability.monthSouthern][indexPath.row]
-        
-        detailsCell.configureBugCell(imageNamed: imageNamed, title: title, value: value)
+        detailsCell.configureCell(
+            imageNamed: bugDetailsViewModel.makeImageName(at: indexPath.row),
+            title: bugDetailsViewModel.makeTitle(at: indexPath.row),
+            titleColorNamed: "ColorGreenGrass",
+            value: bugDetailsViewModel.makeValue(at: indexPath.row),
+            valueColorNamed: "ColorGreenDark"
+        )
         return detailsCell
     }
 }
-
 
 extension BugDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(

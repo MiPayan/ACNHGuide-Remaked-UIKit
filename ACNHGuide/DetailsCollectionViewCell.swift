@@ -42,32 +42,12 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureFishCell(imageNamed: String, title: String, value: String) {
+    func configureCell(imageNamed: String, title: String, titleColorNamed: String, value: String, valueColorNamed: String) {
         imageValueImageView.image = UIImage(named: imageNamed)
         titleValueLabel.text = title
-        titleValueLabel.textColor = UIColor(named: "ColorBlueOcean") 
+        titleValueLabel.textColor = UIColor(named: titleColorNamed)
         valueLabel.text = value
-        valueLabel.textColor = UIColor(named: "ColorBlueRoyal")
-    }
-    
-    func configureSeaCreatureCell(imageNamed: String, title: String, value: String) {
-        imageValueImageView.image = UIImage(named: imageNamed)
-        titleValueLabel.text = title
-        titleValueLabel.textColor = UIColor(named: "ColorBlueMidnight")
-        valueLabel.text = value
-        valueLabel.textColor = UIColor(named: "ColorBlueNight")
-    }
-    
-    func configureBugCell(imageNamed: String, title: String, value: String) {
-        imageValueImageView.image = UIImage(named: imageNamed)
-        titleValueLabel.text = title
-        titleValueLabel.textColor = UIColor(named: "ColorGreenGrass")
-        valueLabel.text = value
-        valueLabel.textColor = UIColor(named: "ColorGreenDark")
-    }
-    
-    func configureFosssilCell(fossil: FossilData) {
-        
+        valueLabel.textColor = UIColor(named: valueColorNamed)
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 
 final class SeaCreatureDetailsViewController: UIViewController {
     
-    var seaCretureData: SeaCreatureData?
+    var seaCreatureData: SeaCreatureData?
     private var seaCreatureTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,12 +44,13 @@ extension SeaCreatureDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let seaCreature = seaCretureData,
+        guard let seaCreatureData,
               let detailsCell = tableView.dequeueReusableCell(
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? SeaCreatureDetailsTableViewCell else { return UITableViewCell() }
-        detailsCell.configureDetailsCell(seaCreaturesData: seaCreature)
+        let seaCreatureDetailsViewModel = SeaCreatureDetailsViewModel(seaCreatureData: seaCreatureData)
+        detailsCell.configureDetailsCell(seaCreatureDetailsViewModel: seaCreatureDetailsViewModel)
         return detailsCell
     }
 }

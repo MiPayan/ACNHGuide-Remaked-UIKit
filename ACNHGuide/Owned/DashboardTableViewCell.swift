@@ -23,7 +23,7 @@ final class DashboardTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var addedItem = 40
+    private var itemSavedCount = 40
     private let objectProgressView: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .bar)
         progressBar.translatesAutoresizingMaskIntoConstraints = false
@@ -61,8 +61,8 @@ final class DashboardTableViewCell: UITableViewCell {
         objectTitleLabel.text = "Fishes"
         objectImageView.loadImage(url: url)
         objectProgressView.progressTintColor = UIColor(named: "ColorBlueOcean")
-        objectProgressView.progress = Float(addedItem) / Float(fishData.count)
-        objectTotalLabel.text = "\(addedItem)/\(fishData.count)"
+        objectProgressView.progress = Float(itemSavedCount) / Float(fishData.count)
+        objectTotalLabel.text = "\(itemSavedCount)/\(fishData.count)"
     }
     
     func configureSeaCreatureCell(seaCreatureData: [SeaCreatureData]) {
@@ -72,8 +72,8 @@ final class DashboardTableViewCell: UITableViewCell {
         objectTitleLabel.text = "Sea creatures"
         objectImageView.loadImage(url: url)
         objectProgressView.progressTintColor = UIColor(named: "ColorBlueRoyal")
-        objectProgressView.progress = Float(addedItem) / Float(seaCreatureData.count)
-        objectTotalLabel.text = "\(addedItem)/\(seaCreatureData.count)"
+        objectProgressView.progress = Float(itemSavedCount) / Float(seaCreatureData.count)
+        objectTotalLabel.text = "\(itemSavedCount)/\(seaCreatureData.count)"
     }
     
     func configureBugCell(bugData: [BugData]) {
@@ -83,8 +83,8 @@ final class DashboardTableViewCell: UITableViewCell {
         objectTitleLabel.text = "Bugs"
         objectImageView.loadImage(url: url)
         objectProgressView.progressTintColor = UIColor(named: "ColorGreenGrass")
-        objectProgressView.progress = Float(addedItem) / Float(bugData.count)
-        objectTotalLabel.text = "\(addedItem)/\(bugData.count)"
+        objectProgressView.progress = Float(itemSavedCount) / Float(bugData.count)
+        objectTotalLabel.text = "\(itemSavedCount)/\(bugData.count)"
     }
     
     func configureFossilCell(fossilData: [FossilData]) {
@@ -94,8 +94,8 @@ final class DashboardTableViewCell: UITableViewCell {
         objectTitleLabel.text = "Fossils"
         objectImageView.loadImage(url: url)
         objectProgressView.progressTintColor = .brown
-        objectProgressView.progress = Float(addedItem) / Float(fossilData.count)
-        objectTotalLabel.text = "\(addedItem)/\(fossilData.count)"
+        objectProgressView.progress = Float(itemSavedCount) / Float(fossilData.count)
+        objectTotalLabel.text = "\(itemSavedCount)/\(fossilData.count)"
     }
     
     func addSubviews() {

@@ -9,7 +9,7 @@ import UIKit
 
 final class SeaCreatureDetailsTableViewCell: UITableViewCell {
     
-    private var seaCreaturesData: SeaCreatureData? {
+    private var seaCreatureDetailsViewModel: SeaCreatureDetailsViewModel? {
         didSet {
             self.detailsCollectionView.reloadData()
         }
@@ -110,13 +110,14 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(seaCreaturesData: SeaCreatureData) {
-        self.seaCreaturesData = seaCreaturesData
-        guard let urlString = URL(string: seaCreaturesData.iconURI) else { return }
-        seaCreatureImageView.loadImage(url: urlString)
-        seaCreatureFilenameLabel.text = seaCreaturesData.fileName.replaceCharacter("_", by: " ").capitalized
-        seaCreatureCatchPhraseLabel.text =  "\" \(seaCreaturesData.catchPhrase) \""
-        seaCreatureMuseumPhraseLabel.text = seaCreaturesData.museumPhrase
+    func configureDetailsCell(seaCreatureDetailsViewModel: SeaCreatureDetailsViewModel) {
+        self.seaCreatureDetailsViewModel = seaCreatureDetailsViewModel
+        if let url = seaCreatureDetailsViewModel.iconURL {
+            seaCreatureImageView.loadImage(url: url)
+        }
+        seaCreatureFilenameLabel.text = seaCreatureDetailsViewModel.fileName
+        seaCreatureCatchPhraseLabel.text = seaCreatureDetailsViewModel.catchPhrase
+        seaCreatureMuseumPhraseLabel.text = seaCreatureDetailsViewModel.museumPhrase
     }
 }
 
@@ -188,22 +189,18 @@ extension SeaCreatureDetailsTableViewCell: UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let seaCreaturesData,
+        guard let seaCreatureDetailsViewModel,
               let detailsCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "AdaptiveDetailsCell",
                 for: indexPath
               ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
-        let imageNamed = ["Bells", "SeaCreatureShadow", "Timer", "Speedmeter", "North", "South"][indexPath.row]
-        let title = ["Price", "Shadow", "Time", "Speed", "Northern hemisphere", "Southern hemisphere"][indexPath.row]
-        let value = [
-            String(seaCreaturesData.price),
-            seaCreaturesData.shadow,
-            seaCreaturesData.availability.time,
-            seaCreaturesData.speed,
-            seaCreaturesData.availability.monthNorthern,
-            seaCreaturesData.availability.monthSouthern
-        ][indexPath.row]
-        detailsCell.configureSeaCreatureCell(imageNamed: imageNamed, title: title, value: value)
+        detailsCell.configureCell(
+            imageNamed: seaCreatureDetailsViewModel.makeImageName(at: indexPath.row),
+            title: seaCreatureDetailsViewModel.makeTitle(at: indexPath.row),
+            titleColorNamed: "ColorBlueMidnight",
+            value: seaCreatureDetailsViewModel.makeValue(at: indexPath.row),
+            valueColorNamed: "ColorBlueNight"
+        )
         return detailsCell
     }
 }

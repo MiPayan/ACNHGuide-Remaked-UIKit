@@ -53,7 +53,8 @@ extension FishDetailsViewController: UITableViewDataSource {
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? FishDetailsTableViewCell else { return UITableViewCell() }
-        detailsCell.configureDetailsCell(fishesData: fishData)
+        let fishDetailsViewModel = FishDetailsViewModel(fishData: fishData)
+        detailsCell.configureDetailsCell(fishDetailsViewModel: fishDetailsViewModel)
         return detailsCell
     }
 }

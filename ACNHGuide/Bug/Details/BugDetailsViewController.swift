@@ -47,7 +47,8 @@ extension BugDetailsViewController: UITableViewDataSource {
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? BugDetailsTableViewCell else { return UITableViewCell() }
-        detailsCell.configureDetailsCell(bugsData: bugData)
+        let bugDetailsViewModel = BugDetailsViewModel(bugData: bugData)
+        detailsCell.configureDetailsCell(bugDetailsViewModel: bugDetailsViewModel)
         return detailsCell
     }
 }

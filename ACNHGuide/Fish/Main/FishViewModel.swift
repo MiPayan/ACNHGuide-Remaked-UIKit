@@ -40,15 +40,7 @@ final class FishViewModel {
             }
         }
     }
-
-    func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? makeFishesFromTheNorthernHemisphere().count : makeFishesFromTheSouthernHemisphere().count
-    }
     
-    func configureCollectionView(with section: Int, index: Int) -> FishData {
-        section == 0 ? makeFishesFromTheNorthernHemisphere()[index] : makeFishesFromTheSouthernHemisphere()[index]
-    }
-        
     func makeFishesFromTheNorthernHemisphere() -> [FishData] {
         let (hour, month) = currentCalendar.makeCurrentCalendar()
         let filtered = fishData.filter {
@@ -63,5 +55,13 @@ final class FishViewModel {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
+    }
+    
+    func configureSectionCollectionView(with section: Int) -> Int {
+        section == 0 ? makeFishesFromTheNorthernHemisphere().count : makeFishesFromTheSouthernHemisphere().count
+    }
+    
+    func configureCollectionView(with section: Int, index: Int) -> FishData {
+        section == 0 ? makeFishesFromTheNorthernHemisphere()[index] : makeFishesFromTheSouthernHemisphere()[index]
     }
 }

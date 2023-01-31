@@ -47,7 +47,8 @@ extension FossilDetailsViewController: UITableViewDataSource {
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? FossilTableViewCell else { return UITableViewCell() }
-        detailsCell.configureDetailsCell(fossilData: fossilData)
+        let fossilDetailsViewModel = FossilDetailsViewModel(fossilData: fossilData)
+        detailsCell.configureDetailsCell(fossilDetailsViewModel: fossilDetailsViewModel)
         return detailsCell
     }
 }

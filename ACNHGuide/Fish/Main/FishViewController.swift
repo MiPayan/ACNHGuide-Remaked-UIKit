@@ -138,7 +138,6 @@ extension FishViewController: UICollectionViewDataSource {
     }
 }
 
-// TODO: - ⚠️
 extension FishViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FishDetailsViewController()

@@ -9,7 +9,7 @@ import UIKit
 
 final class FishDetailsTableViewCell: UITableViewCell {
     
-    private var fishesData: FishData? {
+    private var fishDetailsViewModel: FishDetailsViewModel? {
         didSet {
             self.detailsCollectionView.reloadData()
         }
@@ -110,13 +110,14 @@ final class FishDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(fishesData: FishData) {
-        self.fishesData = fishesData
-        guard let urlString = URL(string: fishesData.iconURI) else { return }
-        fishImageView.loadImage(url: urlString)
-        fishFilenameLabel.text = fishesData.fileName.replaceCharacter("_", by: " ").capitalized
-        fishCatchPhraseLabel.text =  "\" \(fishesData.catchPhrase) \""
-        fishMuseumPhraseLabel.text = fishesData.museumPhrase
+    func configureDetailsCell(fishDetailsViewModel: FishDetailsViewModel) {
+        self.fishDetailsViewModel = fishDetailsViewModel
+        if let url = fishDetailsViewModel.iconURL {
+            fishImageView.loadImage(url: url)
+        }
+        fishFilenameLabel.text = fishDetailsViewModel.fileName
+        fishCatchPhraseLabel.text = fishDetailsViewModel.catchPhrase
+        fishMuseumPhraseLabel.text = fishDetailsViewModel.museumPhrase
     }
 }
 
@@ -188,27 +189,21 @@ extension FishDetailsTableViewCell: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let fishesData,
+        guard let fishDetailsViewModel,
               let detailsCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "AdaptiveDetailsCell",
                 for: indexPath
               ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
-        let imageNamed = ["Bells", "FishingRod", "FishShadow", "Timer", "Rarity", "North", "South"][indexPath.row]
-        let title = ["Price", "Location", "Shadow", "Time", "Rarity", "Northern hemisphere", "Southern hemisphere"][indexPath.row]
-        let value = [
-            String(fishesData.price),
-            fishesData.availability.location,
-            fishesData.shadow,
-            fishesData.availability.time,
-            fishesData.availability.rarity,
-            fishesData.availability.monthNorthern,
-            fishesData.availability.monthSouthern
-        ][indexPath.row]
-        detailsCell.configureFishCell(imageNamed: imageNamed, title: title, value: value)
+        detailsCell.configureCell(
+            imageNamed: fishDetailsViewModel.makeImageName(at: indexPath.row),
+            title: fishDetailsViewModel.makeTitle(at: indexPath.row),
+            titleColorNamed: "ColorBlueOcean",
+            value: fishDetailsViewModel.makeValue(at: indexPath.row),
+            valueColorNamed: "ColorBlueRoyal"
+        )
         return detailsCell
     }
 }
-
 
 extension FishDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(
