@@ -50,9 +50,10 @@
 		375B9D2B2987D37C00E5B36D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375B9D2A2987D37C00E5B36D /* RealmManager.swift */; };
 		376035862983E181001498C3 /* FishDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376035852983E181001498C3 /* FishDetailsViewModel.swift */; };
 		3760358829842754001498C3 /* OwnedDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760358729842754001498C3 /* OwnedDashboardViewModel.swift */; };
+		3765CE56298AA14E009E6CCF /* FishDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3765CE55298AA14E009E6CCF /* FishDetailsViewModelTests.swift */; };
+		3765CE59298AA253009E6CCF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3765CE58298AA253009E6CCF /* RealmSwift */; };
 		37747C09297EFEB400514352 /* DetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37747C08297EFEB400514352 /* DetailsDelegate.swift */; };
 		378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378DC60829704F030062107C /* DetailsCollectionViewCell.swift */; };
-		3792FF3629891B82005673E9 /* ButtonObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3529891B82005673E9 /* ButtonObject.swift */; };
 		3792FF3829896223005673E9 /* SeaCreatureDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3729896223005673E9 /* SeaCreatureDetailsViewModel.swift */; };
 		3792FF3A298967BB005673E9 /* BugDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF39298967BB005673E9 /* BugDetailsViewModel.swift */; };
 		3792FF3C29896BF0005673E9 /* FossilDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3B29896BF0005673E9 /* FossilDetailsViewModel.swift */; };
@@ -90,6 +91,9 @@
 		37D197BC296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */; };
 		37DD38DB298137B90013BF3A /* FossilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */; };
 		37DD38DD298187440013BF3A /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */; };
+		37F9B4FE298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift */; };
+		37F9B500298AB436007DEB5E /* BugDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B4FF298AB436007DEB5E /* BugDetailsViewModelTests.swift */; };
+		37F9B502298AB701007DEB5E /* FossilDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B501298AB701007DEB5E /* FossilDetailsViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,9 +144,9 @@
 		375B9D2A2987D37C00E5B36D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		376035852983E181001498C3 /* FishDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModel.swift; sourceTree = "<group>"; };
 		3760358729842754001498C3 /* OwnedDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedDashboardViewModel.swift; sourceTree = "<group>"; };
+		3765CE55298AA14E009E6CCF /* FishDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		37747C08297EFEB400514352 /* DetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDelegate.swift; sourceTree = "<group>"; };
 		378DC60829704F030062107C /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		3792FF3529891B82005673E9 /* ButtonObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonObject.swift; sourceTree = "<group>"; };
 		3792FF3729896223005673E9 /* SeaCreatureDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureDetailsViewModel.swift; sourceTree = "<group>"; };
 		3792FF39298967BB005673E9 /* BugDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewModel.swift; sourceTree = "<group>"; };
 		3792FF3B29896BF0005673E9 /* FossilDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -182,6 +186,9 @@
 		37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CAGradientLayer.swift"; sourceTree = "<group>"; };
 		37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilTableViewCell.swift; sourceTree = "<group>"; };
 		37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
+		37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		37F9B4FF298AB436007DEB5E /* BugDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		37F9B501298AB701007DEB5E /* FossilDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3765CE59298AA253009E6CCF /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				370385EE29793F5F002CC431 /* SeaCreatureViewModelTests.swift */,
+				37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift */,
 				370385DD29793738002CC431 /* SeaCreaturesMapping.swift */,
 				370385D42979369A002CC431 /* SeaCreatures.json */,
 			);
@@ -299,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				370385F02979411D002CC431 /* BugViewModelTests.swift */,
+				37F9B4FF298AB436007DEB5E /* BugDetailsViewModelTests.swift */,
 				370385DF297937CF002CC431 /* BugsMapping.swift */,
 				370385E42979389E002CC431 /* Bugs.json */,
 			);
@@ -309,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				370385F629794487002CC431 /* FossilViewModelTests.swift */,
+				37F9B501298AB701007DEB5E /* FossilDetailsViewModelTests.swift */,
 				370385F22979423F002CC431 /* FossilsMapping.swift */,
 				370385DA2979370C002CC431 /* Fossils.json */,
 			);
@@ -359,9 +370,15 @@
 		374732D12977158E005363BE /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				3792FF3529891B82005673E9 /* ButtonObject.swift */,
 			);
 			path = Object;
+			sourceTree = "<group>";
+		};
+		3765CE57298AA24F009E6CCF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		378DC5FF297026000062107C /* Owned */ = {
@@ -391,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				370385E529793CC9002CC431 /* FishViewModelTests.swift */,
+				3765CE55298AA14E009E6CCF /* FishDetailsViewModelTests.swift */,
 				37A29F802978442000E043F0 /* FishesMapping.swift */,
 				37C4134229785BBE001F6EE0 /* Fishes.json */,
 			);
@@ -403,6 +421,7 @@
 				37A7135C29681A6F0075BF25 /* ACNHGuide */,
 				37A29F78297842E100E043F0 /* ACNHGuideTests */,
 				37A7135B29681A6F0075BF25 /* Products */,
+				3765CE57298AA24F009E6CCF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -563,6 +582,9 @@
 				37A29F7C297842E100E043F0 /* PBXTargetDependency */,
 			);
 			name = ACNHGuideTests;
+			packageProductDependencies = (
+				3765CE58298AA253009E6CCF /* RealmSwift */,
+			);
 			productName = ACNHGuideTests;
 			productReference = 37A29F77297842E100E043F0 /* ACNHGuideTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -668,11 +690,15 @@
 				370385DE29793738002CC431 /* SeaCreaturesMapping.swift in Sources */,
 				370385ED29793E31002CC431 /* DispatchQueueMock.swift in Sources */,
 				370385E0297937CF002CC431 /* BugsMapping.swift in Sources */,
+				37F9B4FE298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift in Sources */,
 				37A29F812978442000E043F0 /* FishesMapping.swift in Sources */,
 				370385E929793D66002CC431 /* CurrentCalendarMock.swift in Sources */,
 				370385F12979411D002CC431 /* BugViewModelTests.swift in Sources */,
+				3765CE56298AA14E009E6CCF /* FishDetailsViewModelTests.swift in Sources */,
+				37F9B502298AB701007DEB5E /* FossilDetailsViewModelTests.swift in Sources */,
 				370385E629793CC9002CC431 /* FishViewModelTests.swift in Sources */,
 				370385F729794487002CC431 /* FossilViewModelTests.swift in Sources */,
+				37F9B500298AB436007DEB5E /* BugDetailsViewModelTests.swift in Sources */,
 				370385EB29793D75002CC431 /* ServiceMock.swift in Sources */,
 				370385EF29793F5F002CC431 /* SeaCreatureViewModelTests.swift in Sources */,
 				370385F5297942DF002CC431 /* Constant.swift in Sources */,
@@ -719,7 +745,6 @@
 				37ACFB7029685DAB008B065C /* FishViewController.swift in Sources */,
 				37A713A029682CFC0075BF25 /* FossilData.swift in Sources */,
 				370492122980274300B58CC7 /* OwnedDashboardViewController.swift in Sources */,
-				3792FF3629891B82005673E9 /* ButtonObject.swift in Sources */,
 				37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */,
 				3702B44C296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift in Sources */,
 				3702B464296F0C4B008AB36D /* FossilViewModel.swift in Sources */,
@@ -1048,6 +1073,11 @@
 			productName = Realm;
 		};
 		3703860A29799AA3002CC431 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		3765CE58298AA253009E6CCF /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;

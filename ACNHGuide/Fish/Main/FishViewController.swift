@@ -133,7 +133,7 @@ extension FishViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? FishCollectionViewCell else { return UICollectionViewCell() }
         let fish = fishViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
-        fishCell.configureCell(fish: fish)
+        fishCell.configureCell(fishData: fish)
         return fishCell
     }
 }

@@ -16,7 +16,7 @@ final class FossilDetailsViewModel {
     }
     
     var filename: String {
-        fossilData.fileName
+        fossilData.fileName.replaceCharacter("_", by: "").capitalized
     }
     
     var imageURL: URL? {

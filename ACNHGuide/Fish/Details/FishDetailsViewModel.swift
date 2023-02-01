@@ -14,50 +14,50 @@ final class FishDetailsViewModel {
     init(fishData: FishData) {
         self.fishData = fishData
     }
+    
+    var fileName: String {
+        fishData.fileName.replaceCharacter("_", by: "").capitalized
+    }
         
     var iconURL: URL? {
         guard let iconURL = URL(string: fishData.iconURI) else { return nil }
         return iconURL
     }
-    
-    var museumPhrase: String {
-        fishData.museumPhrase
-    }
-    
-    var fileName: String {
-        fishData.fileName.replaceCharacter("_", by: "").capitalized
-    }
-    
+        
     var catchPhrase: String {
         "\" \(fishData.catchPhrase) \""
     }
     
-    private var price: String {
+    var price: String {
         String(fishData.price)
     }
     
-    private var availabilityLocation: String {
+    var availabilityLocation: String {
         fishData.availability.location.replaceCharacter("when ", by: "")
     }
     
-    private var shadow: String {
+    var shadow: String {
         fishData.shadow
     }
     
-    private var availabilityTime: String {
+    var availabilityTime: String {
         fishData.availability.time.isEmpty ? "Always" : fishData.availability.time
     }
     
-    private var rarity: String {
+    var rarity: String {
         String(fishData.availability.rarity)
     }
     
-    private var northernHemisphereAvailability: String {
+    var northernHemisphereAvailability: String {
         fishData.availability.monthNorthern.isEmpty ? "Always" : fishData.availability.monthNorthern
     }
     
-    private var southernHemisphereAvailability: String {
+    var southernHemisphereAvailability: String {
         fishData.availability.monthSouthern.isEmpty ? "Always" : fishData.availability.monthSouthern
+    }
+    
+    var museumPhrase: String {
+        fishData.museumPhrase
     }
     
     func makeImageName(at index: Int) -> String {

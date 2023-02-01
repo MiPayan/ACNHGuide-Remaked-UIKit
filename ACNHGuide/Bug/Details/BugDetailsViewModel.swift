@@ -19,19 +19,15 @@ final class BugDetailsViewModel {
         bugData.fileName.replaceCharacter("_", by: "").capitalized
     }
     
-    var catchPhrase: String {
-        "\" \(bugData.catchPhrase) \""
-    }
-    
     var iconURL: URL? {
         guard let iconURL = URL(string: bugData.iconURI) else { return nil }
         return iconURL
     }
     
-    var museumPhrase: String {
-        bugData.museumPhrase
+    var catchPhrase: String {
+        "\" \(bugData.catchPhrase) \""
     }
-    
+        
     var price: String {
         String(bugData.price)
     }
@@ -54,6 +50,10 @@ final class BugDetailsViewModel {
     
     var southernHemisphereAvailability: String {
         bugData.availability.monthSouthern.isEmpty ? "Always" : bugData.availability.monthSouthern
+    }
+    
+    var museumPhrase: String {
+        bugData.museumPhrase
     }
     
     func makeImageName(at index: Int) -> String {

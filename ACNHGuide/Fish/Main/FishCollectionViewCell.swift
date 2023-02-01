@@ -46,9 +46,9 @@ final class FishCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(fish: FishData) {
-        guard let urlString = URL(string: fish.iconURI) else { return }
-        fishFilenameLabel.text = fish.fileName.replaceCharacter("_", by: " ").capitalized
+    func configureCell(fishData: FishData) {
+        guard let urlString = URL(string: fishData.iconURI) else { return }
+        fishFilenameLabel.text = fishData.fileName.replaceCharacter("_", by: " ").capitalized
         fishImageView.loadImage(url: urlString)
     }
 }

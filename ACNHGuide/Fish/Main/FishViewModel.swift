@@ -12,7 +12,7 @@ final class FishViewModel {
     private let service: ACNHServiceProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
-    private(set) var fishData = [FishData]()
+    private(set) var fishesData = [FishData]()
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     
@@ -25,14 +25,14 @@ final class FishViewModel {
         self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
-    
+
     func getFishData() {
         service.getFishData { [weak self] result in
             guard let self else { return }
             self.mainDispatchQueue.async {
                 switch result {
-                case .success(let fishData):
-                    self.fishData = fishData
+                case .success(let fishesData):
+                    self.fishesData = fishesData
                     self.successHandler()
                 case .failure(_):
                     self.failureHandler()
@@ -43,7 +43,7 @@ final class FishViewModel {
     
     func makeFishesFromTheNorthernHemisphere() -> [FishData] {
         let (hour, month) = currentCalendar.makeCurrentCalendar()
-        let filtered = fishData.filter {
+        let filtered = fishesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
         }
         return filtered
@@ -51,7 +51,7 @@ final class FishViewModel {
     
     func makeFishesFromTheSouthernHemisphere() -> [FishData] {
         let (hour, month) = currentCalendar.makeCurrentCalendar()
-        let filtered = fishData.filter {
+        let filtered = fishesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
