@@ -45,6 +45,7 @@ final class FishCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
     func configureCell(fishData: FishData) {
         guard let urlString = URL(string: fishData.iconURI) else { return }

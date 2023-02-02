@@ -49,11 +49,6 @@ final class DashboardTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16))
-    }
-    
     func configureFishCell(fishData: [FishData]) {
         backgroundColor = UIColor(named: "ColorBlueRoyal")
         guard let urlString = fishData.first?.iconURI,

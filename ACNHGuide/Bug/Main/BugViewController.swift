@@ -40,6 +40,7 @@ final class BugViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
+        didTapRefreshButton()
         bugViewModel.getBugData()
     }
 }
@@ -118,45 +119,25 @@ extension BugViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return bugViewModel.makeBugsFromTheNorthernHemisphere().count
-        } else {
-            return bugViewModel.makeBugsFromTheSouthernHemisphere().count
-        }
+        bugViewModel.configureSectionCollectionView(with: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0,
-           let northernBugs = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "BugCell",
-            for: indexPath
-           ) as? BugCollectionViewCell {
-            let bug = bugViewModel.makeBugsFromTheNorthernHemisphere()[indexPath.row]
-            northernBugs.configureCell(bug: bug)
-            return northernBugs
-        }
-        
-        guard let southernBugs = collectionView.dequeueReusableCell(
+        guard let bugCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "BugCell",
             for: indexPath
         ) as? BugCollectionViewCell else { return UICollectionViewCell() }
-        let bug = bugViewModel.makeBugsFromTheSouthernHemisphere()[indexPath.row]
-        southernBugs.configureCell(bug: bug)
-        return southernBugs
+        let bug = bugViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        bugCell.configureCell(bug: bug)
+        return bugCell
     }
 }
-
 
 extension BugViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = BugDetailsViewController()
-        if indexPath.section == 0 {
-            let selectedNorthernData = bugViewModel.makeBugsFromTheNorthernHemisphere()[indexPath.row]
-            detailsViewController.bugData = selectedNorthernData
-        } else {
-            let selectedSouthernData = bugViewModel.makeBugsFromTheSouthernHemisphere()[indexPath.row]
-            detailsViewController.bugData = selectedSouthernData
-        }
+        let selectedBug = bugViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        detailsViewController.bugData = selectedBug
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

@@ -45,6 +45,8 @@
 		3703860929799AA3002CC431 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860829799AA3002CC431 /* Realm */; };
 		3703860B29799AA3002CC431 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860A29799AA3002CC431 /* RealmSwift */; };
 		370492122980274300B58CC7 /* OwnedDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370492112980274300B58CC7 /* OwnedDashboardViewController.swift */; };
+		37125692298BBC8000507D2D /* NetworkingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37125691298BBC8000507D2D /* NetworkingMock.swift */; };
+		37125694298BC52500507D2D /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37125693298BC52500507D2D /* NetworkingTests.swift */; };
 		37137585296C58F500F39C83 /* ImageVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137584296C58F500F39C83 /* ImageVIew.swift */; };
 		37137587296C67F600F39C83 /* StringReplaceCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137586296C67F600F39C83 /* StringReplaceCharacter.swift */; };
 		375B9D2B2987D37C00E5B36D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375B9D2A2987D37C00E5B36D /* RealmManager.swift */; };
@@ -139,6 +141,8 @@
 		3703860029799077002CC431 /* ErrorViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewDelegate.swift; sourceTree = "<group>"; };
 		3703860229799102002CC431 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		370492112980274300B58CC7 /* OwnedDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedDashboardViewController.swift; sourceTree = "<group>"; };
+		37125691298BBC8000507D2D /* NetworkingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingMock.swift; sourceTree = "<group>"; };
+		37125693298BC52500507D2D /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		37137584296C58F500F39C83 /* ImageVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVIew.swift; sourceTree = "<group>"; };
 		37137586296C67F600F39C83 /* StringReplaceCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringReplaceCharacter.swift; sourceTree = "<group>"; };
 		375B9D2A2987D37C00E5B36D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 				370385EA29793D75002CC431 /* ServiceMock.swift */,
 				370385E829793D65002CC431 /* CurrentCalendarMock.swift */,
 				370385EC29793E31002CC431 /* DispatchQueueMock.swift */,
+				37125691298BBC8000507D2D /* NetworkingMock.swift */,
+				37125693298BC52500507D2D /* NetworkingTests.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -686,6 +692,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37125692298BBC8000507D2D /* NetworkingMock.swift in Sources */,
 				370385F32979423F002CC431 /* FossilsMapping.swift in Sources */,
 				370385DE29793738002CC431 /* SeaCreaturesMapping.swift in Sources */,
 				370385ED29793E31002CC431 /* DispatchQueueMock.swift in Sources */,
@@ -698,6 +705,7 @@
 				37F9B502298AB701007DEB5E /* FossilDetailsViewModelTests.swift in Sources */,
 				370385E629793CC9002CC431 /* FishViewModelTests.swift in Sources */,
 				370385F729794487002CC431 /* FossilViewModelTests.swift in Sources */,
+				37125694298BC52500507D2D /* NetworkingTests.swift in Sources */,
 				37F9B500298AB436007DEB5E /* BugDetailsViewModelTests.swift in Sources */,
 				370385EB29793D75002CC431 /* ServiceMock.swift in Sources */,
 				370385EF29793F5F002CC431 /* SeaCreatureViewModelTests.swift in Sources */,

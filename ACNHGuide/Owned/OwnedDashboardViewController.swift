@@ -17,6 +17,7 @@ final class OwnedDashboardViewController: UIViewController {
         tableView.backgroundColor = UIColor(named: "ColorSand")
         tableView.allowsSelection = false
         tableView.dataSource = self
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 16)
         return tableView
     }()
     

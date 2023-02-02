@@ -141,13 +141,8 @@ extension FishViewController: UICollectionViewDataSource {
 extension FishViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FishDetailsViewController()
-        if indexPath.section == 0 {
-            let selectedNorthernData = fishViewModel.makeFishesFromTheNorthernHemisphere()[indexPath.row]
-            detailsViewController.fishData = selectedNorthernData
-        } else {
-            let selectedData = fishViewModel.makeFishesFromTheSouthernHemisphere()[indexPath.row]
-            detailsViewController.fishData = selectedData
-        }
+        let selectedFish = fishViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        detailsViewController.fishData = selectedFish
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

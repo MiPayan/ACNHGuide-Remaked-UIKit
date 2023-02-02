@@ -25,7 +25,7 @@ final class FishViewModel {
         self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
-
+    
     func getFishData() {
         service.getFishData { [weak self] result in
             guard let self else { return }
@@ -41,7 +41,11 @@ final class FishViewModel {
         }
     }
     
-    func makeFishesFromTheNorthernHemisphere() -> [FishData] {
+    var filename: String {
+        fishesData.first?.fileName ?? ""
+    }
+    
+    private func makeFishesFromTheNorthernHemisphere() -> [FishData] {
         let (hour, month) = currentCalendar.makeCurrentCalendar()
         let filtered = fishesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
@@ -49,7 +53,7 @@ final class FishViewModel {
         return filtered
     }
     
-    func makeFishesFromTheSouthernHemisphere() -> [FishData] {
+    private func makeFishesFromTheSouthernHemisphere() -> [FishData] {
         let (hour, month) = currentCalendar.makeCurrentCalendar()
         let filtered = fishesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)

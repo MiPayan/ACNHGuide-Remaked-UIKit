@@ -41,7 +41,7 @@ final class BugViewModel {
         }
     }
     
-    func makeBugsFromTheNorthernHemisphere() -> [BugData] {
+    private func makeBugsFromTheNorthernHemisphere() -> [BugData] {
         let (hour, month) = currentCalendar.makeCurrentCalendar()
         let filtered = bugData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
@@ -49,11 +49,19 @@ final class BugViewModel {
         return filtered
     }
     
-    func makeBugsFromTheSouthernHemisphere() -> [BugData] {
+    private func makeBugsFromTheSouthernHemisphere() -> [BugData] {
         let (hour, month) = currentCalendar.makeCurrentCalendar()
         let filtered = bugData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
+    }
+    
+    func configureSectionCollectionView(with section: Int) -> Int {
+        section == 0 ? makeBugsFromTheNorthernHemisphere().count : makeBugsFromTheSouthernHemisphere().count
+    }
+    
+    func configureCollectionView(with section: Int, index: Int) -> BugData {
+        section == 0 ? makeBugsFromTheNorthernHemisphere()[index] : makeBugsFromTheSouthernHemisphere()[index]
     }
 }

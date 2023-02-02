@@ -100,10 +100,9 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
         if indexPath.section == 0 {
             headerView.headerLabel.text = "Northern Hemisphere"
-            
             return headerView
         }
-        headerView.headerLabel.text = "All sea creatures"
+        headerView.headerLabel.text = "Southern Hemisphere"
         return headerView
     }
     
@@ -120,30 +119,17 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return seaCreatureViewModel.makeSeaCreaturesFromTheNorthernHemisphere().count
-        }
-        return seaCreatureViewModel.makeSeaCreaturesFromTheSouthernHemisphere().count
+        return seaCreatureViewModel.configureSectionCollectionView(with: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0,
-           let northernSeaCreatures = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "SeaCreaturesCell",
-            for: indexPath
-           ) as? SeaCreatureCollectionViewCell {
-            let seaCreature = seaCreatureViewModel.makeSeaCreaturesFromTheNorthernHemisphere()[indexPath.row]
-            northernSeaCreatures.configureCell(seaCreature: seaCreature)
-            return northernSeaCreatures
-        }
-        
-        guard let southernSeaCreatures = collectionView.dequeueReusableCell(
+        guard let seaCreatureCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "SeaCreaturesCell",
             for: indexPath
         ) as? SeaCreatureCollectionViewCell else { return UICollectionViewCell() }
-        let seaCreature = seaCreatureViewModel.makeSeaCreaturesFromTheSouthernHemisphere()[indexPath.row]
-        southernSeaCreatures.configureCell(seaCreature: seaCreature)
-        return southernSeaCreatures
+        let seaCreature = seaCreatureViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        seaCreatureCell.configureCell(seaCreature: seaCreature)
+        return seaCreatureCell
     }
 }
 
@@ -151,13 +137,8 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
 extension SeaCreatureViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = SeaCreatureDetailsViewController()
-        if indexPath.section == 0 {
-            let selectedNorthernData = seaCreatureViewModel.makeSeaCreaturesFromTheNorthernHemisphere()[indexPath.row]
-            detailsViewController.seaCreatureData = selectedNorthernData
-        } else {
-            let selectedSouthernData = seaCreatureViewModel.makeSeaCreaturesFromTheSouthernHemisphere()[indexPath.row]
-            detailsViewController.seaCreatureData = selectedSouthernData
-        }
+        let selectedSeaCreature = seaCreatureViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        detailsViewController.seaCreatureData = selectedSeaCreature
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }
