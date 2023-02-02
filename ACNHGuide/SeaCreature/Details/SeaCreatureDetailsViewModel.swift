@@ -37,7 +37,7 @@ final class SeaCreatureDetailsViewModel {
     }
     
     var availabilityTime: String {
-        seaCreatureData.availability.time.isEmpty ? "Always" : seaCreatureData.availability.time
+        seaCreatureData.availability.time.isEmpty ? NSLocalizedString("availibility_always", comment: "") : seaCreatureData.availability.time
     }
     
     var speed: String {
@@ -45,11 +45,11 @@ final class SeaCreatureDetailsViewModel {
     }
     
     var northernHemisphereAvailability: String {
-        seaCreatureData.availability.monthNorthern.isEmpty ? "Always" : seaCreatureData.availability.monthNorthern
+        seaCreatureData.availability.monthNorthern.isEmpty ? NSLocalizedString("availibility_always", comment: "") : seaCreatureData.availability.monthNorthern
     }
     
     var southernHemisphereAvailability: String {
-        seaCreatureData.availability.monthSouthern.isEmpty ? "Always" : seaCreatureData.availability.monthSouthern
+        seaCreatureData.availability.monthSouthern.isEmpty ? NSLocalizedString("availibility_always", comment: "") : seaCreatureData.availability.monthSouthern
     }
     
     var museumPhrase: String {
@@ -61,7 +61,14 @@ final class SeaCreatureDetailsViewModel {
     }
     
     func makeTitle(at index: Int) -> String {
-        ["Price", "Shadow", "Time", "Speed", "Northern hemisphere", "Southern hemisphere"][index]
+        [
+            NSLocalizedString("price", comment: ""),
+            NSLocalizedString("shadow", comment: ""),
+            NSLocalizedString("time", comment: ""),
+            NSLocalizedString("speed", comment: ""),
+            NSLocalizedString("northern_hemisphere", comment: ""),
+            NSLocalizedString("southern_hemisphere", comment: "")
+        ][index]
     }
     
     func makeValue(at index: Int) -> String {

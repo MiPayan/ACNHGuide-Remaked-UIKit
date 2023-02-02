@@ -99,10 +99,10 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
         if indexPath.section == 0 {
-            headerView.headerLabel.text = "Northern Hemisphere"
+            headerView.headerLabel.text = NSLocalizedString("northern_hemisphere", comment: "")
             return headerView
         }
-        headerView.headerLabel.text = "Southern Hemisphere"
+        headerView.headerLabel.text = NSLocalizedString("southern_hemisphere", comment: "")
         return headerView
     }
     

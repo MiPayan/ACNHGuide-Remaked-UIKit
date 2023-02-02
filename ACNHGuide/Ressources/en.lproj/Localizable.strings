@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  ACNHGuide
+
+  Created by Mickael PAYAN on 02/02/2023.
+  
+*/
+
+"price" = "Price";
+"location" = "Location";
+"shadow" = "Shadow";
+"time" = "Time";
+"rarity" = "Rarity";
+"northern_hemisphere" = "Northern hemisphere";
+"southern_hemisphere" = "Southern hemisphere";
+"speed" = "Speed";
+"availibility_always" = "Always";

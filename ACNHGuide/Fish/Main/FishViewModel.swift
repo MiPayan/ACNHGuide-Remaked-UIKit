@@ -41,10 +41,6 @@ final class FishViewModel {
         }
     }
     
-    var filename: String {
-        fishesData.first?.fileName ?? ""
-    }
-    
     private func makeFishesFromTheNorthernHemisphere() -> [FishData] {
         let (hour, month) = currentCalendar.makeCurrentCalendar()
         let filtered = fishesData.filter {

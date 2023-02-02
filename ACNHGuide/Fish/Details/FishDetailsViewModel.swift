@@ -65,7 +65,15 @@ final class FishDetailsViewModel {
     }
     
     func makeTitle(at index: Int) -> String {
-        ["Price", "Location", "Shadow", "Time", "Rarity", "Northern hemisphere", "Southern hemisphere"][index]
+        [
+            NSLocalizedString("price", comment: ""),
+            NSLocalizedString("location", comment: ""),
+            NSLocalizedString("shadow", comment: ""),
+            NSLocalizedString("time", comment: ""),
+            NSLocalizedString("rarity", comment: ""),
+            NSLocalizedString("northern_hemisphere", comment: ""),
+            NSLocalizedString("southern_hemisphere", comment: "")
+        ][index]
     }
     
     func makeValue(at index: Int) -> String {
