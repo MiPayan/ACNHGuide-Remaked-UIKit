@@ -98,11 +98,7 @@ extension BugViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        if indexPath.section == 0 {
-            headerView.headerLabel.text = "Northern Hemisphere"
-            return headerView
-        }
-        headerView.headerLabel.text = "Southern Hemisphere"
+        headerView.headerLabel.text = bugViewModel.setHeaderSection(with: indexPath.section)
         return headerView
     }
     

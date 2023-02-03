@@ -95,7 +95,7 @@ extension FossilViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        headerView.headerLabel.text = "Fossils"
+        headerView.headerLabel.text = fossilViewModel.headerText()
         return headerView
     }
     

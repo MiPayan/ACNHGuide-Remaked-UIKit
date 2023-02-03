@@ -16,7 +16,7 @@ final class FishDetailsViewModel {
     }
     
     var fileName: String {
-        fishData.fileName.replaceCharacter("_", by: "").capitalized
+        fishData.fileName.replaceCharacter("_", by: " ").capitalized
     }
         
     var iconURL: URL? {
@@ -41,7 +41,7 @@ final class FishDetailsViewModel {
     }
     
     var availabilityTime: String {
-        fishData.availability.time.isEmpty ? "Always" : fishData.availability.time
+        fishData.availability.time.isEmpty ? "availibility_always".localized : fishData.availability.time
     }
     
     var rarity: String {
@@ -49,11 +49,11 @@ final class FishDetailsViewModel {
     }
     
     var northernHemisphereAvailability: String {
-        fishData.availability.monthNorthern.isEmpty ? "Always" : fishData.availability.monthNorthern
+        fishData.availability.monthNorthern.isEmpty ? "availibility_always".localized : fishData.availability.monthNorthern
     }
     
     var southernHemisphereAvailability: String {
-        fishData.availability.monthSouthern.isEmpty ? "Always" : fishData.availability.monthSouthern
+        fishData.availability.monthSouthern.isEmpty ? "availibility_always".localized : fishData.availability.monthSouthern
     }
     
     var museumPhrase: String {
@@ -66,13 +66,13 @@ final class FishDetailsViewModel {
     
     func makeTitle(at index: Int) -> String {
         [
-            NSLocalizedString("price", comment: ""),
-            NSLocalizedString("location", comment: ""),
-            NSLocalizedString("shadow", comment: ""),
-            NSLocalizedString("time", comment: ""),
-            NSLocalizedString("rarity", comment: ""),
-            NSLocalizedString("northern_hemisphere", comment: ""),
-            NSLocalizedString("southern_hemisphere", comment: "")
+            "price".localized,
+            "location".localized,
+            "shadow".localized,
+            "time".localized,
+            "rarity".localized,
+            "northern_hemisphere".localized,
+            "southern_hemisphere".localized
         ][index]
     }
     

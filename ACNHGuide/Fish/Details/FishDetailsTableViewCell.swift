@@ -86,7 +86,7 @@ final class FishDetailsTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "ColorBlueOcean")
         label.font = UIFont(name: "FinkHeavy", size: 22)
-        label.text = "Museum phrase"
+        label.text = "museum_phrase_title".localized
         return label
     }()
     

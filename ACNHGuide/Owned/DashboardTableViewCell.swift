@@ -9,6 +9,8 @@ import UIKit
 
 final class DashboardTableViewCell: UITableViewCell {
     
+    private var ownedDahboardViewModel: OwnedDashboardViewModel?
+    
     private let objectImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +55,7 @@ final class DashboardTableViewCell: UITableViewCell {
         backgroundColor = UIColor(named: "ColorBlueRoyal")
         guard let urlString = fishData.first?.iconURI,
               let url = URL(string: urlString) else { return }
-        objectTitleLabel.text = "Fishes"
+        objectTitleLabel.text = "fishes".localized
         objectImageView.loadImage(url: url)
         objectProgressView.progressTintColor = UIColor(named: "ColorBlueOcean")
         objectProgressView.progress = Float(itemSavedCount) / Float(fishData.count)
@@ -64,7 +66,7 @@ final class DashboardTableViewCell: UITableViewCell {
         backgroundColor = UIColor(named: "ColorBlueNightLite")
         guard let urlString = seaCreatureData.first?.iconURI,
               let url = URL(string: urlString) else { return }
-        objectTitleLabel.text = "Sea creatures"
+        objectTitleLabel.text = "sea_creatures".localized
         objectImageView.loadImage(url: url)
         objectProgressView.progressTintColor = UIColor(named: "ColorBlueRoyal")
         objectProgressView.progress = Float(itemSavedCount) / Float(seaCreatureData.count)
@@ -75,7 +77,7 @@ final class DashboardTableViewCell: UITableViewCell {
         backgroundColor = UIColor(named: "ColorGreenDark")
         guard let urlString = bugData.first?.iconURI,
               let url = URL(string: urlString) else { return }
-        objectTitleLabel.text = "Bugs"
+        objectTitleLabel.text = "bugs".localized
         objectImageView.loadImage(url: url)
         objectProgressView.progressTintColor = UIColor(named: "ColorGreenGrass")
         objectProgressView.progress = Float(itemSavedCount) / Float(bugData.count)
@@ -86,7 +88,7 @@ final class DashboardTableViewCell: UITableViewCell {
         backgroundColor = UIColor(named: "ColorBrownHeart")
         guard let urlString = fossilData.first?.imageURI,
               let url = URL(string: urlString) else { return }
-        objectTitleLabel.text = "Fossils"
+        objectTitleLabel.text = "fossils".localized
         objectImageView.loadImage(url: url)
         objectProgressView.progressTintColor = .brown
         objectProgressView.progress = Float(itemSavedCount) / Float(fossilData.count)

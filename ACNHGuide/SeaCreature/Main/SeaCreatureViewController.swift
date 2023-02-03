@@ -66,7 +66,6 @@ private extension SeaCreatureViewController {
     func addSubviews() {
         view.addSubview(seaCreatureCollectionView)
         view.addSubview(errorView)
-        
         NSLayoutConstraint.activate([
             seaCreatureCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             seaCreatureCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -98,11 +97,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        if indexPath.section == 0 {
-            headerView.headerLabel.text = NSLocalizedString("northern_hemisphere", comment: "")
-            return headerView
-        }
-        headerView.headerLabel.text = NSLocalizedString("southern_hemisphere", comment: "")
+        headerView.headerLabel.text = seaCreatureViewModel.setHeaderSection(with: indexPath.section)
         return headerView
     }
     
@@ -132,7 +127,6 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
         return seaCreatureCell
     }
 }
-
 
 extension SeaCreatureViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -16,7 +16,7 @@ final class NetworkingMock<T: Decodable>: NetworkingProtocol {
          self.responseData = responseData
      }
     
-    func fetchData<T: Decodable>(with urlString: String, completion handler: @escaping ((Result<[T], ACNHGuide.NetworkingError>) -> Void)) {
+    func fetchData<T: Decodable>(with urlString: String, completion handler: @escaping ((Result<[T], NetworkingError>) -> Void)) {
         handler(responseData as! Result<[T], NetworkingError>)
     }
 }

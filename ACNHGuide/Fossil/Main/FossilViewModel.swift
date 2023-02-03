@@ -15,6 +15,9 @@ final class FossilViewModel {
     private(set) var fossilData = [FossilData]()
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
+    var headerText: String {
+        "fossils".localized
+    }
     
     init(
         service: ACNHServiceProtocol = ACNHService(),

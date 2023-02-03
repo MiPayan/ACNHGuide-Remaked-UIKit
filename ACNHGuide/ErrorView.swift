@@ -36,7 +36,7 @@ final class ErrorView: UIView {
         label.numberOfLines = 0
         label.backgroundColor = UIColor(named: "ColorErrorLabel")
         label.font = UIFont(name: "FinkHeavy", size: 15)
-        label.text = "A problem has occurred.\nCheck your internet connection and retry."
+        label.text = "error_text".localized
         label.textColor = .white
         label.textAlignment = .center
         label.layer.cornerRadius = 10

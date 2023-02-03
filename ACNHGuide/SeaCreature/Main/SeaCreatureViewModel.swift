@@ -41,27 +41,25 @@ final class SeaCreatureViewModel {
         }
     }
     
-    private func makeSeaCreaturesFromTheNorthernHemisphere() -> [SeaCreatureData] {
-        let (hour, month) = currentCalendar.makeCurrentCalendar()
-        let filtered = seaCreaturesData.filter {
-            $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
-        }
-        return filtered
-    }
-    
-    private func makeSeaCreaturesFromTheSouthernHemisphere() -> [SeaCreatureData] {
-        let (hour, month) = currentCalendar.makeCurrentCalendar()
-        let filtered = seaCreaturesData.filter {
-            $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
-        }
-        return filtered
+    func setHeaderSection(with section: Int) -> String {
+        section == 0 ? "northern_hemisphere".localized : "southern_hemisphere".localized
     }
     
     func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? makeSeaCreaturesFromTheNorthernHemisphere().count : makeSeaCreaturesFromTheSouthernHemisphere().count
+        section == 0 ? makeSeaCreaturesFromTheHemisphere(with: .northern).count : makeSeaCreaturesFromTheHemisphere(with: .southern).count
     }
     
     func configureCollectionView(with section: Int, index: Int) -> SeaCreatureData {
-        section == 0 ? makeSeaCreaturesFromTheNorthernHemisphere()[index] : makeSeaCreaturesFromTheSouthernHemisphere()[index]
+        section == 0 ? makeSeaCreaturesFromTheHemisphere(with: .northern)[index] : makeSeaCreaturesFromTheHemisphere(with: .southern)[index]
+    }
+    
+    private func makeSeaCreaturesFromTheHemisphere(with hemisphere: Hemisphere) -> [SeaCreatureData] {
+        let (hour, month) = currentCalendar.makeCurrentCalendar()
+        let filtered = seaCreaturesData.filter {
+            $0.availability.timeArray.contains(hour) &&
+            ($0.availability.monthArrayNorthern.contains(month) && hemisphere == .northern ||
+             $0.availability.monthArraySouthern.contains(month) && hemisphere == .southern)
+        }
+        return filtered
     }
 }

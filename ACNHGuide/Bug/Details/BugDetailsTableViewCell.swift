@@ -86,7 +86,7 @@ final class BugDetailsTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(named: "ColorGreenGrass")
         label.font = UIFont(name: "FinkHeavy", size: 22)
-        label.text = "Museum phrase"
+        label.text = "museum_phrase_title".localized
         return label
     }()
     

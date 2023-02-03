@@ -25,7 +25,7 @@ final class FishViewModel {
         self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
-    
+        
     func getFishData() {
         service.getFishData { [weak self] result in
             guard let self else { return }
@@ -41,27 +41,25 @@ final class FishViewModel {
         }
     }
     
-    private func makeFishesFromTheNorthernHemisphere() -> [FishData] {
-        let (hour, month) = currentCalendar.makeCurrentCalendar()
-        let filtered = fishesData.filter {
-            $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
-        }
-        return filtered
-    }
-    
-    private func makeFishesFromTheSouthernHemisphere() -> [FishData] {
-        let (hour, month) = currentCalendar.makeCurrentCalendar()
-        let filtered = fishesData.filter {
-            $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
-        }
-        return filtered
+    func setHeaderSection(with section: Int) -> String {
+        section == 0 ? "northern_hemisphere".localized : "southern_hemisphere".localized
     }
     
     func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? makeFishesFromTheNorthernHemisphere().count : makeFishesFromTheSouthernHemisphere().count
+        section == 0 ? makeFishesFromTheHemisphere(with: .northern).count : makeFishesFromTheHemisphere(with: .southern).count
     }
     
     func configureCollectionView(with section: Int, index: Int) -> FishData {
-        section == 0 ? makeFishesFromTheNorthernHemisphere()[index] : makeFishesFromTheSouthernHemisphere()[index]
+        section == 0 ? makeFishesFromTheHemisphere(with: .northern)[index] : makeFishesFromTheHemisphere(with: .southern )[index]
+    }
+
+    private func makeFishesFromTheHemisphere(with hemisphere: Hemisphere) -> [FishData] {
+        let (hour, month) = currentCalendar.makeCurrentCalendar()
+        let filtered = fishesData.filter {
+            $0.availability.timeArray.contains(hour) &&
+            ($0.availability.monthArrayNorthern.contains(month) && hemisphere == .northern ||
+             $0.availability.monthArraySouthern.contains(month) && hemisphere == .southern)
+        }
+        return filtered
     }
 }

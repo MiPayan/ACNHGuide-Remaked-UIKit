@@ -103,11 +103,7 @@ extension FishViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        if indexPath.section == 0 {
-            headerView.headerLabel.text = NSLocalizedString("northern_hemisphere", comment: "")
-            return headerView
-        }
-        headerView.headerLabel.text = NSLocalizedString("southern_hemisphere", comment: "")
+        headerView.headerLabel.text = fishViewModel.setHeaderSection(with: indexPath.section)
         return headerView
     }
     

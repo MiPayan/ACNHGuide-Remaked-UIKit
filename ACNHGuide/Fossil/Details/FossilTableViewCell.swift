@@ -76,7 +76,7 @@ final class FossilTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .brown
         label.font = UIFont(name: "FinkHeavy", size: 22)
-        label.text = "Museum phrase"
+        label.text = "museum_phrase_title"
         return label
     }()
     
@@ -178,7 +178,7 @@ extension FossilTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
               ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
         detailsCell.configureCell(
             imageNamed: "Bells",
-            title: "Price",
+            title: "price".localized,
             titleColorNamed: "ColorBrownHeart",
             value: fossilDetailsViewModel.price,
             valueColorNamed: "ColorBrownHeart"

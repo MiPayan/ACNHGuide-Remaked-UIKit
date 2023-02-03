@@ -6,6 +6,15 @@
   
 */
 
+"fish" = "Fish";
+"fishes" = "Fishes";
+"sea_creature" = "Sea Creature";
+"sea_creatures" = "Sea creatures";
+"bug" = "Bug";
+"bugs" = "Bugs";
+"fossil" = "Fossil";
+"fossils" = "Fossils";
+"progress" = "Progress";
 "price" = "Price";
 "location" = "Location";
 "shadow" = "Shadow";
@@ -15,3 +24,6 @@
 "southern_hemisphere" = "Southern hemisphere";
 "speed" = "Speed";
 "availibility_always" = "Always";
+"museum_phrase_title" = "Museum phrase";
+"fossils" = "Fossils";
+"error_text" = "A problem has occurred.\nCheck your internet connection and retry.";

@@ -24,7 +24,14 @@ final class TabBarViewController: UITabBarController {
             OwnedDashboardViewController()
         ]
         
-        let titles = ["Fish", "Sea Creature", "Bug", "Fossil", "Progress"]
+        let titles = [
+            "fish".localized,
+            "sea_creature".localized,
+            "bug".localized,
+            "fossil".localized,
+            "progress".localized
+        ]
+        
         let images = [
             UIImage(systemName: "fish"),
             UIImage(systemName: "water.waves"),

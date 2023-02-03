@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import ACNHGuide
 
 let fishes: [FishData] = Bundle.main.decode("Fishes.json")
 let seaCreatures: [SeaCreatureData] = Bundle.main.decode("SeaCreatures.json")

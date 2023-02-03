@@ -8,13 +8,6 @@
 import UIKit
 
 extension UIView {
-    func applyGradient(colors: [CGColor]) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = colors
-        gradientLayer.frame = self.bounds
-        layer.addSublayer(gradientLayer)
-        }
-    
     func setCollectionViewBackground(collectionView: UICollectionView, colors: [CGColor]) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors

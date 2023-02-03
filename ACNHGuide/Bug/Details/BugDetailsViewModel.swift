@@ -16,7 +16,7 @@ final class BugDetailsViewModel {
     }
     
     var fileName: String {
-        bugData.fileName.replaceCharacter("_", by: "").capitalized
+        bugData.fileName.replaceCharacter("_", by: " ").capitalized
     }
     
     var iconURL: URL? {
@@ -37,7 +37,7 @@ final class BugDetailsViewModel {
     }
     
     var availabilityTime: String {
-        bugData.availability.time.isEmpty ? "Always" : bugData.availability.time
+        bugData.availability.time.isEmpty ? "availibility_always".localized : bugData.availability.time
     }
     
     var rarity: String {
@@ -45,11 +45,11 @@ final class BugDetailsViewModel {
     }
     
     var northernHemisphereAvailability: String {
-        bugData.availability.monthNorthern.isEmpty ? "Always" : bugData.availability.monthNorthern
+        bugData.availability.monthNorthern.isEmpty ? "availibility_always".localized : bugData.availability.monthNorthern
     }
     
     var southernHemisphereAvailability: String {
-        bugData.availability.monthSouthern.isEmpty ? "Always" : bugData.availability.monthSouthern
+        bugData.availability.monthSouthern.isEmpty ? "availibility_always".localized : bugData.availability.monthSouthern
     }
     
     var museumPhrase: String {
@@ -61,7 +61,14 @@ final class BugDetailsViewModel {
     }
     
     func makeTitle(at index: Int) -> String {
-        ["Price", "Location", "Time", "Rarity", "Northern hemisphere", "Southern hemisphere"][index]
+        [
+            "price".localized,
+            "location".localized,
+            "time".localized,
+            "rarity".localized,
+            "northern_hemisphere".localized,
+            "southern_hemisphere".localized
+        ][index]
     }
     
     func makeValue(at index: Int) -> String {
