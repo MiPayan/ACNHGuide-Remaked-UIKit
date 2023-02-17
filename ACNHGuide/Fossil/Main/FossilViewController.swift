@@ -95,7 +95,7 @@ extension FossilViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        headerView.headerLabel.text = fossilViewModel.headerText()
+        headerView.configureHeaderLabel(with: fossilViewModel.headerText)
         return headerView
     }
     
@@ -117,17 +117,18 @@ extension FossilViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? FossilCollectionViewCell else { return UICollectionViewCell() }
         let fossil = fossilViewModel.fossilData[indexPath.row]
-        fossils.configureCell(fossil: fossil)
+        let fossilCollectionViewCellViewModel = FossilCollectionViewCellViewModel(fossilData: fossil)
+        fossils.configureCell(with: fossilCollectionViewCellViewModel)
         return fossils
     }
 }
 
-
 extension FossilViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedData = fossilViewModel.fossilData[indexPath.row]
         let detailsViewController = FossilDetailsViewController()
-        detailsViewController.fossilData = selectedData
+        let selectedFossil = fossilViewModel.fossilData[indexPath.row]
+        let fossilDetailsViewModel = FossilDetailsViewModel(fossilData: selectedFossil)
+        detailsViewController.fossilDetailsViewModel = fossilDetailsViewModel
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }
@@ -148,6 +149,6 @@ extension FossilViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGSize {
         guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
         let widthPerItem = collectionView.frame.width / 3 - layout.minimumInteritemSpacing
-        return CGSize(width: widthPerItem - 8, height: 160)
+        return CGSize(width: widthPerItem - 8, height: 140)
     }
 }

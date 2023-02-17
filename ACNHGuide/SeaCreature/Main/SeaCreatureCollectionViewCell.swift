@@ -9,6 +9,7 @@ import UIKit
 
 final class SeaCreatureCollectionViewCell: UICollectionViewCell {
     
+    private var viewModel: SeaCreatureCollectionViewCellViewModel?
     private let seaCreatureFilenameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -35,8 +36,8 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(isTappedTheSaveButton), for: .touchUpInside)
         return button
     }()
-
- 
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
@@ -47,10 +48,12 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(seaCreature: SeaCreatureData) {
-        guard let urlString = URL(string: seaCreature.iconURI) else { return }
-        seaCreatureFilenameLabel.text = seaCreature.fileName.replaceCharacter("_", by: " ").capitalized
-        seaCreatureImageView.loadImage(url: urlString)
+    func configureCell(with viewModel: SeaCreatureCollectionViewCellViewModel) {
+        self.viewModel = viewModel
+        seaCreatureFilenameLabel.text = viewModel.filename
+        if let url = viewModel.iconURL {
+            seaCreatureImageView.loadImage(url: url)
+        }
     }
 }
 
@@ -66,7 +69,7 @@ private extension SeaCreatureCollectionViewCell {
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
-
+    
     func addSubviews() {
         addSubview(seaCreatureFilenameLabel)
         addSubview(seaCreatureImageView)

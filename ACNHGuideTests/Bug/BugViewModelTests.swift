@@ -36,9 +36,12 @@ final class BugViewModelTests: XCTestCase {
             .failure(.urlInvalid)
         )
         
+        bugsViewModel.failureHandler = {
+            XCTAssertEqual(1, self.serviceMock.invokedGetBugsCount)
+            expectation.fulfill()
+
+        }
         bugsViewModel.getBugData()
-        XCTAssertEqual(1, serviceMock.invokedGetBugsCount)
-        expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
     }
     
@@ -48,48 +51,43 @@ final class BugViewModelTests: XCTestCase {
             .success(bugs)
         )
         
+        bugsViewModel.successHandler = {
+            XCTAssertEqual(1, self.serviceMock.invokedGetBugsCount)
+            expectation.fulfill()
+        }
         bugsViewModel.getBugData()
-        XCTAssertEqual(1, serviceMock.invokedGetBugsCount)
-        expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testMakeBugsFromTheNorthernHemisphere() {
-        let expectation = expectation(description: "Sort bug from the northern hemisphere.")
+    func testSetHeaderSection() {
+        let northernSectionHeader = bugsViewModel.setHeaderSection(with: 0)
+        let southernSectionHeader = bugsViewModel.setHeaderSection(with: 1)
+        XCTAssertEqual(northernSectionHeader, "Northern hemisphere")
+        XCTAssertEqual(southernSectionHeader, "Southern hemisphere")
+    }
+    
+    func testConfigureSectionCollectionView() {
+        let expectation = expectation(description: "Sort fishes.")
         currentCalendarMock.stubbedMakeCurrentCalendar = {
             (11, 12)
         }()
         
-        serviceMock.stubbedBugResult = (
+        serviceMock.stubbedBugResult = {
             .success(bugs)
-        )
-        
-        bugsViewModel.getBugData()
-        let currentBugs = bugsViewModel.makeBugsFromTheNorthernHemisphere()
-        
-        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
-        XCTAssertEqual(1, serviceMock.invokedGetBugsCount)
-        XCTAssertEqual(currentBugs.count, 14)
-        expectation.fulfill()
-        waitForExpectations(timeout: 1, handler: nil)
-    }
-    
-    func testMakeBugsFromTheSouthernHemisphere() {
-        let expectation = expectation(description: "Sort bug from the southern hemisphere.")
-        currentCalendarMock.stubbedMakeCurrentCalendar = {
-            (11, 12)
         }()
         
-        serviceMock.stubbedBugResult = (
-            .success(bugs)
-        )
+        bugsViewModel.successHandler = {
+            XCTAssertEqual(1, self.serviceMock.invokedGetBugsCount)
+        }
         
         bugsViewModel.getBugData()
-        let currentBugs = bugsViewModel.makeBugsFromTheSouthernHemisphere()
         
-        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
-        XCTAssertEqual(1, serviceMock.invokedGetBugsCount)
-        XCTAssertEqual(currentBugs.count, 35)
+        let northernSection = bugsViewModel.configureSectionCollectionView(with: 0)
+        let southernSection = bugsViewModel.configureSectionCollectionView(with: 1)
+        
+        XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
+        XCTAssertEqual(northernSection, 14)
+        XCTAssertEqual(southernSection, 35)
         expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
     }

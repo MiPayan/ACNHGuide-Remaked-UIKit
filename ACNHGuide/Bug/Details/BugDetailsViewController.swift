@@ -9,7 +9,7 @@ import UIKit
 
 final class BugDetailsViewController: UIViewController {
     
-    var bugData: BugData?
+    var bugDetailsViewModel: BugDetailsViewModel?
     private lazy var bugTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,17 +38,18 @@ final class BugDetailsViewController: UIViewController {
 
 extension BugDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let bugDetailsViewModel else { return 0 }
+        return bugDetailsViewModel.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let bugData,
+        guard let bugDetailsViewModel,
               let detailsCell = tableView.dequeueReusableCell(
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? BugDetailsTableViewCell else { return UITableViewCell() }
-        let bugDetailsViewModel = BugDetailsViewModel(bugData: bugData)
-        detailsCell.configureDetailsCell(bugDetailsViewModel: bugDetailsViewModel)
+        let bugDetailsTableViewCellViewModel = BugDetailsTableViewCellViewModel(bugData: bugDetailsViewModel.bugData)
+        detailsCell.configureDetailsCell(with: bugDetailsTableViewCellViewModel)
         return detailsCell
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 final class FossilDetailsViewController: UIViewController {
     
-    var fossilData: FossilData?
+    var fossilDetailsViewModel: FossilDetailsViewModel?
     private var fossilTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,17 +38,18 @@ final class FossilDetailsViewController: UIViewController {
 
 extension FossilDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let fossilDetailsViewModel else { return 0 }
+        return fossilDetailsViewModel.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let fossilData,
+        guard let fossilDetailsViewModel,
               let detailsCell = tableView.dequeueReusableCell(
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? FossilTableViewCell else { return UITableViewCell() }
-        let fossilDetailsViewModel = FossilDetailsViewModel(fossilData: fossilData)
-        detailsCell.configureDetailsCell(fossilDetailsViewModel: fossilDetailsViewModel)
+        let fossilDetailsTableViewCellViewModel = FossilDetailsTableViewCellViewModel(fossilData: fossilDetailsViewModel.fossilData)
+        detailsCell.configureDetailsCell(with: fossilDetailsTableViewCellViewModel)
         return detailsCell
     }
 }

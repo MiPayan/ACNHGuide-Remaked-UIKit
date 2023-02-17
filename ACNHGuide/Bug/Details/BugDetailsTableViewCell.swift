@@ -9,7 +9,7 @@ import UIKit
 
 final class BugDetailsTableViewCell: UITableViewCell {
     
-    private var bugDetailsViewModel: BugDetailsViewModel? {
+    private var viewModel: BugDetailsTableViewCellViewModel? {
         didSet {
             detailsCollectionView.reloadData()
         }
@@ -110,14 +110,14 @@ final class BugDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(bugDetailsViewModel: BugDetailsViewModel) {
-        self.bugDetailsViewModel = bugDetailsViewModel
-        if let url = bugDetailsViewModel.iconURL {
+    func configureDetailsCell(with viewModel: BugDetailsTableViewCellViewModel) {
+        self.viewModel = viewModel
+        if let url = viewModel.iconURL {
             bugImageView.loadImage(url: url)
         }
-        bugFilenameLabel.text = bugDetailsViewModel.fileName
-        bugCatchPhraseLabel.text = bugDetailsViewModel.catchPhrase
-        bugMuseumPhraseLabel.text = bugDetailsViewModel.museumPhrase
+        bugFilenameLabel.text = viewModel.fileName
+        bugCatchPhraseLabel.text = viewModel.catchPhrase
+        bugMuseumPhraseLabel.text = viewModel.museumPhrase
     }
 }
 
@@ -189,16 +189,16 @@ extension BugDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let bugDetailsViewModel,
+        guard let viewModel,
               let detailsCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "AdaptiveDetailsCell",
             for: indexPath
         ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
         detailsCell.configureCell(
-            imageNamed: bugDetailsViewModel.makeImageName(at: indexPath.row),
-            title: bugDetailsViewModel.makeTitle(at: indexPath.row),
+            imageNamed: viewModel.makeImageName(at: indexPath.row),
+            title: viewModel.makeTitle(at: indexPath.row),
             titleColorNamed: "ColorGreenGrass",
-            value: bugDetailsViewModel.makeValue(at: indexPath.row),
+            value: viewModel.makeValue(at: indexPath.row),
             valueColorNamed: "ColorGreenDark"
         )
         return detailsCell

@@ -97,7 +97,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        headerView.headerLabel.text = seaCreatureViewModel.setHeaderSection(with: indexPath.section)
+        headerView.configureHeaderLabel(with: seaCreatureViewModel.setHeaderSection(with: indexPath.section))
         return headerView
     }
     
@@ -123,7 +123,8 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? SeaCreatureCollectionViewCell else { return UICollectionViewCell() }
         let seaCreature = seaCreatureViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
-        seaCreatureCell.configureCell(seaCreature: seaCreature)
+        let seaCreatureCollectionViewCellViewModel = SeaCreatureCollectionViewCellViewModel(seaCreatureData: seaCreature)
+        seaCreatureCell.configureCell(with: seaCreatureCollectionViewCellViewModel)
         return seaCreatureCell
     }
 }
@@ -132,7 +133,8 @@ extension SeaCreatureViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = SeaCreatureDetailsViewController()
         let selectedSeaCreature = seaCreatureViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
-        detailsViewController.seaCreatureData = selectedSeaCreature
+        let seaCreatureDetailsViewModel = SeaCreaturesDetailsViewModel(seaCreatureData: selectedSeaCreature)
+        detailsViewController.seaCreaturesDetailsViewModel = seaCreatureDetailsViewModel
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

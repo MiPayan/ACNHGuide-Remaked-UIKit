@@ -9,6 +9,7 @@ import UIKit
 
 final class FishCollectionViewCell: UICollectionViewCell {
     
+    private var viewModel: FishCollectionViewCellViewModel?
     private let fishFilenameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,10 +47,12 @@ final class FishCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(fishData: FishData) {
-        guard let urlString = URL(string: fishData.iconURI) else { return }
-        fishFilenameLabel.text = fishData.fileName.replaceCharacter("_", by: " ").capitalized
-        fishImageView.loadImage(url: urlString)
+    func configureCell(with viewModel: FishCollectionViewCellViewModel) {
+        self.viewModel = viewModel
+        fishFilenameLabel.text = viewModel.filename
+        if let url = viewModel.iconURL {
+            fishImageView.loadImage(url: url)
+        }
     }
 }
 

@@ -98,7 +98,7 @@ extension BugViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        headerView.headerLabel.text = bugViewModel.setHeaderSection(with: indexPath.section)
+        headerView.configureHeaderLabel(with: bugViewModel.setHeaderSection(with: indexPath.section))
         return headerView
     }
     
@@ -124,7 +124,8 @@ extension BugViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? BugCollectionViewCell else { return UICollectionViewCell() }
         let bug = bugViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
-        bugCell.configureCell(bug: bug)
+        let bugCollecitonViewCellViewModel = BugCollectionViewCellViewModel(bugData: bug)
+        bugCell.configureCell(with: bugCollecitonViewCellViewModel)
         return bugCell
     }
 }
@@ -133,7 +134,8 @@ extension BugViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = BugDetailsViewController()
         let selectedBug = bugViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
-        detailsViewController.bugData = selectedBug
+        let bugDetailsViewModel = BugDetailsViewModel(bugData: selectedBug)
+        detailsViewController.bugDetailsViewModel = bugDetailsViewModel
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

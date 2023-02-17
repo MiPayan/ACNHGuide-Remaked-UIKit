@@ -29,9 +29,11 @@ final class FossilViewModelTests: XCTestCase {
             .failure(.urlInvalid)
         )
         
+        fossilsViewModel.failureHandler = {
+            XCTAssertEqual(1, self.serviceMock.invokedGetFossilsCount)
+            expectation.fulfill()
+        }
         fossilsViewModel.getFossilData()
-        XCTAssertEqual(1, serviceMock.invokedGetFossilsCount)
-        expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
     }
     
@@ -42,9 +44,11 @@ final class FossilViewModelTests: XCTestCase {
             .success(fossils)
         )
         
+        fossilsViewModel.successHandler = {
+            XCTAssertEqual(1, self.serviceMock.invokedGetFossilsCount)
+            expectation.fulfill()
+        }
         fossilsViewModel.getFossilData()
-        XCTAssertEqual(1, serviceMock.invokedGetFossilsCount)
-        expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
     }
 }

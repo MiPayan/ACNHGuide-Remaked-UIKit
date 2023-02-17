@@ -11,8 +11,8 @@ struct SeaAvailability: Decodable {
     let monthNorthern, monthSouthern, time: String
     let isAllDay, isAllYear: Bool
     let monthArrayNorthern, monthArraySouthern, timeArray: [Int]
-
-    enum CodingKeys: String, CodingKey {
+    
+    private enum CodingKeys: String, CodingKey {
         case monthNorthern = "month-northern"
         case monthSouthern = "month-southern"
         case time, isAllDay, isAllYear

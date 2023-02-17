@@ -46,19 +46,27 @@ final class SeaCreatureViewModel {
     }
     
     func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? makeSeaCreaturesFromTheHemisphere(with: .northern).count : makeSeaCreaturesFromTheHemisphere(with: .southern).count
+        section == 0 ? northernHemisphereSeaCreatures.count : southernHemisphereSeaCreatures.count
     }
     
     func configureCollectionView(with section: Int, index: Int) -> SeaCreatureData {
-        section == 0 ? makeSeaCreaturesFromTheHemisphere(with: .northern)[index] : makeSeaCreaturesFromTheHemisphere(with: .southern)[index]
+        section == 0 ? northernHemisphereSeaCreatures[index] : southernHemisphereSeaCreatures[index]
+    }
+}
+
+private extension SeaCreatureViewModel {
+    var northernHemisphereSeaCreatures: [SeaCreatureData] {
+        let (hour, month) = currentCalendar.getCurrentDate()
+        let filtered = seaCreaturesData.filter {
+            $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
+        }
+        return filtered
     }
     
-    private func makeSeaCreaturesFromTheHemisphere(with hemisphere: Hemisphere) -> [SeaCreatureData] {
-        let (hour, month) = currentCalendar.makeCurrentCalendar()
+    var southernHemisphereSeaCreatures: [SeaCreatureData] {
+        let (hour, month) = currentCalendar.getCurrentDate()
         let filtered = seaCreaturesData.filter {
-            $0.availability.timeArray.contains(hour) &&
-            ($0.availability.monthArrayNorthern.contains(month) && hemisphere == .northern ||
-             $0.availability.monthArraySouthern.contains(month) && hemisphere == .southern)
+            $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
     }

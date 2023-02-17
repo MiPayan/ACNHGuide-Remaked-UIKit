@@ -32,9 +32,11 @@ final class SeaCreatureViewModelTests: XCTestCase {
             .failure(.urlInvalid)
         )
         
+        seaCreaturesViewModel.failureHandler = {
+            XCTAssertEqual(1, self.serviceMock.invokedGetSeaCreaturesCount)
+            expectation.fulfill()
+        }
         seaCreaturesViewModel.getSeaCreatureData()
-        XCTAssertEqual(1, serviceMock.invokedGetSeaCreaturesCount)
-        expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
     }
     
@@ -44,48 +46,44 @@ final class SeaCreatureViewModelTests: XCTestCase {
             .success(seaCreatures)
         )
         
+        seaCreaturesViewModel.successHandler = {
+            XCTAssertEqual(1, self.serviceMock.invokedGetSeaCreaturesCount)
+            expectation.fulfill()
+        }
         seaCreaturesViewModel.getSeaCreatureData()
-        XCTAssertEqual(1, serviceMock.invokedGetSeaCreaturesCount)
-        expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testMakeSeaCreaturesFromTheNorthernHemisphere() {
-        let expectation = expectation(description: "Sort sea creature from the northern hemisphere.")
+    
+    func testSetHeaderSection() {
+        let northernSectionHeader = seaCreaturesViewModel.setHeaderSection(with: 0)
+        let southernSectionHeader = seaCreaturesViewModel.setHeaderSection(with: 1)
+        XCTAssertEqual(northernSectionHeader, "Northern hemisphere")
+        XCTAssertEqual(southernSectionHeader, "Southern hemisphere")
+    }
+    
+    func testConfigureSectionCollectionView() {
+        let expectation = expectation(description: "Sort fishes.")
         currentCalendarMock.stubbedMakeCurrentCalendar = {
             (11, 12)
         }()
         
-        serviceMock.stubbedSeaCreatureResult = (
+        serviceMock.stubbedSeaCreatureResult = {
             .success(seaCreatures)
-        )
-        
-        seaCreaturesViewModel.getSeaCreatureData()
-        let currentSeaCreatures = seaCreaturesViewModel.makeSeaCreaturesFromTheNorthernHemisphere()
-        
-        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
-        XCTAssertEqual(1, serviceMock.invokedGetSeaCreaturesCount)
-        XCTAssertEqual(currentSeaCreatures.count, 18)
-        expectation.fulfill()
-        waitForExpectations(timeout: 1, handler: nil)
-    }
-    
-    func testMakeSeaCreaturesFromTheSouthernHemisphere() {
-        let expectation = expectation(description: "Sort sea creature from the southern hemisphere.")
-        currentCalendarMock.stubbedMakeCurrentCalendar = {
-            (11, 12)
         }()
         
-        serviceMock.stubbedSeaCreatureResult = (
-            .success(seaCreatures)
-        )
+        seaCreaturesViewModel.successHandler = {
+            XCTAssertEqual(1, self.serviceMock.invokedGetSeaCreaturesCount)
+        }
         
         seaCreaturesViewModel.getSeaCreatureData()
-        let currentSeaCreatures = seaCreaturesViewModel.makeSeaCreaturesFromTheSouthernHemisphere()
         
-        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
-        XCTAssertEqual(1, serviceMock.invokedGetSeaCreaturesCount)
-        XCTAssertEqual(currentSeaCreatures.count, 17)
+        let northernSection = seaCreaturesViewModel.configureSectionCollectionView(with: 0)
+        let southernSection = seaCreaturesViewModel.configureSectionCollectionView(with: 1)
+        
+        XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
+        XCTAssertEqual(northernSection, 18)
+        XCTAssertEqual(southernSection, 17)
         expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
     }

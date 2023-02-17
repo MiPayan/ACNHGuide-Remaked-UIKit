@@ -12,7 +12,7 @@ final class BugViewModel {
     private let service: ACNHServiceProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
-    private(set) var bugData = [BugData]()
+    private(set) var bugsData = [BugData]()
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     
@@ -31,8 +31,8 @@ final class BugViewModel {
             guard let self else { return }
             self.mainDispatchQueue.async {
                 switch result {
-                case .success(let bugData):
-                    self.bugData = bugData
+                case .success(let bugsData):
+                    self.bugsData = bugsData
                     self.successHandler()
                 case .failure(_):
                     self.failureHandler()
@@ -46,19 +46,27 @@ final class BugViewModel {
     }
     
     func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? makeSeaCreaturesFromTheHemisphere(with: .northern).count : makeSeaCreaturesFromTheHemisphere(with: .southern).count
+        section == 0 ? northernHemisphereBugs.count : southernHemisphereBugs.count
     }
     
     func configureCollectionView(with section: Int, index: Int) -> BugData {
-        section == 0 ? makeSeaCreaturesFromTheHemisphere(with: .northern)[index] : makeSeaCreaturesFromTheHemisphere(with: .southern)[index]
+        section == 0 ? northernHemisphereBugs[index] : southernHemisphereBugs[index]
+    }
+}
+
+private extension BugViewModel {
+    var northernHemisphereBugs: [BugData] {
+        let (hour, month) = currentCalendar.getCurrentDate()
+        let filtered = bugsData.filter {
+            $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
+        }
+        return filtered
     }
     
-    private func makeSeaCreaturesFromTheHemisphere(with hemisphere: Hemisphere) -> [BugData] {
-        let (hour, month) = currentCalendar.makeCurrentCalendar()
-        let filtered = bugData.filter {
-            $0.availability.timeArray.contains(hour) &&
-            ($0.availability.monthArrayNorthern.contains(month) && hemisphere == .northern ||
-             $0.availability.monthArraySouthern.contains(month) && hemisphere == .southern)
+    var southernHemisphereBugs: [BugData] {
+        let (hour, month) = currentCalendar.getCurrentDate()
+        let filtered = bugsData.filter {
+            $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
     }

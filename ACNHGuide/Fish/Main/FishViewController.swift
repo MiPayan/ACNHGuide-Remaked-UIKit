@@ -103,7 +103,7 @@ extension FishViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        headerView.headerLabel.text = fishViewModel.setHeaderSection(with: indexPath.section)
+        headerView.configureHeaderLabel(with: fishViewModel.setHeaderSection(with: indexPath.section))
         return headerView
     }
     
@@ -129,7 +129,8 @@ extension FishViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? FishCollectionViewCell else { return UICollectionViewCell() }
         let fish = fishViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
-        fishCell.configureCell(fishData: fish)
+        let fishCollectionViewCellViewModel = FishCollectionViewCellViewModel(fishData: fish)
+        fishCell.configureCell(with: fishCollectionViewCellViewModel)
         return fishCell
     }
 }
@@ -138,7 +139,8 @@ extension FishViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FishDetailsViewController()
         let selectedFish = fishViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
-        detailsViewController.fishData = selectedFish
+        let fishDetailsViewModel = FishDetailsViewModel(fishData: selectedFish)
+        detailsViewController.fishDetailsViewModel = fishDetailsViewModel
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

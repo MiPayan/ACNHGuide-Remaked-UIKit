@@ -9,7 +9,7 @@ import UIKit
 
 final class SeaCreatureDetailsTableViewCell: UITableViewCell {
     
-    private var seaCreatureDetailsViewModel: SeaCreatureDetailsViewModel? {
+    private var viewModel: SeaCreaturesDetailsTableViewCellViewModel? {
         didSet {
             self.detailsCollectionView.reloadData()
         }
@@ -110,14 +110,14 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(seaCreatureDetailsViewModel: SeaCreatureDetailsViewModel) {
-        self.seaCreatureDetailsViewModel = seaCreatureDetailsViewModel
-        if let url = seaCreatureDetailsViewModel.iconURL {
+    func configureDetailsCell(with viewModel: SeaCreaturesDetailsTableViewCellViewModel) {
+        self.viewModel = viewModel
+        if let url = viewModel.iconURL {
             seaCreatureImageView.loadImage(url: url)
         }
-        seaCreatureFilenameLabel.text = seaCreatureDetailsViewModel.fileName
-        seaCreatureCatchPhraseLabel.text = seaCreatureDetailsViewModel.catchPhrase
-        seaCreatureMuseumPhraseLabel.text = seaCreatureDetailsViewModel.museumPhrase
+        seaCreatureFilenameLabel.text = viewModel.fileName
+        seaCreatureCatchPhraseLabel.text = viewModel.catchPhrase
+        seaCreatureMuseumPhraseLabel.text = viewModel.museumPhrase
     }
 }
 
@@ -185,20 +185,21 @@ private extension SeaCreatureDetailsTableViewCell {
 
 extension SeaCreatureDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        guard let viewModel else { return 0 }
+        return viewModel.numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let seaCreatureDetailsViewModel,
+        guard let viewModel,
               let detailsCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "AdaptiveDetailsCell",
                 for: indexPath
               ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
         detailsCell.configureCell(
-            imageNamed: seaCreatureDetailsViewModel.makeImageName(at: indexPath.row),
-            title: seaCreatureDetailsViewModel.makeTitle(at: indexPath.row),
+            imageNamed: viewModel.makeImageName(at: indexPath.row),
+            title: viewModel.makeTitle(at: indexPath.row),
             titleColorNamed: "ColorBlueMidnight",
-            value: seaCreatureDetailsViewModel.makeValue(at: indexPath.row),
+            value: viewModel.makeValue(at: indexPath.row),
             valueColorNamed: "ColorBlueNight"
         )
         return detailsCell

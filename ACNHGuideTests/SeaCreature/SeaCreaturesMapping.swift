@@ -10,7 +10,7 @@ import XCTest
 
 final class SeaCreaturesMapping: XCTestCase {
 
-    func testSeaCreatureJsonMapping() throws {
+    func testSeaCreaturesJsonMapping() throws {
             guard let id = seaCreatures.first?.id,
                   let filename = seaCreatures.first?.fileName,
                   let nameUSen = seaCreatures.first?.name.nameUSen,
@@ -42,7 +42,7 @@ final class SeaCreaturesMapping: XCTestCase {
                   let museumPhrase = seaCreatures.first?.museumPhrase,
                   let imageURI = seaCreatures.first?.imageURI,
                   let iconURI = seaCreatures.first?.iconURI else {
-                return
+                fatalError("Tests failed: testSeaCreaturesJsonMapping() from SeaCreaturesMapping")
             }
             XCTAssertEqual(id, 1)
             XCTAssertEqual(filename, "seaweed")

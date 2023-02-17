@@ -30,7 +30,7 @@ final class FossilsMapping: XCTestCase {
               let museumPhrase = fossils.first?.museumPhrase,
               let imageURI = fossils.first?.imageURI,
               let partOf = fossils.first?.partOf else {
-            return
+            fatalError("Tests failed: testFossilJsonMapping() from FossilsMapping")
         }
         XCTAssertEqual(filename, "acanthostega")
         XCTAssertEqual(nameUSen, "acanthostega")

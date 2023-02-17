@@ -8,10 +8,9 @@
 import Foundation
 
 extension String {
-    
     var localized: String {
-          return NSLocalizedString(self, comment:"")
-      }
+        return NSLocalizedString(self, comment: "")
+    }
     
     func replaceCharacter(_ oldString: String, by newString: String) -> String {
         let newString = self.replacingOccurrences(of: oldString, with: newString, options: .literal, range: nil)

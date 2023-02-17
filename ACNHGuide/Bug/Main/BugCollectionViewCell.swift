@@ -9,6 +9,7 @@ import UIKit
 
 final class BugCollectionViewCell: UICollectionViewCell {
     
+    private var viewModel: BugCollectionViewCellViewModel?
     private let bugFilenameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -46,10 +47,12 @@ final class BugCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(bug: BugData) {
-        guard let urlString = URL(string: bug.iconURI) else { return }
-        bugFilenameLabel.text = bug.fileName.replaceCharacter("_", by: " ").capitalized
-        bugImageView.loadImage(url: urlString)
+    func configureCell(with viewModel: BugCollectionViewCellViewModel) {
+        self.viewModel = viewModel
+        bugFilenameLabel.text = viewModel.filename
+        if let url = viewModel.iconURL {
+            bugImageView.loadImage(url: url)
+        }
     }
 }
 

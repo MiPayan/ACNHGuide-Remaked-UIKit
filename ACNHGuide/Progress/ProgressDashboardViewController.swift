@@ -1,5 +1,5 @@
 //
-//  OwnedDashboardViewController.swift
+//  ProgressDashboardViewController.swift
 //  ACNHGuide
 //
 //  Created by Mickael PAYAN on 24/01/2023.
@@ -7,17 +7,17 @@
 
 import UIKit
 
-final class OwnedDashboardViewController: UIViewController {
+final class ProgressDashboardViewController: UIViewController {
     
-    private let ownedDashboardViewModel = OwnedDashboardViewModel()
+    private let progressDashboardViewModel = ProgressDashboardViewModel()
     private lazy var dashboardTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DashboardTableViewCell.self, forCellReuseIdentifier: "DashboardCell")
         tableView.backgroundColor = UIColor(named: "ColorSand")
         tableView.allowsSelection = false
+        tableView.separatorStyle = .none
         tableView.dataSource = self
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 16)
         return tableView
     }()
     
@@ -25,17 +25,17 @@ final class OwnedDashboardViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         setUpUpdateDataHandler()
-        ownedDashboardViewModel.getDatas()
+        progressDashboardViewModel.getDatas()
     }
     
     func setUpUpdateDataHandler() {
-        ownedDashboardViewModel.successHandler = {
+        progressDashboardViewModel.successHandler = {
             self.dashboardTableView.reloadData()
         }
     }
 }
 
-private extension OwnedDashboardViewController {
+private extension ProgressDashboardViewController {
     func addSubviews() {
         view.addSubview(dashboardTableView)
         NSLayoutConstraint.activate([
@@ -47,9 +47,9 @@ private extension OwnedDashboardViewController {
     }
 }
 
-extension OwnedDashboardViewController: UITableViewDataSource {
+extension ProgressDashboardViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return progressDashboardViewModel.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,12 +57,17 @@ extension OwnedDashboardViewController: UITableViewDataSource {
             withIdentifier: "DashboardCell",
             for: indexPath
         ) as? DashboardTableViewCell else { return UITableViewCell() }
-        
+        let dashboardTableViewCellViewModel = DashboardTableViewCellViewModel(
+            fishesData: progressDashboardViewModel.fishData,
+            seaCreaturesData: progressDashboardViewModel.seaCreaturesData,
+            bugsData: progressDashboardViewModel.bugData,
+            fossilsData: progressDashboardViewModel.fossilData
+        )
         switch indexPath.row {
-        case 0: dashboardCell.configureFishCell(fishData: ownedDashboardViewModel.fishData)
-        case 1: dashboardCell.configureSeaCreatureCell(seaCreatureData: ownedDashboardViewModel.seaCreaturesData)
-        case 2: dashboardCell.configureBugCell(bugData: ownedDashboardViewModel.bugData)
-        case 3: dashboardCell.configureFossilCell(fossilData: ownedDashboardViewModel.fossilData)
+        case 0: dashboardCell.configureFishCell(with: dashboardTableViewCellViewModel)
+        case 1: dashboardCell.configureSeaCreatureCell(with: dashboardTableViewCellViewModel)
+        case 2: dashboardCell.configureBugCell(with: dashboardTableViewCellViewModel)
+        case 3: dashboardCell.configureFossilCell(with: dashboardTableViewCellViewModel)
         default:
             break
         }

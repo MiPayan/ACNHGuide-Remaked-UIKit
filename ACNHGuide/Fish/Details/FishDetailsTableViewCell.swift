@@ -9,7 +9,7 @@ import UIKit
 
 final class FishDetailsTableViewCell: UITableViewCell {
     
-    private var fishDetailsViewModel: FishDetailsViewModel? {
+    private var viewModel: FishDetailsTableViewCellViewModel? {
         didSet {
             self.detailsCollectionView.reloadData()
         }
@@ -110,14 +110,14 @@ final class FishDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(fishDetailsViewModel: FishDetailsViewModel) {
-        self.fishDetailsViewModel = fishDetailsViewModel
-        if let url = fishDetailsViewModel.iconURL {
+    func configureDetailsCell(with viewModel: FishDetailsTableViewCellViewModel) {
+        self.viewModel = viewModel
+        if let url = viewModel.iconURL {
             fishImageView.loadImage(url: url)
         }
-        fishFilenameLabel.text = fishDetailsViewModel.fileName
-        fishCatchPhraseLabel.text = fishDetailsViewModel.catchPhrase
-        fishMuseumPhraseLabel.text = fishDetailsViewModel.museumPhrase
+        fishFilenameLabel.text = viewModel.fileName
+        fishCatchPhraseLabel.text = viewModel.catchPhrase
+        fishMuseumPhraseLabel.text = viewModel.museumPhrase
     }
 }
 
@@ -183,22 +183,25 @@ private extension FishDetailsTableViewCell {
     }
 }
 
+// MARK: - CollectionView
+
 extension FishDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        guard let viewModel else { return 0 }
+        return viewModel.numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let fishDetailsViewModel,
+        guard let viewModel,
               let detailsCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "AdaptiveDetailsCell",
                 for: indexPath
               ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
         detailsCell.configureCell(
-            imageNamed: fishDetailsViewModel.makeImageName(at: indexPath.row),
-            title: fishDetailsViewModel.makeTitle(at: indexPath.row),
+            imageNamed: viewModel.makeImageName(at: indexPath.row),
+            title: viewModel.makeTitle(at: indexPath.row),
             titleColorNamed: "ColorBlueOcean",
-            value: fishDetailsViewModel.makeValue(at: indexPath.row),
+            value: viewModel.makeValue(at: indexPath.row),
             valueColorNamed: "ColorBlueRoyal"
         )
         return detailsCell

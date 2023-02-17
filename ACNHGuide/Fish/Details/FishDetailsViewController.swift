@@ -9,8 +9,8 @@ import UIKit
 
 final class FishDetailsViewController: UIViewController {
     
-    weak var detailsDelegate: DetailsDelegate?
-    var fishData: FishData?
+    var fishDetailsViewModel: FishDetailsViewModel?
+    private weak var detailsDelegate: DetailsDelegate?
     private lazy var fishTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,17 +44,18 @@ final class FishDetailsViewController: UIViewController {
 
 extension FishDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let fishDetailsViewModel else { return 0 }
+        return fishDetailsViewModel.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let fishData,
+        guard let fishDetailsViewModel,
               let detailsCell = tableView.dequeueReusableCell(
                 withIdentifier: "DetailsCell",
                 for: indexPath
               ) as? FishDetailsTableViewCell else { return UITableViewCell() }
-        let fishDetailsViewModel = FishDetailsViewModel(fishData: fishData)
-        detailsCell.configureDetailsCell(fishDetailsViewModel: fishDetailsViewModel)
+        let fishDetailsTableViewCellViewModel = FishDetailsTableViewCellViewModel(fishData: fishDetailsViewModel.fishData)
+        detailsCell.configureDetailsCell(with: fishDetailsTableViewCellViewModel)
         return detailsCell
     }
 }

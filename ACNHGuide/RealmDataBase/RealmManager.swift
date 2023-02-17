@@ -5,20 +5,40 @@
 //  Created by Mickael PAYAN on 30/01/2023.
 //
 
-//import Foundation
-//import RealmSwift
-//
-//final class RealmManager {
-//    
-//    static let shared = RealmManager()
-//    private var realm: Realm {
-//        try! Realm()
-//    }
-//    
+import Foundation
+import RealmSwift
+
+final class RealmManager {
+    
+    static let shared = RealmManager()
+    private var realm: Realm {
+        try! Realm()
+    }
+    
+    func saveObject(with object: Object) {
+        do {
+            try realm.write {
+                realm.add(object)
+            }
+        } catch {
+            print("Error deleting object: \(error)")
+        }
+    }
+    
+    func deleteObject(with object: Object) {
+        do {
+            try realm.write {
+                realm.delete(object)
+            }
+        } catch {
+            print("Error deleting object: \(error)")
+        }
+    }
+    
 //    func fetchObject<T: Object>(type: T.Type) -> Results<T> {
 //        return realm.objects(type)
 //    }
-//    
+//
 //    func saveObject<T: Object>(object: T) {
 //        do {
 //            try realm.write {
@@ -28,7 +48,7 @@
 //            print("Error saving object: \(error)")
 //        }
 //    }
-//    
+//
 //    func deleteObject<T: Object>(object: T) {
 //        do {
 //            try realm.write {
@@ -38,4 +58,4 @@
 //            print("Error deleting object: \(error)")
 //        }
 //    }
-//}
+}

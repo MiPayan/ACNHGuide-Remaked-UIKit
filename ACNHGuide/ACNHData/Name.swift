@@ -12,8 +12,8 @@ struct Name: Decodable {
     let nameUSes, nameEUfr, nameUSfr, nameEUit: String
     let nameEUnl, nameCNzh, nameTWzh, nameJPja: String
     let nameKRko, nameEUru: String
-
-    enum CodingKeys: String, CodingKey {
+    
+    private enum CodingKeys: String, CodingKey {
         case nameUSen = "name-USen"
         case nameEUen = "name-EUen"
         case nameEUde = "name-EUde"

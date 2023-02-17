@@ -9,8 +9,8 @@ import UIKit
 
 final class ErrorView: UIView {
     
-    weak var errorDelegate: ErrorViewDelegate?
-    private var containerErrorView: UIView = {
+    private(set) weak var errorDelegate: ErrorViewDelegate?
+    private let containerErrorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "ColorErrorButton")
@@ -19,7 +19,7 @@ final class ErrorView: UIView {
         return view
     }()
     
-    private var errorImageView: UIImageView = {
+    private let errorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
@@ -30,7 +30,7 @@ final class ErrorView: UIView {
         return imageView
     }()
     
-    private var errorLabel: UILabel = {
+    private let errorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0

@@ -15,7 +15,7 @@ struct FossilData: Decodable {
     let imageURI: String
     let partOf: String
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case fileName = "file-name"
         case name, price
         case museumPhrase = "museum-phrase"

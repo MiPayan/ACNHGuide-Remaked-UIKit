@@ -10,7 +10,7 @@ import XCTest
 
 final class BugsMapping: XCTestCase {
         
-    func testBugJsonMapping() throws {
+    func testBugsJsonMapping() throws {
         guard let id = bugs.first?.id,
               let filename = bugs.first?.fileName,
               let nameUSen = bugs.first?.name.nameUSen,
@@ -43,7 +43,7 @@ final class BugsMapping: XCTestCase {
               let museumPhrase = bugs.first?.museumPhrase,
               let imageURI = bugs.first?.imageURI,
               let iconURI = bugs.first?.iconURI else {
-            return
+            fatalError("Tests failed: testBugsJsonMapping() from BugsMapping")
         }
         XCTAssertEqual(id, 1)
         XCTAssertEqual(filename, "common_butterfly")

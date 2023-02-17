@@ -21,7 +21,7 @@ final class TabBarViewController: UITabBarController {
             SeaCreatureViewController(),
             BugViewController(),
             FossilViewController(),
-            OwnedDashboardViewController()
+            ProgressDashboardViewController()
         ]
         
         let titles = [

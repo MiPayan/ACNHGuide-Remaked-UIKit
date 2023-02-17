@@ -1,5 +1,5 @@
 //
-//  SeaCreatureDetailsViewModel.swift
+//  SeaCreaturesDetailsTableViewCellViewModel.swift
 //  ACNHGuide
 //
 //  Created by Mickael PAYAN on 31/01/2023.
@@ -7,9 +7,10 @@
 
 import Foundation
 
-final class SeaCreatureDetailsViewModel {
+final class SeaCreaturesDetailsTableViewCellViewModel {
     
     private let seaCreatureData: SeaCreatureData
+    let numberOfItemsInSection = 6
     
     init(seaCreatureData: SeaCreatureData) {
         self.seaCreatureData = seaCreatureData

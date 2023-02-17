@@ -9,7 +9,7 @@ import UIKit
 
 final class MainViewCollectionReusableView: UICollectionReusableView {
     
-    private(set) var headerLabel: UILabel = {
+    private let headerLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .left
@@ -26,6 +26,10 @@ final class MainViewCollectionReusableView: UICollectionReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureHeaderLabel(with text: String) {
+        headerLabel.text = text
     }
     
     private func addSubviews() {

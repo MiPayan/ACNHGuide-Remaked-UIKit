@@ -43,23 +43,30 @@
 		3703860629799A79002CC431 /* UIView-Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860529799A79002CC431 /* UIView-Shimmer */; };
 		3703860929799AA3002CC431 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860829799AA3002CC431 /* Realm */; };
 		3703860B29799AA3002CC431 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860A29799AA3002CC431 /* RealmSwift */; };
-		370492122980274300B58CC7 /* OwnedDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370492112980274300B58CC7 /* OwnedDashboardViewController.swift */; };
+		370492122980274300B58CC7 /* ProgressDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370492112980274300B58CC7 /* ProgressDashboardViewController.swift */; };
 		37125692298BBC8000507D2D /* NetworkingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37125691298BBC8000507D2D /* NetworkingMock.swift */; };
 		37125694298BC52500507D2D /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37125693298BC52500507D2D /* NetworkingTests.swift */; };
 		3712569F298BF31800507D2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 371256A1298BF31800507D2D /* Localizable.strings */; };
 		37137585296C58F500F39C83 /* ImageVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137584296C58F500F39C83 /* ImageVIew.swift */; };
 		37137587296C67F600F39C83 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137586296C67F600F39C83 /* String.swift */; };
+		37563CF229911C1D00739397 /* FishDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37563CF129911C1D00739397 /* FishDetailsViewModel.swift */; };
 		375B9D2B2987D37C00E5B36D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375B9D2A2987D37C00E5B36D /* RealmManager.swift */; };
-		376035862983E181001498C3 /* FishDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376035852983E181001498C3 /* FishDetailsViewModel.swift */; };
-		3760358829842754001498C3 /* OwnedDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760358729842754001498C3 /* OwnedDashboardViewModel.swift */; };
-		3765CE56298AA14E009E6CCF /* FishDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3765CE55298AA14E009E6CCF /* FishDetailsViewModelTests.swift */; };
+		376035862983E181001498C3 /* FishDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */; };
+		3760358829842754001498C3 /* ProgressDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760358729842754001498C3 /* ProgressDashboardViewModel.swift */; };
+		3765CE56298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3765CE55298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift */; };
 		3765CE59298AA253009E6CCF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3765CE58298AA253009E6CCF /* RealmSwift */; };
+		37671B75299CCDE300453F70 /* DashboardTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B74299CCDE300453F70 /* DashboardTableViewCellViewModel.swift */; };
+		37671B77299CD02100453F70 /* Creatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B76299CD02100453F70 /* Creatures.swift */; };
+		37671B7A299CF93E00453F70 /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B79299CF93E00453F70 /* Fish.swift */; };
+		37671B7C299D252100453F70 /* FishService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B7B299D252100453F70 /* FishService.swift */; };
+		37671B82299D26C300453F70 /* SeaCreature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B81299D26C300453F70 /* SeaCreature.swift */; };
+		37671B84299D26F900453F70 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B83299D26F900453F70 /* Bug.swift */; };
+		37671B86299D272900453F70 /* Fossil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B85299D272900453F70 /* Fossil.swift */; };
 		37747C09297EFEB400514352 /* DetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37747C08297EFEB400514352 /* DetailsDelegate.swift */; };
 		378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378DC60829704F030062107C /* DetailsCollectionViewCell.swift */; };
-		3792FF3829896223005673E9 /* SeaCreatureDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3729896223005673E9 /* SeaCreatureDetailsViewModel.swift */; };
-		3792FF3A298967BB005673E9 /* BugDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF39298967BB005673E9 /* BugDetailsViewModel.swift */; };
-		3792FF3C29896BF0005673E9 /* FossilDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3B29896BF0005673E9 /* FossilDetailsViewModel.swift */; };
-		379E8D6D298D09AD00ACEEF5 /* Hemisphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E8D6C298D09AD00ACEEF5 /* Hemisphere.swift */; };
+		3792FF3829896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3729896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift */; };
+		3792FF3A298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */; };
+		3792FF3C29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3B29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift */; };
 		379E8D6E298D0F3000ACEEF5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385F4297942DF002CC431 /* Constant.swift */; };
 		37A29F812978442000E043F0 /* FishesMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A29F802978442000E043F0 /* FishesMapping.swift */; };
 		37A29F83297844F300E043F0 /* DecodableBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A29F82297844F300E043F0 /* DecodableBundle.swift */; };
@@ -92,12 +99,24 @@
 		37B02E16296D5F820084178D /* CurrentCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B02E15296D5F820084178D /* CurrentCalendar.swift */; };
 		37C4134029785BBE001F6EE0 /* Fishes.json in Resources */ = {isa = PBXBuildFile; fileRef = 37C4134229785BBE001F6EE0 /* Fishes.json */; };
 		37C4134329785BDC001F6EE0 /* Fishes.json in Resources */ = {isa = PBXBuildFile; fileRef = 37C4134229785BBE001F6EE0 /* Fishes.json */; };
+		37C8A2FD299B7DAE002E74F5 /* SeaCreaturesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8A2FC299B7DAE002E74F5 /* SeaCreaturesDetailsViewModel.swift */; };
+		37C8A2FF299B933B002E74F5 /* BugDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8A2FE299B933B002E74F5 /* BugDetailsViewModel.swift */; };
+		37C8A301299B9AC8002E74F5 /* FossilDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8A300299B9AC8002E74F5 /* FossilDetailsViewModel.swift */; };
 		37D197BC296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */; };
+		37D7D8B1299E4CB600BBA73F /* FishCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7D8B0299E4CB600BBA73F /* FishCollectionViewCellViewModel.swift */; };
+		37D7D8B3299E4E6000BBA73F /* SeaCreatureCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7D8B2299E4E6000BBA73F /* SeaCreatureCollectionViewCellViewModel.swift */; };
+		37D7D8B5299E5A7900BBA73F /* BugCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7D8B4299E5A7900BBA73F /* BugCollectionViewCellViewModel.swift */; };
+		37D7D8B7299E602500BBA73F /* FossilCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7D8B6299E602500BBA73F /* FossilCollectionViewCellViewModel.swift */; };
+		37D7D8BC299E67B200BBA73F /* FishCollectionViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7D8BB299E67B200BBA73F /* FishCollectionViewCellViewModelTests.swift */; };
+		37D7D8BE299E729D00BBA73F /* SeaCreatureCollectionViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7D8BD299E729D00BBA73F /* SeaCreatureCollectionViewCellViewModelTests.swift */; };
+		37D7D8C0299E80EF00BBA73F /* BugCollectionViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7D8BF299E80EF00BBA73F /* BugCollectionViewCellViewModelTests.swift */; };
 		37DD38DB298137B90013BF3A /* FossilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */; };
 		37DD38DD298187440013BF3A /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */; };
-		37F9B4FE298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift */; };
-		37F9B500298AB436007DEB5E /* BugDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B4FF298AB436007DEB5E /* BugDetailsViewModelTests.swift */; };
-		37F9B502298AB701007DEB5E /* FossilDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B501298AB701007DEB5E /* FossilDetailsViewModelTests.swift */; };
+		37F18BDF299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18BDE299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift */; };
+		37F18BE2299F9A6500FD4628 /* DashboardTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18BE1299F9A6500FD4628 /* DashboardTableViewCellViewModelTests.swift */; };
+		37F9B4FE298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift */; };
+		37F9B500298AB436007DEB5E /* BugDetailsTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B4FF298AB436007DEB5E /* BugDetailsTableViewCellViewModelTests.swift */; };
+		37F9B502298AB701007DEB5E /* FossilDetailsTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B501298AB701007DEB5E /* FossilDetailsTableViewCellViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,22 +161,29 @@
 		370385F629794487002CC431 /* FossilViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilViewModelTests.swift; sourceTree = "<group>"; };
 		3703860029799077002CC431 /* ErrorViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewDelegate.swift; sourceTree = "<group>"; };
 		3703860229799102002CC431 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		370492112980274300B58CC7 /* OwnedDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedDashboardViewController.swift; sourceTree = "<group>"; };
+		370492112980274300B58CC7 /* ProgressDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDashboardViewController.swift; sourceTree = "<group>"; };
 		37125691298BBC8000507D2D /* NetworkingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingMock.swift; sourceTree = "<group>"; };
 		37125693298BC52500507D2D /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		371256A0298BF31800507D2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37137584296C58F500F39C83 /* ImageVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVIew.swift; sourceTree = "<group>"; };
 		37137586296C67F600F39C83 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		37563CF129911C1D00739397 /* FishDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModel.swift; sourceTree = "<group>"; };
 		375B9D2A2987D37C00E5B36D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		376035852983E181001498C3 /* FishDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModel.swift; sourceTree = "<group>"; };
-		3760358729842754001498C3 /* OwnedDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedDashboardViewModel.swift; sourceTree = "<group>"; };
-		3765CE55298AA14E009E6CCF /* FishDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		3760358729842754001498C3 /* ProgressDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDashboardViewModel.swift; sourceTree = "<group>"; };
+		3765CE55298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		37671B74299CCDE300453F70 /* DashboardTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		37671B76299CD02100453F70 /* Creatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creatures.swift; sourceTree = "<group>"; };
+		37671B79299CF93E00453F70 /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
+		37671B7B299D252100453F70 /* FishService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishService.swift; sourceTree = "<group>"; };
+		37671B81299D26C300453F70 /* SeaCreature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreature.swift; sourceTree = "<group>"; };
+		37671B83299D26F900453F70 /* Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
+		37671B85299D272900453F70 /* Fossil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fossil.swift; sourceTree = "<group>"; };
 		37747C08297EFEB400514352 /* DetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDelegate.swift; sourceTree = "<group>"; };
 		378DC60829704F030062107C /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		3792FF3729896223005673E9 /* SeaCreatureDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureDetailsViewModel.swift; sourceTree = "<group>"; };
-		3792FF39298967BB005673E9 /* BugDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewModel.swift; sourceTree = "<group>"; };
-		3792FF3B29896BF0005673E9 /* FossilDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewModel.swift; sourceTree = "<group>"; };
-		379E8D6C298D09AD00ACEEF5 /* Hemisphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hemisphere.swift; sourceTree = "<group>"; };
+		3792FF3729896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreaturesDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		3792FF3B29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		37A29F77297842E100E043F0 /* ACNHGuideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACNHGuideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A29F802978442000E043F0 /* FishesMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishesMapping.swift; sourceTree = "<group>"; };
 		37A29F82297844F300E043F0 /* DecodableBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableBundle.swift; sourceTree = "<group>"; };
@@ -191,12 +217,24 @@
 		37B02E13296D5EEF0084178D /* CalendarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDelegate.swift; sourceTree = "<group>"; };
 		37B02E15296D5F820084178D /* CurrentCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCalendar.swift; sourceTree = "<group>"; };
 		37C4134129785BBE001F6EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Fishes.json; sourceTree = "<group>"; };
+		37C8A2FC299B7DAE002E74F5 /* SeaCreaturesDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreaturesDetailsViewModel.swift; sourceTree = "<group>"; };
+		37C8A2FE299B933B002E74F5 /* BugDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewModel.swift; sourceTree = "<group>"; };
+		37C8A300299B9AC8002E74F5 /* FossilDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewModel.swift; sourceTree = "<group>"; };
 		37D197BB296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CAGradientLayer.swift"; sourceTree = "<group>"; };
+		37D7D8B0299E4CB600BBA73F /* FishCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		37D7D8B2299E4E6000BBA73F /* SeaCreatureCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		37D7D8B4299E5A7900BBA73F /* BugCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		37D7D8B6299E602500BBA73F /* FossilCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		37D7D8BB299E67B200BBA73F /* FishCollectionViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishCollectionViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		37D7D8BD299E729D00BBA73F /* SeaCreatureCollectionViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureCollectionViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		37D7D8BF299E80EF00BBA73F /* BugCollectionViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugCollectionViewCellViewModelTests.swift; sourceTree = "<group>"; };
 		37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilTableViewCell.swift; sourceTree = "<group>"; };
 		37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
-		37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureDetailsViewModelTests.swift; sourceTree = "<group>"; };
-		37F9B4FF298AB436007DEB5E /* BugDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsViewModelTests.swift; sourceTree = "<group>"; };
-		37F9B501298AB701007DEB5E /* FossilDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		37F18BDE299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilCollectionViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		37F18BE1299F9A6500FD4628 /* DashboardTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureDetailsTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		37F9B4FF298AB436007DEB5E /* BugDetailsTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		37F9B501298AB701007DEB5E /* FossilDetailsTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDetailsTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				37ACFB6D29685CDE008B065C /* SeaCreatureViewModel.swift */,
+				37D7D8B2299E4E6000BBA73F /* SeaCreatureCollectionViewCellViewModel.swift */,
 				37A7137529681F130075BF25 /* SeaCreatureViewController.swift */,
 				37ACFB7829686A9E008B065C /* SeaCreatureCollectionViewCell.swift */,
 			);
@@ -234,7 +273,8 @@
 		3702B448296EAE12008AB36D /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				3792FF3729896223005673E9 /* SeaCreatureDetailsViewModel.swift */,
+				37C8A2FC299B7DAE002E74F5 /* SeaCreaturesDetailsViewModel.swift */,
+				3792FF3729896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift */,
 				3702B449296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift */,
 				3702B44B296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift */,
 			);
@@ -244,7 +284,8 @@
 		3702B457296F01D8008AB36D /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				376035852983E181001498C3 /* FishDetailsViewModel.swift */,
+				37563CF129911C1D00739397 /* FishDetailsViewModel.swift */,
+				376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */,
 				3702B458296F01F2008AB36D /* FishDetailsViewController.swift */,
 				3700B87329718E9F005D975D /* FishDetailsTableViewCell.swift */,
 			);
@@ -255,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				3702B451296EFD68008AB36D /* FishViewModel.swift */,
+				37D7D8B0299E4CB600BBA73F /* FishCollectionViewCellViewModel.swift */,
 				37ACFB6F29685DAB008B065C /* FishViewController.swift */,
 				3702B455296EFF67008AB36D /* FishCollectionViewCell.swift */,
 			);
@@ -265,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				3702B45A296F02F7008AB36D /* BugViewModel.swift */,
+				37D7D8B4299E5A7900BBA73F /* BugCollectionViewCellViewModel.swift */,
 				37A7137729681F1C0075BF25 /* BugViewController.swift */,
 				3702B45F296F07BE008AB36D /* BugCollectionViewCell.swift */,
 			);
@@ -274,7 +317,8 @@
 		3702B45E296F053F008AB36D /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				3792FF39298967BB005673E9 /* BugDetailsViewModel.swift */,
+				37C8A2FE299B933B002E74F5 /* BugDetailsViewModel.swift */,
+				3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */,
 				3702B461296F09BB008AB36D /* BugDetailsViewController.swift */,
 				3700B87529719652005D975D /* BugDetailsTableViewCell.swift */,
 			);
@@ -285,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				3702B463296F0C4B008AB36D /* FossilViewModel.swift */,
+				37D7D8B6299E602500BBA73F /* FossilCollectionViewCellViewModel.swift */,
 				37A7137929681F2B0075BF25 /* FossilViewController.swift */,
 				3702B465296F0CDF008AB36D /* FossilCollectionViewCell.swift */,
 			);
@@ -294,7 +339,8 @@
 		3702B46A296F0FEE008AB36D /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				3792FF3B29896BF0005673E9 /* FossilDetailsViewModel.swift */,
+				37C8A300299B9AC8002E74F5 /* FossilDetailsViewModel.swift */,
+				3792FF3B29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift */,
 				3702B46C296F1010008AB36D /* FossilDetailsViewController.swift */,
 				37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */,
 			);
@@ -305,7 +351,8 @@
 			isa = PBXGroup;
 			children = (
 				370385EE29793F5F002CC431 /* SeaCreatureViewModelTests.swift */,
-				37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift */,
+				37D7D8BD299E729D00BBA73F /* SeaCreatureCollectionViewCellViewModelTests.swift */,
+				37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift */,
 				370385DD29793738002CC431 /* SeaCreaturesMapping.swift */,
 				370385D42979369A002CC431 /* SeaCreatures.json */,
 			);
@@ -316,7 +363,8 @@
 			isa = PBXGroup;
 			children = (
 				370385F02979411D002CC431 /* BugViewModelTests.swift */,
-				37F9B4FF298AB436007DEB5E /* BugDetailsViewModelTests.swift */,
+				37D7D8BF299E80EF00BBA73F /* BugCollectionViewCellViewModelTests.swift */,
+				37F9B4FF298AB436007DEB5E /* BugDetailsTableViewCellViewModelTests.swift */,
 				370385DF297937CF002CC431 /* BugsMapping.swift */,
 				370385E42979389E002CC431 /* Bugs.json */,
 			);
@@ -327,7 +375,8 @@
 			isa = PBXGroup;
 			children = (
 				370385F629794487002CC431 /* FossilViewModelTests.swift */,
-				37F9B501298AB701007DEB5E /* FossilDetailsViewModelTests.swift */,
+				37F18BDE299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift */,
+				37F9B501298AB701007DEB5E /* FossilDetailsTableViewCellViewModelTests.swift */,
 				370385F22979423F002CC431 /* FossilsMapping.swift */,
 				370385DA2979370C002CC431 /* Fossils.json */,
 			);
@@ -372,33 +421,65 @@
 			isa = PBXGroup;
 			children = (
 				375B9D2A2987D37C00E5B36D /* RealmManager.swift */,
-				374732D12977158E005363BE /* Object */,
+				37671B78299CF8CA00453F70 /* Object */,
 			);
 			path = RealmDataBase;
 			sourceTree = "<group>";
 		};
-		374732D12977158E005363BE /* Object */ = {
+		37671B78299CF8CA00453F70 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				37671B7D299D254400453F70 /* Fish */,
+				37671B7E299D256500453F70 /* SeaCreature */,
+				37671B7F299D256F00453F70 /* Bug */,
+				37671B80299D257400453F70 /* Fossil */,
 			);
 			path = Object;
 			sourceTree = "<group>";
 		};
-		3765CE57298AA24F009E6CCF /* Frameworks */ = {
+		37671B7D299D254400453F70 /* Fish */ = {
 			isa = PBXGroup;
 			children = (
+				37671B79299CF93E00453F70 /* Fish.swift */,
+				37671B7B299D252100453F70 /* FishService.swift */,
 			);
-			name = Frameworks;
+			path = Fish;
 			sourceTree = "<group>";
 		};
-		378DC5FF297026000062107C /* Owned */ = {
+		37671B7E299D256500453F70 /* SeaCreature */ = {
 			isa = PBXGroup;
 			children = (
-				3760358729842754001498C3 /* OwnedDashboardViewModel.swift */,
-				370492112980274300B58CC7 /* OwnedDashboardViewController.swift */,
-				37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */,
+				37671B81299D26C300453F70 /* SeaCreature.swift */,
 			);
-			path = Owned;
+			path = SeaCreature;
+			sourceTree = "<group>";
+		};
+		37671B7F299D256F00453F70 /* Bug */ = {
+			isa = PBXGroup;
+			children = (
+				37671B83299D26F900453F70 /* Bug.swift */,
+			);
+			path = Bug;
+			sourceTree = "<group>";
+		};
+		37671B80299D257400453F70 /* Fossil */ = {
+			isa = PBXGroup;
+			children = (
+				37671B85299D272900453F70 /* Fossil.swift */,
+			);
+			path = Fossil;
+			sourceTree = "<group>";
+		};
+		378DC5FF297026000062107C /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				3760358729842754001498C3 /* ProgressDashboardViewModel.swift */,
+				37671B74299CCDE300453F70 /* DashboardTableViewCellViewModel.swift */,
+				370492112980274300B58CC7 /* ProgressDashboardViewController.swift */,
+				37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */,
+				37671B76299CD02100453F70 /* Creatures.swift */,
+			);
+			path = Progress;
 			sourceTree = "<group>";
 		};
 		37A29F78297842E100E043F0 /* ACNHGuideTests */ = {
@@ -409,6 +490,7 @@
 				370385D129793607002CC431 /* SeaCreature */,
 				370385D229793610002CC431 /* Bug */,
 				370385D329793639002CC431 /* Fossil */,
+				37F18BE0299F991500FD4628 /* Progress */,
 			);
 			path = ACNHGuideTests;
 			sourceTree = "<group>";
@@ -417,7 +499,8 @@
 			isa = PBXGroup;
 			children = (
 				370385E529793CC9002CC431 /* FishViewModelTests.swift */,
-				3765CE55298AA14E009E6CCF /* FishDetailsViewModelTests.swift */,
+				37D7D8BB299E67B200BBA73F /* FishCollectionViewCellViewModelTests.swift */,
+				3765CE55298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift */,
 				37A29F802978442000E043F0 /* FishesMapping.swift */,
 				37C4134229785BBE001F6EE0 /* Fishes.json */,
 			);
@@ -430,7 +513,6 @@
 				37A7135C29681A6F0075BF25 /* ACNHGuide */,
 				37A29F78297842E100E043F0 /* ACNHGuideTests */,
 				37A7135B29681A6F0075BF25 /* Products */,
-				3765CE57298AA24F009E6CCF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -452,18 +534,13 @@
 				374732C62976A832005363BE /* RealmDataBase */,
 				37A7138829682BCD0075BF25 /* ACNHData */,
 				37A7137B29682B130075BF25 /* Networking */,
-				379E8D6C298D09AD00ACEEF5 /* Hemisphere.swift */,
-				37B02E15296D5F820084178D /* CurrentCalendar.swift */,
-				37A7137329681DA60075BF25 /* TabBarViewController.swift */,
-				3703860229799102002CC431 /* ErrorView.swift */,
-				3702B453296EFE40008AB36D /* MainViewCollectionReusableView.swift */,
-				378DC60829704F030062107C /* DetailsCollectionViewCell.swift */,
 				3704920E297FF6E200B58CC7 /* Delegate */,
+				37D7D8B8299E66F900BBA73F /* CommonFile */,
 				37ACFB712968646E008B065C /* Fish */,
 				37ACFB7229686477008B065C /* SeaCreature */,
 				37ACFB732968648E008B065C /* Bug */,
 				37ACFB7429686493008B065C /* Fossil */,
-				378DC5FF297026000062107C /* Owned */,
+				378DC5FF297026000062107C /* Progress */,
 			);
 			path = ACNHGuide;
 			sourceTree = "<group>";
@@ -575,6 +652,26 @@
 				3702B46A296F0FEE008AB36D /* Details */,
 			);
 			path = Fossil;
+			sourceTree = "<group>";
+		};
+		37D7D8B8299E66F900BBA73F /* CommonFile */ = {
+			isa = PBXGroup;
+			children = (
+				37B02E15296D5F820084178D /* CurrentCalendar.swift */,
+				37A7137329681DA60075BF25 /* TabBarViewController.swift */,
+				3703860229799102002CC431 /* ErrorView.swift */,
+				3702B453296EFE40008AB36D /* MainViewCollectionReusableView.swift */,
+				378DC60829704F030062107C /* DetailsCollectionViewCell.swift */,
+			);
+			path = CommonFile;
+			sourceTree = "<group>";
+		};
+		37F18BE0299F991500FD4628 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				37F18BE1299F9A6500FD4628 /* DashboardTableViewCellViewModelTests.swift */,
+			);
+			path = Progress;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -702,18 +799,23 @@
 				37125692298BBC8000507D2D /* NetworkingMock.swift in Sources */,
 				370385F32979423F002CC431 /* FossilsMapping.swift in Sources */,
 				370385DE29793738002CC431 /* SeaCreaturesMapping.swift in Sources */,
+				37D7D8BC299E67B200BBA73F /* FishCollectionViewCellViewModelTests.swift in Sources */,
+				37D7D8C0299E80EF00BBA73F /* BugCollectionViewCellViewModelTests.swift in Sources */,
+				37D7D8BE299E729D00BBA73F /* SeaCreatureCollectionViewCellViewModelTests.swift in Sources */,
 				370385ED29793E31002CC431 /* DispatchQueueMock.swift in Sources */,
+				37F18BE2299F9A6500FD4628 /* DashboardTableViewCellViewModelTests.swift in Sources */,
 				370385E0297937CF002CC431 /* BugsMapping.swift in Sources */,
-				37F9B4FE298AB14C007DEB5E /* SeaCreatureDetailsViewModelTests.swift in Sources */,
+				37F9B4FE298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift in Sources */,
 				37A29F812978442000E043F0 /* FishesMapping.swift in Sources */,
+				37F18BDF299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift in Sources */,
 				370385E929793D66002CC431 /* CurrentCalendarMock.swift in Sources */,
 				370385F12979411D002CC431 /* BugViewModelTests.swift in Sources */,
-				3765CE56298AA14E009E6CCF /* FishDetailsViewModelTests.swift in Sources */,
-				37F9B502298AB701007DEB5E /* FossilDetailsViewModelTests.swift in Sources */,
+				3765CE56298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift in Sources */,
+				37F9B502298AB701007DEB5E /* FossilDetailsTableViewCellViewModelTests.swift in Sources */,
 				370385E629793CC9002CC431 /* FishViewModelTests.swift in Sources */,
 				370385F729794487002CC431 /* FossilViewModelTests.swift in Sources */,
 				37125694298BC52500507D2D /* NetworkingTests.swift in Sources */,
-				37F9B500298AB436007DEB5E /* BugDetailsViewModelTests.swift in Sources */,
+				37F9B500298AB436007DEB5E /* BugDetailsTableViewCellViewModelTests.swift in Sources */,
 				370385EB29793D75002CC431 /* ServiceMock.swift in Sources */,
 				370385EF29793F5F002CC431 /* SeaCreatureViewModelTests.swift in Sources */,
 			);
@@ -723,22 +825,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37671B7A299CF93E00453F70 /* Fish.swift in Sources */,
 				37A7138329682B9B0075BF25 /* NetworkingProtocol.swift in Sources */,
 				37A713AD29682DBB0075BF25 /* FishAvailability.swift in Sources */,
 				3702B456296EFF67008AB36D /* FishCollectionViewCell.swift in Sources */,
 				37137587296C67F600F39C83 /* String.swift in Sources */,
 				3703860329799102002CC431 /* ErrorView.swift in Sources */,
 				3703860129799077002CC431 /* ErrorViewDelegate.swift in Sources */,
-				379E8D6D298D09AD00ACEEF5 /* Hemisphere.swift in Sources */,
 				37A7139D29682CF40075BF25 /* BugData.swift in Sources */,
 				3702B452296EFD68008AB36D /* FishViewModel.swift in Sources */,
+				37671B7C299D252100453F70 /* FishService.swift in Sources */,
 				37A713AC29682DBB0075BF25 /* FishData.swift in Sources */,
 				37B02E16296D5F820084178D /* CurrentCalendar.swift in Sources */,
 				3702B46D296F1010008AB36D /* FossilDetailsViewController.swift in Sources */,
+				37D7D8B7299E602500BBA73F /* FossilCollectionViewCellViewModel.swift in Sources */,
+				37671B75299CCDE300453F70 /* DashboardTableViewCellViewModel.swift in Sources */,
 				3702B466296F0CDF008AB36D /* FossilCollectionViewCell.swift in Sources */,
 				37ACFB7929686A9E008B065C /* SeaCreatureCollectionViewCell.swift in Sources */,
 				37A7137629681F130075BF25 /* SeaCreatureViewController.swift in Sources */,
 				37A7137829681F1C0075BF25 /* BugViewController.swift in Sources */,
+				37D7D8B5299E5A7900BBA73F /* BugCollectionViewCellViewModel.swift in Sources */,
 				37A7138529682B9B0075BF25 /* ACNHService.swift in Sources */,
 				37B02E14296D5EEF0084178D /* CalendarDelegate.swift in Sources */,
 				3700B87629719652005D975D /* BugDetailsTableViewCell.swift in Sources */,
@@ -748,38 +854,48 @@
 				37A7138429682B9B0075BF25 /* ACNHServiceProtocol.swift in Sources */,
 				37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */,
 				37A7137429681DA60075BF25 /* TabBarViewController.swift in Sources */,
+				37C8A2FF299B933B002E74F5 /* BugDetailsViewModel.swift in Sources */,
 				37A7135E29681A6F0075BF25 /* AppDelegate.swift in Sources */,
 				37A713A429682D090075BF25 /* SeaAvailability.swift in Sources */,
 				37DD38DB298137B90013BF3A /* FossilTableViewCell.swift in Sources */,
-				3792FF3829896223005673E9 /* SeaCreatureDetailsViewModel.swift in Sources */,
-				3792FF3A298967BB005673E9 /* BugDetailsViewModel.swift in Sources */,
+				3792FF3829896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift in Sources */,
+				3792FF3A298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift in Sources */,
+				37D7D8B1299E4CB600BBA73F /* FishCollectionViewCellViewModel.swift in Sources */,
+				37D7D8B3299E4E6000BBA73F /* SeaCreatureCollectionViewCellViewModel.swift in Sources */,
 				37DD38DD298187440013BF3A /* DashboardTableViewCell.swift in Sources */,
 				37ACFB6E29685CDE008B065C /* SeaCreatureViewModel.swift in Sources */,
 				37A7138629682B9B0075BF25 /* NetworkingError.swift in Sources */,
 				3702B44A296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift in Sources */,
 				37ACFB7029685DAB008B065C /* FishViewController.swift in Sources */,
 				37A713A029682CFC0075BF25 /* FossilData.swift in Sources */,
-				370492122980274300B58CC7 /* OwnedDashboardViewController.swift in Sources */,
+				370492122980274300B58CC7 /* ProgressDashboardViewController.swift in Sources */,
+				37671B77299CD02100453F70 /* Creatures.swift in Sources */,
 				37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */,
 				3702B44C296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift in Sources */,
 				379E8D6E298D0F3000ACEEF5 /* Constant.swift in Sources */,
 				3702B464296F0C4B008AB36D /* FossilViewModel.swift in Sources */,
 				37A7138E29682C940075BF25 /* Name.swift in Sources */,
+				37671B82299D26C300453F70 /* SeaCreature.swift in Sources */,
+				37563CF229911C1D00739397 /* FishDetailsViewModel.swift in Sources */,
 				3702B454296EFE40008AB36D /* MainViewCollectionReusableView.swift in Sources */,
 				3702B459296F01F2008AB36D /* FishDetailsViewController.swift in Sources */,
-				3792FF3C29896BF0005673E9 /* FossilDetailsViewModel.swift in Sources */,
+				3792FF3C29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift in Sources */,
+				37671B86299D272900453F70 /* Fossil.swift in Sources */,
 				375B9D2B2987D37C00E5B36D /* RealmManager.swift in Sources */,
 				3700B87429718E9F005D975D /* FishDetailsTableViewCell.swift in Sources */,
-				3760358829842754001498C3 /* OwnedDashboardViewModel.swift in Sources */,
+				3760358829842754001498C3 /* ProgressDashboardViewModel.swift in Sources */,
 				37137585296C58F500F39C83 /* ImageVIew.swift in Sources */,
+				37C8A301299B9AC8002E74F5 /* FossilDetailsViewModel.swift in Sources */,
 				37A713A329682D090075BF25 /* SeaCreatureData.swift in Sources */,
 				37A29F83297844F300E043F0 /* DecodableBundle.swift in Sources */,
 				37A7136029681A6F0075BF25 /* SceneDelegate.swift in Sources */,
+				37C8A2FD299B7DAE002E74F5 /* SeaCreaturesDetailsViewModel.swift in Sources */,
 				37747C09297EFEB400514352 /* DetailsDelegate.swift in Sources */,
+				37671B84299D26F900453F70 /* Bug.swift in Sources */,
 				3702B45B296F02F7008AB36D /* BugViewModel.swift in Sources */,
 				378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */,
 				3702B460296F07BE008AB36D /* BugCollectionViewCell.swift in Sources */,
-				376035862983E181001498C3 /* FishDetailsViewModel.swift in Sources */,
+				376035862983E181001498C3 /* FishDetailsTableViewCellViewModel.swift in Sources */,
 				3702B462296F09BB008AB36D /* BugDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

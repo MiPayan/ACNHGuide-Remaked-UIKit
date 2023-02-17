@@ -9,7 +9,7 @@ import UIKit
 
 final class FossilTableViewCell: UITableViewCell {
     
-    private var fossilDetailsViewModel: FossilDetailsViewModel? {
+    private var viewModel: FossilDetailsTableViewCellViewModel? {
         didSet {
             detailsCollectionView.reloadData()
         }
@@ -100,13 +100,13 @@ final class FossilTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(fossilDetailsViewModel: FossilDetailsViewModel) {
-        self.fossilDetailsViewModel = fossilDetailsViewModel
-        if let url = fossilDetailsViewModel.imageURL {
+    func configureDetailsCell(with viewModel: FossilDetailsTableViewCellViewModel) {
+        self.viewModel = viewModel
+        if let url = viewModel.imageURL {
             fossilImageView.loadImage(url: url)
         }
-        fossilFilenameLabel.text = fossilDetailsViewModel.filename
-        fossilMuseumPhraseLabel.text = fossilDetailsViewModel.museumPhrase
+        fossilFilenameLabel.text = viewModel.filename
+        fossilMuseumPhraseLabel.text = viewModel.museumPhrase
     }
 }
 
@@ -171,7 +171,7 @@ extension FossilTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let fossilDetailsViewModel,
+        guard let viewModel,
               let detailsCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "AdaptiveDetailsCell",
                 for: indexPath
@@ -180,7 +180,7 @@ extension FossilTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
             imageNamed: "Bells",
             title: "price".localized,
             titleColorNamed: "ColorBrownHeart",
-            value: fossilDetailsViewModel.price,
+            value: viewModel.price,
             valueColorNamed: "ColorBrownHeart"
         )
         return detailsCell

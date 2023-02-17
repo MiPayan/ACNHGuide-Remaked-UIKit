@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CalendarDelegate {
-    func makeCurrentCalendar() -> (Int, Int)
+    func getCurrentDate() -> (Int, Int)
 }

@@ -25,7 +25,7 @@ final class FishViewModel {
         self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
-        
+    
     func getFishData() {
         service.getFishData { [weak self] result in
             guard let self else { return }
@@ -46,19 +46,27 @@ final class FishViewModel {
     }
     
     func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? makeFishesFromTheHemisphere(with: .northern).count : makeFishesFromTheHemisphere(with: .southern).count
+        section == 0 ? northernHemisphereFishes.count : southernHemisphereFishes.count
     }
     
     func configureCollectionView(with section: Int, index: Int) -> FishData {
-        section == 0 ? makeFishesFromTheHemisphere(with: .northern)[index] : makeFishesFromTheHemisphere(with: .southern )[index]
+        section == 0 ? northernHemisphereFishes[index] : southernHemisphereFishes[index]
     }
+}
 
-    private func makeFishesFromTheHemisphere(with hemisphere: Hemisphere) -> [FishData] {
-        let (hour, month) = currentCalendar.makeCurrentCalendar()
+private extension FishViewModel {
+    var northernHemisphereFishes: [FishData] {
+        let (hour, month) = currentCalendar.getCurrentDate()
         let filtered = fishesData.filter {
-            $0.availability.timeArray.contains(hour) &&
-            ($0.availability.monthArrayNorthern.contains(month) && hemisphere == .northern ||
-             $0.availability.monthArraySouthern.contains(month) && hemisphere == .southern)
+            $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
+        }
+        return filtered
+    }
+    
+    var southernHemisphereFishes: [FishData] {
+        let (hour, month) = currentCalendar.getCurrentDate()
+        let filtered = fishesData.filter {
+            $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
     }

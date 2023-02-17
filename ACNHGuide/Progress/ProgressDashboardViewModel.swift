@@ -1,5 +1,5 @@
 //
-//  OwnedDashboardViewModel.swift
+//  ProgressDashboardViewModel.swift
 //  ACNHGuide
 //
 //  Created by Mickael PAYAN on 27/01/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class OwnedDashboardViewModel {
+final class ProgressDashboardViewModel {
     
     private let service: ACNHServiceProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
@@ -17,8 +17,12 @@ final class OwnedDashboardViewModel {
     private(set) var fossilData = [FossilData]()
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
+    let numberOfRowsInSection = 4
     
-    init(service: ACNHServiceProtocol = ACNHService(), mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main) {
+    init(
+        service: ACNHServiceProtocol = ACNHService(),
+        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main
+    ) {
         self.service = service
         self.mainDispatchQueue = mainDispatchQueue
     }

@@ -17,7 +17,7 @@ struct FishData: Decodable {
     let catchPhrase, museumPhrase: String
     let imageURI, iconURI: String
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
         case fileName = "file-name"
         case name, availability, shadow, price
