@@ -33,7 +33,7 @@ final class BugCollectionViewCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "leaf"), for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(isTappedTheSaveButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
         return button
     }()
     
@@ -49,10 +49,13 @@ final class BugCollectionViewCell: UICollectionViewCell {
     
     func configureCell(with viewModel: BugCollectionViewCellViewModel) {
         self.viewModel = viewModel
-        bugFilenameLabel.text = viewModel.filename
+        bugFilenameLabel.text = viewModel.fileName
         if let url = viewModel.iconURL {
             bugImageView.loadImage(url: url)
         }
+        let isSaved = viewModel.isBugAlreadySaved
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }
 
@@ -63,8 +66,9 @@ private extension BugCollectionViewCell {
         self.clipsToBounds = true
     }
     
-    @objc func isTappedTheSaveButton() {
-        isSaved.toggle()
+    @objc func didTapSaveButton() {
+        guard let viewModel else { return }
+        let isSaved = viewModel.toggleSavedBug()
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }

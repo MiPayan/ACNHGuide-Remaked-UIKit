@@ -27,13 +27,12 @@ final class FishCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var isSaved = false
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "leaf"), for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(isTappedTheSaveButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
         return button
     }()
     
@@ -49,22 +48,26 @@ final class FishCollectionViewCell: UICollectionViewCell {
     
     func configureCell(with viewModel: FishCollectionViewCellViewModel) {
         self.viewModel = viewModel
-        fishFilenameLabel.text = viewModel.filename
+        fishFilenameLabel.text = viewModel.fileName
         if let url = viewModel.iconURL {
             fishImageView.loadImage(url: url)
         }
+        let isSaved = viewModel.isFishAlreadySaved
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }
 
 private extension FishCollectionViewCell {
     func setContentView() {
         self.backgroundColor = UIColor(named: "ColorBlueRoyal")
-        self.layer.cornerRadius = 5
+        self.layer.cornerRadius = 10
         self.clipsToBounds = true
     }
     
-    @objc func isTappedTheSaveButton() {
-        isSaved.toggle()
+    @objc func didTapSaveButton() {
+        guard let viewModel else { return }
+        let isSaved = viewModel.toggleSavedFish()
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }

@@ -10,10 +10,5 @@ import RealmSwift
 
 final class Fish: Object {
     
-    @Persisted(primaryKey: true) var _id: ObjectId
-    
-    init(_id: ObjectId) {
-        super.init()
-        self._id = _id
-    }
+    @Persisted var fileName = ""
 }

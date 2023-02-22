@@ -33,7 +33,7 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "leaf"), for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(isTappedTheSaveButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
         return button
     }()
     
@@ -50,10 +50,13 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
     
     func configureCell(with viewModel: SeaCreatureCollectionViewCellViewModel) {
         self.viewModel = viewModel
-        seaCreatureFilenameLabel.text = viewModel.filename
+        seaCreatureFilenameLabel.text = viewModel.fileName
         if let url = viewModel.iconURL {
             seaCreatureImageView.loadImage(url: url)
         }
+        let isSaved = viewModel.isSeaCreatureAlreadySaved
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }
 
@@ -64,8 +67,9 @@ private extension SeaCreatureCollectionViewCell {
         self.clipsToBounds = true
     }
     
-    @objc func isTappedTheSaveButton() {
-        isSaved.toggle()
+    @objc func didTapSaveButton() {
+        guard let viewModel else { return }
+        let isSaved = viewModel.toggleSavedSeaCreature()
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }

@@ -11,7 +11,7 @@ import RealmSwift
 final class RealmManager {
     
     static let shared = RealmManager()
-    private var realm: Realm {
+    var realm: Realm {
         try! Realm()
     }
     
@@ -34,28 +34,4 @@ final class RealmManager {
             print("Error deleting object: \(error)")
         }
     }
-    
-//    func fetchObject<T: Object>(type: T.Type) -> Results<T> {
-//        return realm.objects(type)
-//    }
-//
-//    func saveObject<T: Object>(object: T) {
-//        do {
-//            try realm.write {
-//                realm.add(object, update: .modified)
-//            }
-//        } catch {
-//            print("Error saving object: \(error)")
-//        }
-//    }
-//
-//    func deleteObject<T: Object>(object: T) {
-//        do {
-//            try realm.write {
-//                realm.delete(object)
-//            }
-//        } catch {
-//            print("Error deleting object: \(error)")
-//        }
-//    }
 }

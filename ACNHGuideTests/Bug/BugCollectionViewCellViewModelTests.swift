@@ -25,7 +25,7 @@ final class BugCollectionViewCellViewModelTests: XCTestCase {
             fatalError("Tests failed: testFileName() from BugCollectionViewCellViewModelTests")
         }
         XCTAssertEqual(fileName, "common_butterfly")
-        XCTAssertEqual(bugCollectionViewCellViewModel.filename, "Common Butterfly")
+        XCTAssertEqual(bugCollectionViewCellViewModel.fileName, "Common Butterfly")
     }
     
     func testIconURL() {

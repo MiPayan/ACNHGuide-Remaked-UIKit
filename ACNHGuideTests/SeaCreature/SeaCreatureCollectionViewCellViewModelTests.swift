@@ -25,7 +25,7 @@ final class SeaCreatureCollectionViewCellViewModelTests: XCTestCase {
             fatalError("Tests failed: testFileName() from FishCollectionViewCellViewModelTests")
         }
         XCTAssertEqual(fileName, "seaweed")
-        XCTAssertEqual(seaCreatureCollectionViewCellViewModel.filename, "Seaweed")
+        XCTAssertEqual(seaCreatureCollectionViewCellViewModel.fileName, "Seaweed")
     }
     
     func testIconURL() {

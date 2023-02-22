@@ -49,6 +49,7 @@
 		3712569F298BF31800507D2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 371256A1298BF31800507D2D /* Localizable.strings */; };
 		37137585296C58F500F39C83 /* ImageVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137584296C58F500F39C83 /* ImageVIew.swift */; };
 		37137587296C67F600F39C83 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137586296C67F600F39C83 /* String.swift */; };
+		373D5A9229A5167E00EC29C8 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D5A9129A5167D00EC29C8 /* Protocols.swift */; };
 		37563CF229911C1D00739397 /* FishDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37563CF129911C1D00739397 /* FishDetailsViewModel.swift */; };
 		375B9D2B2987D37C00E5B36D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375B9D2A2987D37C00E5B36D /* RealmManager.swift */; };
 		376035862983E181001498C3 /* FishDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */; };
@@ -58,7 +59,7 @@
 		37671B75299CCDE300453F70 /* DashboardTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B74299CCDE300453F70 /* DashboardTableViewCellViewModel.swift */; };
 		37671B77299CD02100453F70 /* Creatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B76299CD02100453F70 /* Creatures.swift */; };
 		37671B7A299CF93E00453F70 /* Fish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B79299CF93E00453F70 /* Fish.swift */; };
-		37671B7C299D252100453F70 /* FishService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B7B299D252100453F70 /* FishService.swift */; };
+		37671B7C299D252100453F70 /* CreatureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B7B299D252100453F70 /* CreatureService.swift */; };
 		37671B82299D26C300453F70 /* SeaCreature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B81299D26C300453F70 /* SeaCreature.swift */; };
 		37671B84299D26F900453F70 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B83299D26F900453F70 /* Bug.swift */; };
 		37671B86299D272900453F70 /* Fossil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B85299D272900453F70 /* Fossil.swift */; };
@@ -167,6 +168,7 @@
 		371256A0298BF31800507D2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37137584296C58F500F39C83 /* ImageVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVIew.swift; sourceTree = "<group>"; };
 		37137586296C67F600F39C83 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		373D5A9129A5167D00EC29C8 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		37563CF129911C1D00739397 /* FishDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModel.swift; sourceTree = "<group>"; };
 		375B9D2A2987D37C00E5B36D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -175,7 +177,7 @@
 		37671B74299CCDE300453F70 /* DashboardTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		37671B76299CD02100453F70 /* Creatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creatures.swift; sourceTree = "<group>"; };
 		37671B79299CF93E00453F70 /* Fish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fish.swift; sourceTree = "<group>"; };
-		37671B7B299D252100453F70 /* FishService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishService.swift; sourceTree = "<group>"; };
+		37671B7B299D252100453F70 /* CreatureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureService.swift; sourceTree = "<group>"; };
 		37671B81299D26C300453F70 /* SeaCreature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreature.swift; sourceTree = "<group>"; };
 		37671B83299D26F900453F70 /* Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 		37671B85299D272900453F70 /* Fossil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fossil.swift; sourceTree = "<group>"; };
@@ -420,7 +422,9 @@
 		374732C62976A832005363BE /* RealmDataBase */ = {
 			isa = PBXGroup;
 			children = (
+				373D5A9129A5167D00EC29C8 /* Protocols.swift */,
 				375B9D2A2987D37C00E5B36D /* RealmManager.swift */,
+				37671B7B299D252100453F70 /* CreatureService.swift */,
 				37671B78299CF8CA00453F70 /* Object */,
 			);
 			path = RealmDataBase;
@@ -429,45 +433,12 @@
 		37671B78299CF8CA00453F70 /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				37671B7D299D254400453F70 /* Fish */,
-				37671B7E299D256500453F70 /* SeaCreature */,
-				37671B7F299D256F00453F70 /* Bug */,
-				37671B80299D257400453F70 /* Fossil */,
-			);
-			path = Object;
-			sourceTree = "<group>";
-		};
-		37671B7D299D254400453F70 /* Fish */ = {
-			isa = PBXGroup;
-			children = (
 				37671B79299CF93E00453F70 /* Fish.swift */,
-				37671B7B299D252100453F70 /* FishService.swift */,
-			);
-			path = Fish;
-			sourceTree = "<group>";
-		};
-		37671B7E299D256500453F70 /* SeaCreature */ = {
-			isa = PBXGroup;
-			children = (
 				37671B81299D26C300453F70 /* SeaCreature.swift */,
-			);
-			path = SeaCreature;
-			sourceTree = "<group>";
-		};
-		37671B7F299D256F00453F70 /* Bug */ = {
-			isa = PBXGroup;
-			children = (
 				37671B83299D26F900453F70 /* Bug.swift */,
-			);
-			path = Bug;
-			sourceTree = "<group>";
-		};
-		37671B80299D257400453F70 /* Fossil */ = {
-			isa = PBXGroup;
-			children = (
 				37671B85299D272900453F70 /* Fossil.swift */,
 			);
-			path = Fossil;
+			path = Object;
 			sourceTree = "<group>";
 		};
 		378DC5FF297026000062107C /* Progress */ = {
@@ -834,7 +805,7 @@
 				3703860129799077002CC431 /* ErrorViewDelegate.swift in Sources */,
 				37A7139D29682CF40075BF25 /* BugData.swift in Sources */,
 				3702B452296EFD68008AB36D /* FishViewModel.swift in Sources */,
-				37671B7C299D252100453F70 /* FishService.swift in Sources */,
+				37671B7C299D252100453F70 /* CreatureService.swift in Sources */,
 				37A713AC29682DBB0075BF25 /* FishData.swift in Sources */,
 				37B02E16296D5F820084178D /* CurrentCalendar.swift in Sources */,
 				3702B46D296F1010008AB36D /* FossilDetailsViewController.swift in Sources */,
@@ -867,6 +838,7 @@
 				37A7138629682B9B0075BF25 /* NetworkingError.swift in Sources */,
 				3702B44A296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift in Sources */,
 				37ACFB7029685DAB008B065C /* FishViewController.swift in Sources */,
+				373D5A9229A5167E00EC29C8 /* Protocols.swift in Sources */,
 				37A713A029682CFC0075BF25 /* FossilData.swift in Sources */,
 				370492122980274300B58CC7 /* ProgressDashboardViewController.swift in Sources */,
 				37671B77299CD02100453F70 /* Creatures.swift in Sources */,
