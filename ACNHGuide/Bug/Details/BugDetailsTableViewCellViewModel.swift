@@ -10,6 +10,8 @@ import Foundation
 final class BugDetailsTableViewCellViewModel {
     
     private let bugData: BugData
+    private let creatureService = CreatureService(creatures: .bugs)
+    let numberOfItemsInSection = 6
     
     init(bugData: BugData) {
         self.bugData = bugData
@@ -60,6 +62,10 @@ final class BugDetailsTableViewCellViewModel {
         ["Bells", "Grass", "Timer", "Rarity", "North", "South"][index]
     }
     
+    var isBugAlreadySaved: Bool {
+        creatureService.isCreatureAlreadySaved(fileName: fileName)
+    }
+    
     func makeTitle(at index: Int) -> String {
         [
             "price".localized,
@@ -73,5 +79,15 @@ final class BugDetailsTableViewCellViewModel {
     
     func makeValue(at index: Int) -> String {
         [price, availabilityLocation, availabilityTime, rarity, northernHemisphereAvailability, southernHemisphereAvailability][index]
+    }
+
+    func toggleSavedBug() -> Bool {
+        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        if isSaved {
+            creatureService.deleteCreature(fileName: fileName)
+        } else {
+            creatureService.saveCreature(fileName: fileName)
+        }
+        return !isSaved
     }
 }

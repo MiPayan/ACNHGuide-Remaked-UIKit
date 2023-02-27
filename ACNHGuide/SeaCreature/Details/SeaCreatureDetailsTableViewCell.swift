@@ -103,6 +103,7 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor(named: "ColorSand")
+        contentView.isUserInteractionEnabled = true
         addSubviews()
     }
     
@@ -118,12 +119,19 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         seaCreatureFilenameLabel.text = viewModel.fileName
         seaCreatureCatchPhraseLabel.text = viewModel.catchPhrase
         seaCreatureMuseumPhraseLabel.text = viewModel.museumPhrase
+        
+        let isSaved = viewModel.isSeaCreatureAlreadySaved
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }
 
 private extension SeaCreatureDetailsTableViewCell {
     @objc func didTapSaveButton() {
-        
+        guard let viewModel else { return }
+        let isSaved = viewModel.toggleSavedSeaCreature()
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
     
     func addSubviews() {

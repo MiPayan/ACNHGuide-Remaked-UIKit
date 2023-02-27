@@ -80,9 +80,9 @@ private extension SeaCreatureViewController {
     }
 }
 
-extension SeaCreatureViewController: ErrorViewDelegate {
-    func didTapRefreshButton() {
-        seaCreatureViewModel.getSeaCreatureData()
+extension SeaCreatureViewController: ReloadDataDelegate {
+    func reloadCollectionView() {
+        seaCreatureCollectionView.reloadData()
     }
 }
 
@@ -110,7 +110,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return seaCreatureViewModel.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -135,6 +135,7 @@ extension SeaCreatureViewController: UICollectionViewDelegate {
         let selectedSeaCreature = seaCreatureViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
         let seaCreatureDetailsViewModel = SeaCreaturesDetailsViewModel(seaCreatureData: selectedSeaCreature)
         detailsViewController.seaCreaturesDetailsViewModel = seaCreatureDetailsViewModel
+        detailsViewController.reloadDataDelegate = self
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

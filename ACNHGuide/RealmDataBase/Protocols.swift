@@ -14,5 +14,6 @@ protocol CreatureWriting {
 }
 
 protocol CreaturePeeking {
+    var creaturesSaved: [Object] { get }
     func isCreatureAlreadySaved(fileName: String) -> Bool
 }

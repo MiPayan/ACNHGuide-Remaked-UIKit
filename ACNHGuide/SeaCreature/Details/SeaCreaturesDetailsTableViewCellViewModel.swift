@@ -10,6 +10,7 @@ import Foundation
 final class SeaCreaturesDetailsTableViewCellViewModel {
     
     private let seaCreatureData: SeaCreatureData
+    private let creatureService = CreatureService(creatures: .seaCreatures)
     let numberOfItemsInSection = 6
     
     init(seaCreatureData: SeaCreatureData) {
@@ -57,6 +58,10 @@ final class SeaCreaturesDetailsTableViewCellViewModel {
         seaCreatureData.museumPhrase
     }
     
+    var isSeaCreatureAlreadySaved: Bool {
+        creatureService.isCreatureAlreadySaved(fileName: fileName)
+    }
+    
     func makeImageName(at index: Int) -> String {
         ["Bells", "SeaCreatureShadow", "Timer", "Speedmeter", "North", "South"][index]
     }
@@ -74,5 +79,15 @@ final class SeaCreaturesDetailsTableViewCellViewModel {
     
     func makeValue(at index: Int) -> String {
         [price, shadow, availabilityTime, speed, northernHemisphereAvailability, southernHemisphereAvailability][index]
+    }
+    
+    func toggleSavedSeaCreature() -> Bool {
+        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        if isSaved {
+            creatureService.deleteCreature(fileName: fileName)
+        } else {
+            creatureService.saveCreature(fileName: fileName)
+        }
+        return !isSaved
     }
 }

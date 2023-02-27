@@ -103,9 +103,10 @@ final class FishDetailsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor(named: "ColorSand")
+        contentView.isUserInteractionEnabled = true
         addSubviews()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -118,14 +119,21 @@ final class FishDetailsTableViewCell: UITableViewCell {
         fishFilenameLabel.text = viewModel.fileName
         fishCatchPhraseLabel.text = viewModel.catchPhrase
         fishMuseumPhraseLabel.text = viewModel.museumPhrase
+
+        let isSaved = viewModel.isFishAlreadySaved
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+    }
+    
+    @objc func didTapSaveButton() {
+        guard let viewModel else { return }
+        let isSaved = viewModel.toggleSavedFish()
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }
 
 private extension FishDetailsTableViewCell {
-    @objc func didTapSaveButton() {
-        //        TODO: - Save action
-    }
-    
     func addSubviews() {
         addSubview(containerView)
         containerView.addSubview(fishFilenameLabel)

@@ -40,7 +40,6 @@ final class BugViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        didTapRefreshButton()
         bugViewModel.getBugData()
     }
 }
@@ -81,9 +80,9 @@ private extension BugViewController {
     }
 }
 
-extension BugViewController: ErrorViewDelegate {
-    func didTapRefreshButton() {
-        bugViewModel.getBugData()
+extension BugViewController: ReloadDataDelegate {
+    func reloadCollectionView() {
+        bugCollectionView.reloadData()
     }
 }
 
@@ -111,7 +110,7 @@ extension BugViewController: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return bugViewModel.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -136,6 +135,7 @@ extension BugViewController: UICollectionViewDelegate {
         let selectedBug = bugViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
         let bugDetailsViewModel = BugDetailsViewModel(bugData: selectedBug)
         detailsViewController.bugDetailsViewModel = bugDetailsViewModel
+        detailsViewController.reloadDataDelegate = self
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

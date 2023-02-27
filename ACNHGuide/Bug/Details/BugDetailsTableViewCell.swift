@@ -103,6 +103,7 @@ final class BugDetailsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor(named: "ColorSand")
+        contentView.isUserInteractionEnabled = true
         addSubviews()
     }
     
@@ -118,12 +119,19 @@ final class BugDetailsTableViewCell: UITableViewCell {
         bugFilenameLabel.text = viewModel.fileName
         bugCatchPhraseLabel.text = viewModel.catchPhrase
         bugMuseumPhraseLabel.text = viewModel.museumPhrase
+        
+        let isSaved = viewModel.isBugAlreadySaved
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }
 
 private extension BugDetailsTableViewCell {
     @objc func didTapSaveButton() {
-        
+        guard let viewModel else { return }
+        let isSaved = viewModel.toggleSavedBug()
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
     
     func addSubviews() {
@@ -185,7 +193,8 @@ private extension BugDetailsTableViewCell {
 
 extension BugDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        guard let viewModel else { return 0 }
+        return viewModel.numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

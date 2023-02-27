@@ -76,7 +76,7 @@ final class FossilTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .brown
         label.font = UIFont(name: "FinkHeavy", size: 22)
-        label.text = "museum_phrase_title"
+        label.text = "museum_phrase_title".localized
         return label
     }()
     
@@ -93,6 +93,7 @@ final class FossilTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor(named: "ColorSand")
+        contentView.isUserInteractionEnabled = true
         addSubviews()
     }
     
@@ -105,14 +106,21 @@ final class FossilTableViewCell: UITableViewCell {
         if let url = viewModel.imageURL {
             fossilImageView.loadImage(url: url)
         }
-        fossilFilenameLabel.text = viewModel.filename
+        fossilFilenameLabel.text = viewModel.fileName
         fossilMuseumPhraseLabel.text = viewModel.museumPhrase
+        
+        let isSaved = viewModel.isFossilAlreadySaved
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }
 
 private extension FossilTableViewCell {
     @objc func didTapSaveButton() {
-        
+        guard let viewModel else { return }
+        let isSaved = viewModel.toggleSavedFossil()
+        let imageString = isSaved ? "leaf.fill" : "leaf"
+        saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
     
     func addSubviews() {

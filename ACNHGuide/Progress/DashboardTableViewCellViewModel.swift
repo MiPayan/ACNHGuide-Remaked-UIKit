@@ -54,28 +54,32 @@ final class DashboardTableViewCellViewModel {
     }
     
     func configureTotalText(with creatures: Creatures) -> String {
+        let creatureService = CreatureService(creatures: creatures)
+        let creaturesSavedCount = creatureService.creaturesSaved.count
         switch creatures {
         case .fishes:
-            return "\(creatureSavedCount)/\(fishesData.count)"
+            return "\(creaturesSavedCount)/\(fishesData.count)"
         case .seaCreatures:
-            return "\(creatureSavedCount)/\(seaCreaturesData.count)"
+            return "\(creaturesSavedCount)/\(seaCreaturesData.count)"
         case .bugs:
-            return "\(creatureSavedCount)/\(bugsData.count)"
+            return "\(creaturesSavedCount)/\(bugsData.count)"
         case .fossils:
-            return "\(creatureSavedCount)/\(fossilsData.count)"
+            return "\(creaturesSavedCount)/\(fossilsData.count)"
         }
     }
     
     func configureProgressBar(with creatures: Creatures) -> Float {
+        let creatureService = CreatureService(creatures: creatures)
+        let creaturesSavedCount = creatureService.creaturesSaved.count
         switch creatures {
         case .fishes:
-            return Float(creatureSavedCount) / Float(fishesData.count)
+            return Float(creaturesSavedCount) / Float(fishesData.count)
         case .seaCreatures:
-            return Float(creatureSavedCount) / Float(seaCreaturesData.count)
+            return Float(creaturesSavedCount) / Float(seaCreaturesData.count)
         case .bugs:
-            return Float(creatureSavedCount) / Float(bugsData.count)
+            return Float(creaturesSavedCount) / Float(bugsData.count)
         case .fossils:
-            return Float(creatureSavedCount) / Float(fossilsData.count)
+            return Float(creaturesSavedCount) / Float(fossilsData.count)
         }
     }
 }

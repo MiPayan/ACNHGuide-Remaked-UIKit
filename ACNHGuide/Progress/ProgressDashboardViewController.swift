@@ -28,6 +28,11 @@ final class ProgressDashboardViewController: UIViewController {
         progressDashboardViewModel.getDatas()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dashboardTableView.reloadData()
+    }
+    
     func setUpUpdateDataHandler() {
         progressDashboardViewModel.successHandler = {
             self.dashboardTableView.reloadData()

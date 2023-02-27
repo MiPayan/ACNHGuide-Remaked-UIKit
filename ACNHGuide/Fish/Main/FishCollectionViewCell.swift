@@ -28,7 +28,7 @@ final class FishCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var saveButton: UIButton = {
-        let button = UIButton(type: .custom)
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "leaf"), for: .normal)
         button.tintColor = .white

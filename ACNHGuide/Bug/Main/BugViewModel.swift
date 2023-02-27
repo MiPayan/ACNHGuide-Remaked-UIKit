@@ -12,7 +12,8 @@ final class BugViewModel {
     private let service: ACNHServiceProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
-    private(set) var bugsData = [BugData]()
+    private var bugsData = [BugData]()
+    let numberOfSections = 2
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     

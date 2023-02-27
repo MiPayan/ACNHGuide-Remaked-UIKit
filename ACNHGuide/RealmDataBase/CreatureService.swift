@@ -18,6 +18,18 @@ final class CreatureService {
 }
 
 extension CreatureService: CreaturePeeking {
+    var creaturesSaved: [Object] {
+        switch creatures {
+        case .fishes:
+            return Array(RealmManager.shared.realm.objects(Fish.self))
+        case .seaCreatures:
+            return Array(RealmManager.shared.realm.objects(SeaCreature.self))
+        case .bugs:
+            return Array(RealmManager.shared.realm.objects(Bug.self))
+        case .fossils:
+            return Array(RealmManager.shared.realm.objects(Fossil.self))
+        }
+    }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
         switch creatures {

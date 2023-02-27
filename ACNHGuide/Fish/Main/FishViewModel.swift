@@ -12,7 +12,8 @@ final class FishViewModel {
     private let service: ACNHServiceProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
-    private(set) var fishesData = [FishData]()
+    private var fishesData = [FishData]()
+    let numberOfSections = 2
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     

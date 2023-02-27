@@ -10,6 +10,7 @@ import UIKit
 final class BugDetailsViewController: UIViewController {
     
     var bugDetailsViewModel: BugDetailsViewModel?
+    weak var reloadDataDelegate: ReloadDataDelegate?
     private lazy var bugTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,6 +24,11 @@ final class BugDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addConstraints()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        reloadDataDelegate?.reloadCollectionView()
     }
     
     private func addConstraints() {

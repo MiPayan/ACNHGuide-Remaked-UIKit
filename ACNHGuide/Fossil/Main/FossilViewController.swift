@@ -78,12 +78,11 @@ private extension FossilViewController {
     }
 }
 
-extension FossilViewController: ErrorViewDelegate {
-    func didTapRefreshButton() {
-        fossilViewModel.getFossilData()
+extension FossilViewController: ReloadDataDelegate {
+    func reloadCollectionView() {
+        fossilCollectionView.reloadData()
     }
 }
-
 extension FossilViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
@@ -129,6 +128,7 @@ extension FossilViewController: UICollectionViewDelegate {
         let selectedFossil = fossilViewModel.fossilData[indexPath.row]
         let fossilDetailsViewModel = FossilDetailsViewModel(fossilData: selectedFossil)
         detailsViewController.fossilDetailsViewModel = fossilDetailsViewModel
+        detailsViewController.reloadDataDelegate = self
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

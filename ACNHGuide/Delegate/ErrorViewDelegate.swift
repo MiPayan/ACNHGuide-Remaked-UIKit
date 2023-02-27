@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ErrorViewDelegate: AnyObject {
-    func didTapRefreshButton()
-}
+//protocol ErrorViewDelegate: AnyObject {
+//    func didTapRefreshButton()
+//}

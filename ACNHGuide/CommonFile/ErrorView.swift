@@ -9,7 +9,7 @@ import UIKit
 
 final class ErrorView: UIView {
     
-    private(set) weak var errorDelegate: ErrorViewDelegate?
+    private weak var reloadDataDelegate: ReloadDataDelegate?
     private let containerErrorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +78,7 @@ private extension ErrorView {
     }
     
     @objc func didTapRefreshButton() {
-        errorDelegate?.didTapRefreshButton()
+        reloadDataDelegate?.reloadCollectionView()
     }
     
     func addSubviews() {

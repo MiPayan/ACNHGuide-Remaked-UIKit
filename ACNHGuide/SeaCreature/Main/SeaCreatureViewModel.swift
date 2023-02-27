@@ -12,7 +12,8 @@ final class SeaCreatureViewModel {
     private let service: ACNHServiceProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
-    private(set) var seaCreaturesData = [SeaCreatureData]()
+    private var seaCreaturesData = [SeaCreatureData]()
+    let numberOfSections = 2
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     

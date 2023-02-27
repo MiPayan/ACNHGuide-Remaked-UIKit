@@ -10,7 +10,7 @@ import UIKit
 final class FishDetailsViewController: UIViewController {
     
     var fishDetailsViewModel: FishDetailsViewModel?
-    private weak var detailsDelegate: DetailsDelegate?
+    weak var reloadDataDelegate: ReloadDataDelegate?
     private lazy var fishTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +20,7 @@ final class FishDetailsViewController: UIViewController {
         tableView.dataSource = self
         return tableView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addConstraints()
@@ -28,7 +28,7 @@ final class FishDetailsViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        detailsDelegate?.reloadCollectionView()
+        reloadDataDelegate?.reloadCollectionView()
     }
     
     private func addConstraints() {

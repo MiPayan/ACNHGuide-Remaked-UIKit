@@ -10,6 +10,7 @@ import Foundation
 final class FishDetailsTableViewCellViewModel {
     
     private let fishData: FishData
+    private let creatureService = CreatureService(creatures: .fishes)
     let numberOfItemsInSection = 7
     
     init(fishData: FishData) {
@@ -61,6 +62,10 @@ final class FishDetailsTableViewCellViewModel {
         fishData.museumPhrase
     }
     
+    var isFishAlreadySaved: Bool {
+        creatureService.isCreatureAlreadySaved(fileName: fileName)
+    }
+    
     func makeImageName(at index: Int) -> String {
         ["Bells", "FishingRod", "FishShadow", "Timer", "Rarity", "North", "South"][index]
     }
@@ -79,5 +84,15 @@ final class FishDetailsTableViewCellViewModel {
     
     func makeValue(at index: Int) -> String {
         [price, availabilityLocation, shadow, availabilityTime, rarity, northernHemisphereAvailability, southernHemisphereAvailability][index]
+    }
+    
+    func toggleSavedFish() -> Bool {
+        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        if isSaved {
+            creatureService.deleteCreature(fileName: fileName)
+        } else {
+            creatureService.saveCreature(fileName: fileName)
+        }
+        return !isSaved
     }
 }

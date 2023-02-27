@@ -41,7 +41,6 @@ final class FishViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        didTapRefreshButton()
         fishViewModel.getFishData()
     }
 }
@@ -81,13 +80,7 @@ private extension FishViewController {
     }
 }
 
-extension FishViewController: ErrorViewDelegate {
-    func didTapRefreshButton() {
-        fishViewModel.getFishData()
-    }
-}
-
-extension FishViewController: DetailsDelegate {
+extension FishViewController: ReloadDataDelegate {
     func reloadCollectionView() {
         fishCollectionView.reloadData()
     }
@@ -117,7 +110,7 @@ extension FishViewController: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return fishViewModel.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -142,6 +135,7 @@ extension FishViewController: UICollectionViewDelegate {
         let selectedFish = fishViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
         let fishDetailsViewModel = FishDetailsViewModel(fishData: selectedFish)
         detailsViewController.fishDetailsViewModel = fishDetailsViewModel
+        detailsViewController.reloadDataDelegate = self
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
     }
 }

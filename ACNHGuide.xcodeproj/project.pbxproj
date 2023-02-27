@@ -63,7 +63,7 @@
 		37671B82299D26C300453F70 /* SeaCreature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B81299D26C300453F70 /* SeaCreature.swift */; };
 		37671B84299D26F900453F70 /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B83299D26F900453F70 /* Bug.swift */; };
 		37671B86299D272900453F70 /* Fossil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37671B85299D272900453F70 /* Fossil.swift */; };
-		37747C09297EFEB400514352 /* DetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37747C08297EFEB400514352 /* DetailsDelegate.swift */; };
+		37747C09297EFEB400514352 /* ReloadDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37747C08297EFEB400514352 /* ReloadDataDelegate.swift */; };
 		378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378DC60829704F030062107C /* DetailsCollectionViewCell.swift */; };
 		3792FF3829896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3729896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift */; };
 		3792FF3A298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */; };
@@ -181,7 +181,7 @@
 		37671B81299D26C300453F70 /* SeaCreature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreature.swift; sourceTree = "<group>"; };
 		37671B83299D26F900453F70 /* Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 		37671B85299D272900453F70 /* Fossil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fossil.swift; sourceTree = "<group>"; };
-		37747C08297EFEB400514352 /* DetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDelegate.swift; sourceTree = "<group>"; };
+		37747C08297EFEB400514352 /* ReloadDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadDataDelegate.swift; sourceTree = "<group>"; };
 		378DC60829704F030062107C /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		3792FF3729896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreaturesDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -403,7 +403,7 @@
 				37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */,
 				37B02E13296D5EEF0084178D /* CalendarDelegate.swift */,
 				3703860029799077002CC431 /* ErrorViewDelegate.swift */,
-				37747C08297EFEB400514352 /* DetailsDelegate.swift */,
+				37747C08297EFEB400514352 /* ReloadDataDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -862,7 +862,7 @@
 				37A29F83297844F300E043F0 /* DecodableBundle.swift in Sources */,
 				37A7136029681A6F0075BF25 /* SceneDelegate.swift in Sources */,
 				37C8A2FD299B7DAE002E74F5 /* SeaCreaturesDetailsViewModel.swift in Sources */,
-				37747C09297EFEB400514352 /* DetailsDelegate.swift in Sources */,
+				37747C09297EFEB400514352 /* ReloadDataDelegate.swift in Sources */,
 				37671B84299D26F900453F70 /* Bug.swift in Sources */,
 				3702B45B296F02F7008AB36D /* BugViewModel.swift in Sources */,
 				378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */,

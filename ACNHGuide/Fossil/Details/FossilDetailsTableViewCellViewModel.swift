@@ -10,12 +10,13 @@ import Foundation
 final class FossilDetailsTableViewCellViewModel {
     
     private let fossilData: FossilData
+    private let creatureService = CreatureService(creatures: .fossils)
     
     init(fossilData: FossilData) {
         self.fossilData = fossilData
     }
     
-    var filename: String {
+    var fileName: String {
         fossilData.fileName.replaceCharacter("_", by: " ").capitalized
     }
     
@@ -30,5 +31,19 @@ final class FossilDetailsTableViewCellViewModel {
     
     var museumPhrase: String {
         fossilData.museumPhrase
+    }
+    
+    var isFossilAlreadySaved: Bool {
+        creatureService.isCreatureAlreadySaved(fileName: fileName)
+    }
+    
+    func toggleSavedFossil() -> Bool {
+        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        if isSaved {
+            creatureService.deleteCreature(fileName: fileName)
+        } else {
+            creatureService.saveCreature(fileName: fileName)
+        }
+        return !isSaved
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 final class FossilDetailsViewController: UIViewController {
     
     var fossilDetailsViewModel: FossilDetailsViewModel?
+    weak var reloadDataDelegate: ReloadDataDelegate?
     private var fossilTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,6 +24,11 @@ final class FossilDetailsViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         fossilTableView.dataSource = self
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        reloadDataDelegate?.reloadCollectionView()
     }
     
     private func addSubviews() {

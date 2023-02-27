@@ -25,7 +25,7 @@ final class FossilDetailsTableViewCellViewModelTests: XCTestCase {
             fatalError("Tests failed: testFileName() from FossilDetailsTableViewCellViewModelTests")
         }
         XCTAssertEqual(fileName, "acanthostega")
-        XCTAssertEqual(fossilDetailsTableViewCellModel.filename, "Acanthostega")
+        XCTAssertEqual(fossilDetailsTableViewCellModel.fileName, "Acanthostega")
     }
     
     func testImageURL() {

@@ -10,6 +10,7 @@ import UIKit
 final class SeaCreatureDetailsViewController: UIViewController {
     
     var seaCreaturesDetailsViewModel: SeaCreaturesDetailsViewModel?
+    weak var reloadDataDelegate: ReloadDataDelegate?
     private var seaCreatureTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +25,11 @@ final class SeaCreatureDetailsViewController: UIViewController {
         view.addSubview(seaCreatureTableView)
         addConstraints()
         seaCreatureTableView.dataSource = self
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        reloadDataDelegate?.reloadCollectionView()
     }
 }
 
