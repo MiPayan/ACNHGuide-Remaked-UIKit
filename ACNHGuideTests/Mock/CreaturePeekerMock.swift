@@ -21,11 +21,11 @@ final class CreaturePeekerMock: CreaturePeeking {
     
     var invokedIsCreatureAlreadySaved = 0
     var invokedIsCreatureAlreadySavedParameter: String?
-    var stubbedIsCreatureAlsreadySaved: Bool!
+    var stubbedIsCreatureAlreadySaved: Bool!
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
         invokedIsCreatureAlreadySaved += 1
         invokedIsCreatureAlreadySavedParameter = fileName
-        return stubbedIsCreatureAlsreadySaved
+        return stubbedIsCreatureAlreadySaved
     }
 }

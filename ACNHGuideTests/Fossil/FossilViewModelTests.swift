@@ -11,13 +11,21 @@ import XCTest
 final class FossilViewModelTests: XCTestCase {
     
     private var serviceMock: ServiceMock!
+    private var dispatchQueueMock: DispatchQueueMock!
+    private var currentCalendarMock: CurrentCalendarMock!
     private var fossilsViewModel: FossilViewModel!
     
     override func setUpWithError() throws {
         serviceMock = ServiceMock()
-        fossilsViewModel = FossilViewModel(service: serviceMock)
+        dispatchQueueMock = DispatchQueueMock()
+        currentCalendarMock = CurrentCalendarMock()
+        fossilsViewModel = FossilViewModel(
+            service: serviceMock,
+            mainDispatchQueue: dispatchQueueMock,
+            currentCalendar: currentCalendarMock
+        )
     }
-    
+
     override func tearDownWithError() throws {
         fossilsViewModel = nil
     }
@@ -49,6 +57,7 @@ final class FossilViewModelTests: XCTestCase {
             expectation.fulfill()
         }
         fossilsViewModel.getFossilData()
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
 }

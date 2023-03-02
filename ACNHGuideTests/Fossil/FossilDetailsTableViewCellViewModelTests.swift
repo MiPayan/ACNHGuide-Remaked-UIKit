@@ -10,14 +10,24 @@ import XCTest
 
 final class FossilDetailsTableViewCellViewModelTests: XCTestCase {
     
-    private var fossilDetailsTableViewCellModel: FossilDetailsTableViewCellViewModel!
+    private var creaturePeekerMock: CreaturePeekerMock!
+    private var creatureWriterMock: CreatureWriterMock!
+    private var fossilDetailsTableViewCellViewModel: FossilDetailsTableViewCellViewModel!
     
     override func setUpWithError() throws {
-        fossilDetailsTableViewCellModel = FossilDetailsTableViewCellViewModel(fossilData: fossils[0])
+        creaturePeekerMock = CreaturePeekerMock()
+        creatureWriterMock = CreatureWriterMock()
+        fossilDetailsTableViewCellViewModel = FossilDetailsTableViewCellViewModel(
+            fossilData: fossils[0],
+            creaturePeeker: creaturePeekerMock,
+            creatureWriter: creatureWriterMock
+        )
     }
     
     override func tearDownWithError() throws {
-        fossilDetailsTableViewCellModel = nil
+        creaturePeekerMock = nil
+        creatureWriterMock = nil
+        fossilDetailsTableViewCellViewModel = nil
     }
     
     func testFileName() {
@@ -25,7 +35,7 @@ final class FossilDetailsTableViewCellViewModelTests: XCTestCase {
             fatalError("Tests failed: testFileName() from FossilDetailsTableViewCellViewModelTests")
         }
         XCTAssertEqual(fileName, "acanthostega")
-        XCTAssertEqual(fossilDetailsTableViewCellModel.fileName, "Acanthostega")
+        XCTAssertEqual(fossilDetailsTableViewCellViewModel.fileName, "Acanthostega")
     }
     
     func testImageURL() {
@@ -34,7 +44,7 @@ final class FossilDetailsTableViewCellViewModelTests: XCTestCase {
             fatalError("Tests failed: testImageURI() from FossilDetailsTableViewCellViewModelTests")
         }
         XCTAssertEqual(imageURI, "https://acnhapi.com/v1/images/fossils/acanthostega")
-        XCTAssertEqual(fossilDetailsTableViewCellModel.imageURL, url)
+        XCTAssertEqual(fossilDetailsTableViewCellViewModel.imageURL, url)
     }
     
     func testPrice() {
@@ -42,7 +52,7 @@ final class FossilDetailsTableViewCellViewModelTests: XCTestCase {
             fatalError("Tests failed: testPrice() from FossilDetailsTableViewCellViewModelTests")
         }
         XCTAssertEqual(price, 2000)
-        XCTAssertEqual(fossilDetailsTableViewCellModel.price, "2000")
+        XCTAssertEqual(fossilDetailsTableViewCellViewModel.price, "2000")
     }
     
     func testMuseumPhrase() {
@@ -50,6 +60,16 @@ final class FossilDetailsTableViewCellViewModelTests: XCTestCase {
             fatalError("Tests failed: testMuseumPhrase() from FossilDetailsTableViewCellViewModelTests")
         }
         XCTAssertEqual(museumPhrase, "The acanthostega! Said to be one of the earliest amphibians, it existed well before dinosaurs. Because they lived as fish not long before, they still had gills and very webbed \"hands.\". To toss away the life they knew and venture onto unknown lands... they must have been very brave! Hmm... Does it still count as bravery if you have no understanding of what you're doing?")
-        XCTAssertEqual(fossilDetailsTableViewCellModel.museumPhrase, museumPhrase)
+        XCTAssertEqual(fossilDetailsTableViewCellViewModel.museumPhrase, museumPhrase)
+    }
+}
+
+extension FossilDetailsTableViewCellViewModelTests {
+    func testToggleSeaCreature() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSaved = fossilDetailsTableViewCellViewModel.toggleSavedFossil()
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creatureWriterMock.invokedSaveCreatureCount)
+        XCTAssertEqual(true, isSaved)
     }
 }

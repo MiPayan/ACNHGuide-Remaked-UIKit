@@ -107,7 +107,7 @@ extension FossilViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fossilViewModel.fossilData.count
+        return fossilViewModel.fossilsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -115,7 +115,7 @@ extension FossilViewController: UICollectionViewDataSource {
             withReuseIdentifier: "FossilCell",
             for: indexPath
         ) as? FossilCollectionViewCell else { return UICollectionViewCell() }
-        let fossil = fossilViewModel.fossilData[indexPath.row]
+        let fossil = fossilViewModel.fossilsData[indexPath.row]
         let fossilCollectionViewCellViewModel = FossilCollectionViewCellViewModel(fossilData: fossil)
         fossils.configureCell(with: fossilCollectionViewCellViewModel)
         return fossils
@@ -125,7 +125,7 @@ extension FossilViewController: UICollectionViewDataSource {
 extension FossilViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FossilDetailsViewController()
-        let selectedFossil = fossilViewModel.fossilData[indexPath.row]
+        let selectedFossil = fossilViewModel.fossilsData[indexPath.row]
         let fossilDetailsViewModel = FossilDetailsViewModel(fossilData: selectedFossil)
         detailsViewController.fossilDetailsViewModel = fossilDetailsViewModel
         detailsViewController.reloadDataDelegate = self

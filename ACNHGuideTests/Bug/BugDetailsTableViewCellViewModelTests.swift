@@ -10,13 +10,23 @@ import XCTest
 
 final class BugDetailsTableViewCellViewModelTests: XCTestCase {
     
+    private var creaturePeekerMock: CreaturePeekerMock!
+    private var creatueWriterMock: CreatureWriterMock!
     private var bugDetailsTableViewCellViewModel: BugDetailsTableViewCellViewModel!
     
     override func setUpWithError() throws {
-        bugDetailsTableViewCellViewModel = BugDetailsTableViewCellViewModel(bugData: bugs[0])
+        creaturePeekerMock = CreaturePeekerMock()
+        creatueWriterMock = CreatureWriterMock()
+        bugDetailsTableViewCellViewModel = BugDetailsTableViewCellViewModel(
+            bugData: bugs[0],
+            creaturePeeker: creaturePeekerMock,
+            creatureWriter: creatueWriterMock
+        )
     }
     
     override func tearDownWithError() throws {
+        creaturePeekerMock = nil
+        creatueWriterMock = nil
         bugDetailsTableViewCellViewModel = nil
     }
     
@@ -195,5 +205,15 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
                 break
             }
         }
+    }
+}
+
+extension BugDetailsTableViewCellViewModelTests {
+    func testToggleSeaCreature() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSaved = bugDetailsTableViewCellViewModel.toggleSavedBug()
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creatueWriterMock.invokedSaveCreatureCount)
+        XCTAssertEqual(true, isSaved)
     }
 }

@@ -11,12 +11,22 @@ import XCTest
 final class SeaCreatureCollectionViewCellViewModelTests: XCTestCase {
     
     private var seaCreatureCollectionViewCellViewModel: SeaCreatureCollectionViewCellViewModel!
+    private var creaturePeekerMock: CreaturePeekerMock!
+    private var creatueWriterMock: CreatureWriterMock!
     
     override func setUpWithError() throws {
-        seaCreatureCollectionViewCellViewModel = SeaCreatureCollectionViewCellViewModel(seaCreatureData: seaCreatures[0])
-    }
+        creaturePeekerMock = CreaturePeekerMock()
+        creatueWriterMock = CreatureWriterMock()
+        seaCreatureCollectionViewCellViewModel = SeaCreatureCollectionViewCellViewModel(
+            seaCreatureData: seaCreatures[0],
+            creaturePeeker: creaturePeekerMock,
+            creatureWriter: creatueWriterMock
+        )
+    }    
     
     override func tearDownWithError() throws {
+        creaturePeekerMock = nil
+        creatueWriterMock = nil
         seaCreatureCollectionViewCellViewModel = nil
     }
     
@@ -35,5 +45,13 @@ final class SeaCreatureCollectionViewCellViewModelTests: XCTestCase {
         }
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/sea/1")
         XCTAssertEqual(seaCreatureCollectionViewCellViewModel.iconURL, url)
+    }
+    
+    func testToggleSeaCreature() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSaved = seaCreatureCollectionViewCellViewModel.toggleSavedSeaCreature()
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creatueWriterMock.invokedSaveCreatureCount)
+        XCTAssertEqual(true, isSaved)
     }
 }

@@ -50,7 +50,7 @@ final class FishViewModel {
         section == 0 ? northernHemisphereFishes.count : southernHemisphereFishes.count
     }
     
-    func configureCollectionView(with section: Int, index: Int) -> FishData {
+    func makeFish(with section: Int, index: Int) -> FishData {
         section == 0 ? northernHemisphereFishes[index] : southernHemisphereFishes[index]
     }
 }

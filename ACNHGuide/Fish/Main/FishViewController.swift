@@ -122,7 +122,7 @@ extension FishViewController: UICollectionViewDataSource {
             withReuseIdentifier: "FishCell",
             for: indexPath
         ) as? FishCollectionViewCell else { return UICollectionViewCell() }
-        let fish = fishViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        let fish = fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
         let fishCollectionViewCellViewModel = FishCollectionViewCellViewModel(fishData: fish)
         fishCell.configureCell(with: fishCollectionViewCellViewModel)
         return fishCell
@@ -132,7 +132,7 @@ extension FishViewController: UICollectionViewDataSource {
 extension FishViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FishDetailsViewController()
-        let selectedFish = fishViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        let selectedFish = fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
         let fishDetailsViewModel = FishDetailsViewModel(fishData: selectedFish)
         detailsViewController.fishDetailsViewModel = fishDetailsViewModel
         detailsViewController.reloadDataDelegate = self

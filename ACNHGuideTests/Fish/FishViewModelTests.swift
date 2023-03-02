@@ -96,7 +96,7 @@ final class FishViewModelTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testConfigureCollectionView() {
+    func testMakeFish() {
         currentCalendarMock.stubbedMakeCurrentCalendar = {
             (11, 12)
         }()
@@ -108,7 +108,7 @@ final class FishViewModelTests: XCTestCase {
         
         let section = 0
         let index = 0
-        let fish = fishesViewModel.configureCollectionView(with: section, index: index)
+        let fish = fishesViewModel.makeFish(with: section, index: index)
         XCTAssertEqual(fish.id, 1)
         XCTAssertEqual(1, serviceMock.invokedGetFishesCount)
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)

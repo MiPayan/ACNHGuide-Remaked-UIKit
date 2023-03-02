@@ -122,7 +122,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             withReuseIdentifier: "SeaCreaturesCell",
             for: indexPath
         ) as? SeaCreatureCollectionViewCell else { return UICollectionViewCell() }
-        let seaCreature = seaCreatureViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        let seaCreature = seaCreatureViewModel.makeSeaCreature(with: indexPath.section, index: indexPath.row)
         let seaCreatureCollectionViewCellViewModel = SeaCreatureCollectionViewCellViewModel(seaCreatureData: seaCreature)
         seaCreatureCell.configureCell(with: seaCreatureCollectionViewCellViewModel)
         return seaCreatureCell
@@ -132,7 +132,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
 extension SeaCreatureViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = SeaCreatureDetailsViewController()
-        let selectedSeaCreature = seaCreatureViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        let selectedSeaCreature = seaCreatureViewModel.makeSeaCreature(with: indexPath.section, index: indexPath.row)
         let seaCreatureDetailsViewModel = SeaCreaturesDetailsViewModel(seaCreatureData: selectedSeaCreature)
         detailsViewController.seaCreaturesDetailsViewModel = seaCreatureDetailsViewModel
         detailsViewController.reloadDataDelegate = self

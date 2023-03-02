@@ -50,7 +50,7 @@ final class SeaCreatureViewModel {
         section == 0 ? northernHemisphereSeaCreatures.count : southernHemisphereSeaCreatures.count
     }
     
-    func configureCollectionView(with section: Int, index: Int) -> SeaCreatureData {
+    func makeSeaCreature(with section: Int, index: Int) -> SeaCreatureData {
         section == 0 ? northernHemisphereSeaCreatures[index] : southernHemisphereSeaCreatures[index]
     }
 }

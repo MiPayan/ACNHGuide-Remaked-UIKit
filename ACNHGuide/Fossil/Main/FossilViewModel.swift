@@ -12,7 +12,7 @@ final class FossilViewModel {
     private let service: ACNHServiceProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
-    private(set) var fossilData = [FossilData]()
+    private(set) var fossilsData = [FossilData]()
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     let headerText = "fossils".localized
@@ -33,7 +33,7 @@ final class FossilViewModel {
             switch result {
             case .success(let fossilData):
                 self.mainDispatchQueue.async {
-                    self.fossilData = fossilData
+                    self.fossilsData = fossilData
                     self.successHandler()
                 }
             case .failure(_):

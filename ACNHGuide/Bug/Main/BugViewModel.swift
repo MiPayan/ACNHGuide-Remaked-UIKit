@@ -50,7 +50,7 @@ final class BugViewModel {
         section == 0 ? northernHemisphereBugs.count : southernHemisphereBugs.count
     }
     
-    func configureCollectionView(with section: Int, index: Int) -> BugData {
+    func makeBug(with section: Int, index: Int) -> BugData {
         section == 0 ? northernHemisphereBugs[index] : southernHemisphereBugs[index]
     }
 }

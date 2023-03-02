@@ -9,7 +9,10 @@ import UIKit
 
 final class DashboardTableViewCell: UITableViewCell {
     
-    private var viewModel: DashboardTableViewCellViewModel?
+    private var fishDashboardTableViewCellViewModel: FishDashboardTableViewCellViewModel?
+    private var seaCreatureDashboardTableViewCellViewModel: SeaCreatureDashboardTableViewCellViewModel?
+    private var bugDashboardTableViewCellViewModel: BugDashboardTableViewCellViewModel?
+    private var fossilDashboardTableViewCellViewModel: FossilDashboardTableViewCellViewModel?
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -57,52 +60,52 @@ final class DashboardTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureFishCell(with viewModel: DashboardTableViewCellViewModel) {
+    func configureFishCell(with viewModel: FishDashboardTableViewCellViewModel) {
         containerView.backgroundColor = UIColor(named: "ColorBlueRoyal")
-        self.viewModel = viewModel
-        if let url = viewModel.configureIconURL(with: .fishes) {
+        self.fishDashboardTableViewCellViewModel = viewModel
+        if let url = viewModel.iconURL {
             objectImageView.loadImage(url: url)
         }
-        objectTitleLabel.text = viewModel.configureTitleText(with: .fishes)
-        objectProgressView.progress = viewModel.configureProgressBar(with: .fishes)
-        objectTotalLabel.text = viewModel.configureTotalText(with: .fishes)
+        objectTitleLabel.text = viewModel.titleText
+        objectProgressView.progress = viewModel.progressBarState
+        objectTotalLabel.text = viewModel.totalText
         objectProgressView.progressTintColor = UIColor(named: "ColorBlueOcean")
     }
     
-    func configureSeaCreatureCell(with viewModel: DashboardTableViewCellViewModel) {
+    func configureSeaCreatureCell(with viewModel: SeaCreatureDashboardTableViewCellViewModel) {
         containerView.backgroundColor = UIColor(named: "ColorBlueNightLite")
-        self.viewModel = viewModel
-        if let url = viewModel.configureIconURL(with: .seaCreatures) {
+        self.seaCreatureDashboardTableViewCellViewModel = viewModel
+        if let url = viewModel.iconURL {
             objectImageView.loadImage(url: url)
         }
-        objectTitleLabel.text = viewModel.configureTitleText(with: .seaCreatures)
+        objectTitleLabel.text = viewModel.titleText
         objectProgressView.progressTintColor = UIColor(named: "ColorBlueRoyal")
-        objectProgressView.progress = viewModel.configureProgressBar(with: .seaCreatures)
-        objectTotalLabel.text = viewModel.configureTotalText(with: .seaCreatures)
+        objectProgressView.progress = viewModel.progressBarState
+        objectTotalLabel.text = viewModel.totalText
     }
     
-    func configureBugCell(with viewModel: DashboardTableViewCellViewModel) {
+    func configureBugCell(with viewModel: BugDashboardTableViewCellViewModel) {
         containerView.backgroundColor = UIColor(named: "ColorGreenDark")
-        self.viewModel = viewModel
-        if let url = viewModel.configureIconURL(with: .bugs) {
+        self.bugDashboardTableViewCellViewModel = viewModel
+        if let url = viewModel.iconURL {
             objectImageView.loadImage(url: url)
         }
-        objectTitleLabel.text = viewModel.configureTitleText(with: .bugs)
+        objectTitleLabel.text = viewModel.titleText
         objectProgressView.progressTintColor = UIColor(named: "ColorGreenGrass")
-        objectProgressView.progress = viewModel.configureProgressBar(with: .bugs)
-        objectTotalLabel.text = viewModel.configureTotalText(with: .bugs)
+        objectProgressView.progress = viewModel.progressBarState
+        objectTotalLabel.text = viewModel.totalText
     }
     
-    func configureFossilCell(with viewModel: DashboardTableViewCellViewModel) {
+    func configureFossilCell(with viewModel: FossilDashboardTableViewCellViewModel) {
         containerView.backgroundColor = UIColor(named: "ColorBrownHeart")
-        self.viewModel = viewModel
-        if let url = viewModel.configureIconURL(with: .fossils) {
+        self.fossilDashboardTableViewCellViewModel = viewModel
+        if let url = viewModel.imageURL {
             objectImageView.loadImage(url: url)
         }
-        objectTitleLabel.text = viewModel.configureTitleText(with: .fossils)
+        objectTitleLabel.text = viewModel.titleText
         objectProgressView.progressTintColor = .brown
-        objectProgressView.progress = viewModel.configureProgressBar(with: .fossils)
-        objectTotalLabel.text = viewModel.configureTotalText(with: .fossils)
+        objectProgressView.progress = viewModel.progressBarState
+        objectTotalLabel.text = viewModel.totalText
     }
     
     func addSubviews() {

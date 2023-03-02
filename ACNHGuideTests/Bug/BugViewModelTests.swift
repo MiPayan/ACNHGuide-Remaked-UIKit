@@ -11,15 +11,17 @@ import XCTest
 final class BugViewModelTests: XCTestCase {
 
     private var serviceMock: ServiceMock!
+    private var dispatchQueueMock: DispatchQueueMock!
     private var currentCalendarMock: CurrentCalendarMock!
     private var bugsViewModel: BugViewModel!
     
     override func setUpWithError() throws {
         serviceMock = ServiceMock()
+        dispatchQueueMock = DispatchQueueMock()
         currentCalendarMock = CurrentCalendarMock()
         bugsViewModel = BugViewModel(
             service: serviceMock,
-            mainDispatchQueue: DispatchQueueMock(),
+            mainDispatchQueue: dispatchQueueMock,
             currentCalendar: currentCalendarMock
         )
     }
@@ -42,6 +44,7 @@ final class BugViewModelTests: XCTestCase {
 
         }
         bugsViewModel.getBugData()
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
     
@@ -56,6 +59,7 @@ final class BugViewModelTests: XCTestCase {
             expectation.fulfill()
         }
         bugsViewModel.getBugData()
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
     
@@ -85,10 +89,30 @@ final class BugViewModelTests: XCTestCase {
         let northernSection = bugsViewModel.configureSectionCollectionView(with: 0)
         let southernSection = bugsViewModel.configureSectionCollectionView(with: 1)
         
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
         XCTAssertEqual(northernSection, 14)
         XCTAssertEqual(southernSection, 35)
         expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
+    }
+    
+    func testMakeBug() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = {
+            (11, 12)
+        }()
+        
+        serviceMock.stubbedBugResult = {
+            .success(bugs)
+        }()
+        bugsViewModel.getBugData()
+        
+        let section = 0
+        let index = 0
+        let fish = bugsViewModel.makeBug(with: section, index: index)
+        XCTAssertEqual(fish.id, 1)
+        XCTAssertEqual(1, serviceMock.invokedGetBugsCount)
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
     }
 }

@@ -122,7 +122,7 @@ extension BugViewController: UICollectionViewDataSource {
             withReuseIdentifier: "BugCell",
             for: indexPath
         ) as? BugCollectionViewCell else { return UICollectionViewCell() }
-        let bug = bugViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        let bug = bugViewModel.makeBug(with: indexPath.section, index: indexPath.row)
         let bugCollecitonViewCellViewModel = BugCollectionViewCellViewModel(bugData: bug)
         bugCell.configureCell(with: bugCollecitonViewCellViewModel)
         return bugCell
@@ -132,7 +132,7 @@ extension BugViewController: UICollectionViewDataSource {
 extension BugViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = BugDetailsViewController()
-        let selectedBug = bugViewModel.configureCollectionView(with: indexPath.section, index: indexPath.row)
+        let selectedBug = bugViewModel.makeBug(with: indexPath.section, index: indexPath.row)
         let bugDetailsViewModel = BugDetailsViewModel(bugData: selectedBug)
         detailsViewController.bugDetailsViewModel = bugDetailsViewModel
         detailsViewController.reloadDataDelegate = self

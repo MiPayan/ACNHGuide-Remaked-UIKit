@@ -11,12 +11,22 @@ import XCTest
 final class BugCollectionViewCellViewModelTests: XCTestCase {
     
     private var bugCollectionViewCellViewModel: BugCollectionViewCellViewModel!
-
+    private var creaturePeekerMock: CreaturePeekerMock!
+    private var creatueWriterMock: CreatureWriterMock!
+    
     override func setUpWithError() throws {
-        bugCollectionViewCellViewModel = BugCollectionViewCellViewModel(bugData: bugs[0])
+        creaturePeekerMock = CreaturePeekerMock()
+        creatueWriterMock = CreatureWriterMock()
+        bugCollectionViewCellViewModel = BugCollectionViewCellViewModel(
+            bugData: bugs[0],
+            creaturePeeker: creaturePeekerMock,
+            creatureWriter: creatueWriterMock
+        )
     }
 
     override func tearDownWithError() throws {
+        creaturePeekerMock = nil
+        creatueWriterMock = nil
         bugCollectionViewCellViewModel = nil
     }
     
@@ -35,5 +45,13 @@ final class BugCollectionViewCellViewModelTests: XCTestCase {
         }
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/bugs/1")
         XCTAssertEqual(bugCollectionViewCellViewModel.iconURL, url)
+    }
+    
+    func testToggleSeaCreature() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSaved = bugCollectionViewCellViewModel.toggleSavedBug()
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creatueWriterMock.invokedSaveCreatureCount)
+        XCTAssertEqual(true, isSaved)
     }
 }

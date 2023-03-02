@@ -10,9 +10,9 @@ import XCTest
 
 final class FishCollectionViewCellViewModelTests: XCTestCase {
     
-    private var fishCollectionViewCellViewModel: FishCollectionViewCellViewModel!
     private var creaturePeekerMock: CreaturePeekerMock!
     private var creatueWriterMock: CreatureWriterMock!
+    private var fishCollectionViewCellViewModel: FishCollectionViewCellViewModel!
     
     override func setUpWithError() throws {
         creaturePeekerMock = CreaturePeekerMock()
@@ -48,6 +48,10 @@ final class FishCollectionViewCellViewModelTests: XCTestCase {
     }
     
     func testToggleSavedFish() {
-        
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSaved = fishCollectionViewCellViewModel.toggleSavedFish()
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creatueWriterMock.invokedSaveCreatureCount)
+        XCTAssertEqual(true, isSaved)
     }
 }

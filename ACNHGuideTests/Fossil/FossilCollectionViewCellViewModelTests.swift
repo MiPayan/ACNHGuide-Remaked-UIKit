@@ -11,12 +11,22 @@ import XCTest
 final class FossilCollectionViewCellViewModelTests: XCTestCase {
     
     private var fossilCollectionViewCellViewModel: FossilCollectionViewCellViewModel!
-
+    private var creaturePeekerMock: CreaturePeekerMock!
+    private var creatureWriterMock: CreatureWriterMock!
+    
     override func setUpWithError() throws {
-        fossilCollectionViewCellViewModel = FossilCollectionViewCellViewModel(fossilData: fossils[0])
+        creaturePeekerMock = CreaturePeekerMock()
+        creatureWriterMock = CreatureWriterMock()
+        fossilCollectionViewCellViewModel = FossilCollectionViewCellViewModel(
+            fossilData: fossils[0],
+            creaturePeeker: creaturePeekerMock,
+            creatureWriter: creatureWriterMock
+        )
     }
-
+      
     override func tearDownWithError() throws {
+        creaturePeekerMock = nil
+        creatureWriterMock = nil
         fossilCollectionViewCellViewModel = nil
     }
     
@@ -35,5 +45,13 @@ final class FossilCollectionViewCellViewModelTests: XCTestCase {
         }
         XCTAssertEqual(imageURI, "https://acnhapi.com/v1/images/fossils/acanthostega")
         XCTAssertEqual(fossilCollectionViewCellViewModel.imageURL, url)
+    }
+    
+    func testToggleSeaCreature() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSaved = fossilCollectionViewCellViewModel.toggleSavedFossil()
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creatureWriterMock.invokedSaveCreatureCount)
+        XCTAssertEqual(true, isSaved)
     }
 }

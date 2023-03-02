@@ -11,12 +11,22 @@ import XCTest
 final class SeaCreatureDetailsTableViewCellViewModelTests: XCTestCase {
     
     private var seaCreatureDetailsTableViewCellViewModel: SeaCreaturesDetailsTableViewCellViewModel!
+    private var creaturePeekerMock: CreaturePeekerMock!
+    private var creatueWriterMock: CreatureWriterMock!
     
     override func setUpWithError() throws {
-        seaCreatureDetailsTableViewCellViewModel = SeaCreaturesDetailsTableViewCellViewModel(seaCreatureData: seaCreatures[0])
+        creaturePeekerMock = CreaturePeekerMock()
+        creatueWriterMock = CreatureWriterMock()
+        seaCreatureDetailsTableViewCellViewModel = SeaCreaturesDetailsTableViewCellViewModel(
+            seaCreatureData: seaCreatures[0],
+            creaturePeeker: creaturePeekerMock,
+            creatureWriter: creatueWriterMock
+        )
     }
     
     override func tearDownWithError() throws {
+        creaturePeekerMock = nil
+        creatueWriterMock = nil
         seaCreatureDetailsTableViewCellViewModel = nil
     }
     
@@ -195,5 +205,15 @@ final class SeaCreatureDetailsTableViewCellViewModelTests: XCTestCase {
                 break
             }
         }
+    }
+}
+
+extension SeaCreatureDetailsTableViewCellViewModelTests {
+    func testToggleSeaCreature() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSaved = seaCreatureDetailsTableViewCellViewModel.toggleSavedSeaCreature()
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creatueWriterMock.invokedSaveCreatureCount)
+        XCTAssertEqual(true, isSaved)
     }
 }

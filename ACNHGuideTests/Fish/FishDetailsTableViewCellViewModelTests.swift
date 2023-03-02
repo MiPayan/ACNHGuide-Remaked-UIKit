@@ -10,13 +10,23 @@ import XCTest
 
 final class FishDetailsTableViewCellViewModelTests: XCTestCase {
     
+    private var creaturePeekerMock: CreaturePeekerMock!
+    private var creatueWriterMock: CreatureWriterMock!
     private var fishDetailsTableViewCellViewModel: FishDetailsTableViewCellViewModel!
     
     override func setUpWithError() throws {
-        fishDetailsTableViewCellViewModel = FishDetailsTableViewCellViewModel(fishData: fishes[0])
+        creaturePeekerMock = CreaturePeekerMock()
+        creatueWriterMock = CreatureWriterMock()
+        fishDetailsTableViewCellViewModel = FishDetailsTableViewCellViewModel(
+            fishData: fishes[0],
+            creaturePeeker: creaturePeekerMock,
+            creatureWriter: creatueWriterMock
+        )
     }
     
     override func tearDownWithError() throws {
+        creaturePeekerMock = nil
+        creatueWriterMock = nil
         fishDetailsTableViewCellViewModel = nil
     }
     
@@ -68,7 +78,7 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
         XCTAssertEqual(shadow, "Smallest (1)")
         XCTAssertEqual(fishDetailsTableViewCellViewModel.shadow, shadow)
     }
- 
+    
     func testAvailabilityTime() {
         guard let time = fishes.first?.availability.time else {
             fatalError("Tests failed: testAvailabilityTime() from FishDetailsTableViewCellViewModelTests") }
@@ -213,5 +223,15 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
                 break
             }
         }
+    }
+}
+
+extension FishDetailsTableViewCellViewModelTests {
+    func testToggleSavedFish() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSaved = fishDetailsTableViewCellViewModel.toggleSavedFish()
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creatueWriterMock.invokedSaveCreatureCount)
+        XCTAssertEqual(true, isSaved)
     }
 }
