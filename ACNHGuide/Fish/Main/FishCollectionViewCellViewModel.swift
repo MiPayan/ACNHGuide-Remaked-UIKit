@@ -10,10 +10,17 @@ import Foundation
 final class FishCollectionViewCellViewModel {
     
     private let fishData: FishData
-    private let creatureService = CreatureService(creatures: .fishes)
+    private let creaturePeeker: CreaturePeeking
+    private let creatureWriter: CreatureWriting
     
-    init(fishData: FishData) {
+    init(
+        fishData: FishData,
+        creaturePeeker: CreaturePeeking = FishService(),
+        creatureWriter: CreatureWriting = FishService()
+    ) {
         self.fishData = fishData
+        self.creaturePeeker = creaturePeeker
+        self.creatureWriter = creatureWriter
     }
     
     var fileName: String {
@@ -23,17 +30,19 @@ final class FishCollectionViewCellViewModel {
     var iconURL: URL? {
         URL(string: fishData.iconURI)
     }
-    
+}
+
+extension FishCollectionViewCellViewModel {
     var isFishAlreadySaved: Bool {
-        creatureService.isCreatureAlreadySaved(fileName: fileName)
+        creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
     }
     
     func toggleSavedFish() -> Bool {
-        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureService.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName)
         } else {
-            creatureService.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName)
         }
         return !isSaved
     }

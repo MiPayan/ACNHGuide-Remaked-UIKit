@@ -10,10 +10,17 @@ import Foundation
 final class FossilDetailsTableViewCellViewModel {
     
     private let fossilData: FossilData
-    private let creatureService = CreatureService(creatures: .fossils)
+    private let creaturePeeker: CreaturePeeking
+    private let creatureWriter: CreatureWriting
     
-    init(fossilData: FossilData) {
+    init(
+        fossilData: FossilData,
+        creaturePeeker: CreaturePeeking = FossilService(),
+        creatureWriter: CreatureWriting = FossilService()
+    ) {
         self.fossilData = fossilData
+        self.creaturePeeker = creaturePeeker
+        self.creatureWriter = creatureWriter
     }
     
     var fileName: String {
@@ -32,17 +39,19 @@ final class FossilDetailsTableViewCellViewModel {
     var museumPhrase: String {
         fossilData.museumPhrase
     }
-    
+}
+
+extension FossilDetailsTableViewCellViewModel {
     var isFossilAlreadySaved: Bool {
-        creatureService.isCreatureAlreadySaved(fileName: fileName)
+        creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
     }
     
     func toggleSavedFossil() -> Bool {
-        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureService.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName)
         } else {
-            creatureService.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName)
         }
         return !isSaved
     }

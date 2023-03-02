@@ -10,11 +10,18 @@ import Foundation
 final class SeaCreaturesDetailsTableViewCellViewModel {
     
     private let seaCreatureData: SeaCreatureData
-    private let creatureService = CreatureService(creatures: .seaCreatures)
+    private let creaturePeeker: CreaturePeeking
+    private let creatureWriter: CreatureWriting
     let numberOfItemsInSection = 6
     
-    init(seaCreatureData: SeaCreatureData) {
+    init(
+        seaCreatureData: SeaCreatureData,
+        creaturePeeker: CreaturePeeking = SeaCreatureService(),
+        creatureWriter: CreatureWriting = SeaCreatureService()
+    ) {
         self.seaCreatureData = seaCreatureData
+        self.creaturePeeker = creaturePeeker
+        self.creatureWriter = creatureWriter
     }
     
     var fileName: String {
@@ -58,10 +65,6 @@ final class SeaCreaturesDetailsTableViewCellViewModel {
         seaCreatureData.museumPhrase
     }
     
-    var isSeaCreatureAlreadySaved: Bool {
-        creatureService.isCreatureAlreadySaved(fileName: fileName)
-    }
-    
     func makeImageName(at index: Int) -> String {
         ["Bells", "SeaCreatureShadow", "Timer", "Speedmeter", "North", "South"][index]
     }
@@ -80,13 +83,19 @@ final class SeaCreaturesDetailsTableViewCellViewModel {
     func makeValue(at index: Int) -> String {
         [price, shadow, availabilityTime, speed, northernHemisphereAvailability, southernHemisphereAvailability][index]
     }
+}
+
+extension SeaCreaturesDetailsTableViewCellViewModel {
+    var isSeaCreatureAlreadySaved: Bool {
+        creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
+    }
     
     func toggleSavedSeaCreature() -> Bool {
-        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureService.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName)
         } else {
-            creatureService.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName)
         }
         return !isSaved
     }

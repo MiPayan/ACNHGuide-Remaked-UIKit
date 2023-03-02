@@ -10,11 +10,18 @@ import Foundation
 final class FishDetailsTableViewCellViewModel {
     
     private let fishData: FishData
-    private let creatureService = CreatureService(creatures: .fishes)
+    private let creaturePeeker: CreaturePeeking
+    private let creatureWriter: CreatureWriting
     let numberOfItemsInSection = 7
     
-    init(fishData: FishData) {
+    init(
+        fishData: FishData,
+        creaturePeeker: CreaturePeeking = FishService(),
+        creatureWriter: CreatureWriting = FishService()
+    ) {
         self.fishData = fishData
+        self.creaturePeeker = creaturePeeker
+        self.creatureWriter = creatureWriter
     }
     
     var fileName: String {
@@ -61,11 +68,7 @@ final class FishDetailsTableViewCellViewModel {
     var museumPhrase: String {
         fishData.museumPhrase
     }
-    
-    var isFishAlreadySaved: Bool {
-        creatureService.isCreatureAlreadySaved(fileName: fileName)
-    }
-    
+        
     func makeImageName(at index: Int) -> String {
         ["Bells", "FishingRod", "FishShadow", "Timer", "Rarity", "North", "South"][index]
     }
@@ -85,13 +88,19 @@ final class FishDetailsTableViewCellViewModel {
     func makeValue(at index: Int) -> String {
         [price, availabilityLocation, shadow, availabilityTime, rarity, northernHemisphereAvailability, southernHemisphereAvailability][index]
     }
+}
+
+extension FishDetailsTableViewCellViewModel {
+    var isFishAlreadySaved: Bool {
+        creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
+    }
     
     func toggleSavedFish() -> Bool {
-        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureService.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName)
         } else {
-            creatureService.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName)
         }
         return !isSaved
     }

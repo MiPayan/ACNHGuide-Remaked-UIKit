@@ -9,7 +9,11 @@ import XCTest
 @testable import ACNHGuide
 
 final class DispatchQueueMock: DispatchQueueDelegate {
+    
+    var invokedAsyncCount = 0
+    
     func async(execute work: @escaping @convention(block) () -> Void) {
-        work()
+        invokedAsyncCount += 1
+        return work()
     }
 }

@@ -11,21 +11,24 @@ import XCTest
 final class FishViewModelTests: XCTestCase {
     
     private var serviceMock: ServiceMock!
+    private var dispatchQueueMock: DispatchQueueMock!
     private var currentCalendarMock: CurrentCalendarMock!
     private var fishesViewModel: FishViewModel!
     
     override func setUpWithError() throws {
         serviceMock = ServiceMock()
+        dispatchQueueMock = DispatchQueueMock()
         currentCalendarMock = CurrentCalendarMock()
         fishesViewModel = FishViewModel(
             service: serviceMock,
-            mainDispatchQueue: DispatchQueueMock(),
+            mainDispatchQueue: dispatchQueueMock,
             currentCalendar: currentCalendarMock
         )
     }
     
     override func tearDownWithError() throws {
         currentCalendarMock = nil
+        dispatchQueueMock = nil
         fishesViewModel = nil
         serviceMock = nil
     }
@@ -41,6 +44,7 @@ final class FishViewModelTests: XCTestCase {
             expectation.fulfill()
         }
         fishesViewModel.getFishData()
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
     
@@ -55,6 +59,7 @@ final class FishViewModelTests: XCTestCase {
             expectation.fulfill()
         }
         fishesViewModel.getFishData()
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
     
@@ -78,16 +83,35 @@ final class FishViewModelTests: XCTestCase {
         fishesViewModel.successHandler = {
             XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
         }
-        
         fishesViewModel.getFishData()
         
         let northernSection = fishesViewModel.configureSectionCollectionView(with: 0)
         let southernSection = fishesViewModel.configureSectionCollectionView(with: 1)
         
         XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         XCTAssertEqual(northernSection, 25)
         XCTAssertEqual(southernSection, 39)
         expectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
+    }
+    
+    func testConfigureCollectionView() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = {
+            (11, 12)
+        }()
+        
+        serviceMock.stubbedFishResult = {
+            .success(fishes)
+        }()
+        fishesViewModel.getFishData()
+        
+        let section = 0
+        let index = 0
+        let fish = fishesViewModel.configureCollectionView(with: section, index: index)
+        XCTAssertEqual(fish.id, 1)
+        XCTAssertEqual(1, serviceMock.invokedGetFishesCount)
+        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
     }
 }

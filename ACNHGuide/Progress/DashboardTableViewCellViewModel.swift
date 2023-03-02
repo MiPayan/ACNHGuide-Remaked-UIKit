@@ -9,11 +9,31 @@ import Foundation
 
 final class DashboardTableViewCellViewModel {
     
-    let fishesData: [FishData]
-    let seaCreaturesData: [SeaCreatureData]
-    let bugsData: [BugData]
-    let fossilsData: [FossilData]
+    private let fishesData: [FishData]
+    private let seaCreaturesData: [SeaCreatureData]
+    private let bugsData: [BugData]
+    private let fossilsData: [FossilData]
     private var creatureSavedCount = 10
+    
+    private var fishesSavedCount: Int {
+        let fishService = FishService()
+        return fishService.creaturesSaved.count
+    }
+    
+    private var seaCreaturesSavedCount: Int {
+        let seaCreatureService = SeaCreatureService()
+        return seaCreatureService.creaturesSaved.count
+    }
+    
+    private var bugsSavedCount: Int {
+        let bugService = BugService()
+        return bugService.creaturesSaved.count
+    }
+    
+    private var fossilsSavedCount: Int {
+        let fossilService = FossilService()
+        return fossilService.creaturesSaved.count
+    }
     
     init(fishesData: [FishData], seaCreaturesData: [SeaCreatureData], bugsData: [BugData], fossilsData: [FossilData]) {
         self.fishesData = fishesData
@@ -54,32 +74,28 @@ final class DashboardTableViewCellViewModel {
     }
     
     func configureTotalText(with creatures: Creatures) -> String {
-        let creatureService = CreatureService(creatures: creatures)
-        let creaturesSavedCount = creatureService.creaturesSaved.count
         switch creatures {
         case .fishes:
-            return "\(creaturesSavedCount)/\(fishesData.count)"
+            return "\(fishesSavedCount)/\(fishesData.count)"
         case .seaCreatures:
-            return "\(creaturesSavedCount)/\(seaCreaturesData.count)"
+            return "\(seaCreaturesSavedCount)/\(seaCreaturesData.count)"
         case .bugs:
-            return "\(creaturesSavedCount)/\(bugsData.count)"
+            return "\(bugsSavedCount)/\(bugsData.count)"
         case .fossils:
-            return "\(creaturesSavedCount)/\(fossilsData.count)"
+            return "\(fossilsSavedCount)/\(fossilsData.count)"
         }
     }
     
     func configureProgressBar(with creatures: Creatures) -> Float {
-        let creatureService = CreatureService(creatures: creatures)
-        let creaturesSavedCount = creatureService.creaturesSaved.count
         switch creatures {
         case .fishes:
-            return Float(creaturesSavedCount) / Float(fishesData.count)
+            return Float(fishesSavedCount) / Float(fishesData.count)
         case .seaCreatures:
-            return Float(creaturesSavedCount) / Float(seaCreaturesData.count)
+            return Float(seaCreaturesSavedCount) / Float(seaCreaturesData.count)
         case .bugs:
-            return Float(creaturesSavedCount) / Float(bugsData.count)
+            return Float(bugsSavedCount) / Float(bugsData.count)
         case .fossils:
-            return Float(creaturesSavedCount) / Float(fossilsData.count)
+            return Float(fossilsSavedCount) / Float(fossilsData.count)
         }
     }
 }

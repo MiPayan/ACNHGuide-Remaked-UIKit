@@ -11,12 +11,22 @@ import XCTest
 final class FishCollectionViewCellViewModelTests: XCTestCase {
     
     private var fishCollectionViewCellViewModel: FishCollectionViewCellViewModel!
+    private var creaturePeekerMock: CreaturePeekerMock!
+    private var creatueWriterMock: CreatureWriterMock!
     
     override func setUpWithError() throws {
-        fishCollectionViewCellViewModel = FishCollectionViewCellViewModel(fishData: fishes[0])
+        creaturePeekerMock = CreaturePeekerMock()
+        creatueWriterMock = CreatureWriterMock()
+        fishCollectionViewCellViewModel = FishCollectionViewCellViewModel(
+            fishData: fishes[0],
+            creaturePeeker: creaturePeekerMock,
+            creatureWriter: creatueWriterMock
+        )
     }
     
     override func tearDownWithError() throws {
+        creaturePeekerMock = nil
+        creatueWriterMock = nil
         fishCollectionViewCellViewModel = nil
     }
     
@@ -35,5 +45,9 @@ final class FishCollectionViewCellViewModelTests: XCTestCase {
         }
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/fish/1")
         XCTAssertEqual(fishCollectionViewCellViewModel.iconURL, url)
+    }
+    
+    func testToggleSavedFish() {
+        
     }
 }

@@ -10,12 +10,19 @@ import Foundation
 final class BugCollectionViewCellViewModel {
     
     private let bugData: BugData
-    private let creatureService = CreatureService(creatures: .bugs)
+    private let creaturePeeker: CreaturePeeking
+    private let creatureWriter: CreatureWriting
     
-    init(bugData: BugData) {
+    init(
+        bugData: BugData,
+        creaturePeeker: CreaturePeeking = BugService(),
+        creatureWriter: CreatureWriting = BugService()
+    ) {
         self.bugData = bugData
+        self.creaturePeeker = creaturePeeker
+        self.creatureWriter = creatureWriter
     }
-
+    
     var fileName: String {
         bugData.fileName.replaceCharacter("_", by: " ").capitalized
     }
@@ -23,17 +30,19 @@ final class BugCollectionViewCellViewModel {
     var iconURL: URL? {
         URL(string: bugData.iconURI)
     }
-    
+}
+
+extension BugCollectionViewCellViewModel {
     var isBugAlreadySaved: Bool {
-        creatureService.isCreatureAlreadySaved(fileName: fileName)
+        creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
     }
     
     func toggleSavedBug() -> Bool {
-        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureService.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName)
         } else {
-            creatureService.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName)
         }
         return !isSaved
     }

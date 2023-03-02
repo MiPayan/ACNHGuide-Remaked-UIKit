@@ -10,11 +10,18 @@ import Foundation
 final class BugDetailsTableViewCellViewModel {
     
     private let bugData: BugData
-    private let creatureService = CreatureService(creatures: .bugs)
+    private let creaturePeeker: CreaturePeeking
+    private let creatureWriter: CreatureWriting
     let numberOfItemsInSection = 6
     
-    init(bugData: BugData) {
+    init(
+        bugData: BugData,
+        creaturePeeker: CreaturePeeking = BugService(),
+        creatureWriter: CreatureWriting = BugService()
+    ) {
         self.bugData = bugData
+        self.creaturePeeker = creaturePeeker
+        self.creatureWriter = creatureWriter
     }
     
     var fileName: String {
@@ -29,7 +36,7 @@ final class BugDetailsTableViewCellViewModel {
     var catchPhrase: String {
         "\" \(bugData.catchPhrase) \""
     }
-        
+    
     var price: String {
         String(bugData.price)
     }
@@ -62,10 +69,6 @@ final class BugDetailsTableViewCellViewModel {
         ["Bells", "Grass", "Timer", "Rarity", "North", "South"][index]
     }
     
-    var isBugAlreadySaved: Bool {
-        creatureService.isCreatureAlreadySaved(fileName: fileName)
-    }
-    
     func makeTitle(at index: Int) -> String {
         [
             "price".localized,
@@ -80,13 +83,19 @@ final class BugDetailsTableViewCellViewModel {
     func makeValue(at index: Int) -> String {
         [price, availabilityLocation, availabilityTime, rarity, northernHemisphereAvailability, southernHemisphereAvailability][index]
     }
+}
 
+extension BugDetailsTableViewCellViewModel {
+    var isBugAlreadySaved: Bool {
+        creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
+    }
+    
     func toggleSavedBug() -> Bool {
-        let isSaved = creatureService.isCreatureAlreadySaved(fileName: fileName)
+        let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureService.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName)
         } else {
-            creatureService.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName)
         }
         return !isSaved
     }
