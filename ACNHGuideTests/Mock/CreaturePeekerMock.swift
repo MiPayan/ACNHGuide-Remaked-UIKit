@@ -5,26 +5,25 @@
 //  Created by Mickael PAYAN on 01/03/2023.
 //
 
-import Foundation
 import RealmSwift
 @testable import ACNHGuide
 
 final class CreaturePeekerMock: CreaturePeeking {
     
     var invokedCreatureSavedCount = 0
-    var stubbedFishesSaved: [Fish]!
+    var stubbedCreaturesSaved: [Object]!
     
     var creaturesSaved: [Object] {
         invokedCreatureSavedCount += 1
-        return stubbedFishesSaved
+        return stubbedCreaturesSaved
     }
     
-    var invokedIsCreatureAlreadySaved = 0
+    var invokedIsCreatureAlreadySavedCount = 0
     var invokedIsCreatureAlreadySavedParameter: String?
     var stubbedIsCreatureAlreadySaved: Bool!
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        invokedIsCreatureAlreadySaved += 1
+        invokedIsCreatureAlreadySavedCount += 1
         invokedIsCreatureAlreadySavedParameter = fileName
         return stubbedIsCreatureAlreadySaved
     }

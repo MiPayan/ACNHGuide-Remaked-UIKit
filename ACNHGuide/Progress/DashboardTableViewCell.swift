@@ -20,13 +20,13 @@ final class DashboardTableViewCell: UITableViewCell {
         return view
     }()
         
-    private let objectImageView: UIImageView = {
+    private let creatureImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let objectTitleLabel: UILabel = {
+    private let creatureTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "FinkHeavy", size: 20)
@@ -34,7 +34,7 @@ final class DashboardTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let objectProgressView: UIProgressView = {
+    private let creatureProgressView: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .bar)
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         progressBar.trackTintColor = .white
@@ -42,7 +42,7 @@ final class DashboardTableViewCell: UITableViewCell {
         return progressBar
     }()
     
-    private let objectTotalLabel: UILabel = {
+    private let creatureTotalLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "FinkHeavy", size: 15)
@@ -64,79 +64,79 @@ final class DashboardTableViewCell: UITableViewCell {
         containerView.backgroundColor = UIColor(named: "ColorBlueRoyal")
         self.fishDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.iconURL {
-            objectImageView.loadImage(url: url)
+            creatureImageView.loadImage(url: url)
         }
-        objectTitleLabel.text = viewModel.titleText
-        objectProgressView.progress = viewModel.progressBarState
-        objectTotalLabel.text = viewModel.totalText
-        objectProgressView.progressTintColor = UIColor(named: "ColorBlueOcean")
+        creatureTitleLabel.text = viewModel.titleText
+        creatureProgressView.progress = viewModel.progressOfBar
+        creatureTotalLabel.text = viewModel.totalText
+        creatureProgressView.progressTintColor = UIColor(named: "ColorBlueOcean")
     }
     
     func configureSeaCreatureCell(with viewModel: SeaCreatureDashboardTableViewCellViewModel) {
         containerView.backgroundColor = UIColor(named: "ColorBlueNightLite")
         self.seaCreatureDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.iconURL {
-            objectImageView.loadImage(url: url)
+            creatureImageView.loadImage(url: url)
         }
-        objectTitleLabel.text = viewModel.titleText
-        objectProgressView.progressTintColor = UIColor(named: "ColorBlueRoyal")
-        objectProgressView.progress = viewModel.progressBarState
-        objectTotalLabel.text = viewModel.totalText
+        creatureTitleLabel.text = viewModel.titleText
+        creatureProgressView.progress = viewModel.progressOfBar
+        creatureTotalLabel.text = viewModel.totalText
+        creatureProgressView.progressTintColor = UIColor(named: "ColorBlueRoyal")
     }
     
     func configureBugCell(with viewModel: BugDashboardTableViewCellViewModel) {
         containerView.backgroundColor = UIColor(named: "ColorGreenDark")
         self.bugDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.iconURL {
-            objectImageView.loadImage(url: url)
+            creatureImageView.loadImage(url: url)
         }
-        objectTitleLabel.text = viewModel.titleText
-        objectProgressView.progressTintColor = UIColor(named: "ColorGreenGrass")
-        objectProgressView.progress = viewModel.progressBarState
-        objectTotalLabel.text = viewModel.totalText
+        creatureTitleLabel.text = viewModel.titleText
+        creatureProgressView.progress = viewModel.progressOfBar
+        creatureTotalLabel.text = viewModel.totalText
+        creatureProgressView.progressTintColor = UIColor(named: "ColorGreenGrass")
     }
     
     func configureFossilCell(with viewModel: FossilDashboardTableViewCellViewModel) {
         containerView.backgroundColor = UIColor(named: "ColorBrownHeart")
         self.fossilDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.imageURL {
-            objectImageView.loadImage(url: url)
+            creatureImageView.loadImage(url: url)
         }
-        objectTitleLabel.text = viewModel.titleText
-        objectProgressView.progressTintColor = .brown
-        objectProgressView.progress = viewModel.progressBarState
-        objectTotalLabel.text = viewModel.totalText
+        creatureProgressView.progress = viewModel.progressOfBar
+        creatureTotalLabel.text = viewModel.totalText
+        creatureTitleLabel.text = viewModel.titleText
+        creatureProgressView.progressTintColor = .brown
     }
     
     func addSubviews() {
         addSubview(containerView)
-        containerView.addSubview(objectImageView)
-        containerView.addSubview(objectTitleLabel)
-        containerView.addSubview(objectProgressView)
-        containerView.addSubview(objectTotalLabel)
+        containerView.addSubview(creatureImageView)
+        containerView.addSubview(creatureTitleLabel)
+        containerView.addSubview(creatureProgressView)
+        containerView.addSubview(creatureTotalLabel)
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
-            objectImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
-            objectImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            objectImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-            objectImageView.widthAnchor.constraint(equalToConstant: 60),
-            objectImageView.heightAnchor.constraint(equalToConstant: 60),
+            creatureImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            creatureImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            creatureImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            creatureImageView.widthAnchor.constraint(equalToConstant: 60),
+            creatureImageView.heightAnchor.constraint(equalToConstant: 60),
             
-            objectTitleLabel.leadingAnchor.constraint(equalTo: objectImageView.trailingAnchor, constant: 16),
-            objectTitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            objectTotalLabel.topAnchor.constraint(equalTo: objectImageView.centerYAnchor),
+            creatureTitleLabel.leadingAnchor.constraint(equalTo: creatureImageView.trailingAnchor, constant: 16),
+            creatureTitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            creatureTotalLabel.topAnchor.constraint(equalTo: creatureImageView.centerYAnchor),
             
-            objectProgressView.topAnchor.constraint(equalTo: objectTitleLabel.bottomAnchor, constant: 8),
-            objectProgressView.leadingAnchor.constraint(equalTo: objectImageView.trailingAnchor, constant: 16),
-            objectProgressView.heightAnchor.constraint(equalToConstant: 2),
+            creatureProgressView.topAnchor.constraint(equalTo: creatureTitleLabel.bottomAnchor, constant: 8),
+            creatureProgressView.leadingAnchor.constraint(equalTo: creatureImageView.trailingAnchor, constant: 16),
+            creatureProgressView.heightAnchor.constraint(equalToConstant: 2),
             
-            objectTotalLabel.leadingAnchor.constraint(equalTo: objectProgressView.trailingAnchor, constant: 8),
-            objectTotalLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            objectTotalLabel.centerYAnchor.constraint(equalTo: objectProgressView.centerYAnchor),
+            creatureTotalLabel.leadingAnchor.constraint(equalTo: creatureProgressView.trailingAnchor, constant: 8),
+            creatureTotalLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            creatureTotalLabel.centerYAnchor.constraint(equalTo: creatureProgressView.centerYAnchor),
         ])
     }
 }

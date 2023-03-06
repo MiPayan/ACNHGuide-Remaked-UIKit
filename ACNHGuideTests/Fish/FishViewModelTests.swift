@@ -71,7 +71,6 @@ final class FishViewModelTests: XCTestCase {
     }
     
     func testConfigureSectionCollectionView() {
-        let expectation = expectation(description: "Sort fishes.")
         currentCalendarMock.stubbedMakeCurrentCalendar = {
             (11, 12)
         }()
@@ -79,21 +78,16 @@ final class FishViewModelTests: XCTestCase {
         serviceMock.stubbedFishResult = {
             .success(fishes)
         }()
-        
-        fishesViewModel.successHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
-        }
         fishesViewModel.getFishData()
         
         let northernSection = fishesViewModel.configureSectionCollectionView(with: 0)
         let southernSection = fishesViewModel.configureSectionCollectionView(with: 1)
         
-        XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
+        XCTAssertEqual(1, serviceMock.invokedGetFishesCount)
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
         XCTAssertEqual(northernSection, 25)
         XCTAssertEqual(southernSection, 39)
-        expectation.fulfill()
-        waitForExpectations(timeout: 1, handler: nil)
     }
     
     func testMakeFish() {

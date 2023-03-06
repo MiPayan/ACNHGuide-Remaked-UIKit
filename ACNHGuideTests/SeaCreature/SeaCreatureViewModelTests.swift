@@ -72,7 +72,6 @@ final class SeaCreatureViewModelTests: XCTestCase {
     }
     
     func testConfigureSectionCollectionView() {
-        let expectation = expectation(description: "Sort fishes.")
         currentCalendarMock.stubbedMakeCurrentCalendar = {
             (11, 12)
         }()
@@ -80,22 +79,16 @@ final class SeaCreatureViewModelTests: XCTestCase {
         serviceMock.stubbedSeaCreatureResult = {
             .success(seaCreatures)
         }()
-        
-        seaCreaturesViewModel.successHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetSeaCreaturesCount)
-        }
-        
         seaCreaturesViewModel.getSeaCreatureData()
         
         let northernSection = seaCreaturesViewModel.configureSectionCollectionView(with: 0)
         let southernSection = seaCreaturesViewModel.configureSectionCollectionView(with: 1)
         
+        XCTAssertEqual(1, serviceMock.invokedGetSeaCreaturesCount)
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
         XCTAssertEqual(northernSection, 18)
         XCTAssertEqual(southernSection, 17)
-        expectation.fulfill()
-        waitForExpectations(timeout: 1, handler: nil)
     }
     
     func testMakeSeaCreature() {
@@ -110,8 +103,8 @@ final class SeaCreatureViewModelTests: XCTestCase {
         
         let section = 0
         let index = 0
-        let fish = seaCreaturesViewModel.makeSeaCreature(with: section, index: index)
-        XCTAssertEqual(fish.id, 1)
+        let seaCreature = seaCreaturesViewModel.makeSeaCreature(with: section, index: index)
+        XCTAssertEqual(seaCreature.id, 1)
         XCTAssertEqual(1, serviceMock.invokedGetSeaCreaturesCount)
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)

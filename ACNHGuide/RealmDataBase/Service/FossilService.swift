@@ -8,27 +8,36 @@
 import Foundation
 import RealmSwift
 
-final class FossilService: CreaturePeeking {
+final class FossilService {
+    
+    private var creatureManager: RealmManager
+    
+    init(creatureManager: RealmManager = CreatureManager()) {
+        self.creatureManager = creatureManager
+    }
+}
+
+extension FossilService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        Array(RealmManager.shared.realm.objects(Fossil.self))
+        Array(creatureManager.realm.objects(Fossil.self))
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let fish = RealmManager.shared.realm.objects(Fossil.self).filter("fileName == %@", fileName).first
-        return fish != nil
+        let fossil = creatureManager.realm.objects(Fossil.self).filter("fileName == %@", fileName).first
+        return fossil != nil
     }
 }
 
 extension FossilService: CreatureWriting {
     func saveCreature(fileName: String) {
-        let fish = Fossil()
-        fish.fileName = fileName
-        RealmManager.shared.saveObject(with: fish)
+        let fossil = Fossil()
+        fossil.fileName = fileName
+        creatureManager.saveObject(with: fossil)
     }
     
     func deleteCreature(fileName: String) {
-        if let fish = RealmManager.shared.realm.objects(Fossil.self).filter("fileName == %@", fileName).first {
-            RealmManager.shared.deleteObject(with: fish)
+        if let fossil = creatureManager.realm.objects(Fossil.self).filter("fileName == %@", fileName).first {
+            creatureManager.deleteObject(with: fossil)
         }
     }
 }

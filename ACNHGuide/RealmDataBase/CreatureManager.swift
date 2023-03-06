@@ -8,9 +8,14 @@
 import Foundation
 import RealmSwift
 
-final class RealmManager {
+protocol RealmManager {
+    var realm: Realm { get }
+    func saveObject(with object: Object)
+    func deleteObject(with object: Object)
+}
+
+final class CreatureManager: RealmManager {
     
-    static let shared = RealmManager()
     var realm: Realm {
         try! Realm()
     }

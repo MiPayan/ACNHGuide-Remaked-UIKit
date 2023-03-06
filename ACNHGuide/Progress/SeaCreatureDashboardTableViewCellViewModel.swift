@@ -12,6 +12,7 @@ final class SeaCreatureDashboardTableViewCellViewModel {
     private let seaCreaturesData: [SeaCreatureData]
     private let creaturePeeker: CreaturePeeking
     private let creatureWriter: CreatureWriting
+    let titleText = "sea_creatures".localized
     
     init(
         seaCreaturesData: [SeaCreatureData],
@@ -23,7 +24,7 @@ final class SeaCreatureDashboardTableViewCellViewModel {
         self.creatureWriter = creatureWriter
     }
     
-    var seaCreaturesSavedCount: Int {
+    private var seaCreaturesSavedCount: Int {
         creaturePeeker.creaturesSaved.count
     }
     
@@ -32,15 +33,13 @@ final class SeaCreatureDashboardTableViewCellViewModel {
         return URL(string: iconURI)
     }
     
-    var titleText: String {
-        "sea_creatures".localized
-    }
+
     
     var totalText: String {
         "\(seaCreaturesSavedCount)/\(seaCreaturesData.count)"
     }
     
-    var progressBarState: Float {
+    var progressOfBar: Float {
          Float(seaCreaturesSavedCount) / Float(seaCreaturesData.count)
     }
 }

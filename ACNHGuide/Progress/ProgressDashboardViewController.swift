@@ -62,15 +62,27 @@ extension ProgressDashboardViewController: UITableViewDataSource {
             withIdentifier: "DashboardCell",
             for: indexPath
         ) as? DashboardTableViewCell else { return UITableViewCell() }
-        let fishDashboardTableViewCellViewModel = FishDashboardTableViewCellViewModel(fishesData: progressDashboardViewModel.fishData)
-        let seaCreatureDashboardTableViewCellViewModel = SeaCreatureDashboardTableViewCellViewModel(seaCreaturesData: progressDashboardViewModel.seaCreaturesData)
-        let bugDashboardTableViewCellViewModel = BugDashboardTableViewCellViewModel(bugsData: progressDashboardViewModel.bugData)
-        let fossilDashboardTableViewCellViewModel = FossilDashboardTableViewCellViewModel(fossilsData: progressDashboardViewModel.fossilData)
         switch indexPath.row {
-        case 0: dashboardCell.configureFishCell(with: fishDashboardTableViewCellViewModel)
-        case 1: dashboardCell.configureSeaCreatureCell(with: seaCreatureDashboardTableViewCellViewModel)
-        case 2: dashboardCell.configureBugCell(with: bugDashboardTableViewCellViewModel)
-        case 3: dashboardCell.configureFossilCell(with: fossilDashboardTableViewCellViewModel)
+        case 0:
+            let fishDashboardTableViewCellViewModel = FishDashboardTableViewCellViewModel(
+                fishesData: progressDashboardViewModel.fishData
+            )
+            dashboardCell.configureFishCell(with: fishDashboardTableViewCellViewModel)
+        case 1:
+            let seaCreatureDashboardTableViewCellViewModel = SeaCreatureDashboardTableViewCellViewModel(
+                seaCreaturesData: progressDashboardViewModel.seaCreaturesData
+            )
+            dashboardCell.configureSeaCreatureCell(with: seaCreatureDashboardTableViewCellViewModel)
+        case 2:
+            let bugDashboardTableViewCellViewModel = BugDashboardTableViewCellViewModel(
+                bugsData: progressDashboardViewModel.bugData
+            )
+            dashboardCell.configureBugCell(with: bugDashboardTableViewCellViewModel)
+        case 3:
+            let fossilDashboardTableViewCellViewModel = FossilDashboardTableViewCellViewModel(
+                fossilsData: progressDashboardViewModel.fossilData
+            )
+            dashboardCell.configureFossilCell(with: fossilDashboardTableViewCellViewModel)
         default:
             break
         }

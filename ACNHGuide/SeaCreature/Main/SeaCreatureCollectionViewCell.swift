@@ -12,11 +12,11 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
     private var viewModel: SeaCreatureCollectionViewCellViewModel?
     private let seaCreatureFilenameLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont(name: "FinkHeavy", size: 15)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -35,7 +35,6 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
         return button
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

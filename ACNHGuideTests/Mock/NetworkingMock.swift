@@ -5,7 +5,6 @@
 //  Created by Mickael PAYAN on 02/02/2023.
 //
 
-import XCTest
 @testable import ACNHGuide
 
 final class NetworkingMock<T: Decodable>: NetworkingProtocol {

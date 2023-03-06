@@ -47,10 +47,20 @@ final class FossilCollectionViewCellViewModelTests: XCTestCase {
         XCTAssertEqual(fossilCollectionViewCellViewModel.imageURL, url)
     }
     
+    func testIsFossilAlreadySaved() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let testFileName = "TestFilename"
+        let isCreatureAlreadySaved = creaturePeekerMock.isCreatureAlreadySaved(fileName: testFileName)
+        XCTAssertEqual(isCreatureAlreadySaved, false)
+        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedCount, 1)
+        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedParameter, "TestFilename")
+        XCTAssertEqual(fossilCollectionViewCellViewModel.isFossilAlreadySaved, false)
+    }
+    
     func testToggleSeaCreature() {
         creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
         let isSaved = fossilCollectionViewCellViewModel.toggleSavedFossil()
-        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySaved)
+        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySavedCount)
         XCTAssertEqual(1, creatureWriterMock.invokedSaveCreatureCount)
         XCTAssertEqual(true, isSaved)
     }

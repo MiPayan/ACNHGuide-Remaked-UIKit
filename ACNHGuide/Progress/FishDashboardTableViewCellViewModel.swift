@@ -12,6 +12,7 @@ final class FishDashboardTableViewCellViewModel {
     private let fishesData: [FishData]
     private let creaturePeeker: CreaturePeeking
     private let creatureWriter: CreatureWriting
+    let titleText = "fishes".localized
     
     init(
         fishesData: [FishData],
@@ -22,8 +23,8 @@ final class FishDashboardTableViewCellViewModel {
         self.creaturePeeker = creaturePeeker
         self.creatureWriter = creatureWriter
     }
-    
-    var fishesSavedCount: Int {
+        
+    private var fishesSavedCount: Int {
         creaturePeeker.creaturesSaved.count
     }
     
@@ -32,15 +33,11 @@ final class FishDashboardTableViewCellViewModel {
         return URL(string: iconURI)
     }
     
-    var titleText: String {
-        "fishes".localized
-    }
-    
     var totalText: String {
         "\(fishesSavedCount)/\(fishesData.count)"
     }
     
-    var progressBarState: Float {
+    var progressOfBar: Float {
          Float(fishesSavedCount) / Float(fishesData.count)
     }
 }

@@ -19,10 +19,7 @@ final class ProgressDashboardViewModel {
     var failureHandler: (() -> Void) = { }
     let numberOfRowsInSection = 4
     
-    init(
-        service: ACNHServiceProtocol = ACNHService(),
-        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main
-    ) {
+    init(service: ACNHServiceProtocol = ACNHService(), mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main) {
         self.service = service
         self.mainDispatchQueue = mainDispatchQueue
     }

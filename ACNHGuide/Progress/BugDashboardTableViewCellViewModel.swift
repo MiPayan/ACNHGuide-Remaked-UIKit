@@ -12,18 +12,19 @@ final class BugDashboardTableViewCellViewModel {
     private let bugsData: [BugData]
     private let creaturePeeker: CreaturePeeking
     private let creatureWriter: CreatureWriting
+    let titleText = "bugs".localized
     
     init(
         bugsData: [BugData],
-        creaturePeeker: CreaturePeeking = SeaCreatureService(),
-        creatureWriter: CreatureWriting = SeaCreatureService()
+        creaturePeeker: CreaturePeeking = BugService(),
+        creatureWriter: CreatureWriting = BugService()
     ) {
         self.bugsData = bugsData
         self.creaturePeeker = creaturePeeker
         self.creatureWriter = creatureWriter
     }
     
-    var bugsSavedCount: Int {
+    private var bugsSavedCount: Int {
         creaturePeeker.creaturesSaved.count
     }
     
@@ -32,15 +33,11 @@ final class BugDashboardTableViewCellViewModel {
         return URL(string: iconURI)
     }
     
-    var titleText: String {
-        "bugs".localized
-    }
-    
     var totalText: String {
         "\(bugsSavedCount)/\(bugsData.count)"
     }
     
-    var progressBarState: Float {
+    var progressOfBar: Float {
          Float(bugsSavedCount) / Float(bugsData.count)
     }
 }

@@ -8,27 +8,36 @@
 import Foundation
 import RealmSwift
 
-final class SeaCreatureService: CreaturePeeking {
+final class SeaCreatureService {
+    
+    private var creatureManager: RealmManager
+    
+    init(creatureManager: RealmManager = CreatureManager()) {
+        self.creatureManager = creatureManager
+    }
+}
+
+extension SeaCreatureService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        Array(RealmManager.shared.realm.objects(SeaCreature.self))
+        Array(creatureManager.realm.objects(SeaCreature.self))
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let fish = RealmManager.shared.realm.objects(SeaCreature.self).filter("fileName == %@", fileName).first
-        return fish != nil
+        let seaCreature = creatureManager.realm.objects(SeaCreature.self).filter("fileName == %@", fileName).first
+        return seaCreature != nil
     }
 }
 
 extension SeaCreatureService: CreatureWriting {
     func saveCreature(fileName: String) {
-        let fish = SeaCreature()
-        fish.fileName = fileName
-        RealmManager.shared.saveObject(with: fish)
+        let seaCreature = SeaCreature()
+        seaCreature.fileName = fileName
+        creatureManager.saveObject(with: seaCreature)
     }
     
     func deleteCreature(fileName: String) {
-        if let fish = RealmManager.shared.realm.objects(SeaCreature.self).filter("fileName == %@", fileName).first {
-            RealmManager.shared.deleteObject(with: fish)
+        if let seaCreature = creatureManager.realm.objects(SeaCreature.self).filter("fileName == %@", fileName).first {
+            creatureManager.deleteObject(with: seaCreature)
         }
     }
 }

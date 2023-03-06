@@ -5,7 +5,6 @@
 //  Created by Mickael PAYAN on 01/03/2023.
 //
 
-import Foundation
 import RealmSwift
 @testable import ACNHGuide
 

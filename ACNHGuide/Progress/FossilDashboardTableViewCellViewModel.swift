@@ -12,18 +12,19 @@ final class FossilDashboardTableViewCellViewModel {
     private let fossilsData: [FossilData]
     private let creaturePeeker: CreaturePeeking
     private let creatureWriter: CreatureWriting
+    let titleText = "fossils".localized
     
     init(
         fossilsData: [FossilData],
-        creaturePeeker: CreaturePeeking = SeaCreatureService(),
-        creatureWriter: CreatureWriting = SeaCreatureService()
+        creaturePeeker: CreaturePeeking = FossilService(),
+        creatureWriter: CreatureWriting = FossilService()
     ) {
         self.fossilsData = fossilsData
         self.creaturePeeker = creaturePeeker
         self.creatureWriter = creatureWriter
     }
     
-    var fossilsSavedCount: Int {
+    private var fossilsSavedCount: Int {
         creaturePeeker.creaturesSaved.count
     }
     
@@ -32,15 +33,11 @@ final class FossilDashboardTableViewCellViewModel {
         return URL(string: imageURI)
     }
     
-    var titleText: String {
-        "fossils".localized
-    }
-    
     var totalText: String {
         "\(fossilsSavedCount)/\(fossilsData.count)"
     }
     
-    var progressBarState: Float {
+    var progressOfBar: Float {
          Float(fossilsSavedCount) / Float(fossilsData.count)
     }
 }

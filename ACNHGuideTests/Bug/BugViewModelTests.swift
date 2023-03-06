@@ -71,7 +71,6 @@ final class BugViewModelTests: XCTestCase {
     }
     
     func testConfigureSectionCollectionView() {
-        let expectation = expectation(description: "Sort fishes.")
         currentCalendarMock.stubbedMakeCurrentCalendar = {
             (11, 12)
         }()
@@ -79,22 +78,16 @@ final class BugViewModelTests: XCTestCase {
         serviceMock.stubbedBugResult = {
             .success(bugs)
         }()
-        
-        bugsViewModel.successHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetBugsCount)
-        }
-        
         bugsViewModel.getBugData()
         
         let northernSection = bugsViewModel.configureSectionCollectionView(with: 0)
         let southernSection = bugsViewModel.configureSectionCollectionView(with: 1)
         
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        XCTAssertEqual(1, serviceMock.invokedGetBugsCount)
         XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
         XCTAssertEqual(northernSection, 14)
         XCTAssertEqual(southernSection, 35)
-        expectation.fulfill()
-        waitForExpectations(timeout: 1, handler: nil)
     }
     
     func testMakeBug() {
@@ -109,8 +102,8 @@ final class BugViewModelTests: XCTestCase {
         
         let section = 0
         let index = 0
-        let fish = bugsViewModel.makeBug(with: section, index: index)
-        XCTAssertEqual(fish.id, 1)
+        let bug = bugsViewModel.makeBug(with: section, index: index)
+        XCTAssertEqual(bug.id, 1)
         XCTAssertEqual(1, serviceMock.invokedGetBugsCount)
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
