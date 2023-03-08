@@ -2,20 +2,20 @@
 //  NetworkingMock.swift
 //  ACNHGuideTests
 //
-//  Created by Mickael PAYAN on 02/02/2023.
+//  Created by Mickael PAYAN on 07/03/2023.
 //
 
 @testable import ACNHGuide
 
-final class NetworkingMock<T: Decodable>: NetworkingProtocol {
+final class NetworkingMock<T>: Networking {
     
-    private var responseData: Result<[T], NetworkingError>
-
-     init(responseData: Result<[T], NetworkingError>) {
-         self.responseData = responseData
-     }
+    var stubbedResult: Result<[T], NetworkingError>!
+    var invokedFetchDataCount = 0
+    var stubbedFetchDataUrlStringParameter: String!
     
-    func fetchData<T: Decodable>(with urlString: String, completion handler: @escaping ((Result<[T], NetworkingError>) -> Void)) {
-        handler(responseData as! Result<[T], NetworkingError>)
+    func fetchData<T>(with urlString: String, completion handler: @escaping ((Result<[T], NetworkingError>) -> Void)) {
+        invokedFetchDataCount += 1
+        stubbedFetchDataUrlStringParameter = urlString
+//        handler(stubbedResult)
     }
 }

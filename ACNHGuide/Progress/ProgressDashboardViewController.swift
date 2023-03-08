@@ -8,8 +8,10 @@
 import UIKit
 
 final class ProgressDashboardViewController: UIViewController {
-    
-    private let progressDashboardViewModel = ProgressDashboardViewModel()
+    private let fishProgressDashboardViewModel = FishProgressDashboardViewModel()
+    private let seaCreatureProgressDashboardViewModel = SeaCreatureProgressDashboardViewModel()
+    private let bugProgressDashboardViewModel = BugProgressDashboardViewModel()
+    private let fossilProgressDashboardViewModel = FossilProgressDashboardViewModel()
     private lazy var dashboardTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,11 +23,17 @@ final class ProgressDashboardViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var errorView: UIView = {
+        let view = ErrorView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         setUpUpdateDataHandler()
-        progressDashboardViewModel.getDatas()
+        getDatas()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,28 +41,70 @@ final class ProgressDashboardViewController: UIViewController {
         dashboardTableView.reloadData()
     }
     
+    func setUpFailureHandler() {
+
+    }
+    
     func setUpUpdateDataHandler() {
-        progressDashboardViewModel.successHandler = {
+        fishProgressDashboardViewModel.failureHandler = {
+            self.errorView.isHidden = false
+        }
+        seaCreatureProgressDashboardViewModel.failureHandler = {
+            self.errorView.isHidden = false
+        }
+        bugProgressDashboardViewModel.failureHandler = {
+            self.errorView.isHidden = false
+        }
+        fossilProgressDashboardViewModel.failureHandler = {
+            self.errorView.isHidden = false
+        }
+        
+        fishProgressDashboardViewModel.successHandler = {
+            self.errorView.isHidden = true
+            self.dashboardTableView.reloadData()
+        }
+        seaCreatureProgressDashboardViewModel.successHandler = {
+            self.errorView.isHidden = true
+            self.dashboardTableView.reloadData()
+        }
+        bugProgressDashboardViewModel.successHandler = {
+            self.errorView.isHidden = true
+            self.dashboardTableView.reloadData()
+        }
+        fossilProgressDashboardViewModel.successHandler = {
+            self.errorView.isHidden = true
             self.dashboardTableView.reloadData()
         }
     }
 }
 
 private extension ProgressDashboardViewController {
+    func getDatas() {
+        fishProgressDashboardViewModel.getFishesData()
+        seaCreatureProgressDashboardViewModel.getSeaCreaturesData()
+        bugProgressDashboardViewModel.getBugsData()
+        fossilProgressDashboardViewModel.getFossilsData()
+    }
+    
     func addSubviews() {
         view.addSubview(dashboardTableView)
+        view.addSubview(errorView)
         NSLayoutConstraint.activate([
             dashboardTableView.topAnchor.constraint(equalTo: view.topAnchor),
             dashboardTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             dashboardTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            dashboardTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            dashboardTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
 
 extension ProgressDashboardViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return progressDashboardViewModel.numberOfRowsInSection
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,25 +112,26 @@ extension ProgressDashboardViewController: UITableViewDataSource {
             withIdentifier: "DashboardCell",
             for: indexPath
         ) as? DashboardTableViewCell else { return UITableViewCell() }
+        let fishDashboardTableViewCellViewModel = FishDashboardTableViewCellViewModel(
+            fishesData: fishProgressDashboardViewModel.fishesData
+        )
         switch indexPath.row {
         case 0:
-            let fishDashboardTableViewCellViewModel = FishDashboardTableViewCellViewModel(
-                fishesData: progressDashboardViewModel.fishData
-            )
+
             dashboardCell.configureFishCell(with: fishDashboardTableViewCellViewModel)
         case 1:
             let seaCreatureDashboardTableViewCellViewModel = SeaCreatureDashboardTableViewCellViewModel(
-                seaCreaturesData: progressDashboardViewModel.seaCreaturesData
+                seaCreaturesData: seaCreatureProgressDashboardViewModel.seaCreaturesData
             )
             dashboardCell.configureSeaCreatureCell(with: seaCreatureDashboardTableViewCellViewModel)
         case 2:
             let bugDashboardTableViewCellViewModel = BugDashboardTableViewCellViewModel(
-                bugsData: progressDashboardViewModel.bugData
+                bugsData: bugProgressDashboardViewModel.bugsData
             )
             dashboardCell.configureBugCell(with: bugDashboardTableViewCellViewModel)
         case 3:
             let fossilDashboardTableViewCellViewModel = FossilDashboardTableViewCellViewModel(
-                fossilsData: progressDashboardViewModel.fossilData
+                fossilsData: fossilProgressDashboardViewModel.fossilsData
             )
             dashboardCell.configureFossilCell(with: fossilDashboardTableViewCellViewModel)
         default:

@@ -44,18 +44,22 @@ final class SeaCreatureDashboardTableViewCellViewModelTests: XCTestCase {
     }
     
     func testTotalText() {
-        creaturePeekerMock.stubbedCreaturesSaved = [SeaCreature(), SeaCreature()]
+        creaturePeekerMock.stubbedCreaturesSaved = [Fish(), Fish()]
         let seaCreaturesCount = seaCreatures.count
+        let totalText = seaCreatureDashboardTableViewCellViewModel.totalText
         XCTAssertEqual(seaCreaturesCount, 40)
         XCTAssertEqual(creaturePeekerMock.stubbedCreaturesSaved.count, 2)
-        XCTAssertEqual(seaCreatureDashboardTableViewCellViewModel.totalText, "\(2)/\(40)")
+        XCTAssertEqual(creaturePeekerMock.invokedCreatureSavedCount, 1)
+        XCTAssertEqual(totalText, "\(2)/\(40)")
     }
     
     func testProgressOfBar() {
-        creaturePeekerMock.stubbedCreaturesSaved = [SeaCreature(), SeaCreature()]
+        creaturePeekerMock.stubbedCreaturesSaved = [Fish(), Fish()]
         let seaCreaturesCount = seaCreatures.count
+        let progressOfBar = seaCreatureDashboardTableViewCellViewModel.progressOfBar
         XCTAssertEqual(seaCreaturesCount, 40)
         XCTAssertEqual(creaturePeekerMock.stubbedCreaturesSaved.count, 2)
-        XCTAssertEqual(seaCreatureDashboardTableViewCellViewModel.progressOfBar, Float(2) / Float(40))
+        XCTAssertEqual(creaturePeekerMock.invokedCreatureSavedCount, 1)
+        XCTAssertEqual(progressOfBar, Float(2) / Float(40))
     }
 }

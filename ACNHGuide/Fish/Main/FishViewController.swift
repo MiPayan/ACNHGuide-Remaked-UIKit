@@ -41,7 +41,7 @@ final class FishViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        fishViewModel.getFishData()
+        fishViewModel.getFishesData()
     }
 }
 

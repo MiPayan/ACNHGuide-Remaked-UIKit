@@ -46,16 +46,20 @@ final class FossilDashboardTableViewCellViewModelTests: XCTestCase {
     func testTotalText() {
         creaturePeekerMock.stubbedCreaturesSaved = [Fossil(), Fossil()]
         let fossilsCount = fossils.count
+        let totalText = fossilDashboardTableViewCellViewModel.totalText
         XCTAssertEqual(fossilsCount, 73)
         XCTAssertEqual(creaturePeekerMock.stubbedCreaturesSaved.count, 2)
-        XCTAssertEqual(fossilDashboardTableViewCellViewModel.totalText, "\(2)/\(73)")
+        XCTAssertEqual(creaturePeekerMock.invokedCreatureSavedCount, 1)
+        XCTAssertEqual(totalText, "\(2)/\(73)")
     }
     
     func testProgressOfBar() {
         creaturePeekerMock.stubbedCreaturesSaved = [Fossil(), Fossil()]
         let fossilsCount = fossils.count
+        let progressOfBar = fossilDashboardTableViewCellViewModel.progressOfBar
         XCTAssertEqual(fossilsCount, 73)
         XCTAssertEqual(creaturePeekerMock.stubbedCreaturesSaved.count, 2)
-        XCTAssertEqual(fossilDashboardTableViewCellViewModel.progressOfBar, Float(2) / Float(73))
+        XCTAssertEqual(creaturePeekerMock.invokedCreatureSavedCount, 1)
+        XCTAssertEqual(progressOfBar, Float(2) / Float(73))
     }
 }

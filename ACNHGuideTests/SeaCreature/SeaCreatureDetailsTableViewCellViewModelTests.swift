@@ -208,39 +208,29 @@ final class SeaCreatureDetailsTableViewCellViewModelTests: XCTestCase {
     }
     
     func testIsSeaCreatureAlreadySaved() {
-        creaturePeekerMock.stubbedIsCreatureAlreadySaved = true
-        let testFileName = "TestFilename"
-        let isCreatureAlreadySaved = creaturePeekerMock.isCreatureAlreadySaved(fileName: testFileName)
-        XCTAssertEqual(isCreatureAlreadySaved, true)
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
+        let isSeaCreatureAlreadySaved = seaCreatureDetailsTableViewCellViewModel.isSeaCreatureAlreadySaved
+        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedParameter, "Seaweed")
         XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedCount, 1)
-        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedParameter, "TestFilename")
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.isSeaCreatureAlreadySaved, true)
+        XCTAssertEqual(isSeaCreatureAlreadySaved, false)
     }
     
     func testToggleSeaCreatureWhenIsNotAlreadySaved() {
         creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
-        let testFileName = "TestFileName"
-        let isCreatureAlreadySaved = creaturePeekerMock.isCreatureAlreadySaved(fileName: testFileName)
-        creatureWriterMock.saveCreature(fileName: testFileName)
-        XCTAssertEqual(isCreatureAlreadySaved, false)
+        let toggleSaved = seaCreatureDetailsTableViewCellViewModel.toggleSavedSeaCreature()
+        XCTAssertEqual(creatureWriterMock.invokedSaveCreatureParameter, "Seaweed")
         XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedCount, 1)
-        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedParameter, "TestFileName")
         XCTAssertEqual(creatureWriterMock.invokedSaveCreatureCount, 1)
-        XCTAssertEqual(creatureWriterMock.invokedSaveCreatureParameter, "TestFileName")
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.toggleSavedSeaCreature(), true)
+        XCTAssertEqual(toggleSaved, true)
     }
     
     func testToggleSeaCreatureWhenIsAlreadySaved() {
         creaturePeekerMock.stubbedIsCreatureAlreadySaved = true
-        let testFileName = "TestFileName"
-        let isCreatureAlreadySaved = creaturePeekerMock.isCreatureAlreadySaved(fileName: testFileName)
-        creatureWriterMock.deleteCreature(fileName: testFileName)
-        XCTAssertEqual(isCreatureAlreadySaved, true)
+        let toggleSaved = seaCreatureDetailsTableViewCellViewModel.toggleSavedSeaCreature()
+        XCTAssertEqual(creatureWriterMock.invokedDeleteCreatureParameter, "Seaweed")
         XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedCount, 1)
-        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedParameter, "TestFileName")
         XCTAssertEqual(creatureWriterMock.invokedDeleteCreatureCount, 1)
-        XCTAssertEqual(creatureWriterMock.invokedDeleteCreatureParameter, "TestFileName")
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.toggleSavedSeaCreature(), false)
+        XCTAssertEqual(toggleSaved, false)
     }
 }
 

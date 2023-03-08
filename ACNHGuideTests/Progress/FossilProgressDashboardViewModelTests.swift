@@ -1,63 +1,57 @@
 //
-//  FossilViewModelTests.swift
+//  FossilProgressDashboardViewModelTests.swift
 //  ACNHGuideTests
 //
-//  Created by Mickael PAYAN on 19/01/2023.
+//  Created by Mickael PAYAN on 07/03/2023.
 //
 
 import XCTest
 @testable import ACNHGuide
 
-final class FossilViewModelTests: XCTestCase {
-    
+final class FossilProgressDashboardViewModelTests: XCTestCase {
+
     private var serviceMock: ServiceMock!
     private var dispatchQueueMock: DispatchQueueMock!
-    private var currentCalendarMock: CurrentCalendarMock!
-    private var fossilsViewModel: FossilViewModel!
-    
+    private var fossilProgressDashboardViewModel: FossilProgressDashboardViewModel!
+
     override func setUpWithError() throws {
         serviceMock = ServiceMock()
         dispatchQueueMock = DispatchQueueMock()
-        currentCalendarMock = CurrentCalendarMock()
-        fossilsViewModel = FossilViewModel(
-            service: serviceMock,
-            mainDispatchQueue: dispatchQueueMock,
-            currentCalendar: currentCalendarMock
-        )
+        fossilProgressDashboardViewModel = FossilProgressDashboardViewModel(service: serviceMock, mainDispatchQueue: dispatchQueueMock)
     }
 
     override func tearDownWithError() throws {
-        fossilsViewModel = nil
+        serviceMock = nil
+        dispatchQueueMock = nil
+        fossilProgressDashboardViewModel = nil
     }
     
     func testFailureGetFossils() {
-        let expectation = expectation(description: "Failure to get fossils.")
-        
+        let expectation = expectation(description: "Failure to get fishes.")
         serviceMock.stubbedFossilResult = (
             .failure(.urlInvalid)
         )
         
-        fossilsViewModel.failureHandler = {
+        fossilProgressDashboardViewModel.failureHandler = {
             XCTAssertEqual(1, self.serviceMock.invokedGetFossilsCount)
             expectation.fulfill()
         }
-        fossilsViewModel.getFossilsData()
+        fossilProgressDashboardViewModel.getFossilsData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
     
     func testSuccessGetFossils() {
-        let expectation = expectation(description: "Success to get fossils.")
-        
+        let expectation = expectation(description: "Success to get fishes.")
         serviceMock.stubbedFossilResult = (
             .success(fossils)
         )
         
-        fossilsViewModel.successHandler = {
+        fossilProgressDashboardViewModel.successHandler = {
             XCTAssertEqual(1, self.serviceMock.invokedGetFossilsCount)
             expectation.fulfill()
         }
-        fossilsViewModel.getFossilsData()
+        fossilProgressDashboardViewModel.getFossilsData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }

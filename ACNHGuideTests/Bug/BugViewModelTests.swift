@@ -43,7 +43,7 @@ final class BugViewModelTests: XCTestCase {
             expectation.fulfill()
 
         }
-        bugsViewModel.getBugData()
+        bugsViewModel.getBugsData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
@@ -58,7 +58,7 @@ final class BugViewModelTests: XCTestCase {
             XCTAssertEqual(1, self.serviceMock.invokedGetBugsCount)
             expectation.fulfill()
         }
-        bugsViewModel.getBugData()
+        bugsViewModel.getBugsData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
@@ -78,7 +78,7 @@ final class BugViewModelTests: XCTestCase {
         serviceMock.stubbedBugResult = {
             .success(bugs)
         }()
-        bugsViewModel.getBugData()
+        bugsViewModel.getBugsData()
         
         let northernSection = bugsViewModel.configureSectionCollectionView(with: 0)
         let southernSection = bugsViewModel.configureSectionCollectionView(with: 1)
@@ -98,7 +98,7 @@ final class BugViewModelTests: XCTestCase {
         serviceMock.stubbedBugResult = {
             .success(bugs)
         }()
-        bugsViewModel.getBugData()
+        bugsViewModel.getBugsData()
         
         let section = 0
         let index = 0

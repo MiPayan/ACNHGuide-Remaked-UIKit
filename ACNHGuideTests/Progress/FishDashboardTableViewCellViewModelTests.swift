@@ -46,16 +46,20 @@ final class FishDashboardTableViewCellViewModelTests: XCTestCase {
     func testTotalText() {
         creaturePeekerMock.stubbedCreaturesSaved = [Fish(), Fish()]
         let fishesCount = fishes.count
+        let totalText = fishDashboardTableViewCellViewModel.totalText
         XCTAssertEqual(fishesCount, 80)
         XCTAssertEqual(creaturePeekerMock.stubbedCreaturesSaved.count, 2)
-        XCTAssertEqual(fishDashboardTableViewCellViewModel.totalText, "\(2)/\(80)")
+        XCTAssertEqual(creaturePeekerMock.invokedCreatureSavedCount, 1)
+        XCTAssertEqual(totalText, "\(2)/\(80)")
     }
     
     func testProgressOfBar() {
         creaturePeekerMock.stubbedCreaturesSaved = [Fish(), Fish()]
         let fishesCount = fishes.count
+        let progressOfBar = fishDashboardTableViewCellViewModel.progressOfBar
         XCTAssertEqual(fishesCount, 80)
         XCTAssertEqual(creaturePeekerMock.stubbedCreaturesSaved.count, 2)
-        XCTAssertEqual(fishDashboardTableViewCellViewModel.progressOfBar, Float(2) / Float(80))
+        XCTAssertEqual(creaturePeekerMock.invokedCreatureSavedCount, 1)
+        XCTAssertEqual(progressOfBar, Float(2) / Float(80))
     }
 }

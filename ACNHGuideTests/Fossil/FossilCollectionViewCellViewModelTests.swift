@@ -49,19 +49,27 @@ final class FossilCollectionViewCellViewModelTests: XCTestCase {
     
     func testIsFossilAlreadySaved() {
         creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
-        let testFileName = "TestFilename"
-        let isCreatureAlreadySaved = creaturePeekerMock.isCreatureAlreadySaved(fileName: testFileName)
-        XCTAssertEqual(isCreatureAlreadySaved, false)
+        let isFossilAlreadySaved = fossilCollectionViewCellViewModel.isFossilAlreadySaved
+        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedParameter, "Acanthostega")
         XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedCount, 1)
-        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedParameter, "TestFilename")
-        XCTAssertEqual(fossilCollectionViewCellViewModel.isFossilAlreadySaved, false)
+        XCTAssertEqual(isFossilAlreadySaved, false)
     }
     
-    func testToggleSeaCreature() {
+    func testToggleSavedFossilWhenIsNotAlreadySaved() {
         creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
-        let isSaved = fossilCollectionViewCellViewModel.toggleSavedFossil()
-        XCTAssertEqual(1, creaturePeekerMock.invokedIsCreatureAlreadySavedCount)
-        XCTAssertEqual(1, creatureWriterMock.invokedSaveCreatureCount)
-        XCTAssertEqual(true, isSaved)
+        let toggleSaved = fossilCollectionViewCellViewModel.toggleSavedFossil()
+        XCTAssertEqual(creatureWriterMock.invokedSaveCreatureParameter, "Acanthostega")
+        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedCount, 1)
+        XCTAssertEqual(creatureWriterMock.invokedSaveCreatureCount, 1)
+        XCTAssertEqual(toggleSaved, true)
+    }
+    
+    func testToggleSavedFossilWhenIsAlreadySaved() {
+        creaturePeekerMock.stubbedIsCreatureAlreadySaved = true
+        let toggleSaved = fossilCollectionViewCellViewModel.toggleSavedFossil()
+        XCTAssertEqual(creatureWriterMock.invokedDeleteCreatureParameter, "Acanthostega")
+        XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedCount, 1)
+        XCTAssertEqual(creatureWriterMock.invokedDeleteCreatureCount, 1)
+        XCTAssertEqual(toggleSaved, false)
     }
 }

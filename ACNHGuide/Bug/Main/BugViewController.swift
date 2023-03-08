@@ -40,7 +40,7 @@ final class BugViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        bugViewModel.getBugData()
+        bugViewModel.getBugsData()
     }
 }
 
@@ -71,7 +71,6 @@ private extension BugViewController {
             bugCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bugCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bugCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
             errorView.topAnchor.constraint(equalTo: view.topAnchor),
             errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

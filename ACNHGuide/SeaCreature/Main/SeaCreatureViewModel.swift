@@ -9,7 +9,7 @@ import Foundation
 
 final class SeaCreatureViewModel {
     
-    private let service: ACNHServiceProtocol
+    private let service: Service
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var seaCreaturesData = [SeaCreatureData]()
@@ -18,7 +18,7 @@ final class SeaCreatureViewModel {
     var failureHandler: (() -> Void) = { }
     
     init(
-        service: ACNHServiceProtocol = ACNHService(),
+        service: Service = ACNHService(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
@@ -27,8 +27,8 @@ final class SeaCreatureViewModel {
         self.currentCalendar = currentCalendar
     }
     
-    func getSeaCreatureData() {
-        service.getSeaCreatureData { [weak self] result in
+    func getSeaCreaturesData() {
+        service.getSeaCreaturesData { [weak self] result in
             guard let self else { return }
             self.mainDispatchQueue.async {
                 switch result {

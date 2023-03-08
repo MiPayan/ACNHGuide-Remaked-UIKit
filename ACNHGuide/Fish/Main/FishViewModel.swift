@@ -9,7 +9,7 @@ import Foundation
 
 final class FishViewModel {
     
-    private let service: ACNHServiceProtocol
+    private let service: Service
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var fishesData = [FishData]()
@@ -18,7 +18,7 @@ final class FishViewModel {
     var failureHandler: (() -> Void) = { }
     
     init(
-        service: ACNHServiceProtocol = ACNHService(),
+        service: Service = ACNHService(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
@@ -27,8 +27,8 @@ final class FishViewModel {
         self.currentCalendar = currentCalendar
     }
     
-    func getFishData() {
-        service.getFishData { [weak self] result in
+    func getFishesData() {
+        service.getFishesData { [weak self] result in
             guard let self else { return }
             self.mainDispatchQueue.async {
                 switch result {

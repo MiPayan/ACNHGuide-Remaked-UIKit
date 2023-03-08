@@ -46,16 +46,20 @@ final class BugDashboardTableViewCellViewModelTests: XCTestCase {
     func testTotalText() {
         creaturePeekerMock.stubbedCreaturesSaved = [Bug(), Bug()]
         let bugsCount = bugs.count
+        let titleText = bugDashboardTableViewCellViewModel.totalText
         XCTAssertEqual(bugsCount, 80)
         XCTAssertEqual(creaturePeekerMock.stubbedCreaturesSaved.count, 2)
-        XCTAssertEqual(bugDashboardTableViewCellViewModel.totalText, "\(2)/\(80)")
+        XCTAssertEqual(creaturePeekerMock.invokedCreatureSavedCount, 1)
+        XCTAssertEqual(titleText, "\(2)/\(80)")
     }
     
     func testProgressOfBar() {
         creaturePeekerMock.stubbedCreaturesSaved = [Bug(), Bug()]
         let bugsCount = bugs.count
+        let progressOfBar = bugDashboardTableViewCellViewModel.progressOfBar
         XCTAssertEqual(bugsCount, 80)
         XCTAssertEqual(creaturePeekerMock.stubbedCreaturesSaved.count, 2)
-        XCTAssertEqual(bugDashboardTableViewCellViewModel.progressOfBar, Float(2) / Float(80))
+        XCTAssertEqual(creaturePeekerMock.invokedCreatureSavedCount, 1)
+        XCTAssertEqual(progressOfBar, Float(2) / Float(80))
     }
 }

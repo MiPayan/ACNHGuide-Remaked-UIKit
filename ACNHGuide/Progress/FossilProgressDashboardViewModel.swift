@@ -1,30 +1,23 @@
 //
-//  FossilViewModel.swift
+//  FossilProgressDashboardViewModel.swift
 //  ACNHGuide
 //
-//  Created by Mickael PAYAN on 11/01/2023.
+//  Created by Mickael PAYAN on 06/03/2023.
 //
 
 import Foundation
 
-final class FossilViewModel {
+final class FossilProgressDashboardViewModel {
     
     private let service: Service
     private let mainDispatchQueue: DispatchQueueDelegate
-    private let currentCalendar: CalendarDelegate
     private(set) var fossilsData = [FossilData]()
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
-    let headerText = "fossils".localized
     
-    init(
-        service: Service = ACNHService(),
-        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
-        currentCalendar: CalendarDelegate = CurrentCalendar()
-    ) {
+    init(service: Service = ACNHService(), mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main) {
         self.service = service
         self.mainDispatchQueue = mainDispatchQueue
-        self.currentCalendar = currentCalendar
     }
     
     func getFossilsData() {
@@ -42,3 +35,4 @@ final class FossilViewModel {
         }
     }
 }
+

@@ -40,7 +40,7 @@ final class FossilViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        fossilViewModel.getFossilData()
+        fossilViewModel.getFossilsData()
     }
 }
 

@@ -33,7 +33,7 @@ final class SeaCreatureViewModelTests: XCTestCase {
         serviceMock = nil
     }
     
-    func testFailureGetSeaCreature() {
+    func testFailureGetSeaCreatures() {
         let expectation = expectation(description: "Failure to get sea creatures.")
         serviceMock.stubbedSeaCreatureResult = (
             .failure(.urlInvalid)
@@ -43,7 +43,7 @@ final class SeaCreatureViewModelTests: XCTestCase {
             XCTAssertEqual(1, self.serviceMock.invokedGetSeaCreaturesCount)
             expectation.fulfill()
         }
-        seaCreaturesViewModel.getSeaCreatureData()
+        seaCreaturesViewModel.getSeaCreaturesData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
@@ -58,7 +58,7 @@ final class SeaCreatureViewModelTests: XCTestCase {
             XCTAssertEqual(1, self.serviceMock.invokedGetSeaCreaturesCount)
             expectation.fulfill()
         }
-        seaCreaturesViewModel.getSeaCreatureData()
+        seaCreaturesViewModel.getSeaCreaturesData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
@@ -79,7 +79,7 @@ final class SeaCreatureViewModelTests: XCTestCase {
         serviceMock.stubbedSeaCreatureResult = {
             .success(seaCreatures)
         }()
-        seaCreaturesViewModel.getSeaCreatureData()
+        seaCreaturesViewModel.getSeaCreaturesData()
         
         let northernSection = seaCreaturesViewModel.configureSectionCollectionView(with: 0)
         let southernSection = seaCreaturesViewModel.configureSectionCollectionView(with: 1)
@@ -99,7 +99,7 @@ final class SeaCreatureViewModelTests: XCTestCase {
         serviceMock.stubbedSeaCreatureResult = {
             .success(seaCreatures)
         }()
-        seaCreaturesViewModel.getSeaCreatureData()
+        seaCreaturesViewModel.getSeaCreaturesData()
         
         let section = 0
         let index = 0

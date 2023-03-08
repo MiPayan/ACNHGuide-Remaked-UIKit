@@ -7,16 +7,16 @@
 
 import Foundation
 
-final class ACNHService: ACNHServiceProtocol {
+final class ACNHService: Service {
     
-    private let session: NetworkingProtocol
+    private let session: Networking
     private let endpoint = "https://acnhapi.com/v1a/"
     
-    init(session: NetworkingProtocol = Networking()) {
+    init(session: Networking = Networker()) {
         self.session = session
     }
     
-    func getFishData(completionHandler: @escaping ((Result<[FishData], NetworkingError>)) -> Void) {
+    func getFishesData(completionHandler: @escaping ((Result<[FishData], NetworkingError>)) -> Void) {
         let urlString = "\(endpoint)fish/"
         session.fetchData(with: urlString) { (result: Result<[FishData], NetworkingError>) in
             switch result {
@@ -28,7 +28,7 @@ final class ACNHService: ACNHServiceProtocol {
         }
     }
     
-    func getSeaCreatureData(completionHandler: @escaping ((Result<[SeaCreatureData], NetworkingError>)) -> Void) {
+    func getSeaCreaturesData(completionHandler: @escaping ((Result<[SeaCreatureData], NetworkingError>)) -> Void) {
         let urlString = "\(endpoint)sea/"
         session.fetchData(with: urlString) { (result: Result<[SeaCreatureData], NetworkingError>) in
             switch result {
@@ -40,7 +40,7 @@ final class ACNHService: ACNHServiceProtocol {
         }
     }
     
-    func getBugData(completionHandler: @escaping ((Result<[BugData], NetworkingError>)) -> Void) {
+    func getBugsData(completionHandler: @escaping ((Result<[BugData], NetworkingError>)) -> Void) {
         let urlString = "\(endpoint)bugs/"
         session.fetchData(with: urlString) { (result: Result<[BugData], NetworkingError>) in
             switch result {
@@ -52,7 +52,7 @@ final class ACNHService: ACNHServiceProtocol {
         }
     }
     
-    func getFossilData(completionHandler: @escaping ((Result<[FossilData], NetworkingError>)) -> Void) {
+    func getFossilsData(completionHandler: @escaping ((Result<[FossilData], NetworkingError>)) -> Void) {
         let urlString = "\(endpoint)fossils/"
         session.fetchData(with: urlString) { (result: Result<[FossilData], NetworkingError>) in
             switch result {

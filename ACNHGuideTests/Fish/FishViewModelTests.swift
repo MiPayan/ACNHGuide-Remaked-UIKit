@@ -43,7 +43,7 @@ final class FishViewModelTests: XCTestCase {
             XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
             expectation.fulfill()
         }
-        fishesViewModel.getFishData()
+        fishesViewModel.getFishesData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
@@ -58,7 +58,7 @@ final class FishViewModelTests: XCTestCase {
             XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
             expectation.fulfill()
         }
-        fishesViewModel.getFishData()
+        fishesViewModel.getFishesData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
         waitForExpectations(timeout: 1, handler: nil)
     }
@@ -78,7 +78,7 @@ final class FishViewModelTests: XCTestCase {
         serviceMock.stubbedFishResult = {
             .success(fishes)
         }()
-        fishesViewModel.getFishData()
+        fishesViewModel.getFishesData()
         
         let northernSection = fishesViewModel.configureSectionCollectionView(with: 0)
         let southernSection = fishesViewModel.configureSectionCollectionView(with: 1)
@@ -98,7 +98,7 @@ final class FishViewModelTests: XCTestCase {
         serviceMock.stubbedFishResult = {
             .success(fishes)
         }()
-        fishesViewModel.getFishData()
+        fishesViewModel.getFishesData()
         
         let section = 0
         let index = 0
