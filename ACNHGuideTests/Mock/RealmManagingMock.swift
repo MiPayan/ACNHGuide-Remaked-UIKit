@@ -1,5 +1,5 @@
 //
-//  RealmManagerMock.swift
+//  RealmManagingMock.swift
 //  ACNHGuideTests
 //
 //  Created by Mickael PAYAN on 03/03/2023.
@@ -8,10 +8,14 @@
 import RealmSwift
 @testable import ACNHGuide
 
-final class RealmManagerMock: RealmManager {
+final class RealmManagingMock: RealmManaging {
     
+    var invokedRealmCount = 0
+    var stubbedRealm: Realm!
+
     var realm: Realm {
-        try! Realm()
+        invokedRealmCount += 1
+        return stubbedRealm
     }
     
     var invokedSavedObjectCount = 0

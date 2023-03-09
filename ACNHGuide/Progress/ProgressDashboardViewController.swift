@@ -40,11 +40,7 @@ final class ProgressDashboardViewController: UIViewController {
         super.viewWillAppear(animated)
         dashboardTableView.reloadData()
     }
-    
-    func setUpFailureHandler() {
-
-    }
-    
+        
     func setUpUpdateDataHandler() {
         fishProgressDashboardViewModel.failureHandler = {
             self.errorView.isHidden = false

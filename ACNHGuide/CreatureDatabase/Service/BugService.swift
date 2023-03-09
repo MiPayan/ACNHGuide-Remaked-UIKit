@@ -10,20 +10,20 @@ import RealmSwift
 
 final class BugService {
     
-    private var creatureManager: RealmManager
+    private var realmManager: RealmManaging
     
-    init(creatureManager: RealmManager = CreatureManager()) {
-        self.creatureManager = creatureManager
+    init(realmManager: RealmManaging = CreatureManager()) {
+        self.realmManager = realmManager
     }
 }
 
 extension BugService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        Array(creatureManager.realm.objects(Bug.self))
+        Array(realmManager.realm.objects(Bug.self))
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let bug = creatureManager.realm.objects(Bug.self).filter("fileName == %@", fileName).first
+        let bug = realmManager.realm.objects(Bug.self).filter("fileName == %@", fileName).first
         return bug != nil
     }
 }
@@ -32,12 +32,12 @@ extension BugService: CreatureWriting {
     func saveCreature(fileName: String) {
         let bug = Bug()
         bug.fileName = fileName
-        creatureManager.saveObject(with: bug)
+        realmManager.saveObject(with: bug)
     }
     
     func deleteCreature(fileName: String) {
-        if let bug = creatureManager.realm.objects(Bug.self).filter("fileName == %@", fileName).first {
-            creatureManager.deleteObject(with: bug)
+        if let bug = realmManager.realm.objects(Bug.self).filter("fileName == %@", fileName).first {
+            realmManager.deleteObject(with: bug)
         }
     }
 }

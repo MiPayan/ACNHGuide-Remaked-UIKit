@@ -10,20 +10,20 @@ import RealmSwift
 
 final class FossilService {
     
-    private var creatureManager: RealmManager
+    private var realmManager: RealmManaging
     
-    init(creatureManager: RealmManager = CreatureManager()) {
-        self.creatureManager = creatureManager
+    init(realmManager: RealmManaging = CreatureManager()) {
+        self.realmManager = realmManager
     }
 }
 
 extension FossilService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        Array(creatureManager.realm.objects(Fossil.self))
+        Array(realmManager.realm.objects(Fossil.self))
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let fossil = creatureManager.realm.objects(Fossil.self).filter("fileName == %@", fileName).first
+        let fossil = realmManager.realm.objects(Fossil.self).filter("fileName == %@", fileName).first
         return fossil != nil
     }
 }
@@ -32,12 +32,12 @@ extension FossilService: CreatureWriting {
     func saveCreature(fileName: String) {
         let fossil = Fossil()
         fossil.fileName = fileName
-        creatureManager.saveObject(with: fossil)
+        realmManager.saveObject(with: fossil)
     }
     
     func deleteCreature(fileName: String) {
-        if let fossil = creatureManager.realm.objects(Fossil.self).filter("fileName == %@", fileName).first {
-            creatureManager.deleteObject(with: fossil)
+        if let fossil = realmManager.realm.objects(Fossil.self).filter("fileName == %@", fileName).first {
+            realmManager.deleteObject(with: fossil)
         }
     }
 }

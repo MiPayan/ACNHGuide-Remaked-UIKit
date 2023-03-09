@@ -11,4 +11,9 @@ import RealmSwift
 final class Fossil: Object {
     
     @Persisted var fileName = ""
+    
+    convenience init(fileName: String) {
+        self.init()
+        self.fileName = fileName
+    }
 }
