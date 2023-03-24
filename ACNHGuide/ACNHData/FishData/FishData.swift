@@ -16,7 +16,7 @@ struct FishData: Decodable {
     let price, priceCj: Int
     let catchPhrase, museumPhrase: String
     let imageURI, iconURI: String
-
+    
     private enum CodingKeys: String, CodingKey {
         case id
         case fileName = "file-name"
@@ -26,5 +26,11 @@ struct FishData: Decodable {
         case museumPhrase = "museum-phrase"
         case imageURI = "image_uri"
         case iconURI = "icon_uri"
+    }
+}
+
+extension FishData: Equatable {
+    static func == (lhs: FishData, rhs: FishData) -> Bool {
+        lhs.fileName == rhs.fileName
     }
 }

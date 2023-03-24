@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ReloadDataDelegate: AnyObject {
-    func reloadCollectionView()
+    func reloadData()
 }

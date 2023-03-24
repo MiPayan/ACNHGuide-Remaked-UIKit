@@ -81,7 +81,7 @@ private extension SeaCreatureViewController {
 }
 
 extension SeaCreatureViewController: ReloadDataDelegate {
-    func reloadCollectionView() {
+    func reloadData() {
         seaCreatureCollectionView.reloadData()
     }
 }

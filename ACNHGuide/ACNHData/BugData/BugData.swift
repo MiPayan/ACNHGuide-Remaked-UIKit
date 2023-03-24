@@ -27,3 +27,9 @@ struct BugData: Decodable {
         case iconURI = "icon_uri"
     }
 }
+
+extension BugData: Equatable {
+    static func == (lhs: BugData, rhs: BugData) -> Bool {
+        lhs.fileName == rhs.fileName
+    }
+}

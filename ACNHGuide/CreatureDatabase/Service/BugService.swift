@@ -19,11 +19,11 @@ final class BugService {
 
 extension BugService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        Array(realmManager.realm.objects(Bug.self))
+        realmManager.getSavedCreatures(with: Bug.self)
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let bug = realmManager.realm.objects(Bug.self).filter("fileName == %@", fileName).first
+        let bug = realmManager.getCreature(with: Bug.self, fileName: fileName)
         return bug != nil
     }
 }
@@ -36,7 +36,7 @@ extension BugService: CreatureWriting {
     }
     
     func deleteCreature(fileName: String) {
-        if let bug = realmManager.realm.objects(Bug.self).filter("fileName == %@", fileName).first {
+        if let bug = realmManager.getCreature(with: Bug.self, fileName: fileName) {
             realmManager.deleteObject(with: bug)
         }
     }

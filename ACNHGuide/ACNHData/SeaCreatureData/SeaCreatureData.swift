@@ -28,3 +28,10 @@ struct SeaCreatureData: Decodable {
         case museumPhrase = "museum-phrase"
     }
 }
+
+extension SeaCreatureData: Equatable {
+    static func == (lhs: SeaCreatureData, rhs: SeaCreatureData) -> Bool {
+        lhs.fileName == rhs.fileName
+    }
+}
+

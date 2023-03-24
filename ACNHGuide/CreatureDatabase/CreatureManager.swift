@@ -14,6 +14,14 @@ final class CreatureManager: RealmManaging {
         try! Realm()
     }
     
+    func getSavedCreatures<T: Object>(with creature: T.Type) -> [Object] {
+        Array(realm.objects(T.self))
+    }
+    
+    func getCreature<T: Object>(with creature: T.Type, fileName: String) -> Object? {
+        realm.objects(T.self).filter("fileName == %@", fileName).first
+    }
+    
     func saveObject(with object: Object) {
         do {
             try realm.write {

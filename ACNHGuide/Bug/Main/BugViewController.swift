@@ -80,7 +80,7 @@ private extension BugViewController {
 }
 
 extension BugViewController: ReloadDataDelegate {
-    func reloadCollectionView() {
+    func reloadData() {
         bugCollectionView.reloadData()
     }
 }

@@ -19,11 +19,11 @@ final class SeaCreatureService {
 
 extension SeaCreatureService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        Array(realmManager.realm.objects(SeaCreature.self))
+        realmManager.getSavedCreatures(with: SeaCreature.self)
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let seaCreature = realmManager.realm.objects(SeaCreature.self).filter("fileName == %@", fileName).first
+        let seaCreature = realmManager.getCreature(with: SeaCreature.self, fileName: fileName)
         return seaCreature != nil
     }
 }
@@ -36,7 +36,7 @@ extension SeaCreatureService: CreatureWriting {
     }
     
     func deleteCreature(fileName: String) {
-        if let seaCreature = realmManager.realm.objects(SeaCreature.self).filter("fileName == %@", fileName).first {
+        if let seaCreature = realmManager.getCreature(with: SeaCreature.self, fileName: fileName) {
             realmManager.deleteObject(with: seaCreature)
         }
     }

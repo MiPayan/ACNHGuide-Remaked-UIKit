@@ -81,7 +81,7 @@ private extension FishViewController {
 }
 
 extension FishViewController: ReloadDataDelegate {
-    func reloadCollectionView() {
+    func reloadData() {
         fishCollectionView.reloadData()
     }
 }

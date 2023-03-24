@@ -29,7 +29,7 @@ final class SeaCreatureDetailsViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        reloadDataDelegate?.reloadCollectionView()
+        reloadDataDelegate?.reloadData()
     }
 }
 

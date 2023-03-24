@@ -28,7 +28,7 @@ final class BugDetailsViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        reloadDataDelegate?.reloadCollectionView()
+        reloadDataDelegate?.reloadData()
     }
     
     private func addConstraints() {

@@ -23,3 +23,9 @@ struct FossilData: Decodable {
         case partOf = "part-of"
     }
 }
+
+extension FossilData: Equatable {
+    static func == (lhs: FossilData, rhs: FossilData) -> Bool {
+        lhs.fileName == rhs.fileName
+    }
+}

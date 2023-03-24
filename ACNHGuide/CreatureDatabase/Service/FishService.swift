@@ -19,11 +19,11 @@ final class FishService {
 
 extension FishService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        Array(realmManager.realm.objects(Fish.self))
+        realmManager.getSavedCreatures(with: Fish.self)
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let fish = realmManager.realm.objects(Fish.self).filter("fileName == %@", fileName).first
+        let fish = realmManager.getCreature(with: Fish.self, fileName: fileName)
         return fish != nil
     }
 }
@@ -36,7 +36,7 @@ extension FishService: CreatureWriting {
     }
     
     func deleteCreature(fileName: String) {
-        if let fish = realmManager.realm.objects(Fish.self).filter("fileName == %@", fileName).first {
+        if let fish = realmManager.getCreature(with: Fish.self, fileName: fileName) {
             realmManager.deleteObject(with: fish)
         }
     }

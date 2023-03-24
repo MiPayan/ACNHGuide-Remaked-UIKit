@@ -24,7 +24,7 @@
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
         "branch" : "master",
-        "revision" : "1f3befad87589db3ef19e497ea06727dcb0714b8"
+        "revision" : "3d077ea661a586e14c4ab60cbcbfb725292c4699"
       }
     },
     {
@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "b77443ca7fa25407869ca537bf3ae912b1427bff",
-        "version" : "12.13.0"
+        "revision" : "dd91f5f967c4ae89c37e24ab2a0315c31106648f",
+        "version" : "13.6.0"
       }
     },
     {
@@ -114,7 +114,7 @@
       "location" : "https://github.com/realm/realm-swift",
       "state" : {
         "branch" : "master",
-        "revision" : "8e10ded4143191d6aaa42a146d44efcbf0260c4e"
+        "revision" : "7f1707b5d681f7cad6fe2ffb7a4ba120801e57d0"
       }
     },
     {
@@ -124,15 +124,6 @@
       "state" : {
         "revision" : "0af9125c4eae12a4973fb66574c53a54962a9e1e",
         "version" : "1.21.0"
-      }
-    },
-    {
-      "identity" : "uiview-shimmer",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/omerfarukozturk/UIView-Shimmer",
-      "state" : {
-        "revision" : "6b25069ae46e10295dd9f06e821def70ae197698",
-        "version" : "1.0.4"
       }
     }
   ],

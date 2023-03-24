@@ -10,6 +10,8 @@ import RealmSwift
 
 protocol RealmManaging {
     var realm: Realm { get }
+    func getSavedCreatures<T: Object>(with creature: T.Type) -> [Object]
+    func getCreature<T: Object>(with creature: T.Type, fileName: String) -> Object?
     func saveObject(with object: Object)
     func deleteObject(with object: Object)
 }

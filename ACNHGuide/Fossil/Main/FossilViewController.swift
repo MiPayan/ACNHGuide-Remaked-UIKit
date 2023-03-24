@@ -79,7 +79,7 @@ private extension FossilViewController {
 }
 
 extension FossilViewController: ReloadDataDelegate {
-    func reloadCollectionView() {
+    func reloadData() {
         fossilCollectionView.reloadData()
     }
 }

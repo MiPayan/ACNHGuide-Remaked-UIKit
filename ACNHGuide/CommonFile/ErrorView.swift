@@ -78,7 +78,7 @@ private extension ErrorView {
     }
     
     @objc func didTapRefreshButton() {
-        reloadDataDelegate?.reloadCollectionView()
+        reloadDataDelegate?.reloadData()
     }
     
     func addSubviews() {
