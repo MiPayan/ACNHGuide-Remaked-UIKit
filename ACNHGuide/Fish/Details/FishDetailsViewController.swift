@@ -20,7 +20,7 @@ final class FishDetailsViewController: UIViewController {
         tableView.dataSource = self
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addConstraints()
@@ -41,6 +41,8 @@ final class FishDetailsViewController: UIViewController {
         ])
     }
 }
+
+// MARK: - TableViewDataSource
 
 extension FishDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

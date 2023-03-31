@@ -18,7 +18,7 @@ final class BugViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(
-            MainViewCollectionReusableView.self,
+            CreatureCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "AdaptiveHeader"
         )
@@ -79,13 +79,19 @@ private extension BugViewController {
     }
 }
 
+// MARK: - ReloadDataDelegate
+
 extension BugViewController: ReloadDataDelegate {
     func reloadData() {
         bugCollectionView.reloadData()
     }
 }
 
+// MARK: - CollectionViewDataSource
+
 extension BugViewController: UICollectionViewDataSource {
+    
+    // Header.
     func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
@@ -95,7 +101,7 @@ extension BugViewController: UICollectionViewDataSource {
             ofKind: kind,
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
-        ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
+        ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
         headerView.configureHeaderLabel(with: bugViewModel.setHeaderSection(with: indexPath.section))
         return headerView
     }
@@ -108,6 +114,7 @@ extension BugViewController: UICollectionViewDataSource {
         return CGSize(width: view.frame.width, height: 40.0)
     }
     
+    // Configure cells.
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return bugViewModel.numberOfSections
     }
@@ -126,9 +133,7 @@ extension BugViewController: UICollectionViewDataSource {
         bugCell.configureCell(with: bugCollecitonViewCellViewModel)
         return bugCell
     }
-}
-
-extension BugViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = BugDetailsViewController()
         let selectedBug = bugViewModel.makeBug(with: indexPath.section, index: indexPath.row)
@@ -139,7 +144,11 @@ extension BugViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - CollectionViewLayout
+
 extension BugViewController: UICollectionViewDelegateFlowLayout {
+    
+    // Defined margins around each section.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -148,6 +157,7 @@ extension BugViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
     }
     
+    // Defined the width and height of each element in pixels.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

@@ -42,6 +42,8 @@ final class BugDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - TableViewDataSource
+
 extension BugDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let bugDetailsViewModel else { return 0 }

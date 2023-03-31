@@ -55,54 +55,6 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
         XCTAssertEqual(bugDetailsTableViewCellViewModel.catchPhrase, "\" I caught a common butterfly! They often flutter by! \"")
     }
     
-    func testPrice() {
-        guard let price = bugs.first?.price else {
-            fatalError("Tests failed: testPrice() from BugDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(price, 160)
-        XCTAssertEqual(bugDetailsTableViewCellViewModel.price, "160")
-    }
-    
-    func testAvailabilityLocation() {
-        guard let location = bugs.first?.availability.location else {
-            fatalError("Tests failed: testAvailabilityLocation() from BugDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(location, "Flying")
-        XCTAssertEqual(bugDetailsTableViewCellViewModel.availabilityLocation, location)
-    }
-    
-    func testAvailabilityTime() {
-        guard let availabilityTime = bugs.first?.availability.time else {
-            fatalError("Tests failed: testAvailabilityTime() from BugDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(availabilityTime, "4am - 7pm")
-        XCTAssertEqual(bugDetailsTableViewCellViewModel.availabilityTime, availabilityTime)
-    }
-    
-    func testRarity() {
-        guard let rarity = bugs.first?.availability.rarity else {
-            fatalError("Tests failed: testRarity() from BugDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(rarity, "Common")
-        XCTAssertEqual(bugDetailsTableViewCellViewModel.rarity, rarity)
-    }
-    
-    func testNorthernHemisphereAvailability() {
-        guard let monthNorthern = bugs.first?.availability.monthNorthern else {
-            fatalError("Tests failed: testNorthernHemisphereAvailability() from BugDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(monthNorthern, "9-6")
-        XCTAssertEqual(bugDetailsTableViewCellViewModel.northernHemisphereAvailability, monthNorthern)
-    }
-    
-    func testSouthernHemisphereAvailability() {
-        guard let monthSouthern = bugs.first?.availability.monthSouthern else {
-            fatalError("Tests failed: testSouthernHemisphereAvailability() from BugDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(monthSouthern, "3-12")
-        XCTAssertEqual(bugDetailsTableViewCellViewModel.southernHemisphereAvailability, monthSouthern)
-    }
-    
     func testMuseumPhrase() {
         guard let museumPhrase = bugs.first?.museumPhrase else {
             fatalError("Tests failed: testMuseumPhrase() from BugDetailsTableViewCellViewModelTests")

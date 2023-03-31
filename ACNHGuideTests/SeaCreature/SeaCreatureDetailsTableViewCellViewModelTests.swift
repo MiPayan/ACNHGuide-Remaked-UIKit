@@ -55,54 +55,6 @@ final class SeaCreatureDetailsTableViewCellViewModelTests: XCTestCase {
         XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.catchPhrase, "\" I got some seaweed! I couldn't kelp myself. \"")
     }
     
-    func testPrice() {
-        guard let price = seaCreatures.first?.price else {
-            fatalError("Tests failed: testPrice() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(price, 600)
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.price, "600")
-    }
-    
-    func testShadow() {
-        guard let shadow = seaCreatures.first?.shadow else {
-            fatalError("Tests failed: testShadow() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(shadow, "Large")
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.shadow, shadow)
-    }
-    
-    func testAvailabilityTime() {
-        guard let time = seaCreatures.first?.availability.time else {
-            fatalError("Tests failed: testAvailabilityTime() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(time, "")
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.availabilityTime, "Always")
-    }
-    
-    func testSpeed() {
-        guard let speed = seaCreatures.first?.speed else {
-            fatalError("Tests failed: testSpeed() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(speed, "Stationary")
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.speed, speed)
-    }
-    
-    func testNorthernHemisphereAvailability() {
-        guard let monthNorthern = seaCreatures.first?.availability.monthNorthern else {
-            fatalError("Tests failed: testNorthernHemisphereAvailability() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(monthNorthern, "10-7")
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.northernHemisphereAvailability, monthNorthern)
-    }
-    
-    func testSouthernHemisphereAvailability() {
-        guard let monthSouthern = seaCreatures.first?.availability.monthSouthern else {
-            fatalError("Tests failed: testSouthernHemisphereAvailability() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(monthSouthern, "4-1")
-        XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.southernHemisphereAvailability, monthSouthern)
-    }
-    
     func testMuseumPhrase() {
         guard let museumPhrase = seaCreatures.first?.museumPhrase else {
             fatalError("Tests failed: testMuseumPhrase() from SeaCreatureDetailsTableViewCellViewModelTests")

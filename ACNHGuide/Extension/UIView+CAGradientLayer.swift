@@ -15,4 +15,10 @@ extension UIView {
         collectionView.backgroundView = UIView()
         collectionView.backgroundView?.layer.addSublayer(gradientLayer)
     }
+    
+    func setUpContentView(color: String) {
+        self.backgroundColor = UIColor(named: color)
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
+    }
 }

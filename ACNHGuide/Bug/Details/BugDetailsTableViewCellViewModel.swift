@@ -37,6 +37,38 @@ final class BugDetailsTableViewCellViewModel {
         "\" \(bugData.catchPhrase) \""
     }
     
+    var museumPhrase: String {
+        bugData.museumPhrase
+    }
+    
+    func makeImageName(at index: Int) -> String {
+        ["Bells", "Grass", "Timer", "Rarity", "North", "South"][index]
+    }
+    
+    func makeTitle(at index: Int) -> String {
+        [
+            "price".localized,
+            "location".localized,
+            "time".localized,
+            "rarity".localized,
+            "northern_hemisphere".localized,
+            "southern_hemisphere".localized
+        ][index]
+    }
+    
+    func makeValue(at index: Int) -> String {
+        [
+            price,
+            availabilityLocation,
+            availabilityTime,
+            rarity,
+            northernHemisphereAvailability,
+            southernHemisphereAvailability
+        ][index]
+    }
+}
+
+private extension BugDetailsTableViewCellViewModel {
     var price: String {
         String(bugData.price)
     }
@@ -59,29 +91,6 @@ final class BugDetailsTableViewCellViewModel {
     
     var southernHemisphereAvailability: String {
         bugData.availability.monthSouthern.isEmpty ? "availibility_always".localized : bugData.availability.monthSouthern
-    }
-    
-    var museumPhrase: String {
-        bugData.museumPhrase
-    }
-    
-    func makeImageName(at index: Int) -> String {
-        ["Bells", "Grass", "Timer", "Rarity", "North", "South"][index]
-    }
-    
-    func makeTitle(at index: Int) -> String {
-        [
-            "price".localized,
-            "location".localized,
-            "time".localized,
-            "rarity".localized,
-            "northern_hemisphere".localized,
-            "southern_hemisphere".localized
-        ][index]
-    }
-    
-    func makeValue(at index: Int) -> String {
-        [price, availabilityLocation, availabilityTime, rarity, northernHemisphereAvailability, southernHemisphereAvailability][index]
     }
 }
 

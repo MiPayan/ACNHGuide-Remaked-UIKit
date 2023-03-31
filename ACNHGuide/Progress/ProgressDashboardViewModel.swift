@@ -23,6 +23,17 @@ final class ProgressDashboardViewModel {
         self.service = service
     }
     
+    /*
+     DispatchGroup makes multiple asynchronous network calls in parallel.
+     Waits for all calls to be completed before proceeding to the next step.
+     
+     For each network call, the code also uses "enter()" to add the task to the group.
+     
+     When the data is retrieved, the "leave()" method is called to indicate that the task is complete.
+     
+     Finally, all tasks have been added to the group, the "notify()"method waits
+     for all tasks added to the group to be completed and then executes the closure.
+     */
     func getDatas() {
         let group = DispatchGroup()
         group.enter()

@@ -10,67 +10,67 @@ import XCTest
 
 final class FossilServiceTests: XCTestCase {
 
-    private var realmManagingMock: RealmManagingMock!
+    private var creatureManagingMock: CreatureManagingMock!
     private var fossilService: FossilService!
     
     override func setUpWithError() throws {
-        realmManagingMock = RealmManagingMock()
-        fossilService = FossilService(realmManager: realmManagingMock)
+        creatureManagingMock = CreatureManagingMock()
+        fossilService = FossilService(creatureManager: creatureManagingMock)
     }
     
     override func tearDownWithError() throws {
-        realmManagingMock = nil
+        creatureManagingMock = nil
         fossilService = nil
     }
     
     func testCreaturesSaved() {
-        realmManagingMock.stubbedGetSavedCreatures = []
+        creatureManagingMock.stubbedGetSavedCreatures = []
         XCTAssertEqual(fossilService.creaturesSaved.count, 0)
-        XCTAssertEqual(realmManagingMock.invokedGetSavedCreaturesCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedGetSavedCreaturesCount, 1)
     }
     
     func testIsNotCreatureAlreadySaved() {
-        realmManagingMock.stubbedGetCreature = nil
+        creatureManagingMock.stubbedGetCreature = nil
         let fileName = "fileName"
         let isAlreadySaved = fossilService.isCreatureAlreadySaved(fileName: fileName)
         XCTAssertEqual(isAlreadySaved, false)
-        XCTAssertEqual(realmManagingMock.invokedGetCreaturetCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedFileNameGetCreatureParameter, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, fileName)
     }
     
-    func testCreatureAlreadySaved() {
-        realmManagingMock.stubbedGetCreature = Fossil()
+    func testIsCreatureAlreadySaved() {
+        creatureManagingMock.stubbedGetCreature = Fossil()
         let fileName = "fileName"
         let isAlreadySaved = fossilService.isCreatureAlreadySaved(fileName: fileName)
         XCTAssertEqual(isAlreadySaved, true)
-        XCTAssertEqual(realmManagingMock.invokedGetCreaturetCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedFileNameGetCreatureParameter, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, fileName)
     }
     
     func testSaveCreature() {
         let fileName = "fileName"
         fossilService.saveCreature(fileName: fileName)
-        XCTAssertEqual(realmManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedSavedObjectParameter is Fossil, true)
-        XCTAssertEqual((realmManagingMock.invokedSavedObjectParameter as! Fossil).fileName, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is Fossil, true)
+        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! Fossil).fileName, fileName)
     }
     
     func testDeleteCreature() {
         let fossil = Fossil()
         let fileName = "fileName"
-        realmManagingMock.stubbedGetCreature = fossil
+        creatureManagingMock.stubbedGetCreature = fossil
         fossil.fileName = fileName
         
         fossilService.saveCreature(fileName: fileName)
-        XCTAssertEqual(realmManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedSavedObjectParameter is Fossil, true)
-        XCTAssertEqual((realmManagingMock.invokedSavedObjectParameter as! Fossil).fileName, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is Fossil, true)
+        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! Fossil).fileName, fileName)
         
         fossilService.deleteCreature(fileName: fileName)
-        XCTAssertEqual(realmManagingMock.invokedDeleteObjectCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedDeleteObjectParameter is Fossil, true)
-        XCTAssertEqual((realmManagingMock.invokedDeleteObjectParameter as! Fossil).fileName, fileName)
-        XCTAssertEqual(realmManagingMock.invokedGetCreaturetCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedFileNameGetCreatureParameter, "fileName")
+        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectParameter is Fossil, true)
+        XCTAssertEqual((creatureManagingMock.invokedDeleteObjectParameter as! Fossil).fileName, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
     }
 }

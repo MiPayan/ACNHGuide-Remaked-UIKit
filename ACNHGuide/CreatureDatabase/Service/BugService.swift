@@ -10,20 +10,20 @@ import RealmSwift
 
 final class BugService {
     
-    private var realmManager: RealmManaging
+    private var creatureManager: CreatureManaging
     
-    init(realmManager: RealmManaging = CreatureManager()) {
-        self.realmManager = realmManager
+    init(creatureManager: CreatureManaging = CreatureManager()) {
+        self.creatureManager = creatureManager
     }
 }
 
 extension BugService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        realmManager.getSavedCreatures(with: Bug.self)
+        creatureManager.getSavedCreatures(with: Bug.self)
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let bug = realmManager.getCreature(with: Bug.self, fileName: fileName)
+        let bug = creatureManager.getCreature(with: Bug.self, fileName: fileName)
         return bug != nil
     }
 }
@@ -32,12 +32,12 @@ extension BugService: CreatureWriting {
     func saveCreature(fileName: String) {
         let bug = Bug()
         bug.fileName = fileName
-        realmManager.saveObject(with: bug)
+        creatureManager.saveCreature(with: bug)
     }
     
     func deleteCreature(fileName: String) {
-        if let bug = realmManager.getCreature(with: Bug.self, fileName: fileName) {
-            realmManager.deleteObject(with: bug)
+        if let bug = creatureManager.getCreature(with: Bug.self, fileName: fileName) {
+            creatureManager.deleteCreature(with: bug)
         }
     }
 }

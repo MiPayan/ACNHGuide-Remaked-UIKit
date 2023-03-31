@@ -10,20 +10,20 @@ import RealmSwift
 
 final class SeaCreatureService {
     
-    private var realmManager: RealmManaging
+    private var creatureManager: CreatureManaging
     
-    init(realmManager: RealmManaging = CreatureManager()) {
-        self.realmManager = realmManager
+    init(creatureManager: CreatureManaging = CreatureManager()) {
+        self.creatureManager = creatureManager
     }
 }
 
 extension SeaCreatureService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        realmManager.getSavedCreatures(with: SeaCreature.self)
+        creatureManager.getSavedCreatures(with: SeaCreature.self)
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let seaCreature = realmManager.getCreature(with: SeaCreature.self, fileName: fileName)
+        let seaCreature = creatureManager.getCreature(with: SeaCreature.self, fileName: fileName)
         return seaCreature != nil
     }
 }
@@ -32,12 +32,12 @@ extension SeaCreatureService: CreatureWriting {
     func saveCreature(fileName: String) {
         let seaCreature = SeaCreature()
         seaCreature.fileName = fileName
-        realmManager.saveObject(with: seaCreature)
+        creatureManager.saveCreature(with: seaCreature)
     }
     
     func deleteCreature(fileName: String) {
-        if let seaCreature = realmManager.getCreature(with: SeaCreature.self, fileName: fileName) {
-            realmManager.deleteObject(with: seaCreature)
+        if let seaCreature = creatureManager.getCreature(with: SeaCreature.self, fileName: fileName) {
+            creatureManager.deleteCreature(with: seaCreature)
         }
     }
 }

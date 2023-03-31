@@ -8,12 +8,12 @@
 import Foundation
 import RealmSwift
 
-protocol RealmManaging {
+protocol CreatureManaging {
     var realm: Realm { get }
     func getSavedCreatures<T: Object>(with creature: T.Type) -> [Object]
     func getCreature<T: Object>(with creature: T.Type, fileName: String) -> Object?
-    func saveObject(with object: Object)
-    func deleteObject(with object: Object)
+    func saveCreature(with object: Object)
+    func deleteCreature(with object: Object)
 }
 
 protocol CreatureWriting {

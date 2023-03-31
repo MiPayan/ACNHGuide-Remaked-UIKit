@@ -10,67 +10,67 @@ import XCTest
 
 final class SeaCreatureServiceTests: XCTestCase {
 
-    private var realmManagingMock: RealmManagingMock!
+    private var creatureManagingMock: CreatureManagingMock!
     private var seaCreatureService: SeaCreatureService!
 
     override func setUpWithError() throws {
-        realmManagingMock = RealmManagingMock()
-        seaCreatureService = SeaCreatureService(realmManager: realmManagingMock)
+        creatureManagingMock = CreatureManagingMock()
+        seaCreatureService = SeaCreatureService(creatureManager: creatureManagingMock)
     }
 
     override func tearDownWithError() throws {
-        realmManagingMock = nil
+        creatureManagingMock = nil
         seaCreatureService = nil
     }
 
     func testCreaturesSaved() {
-        realmManagingMock.stubbedGetSavedCreatures = [SeaCreature(), SeaCreature(), SeaCreature()]
+        creatureManagingMock.stubbedGetSavedCreatures = [SeaCreature(), SeaCreature(), SeaCreature()]
         XCTAssertEqual(seaCreatureService.creaturesSaved.count, 3)
-        XCTAssertEqual(realmManagingMock.invokedGetSavedCreaturesCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedGetSavedCreaturesCount, 1)
     }
     
     func testIsNotCreatureAlreadySaved() {
-        realmManagingMock.stubbedGetCreature = nil
+        creatureManagingMock.stubbedGetCreature = nil
         let fileName = "fileName"
         let isAlreadySaved = seaCreatureService.isCreatureAlreadySaved(fileName: fileName)
         XCTAssertEqual(isAlreadySaved, false)
-        XCTAssertEqual(realmManagingMock.invokedGetCreaturetCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedFileNameGetCreatureParameter, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, fileName)
     }
     
-    func testCreatureAlreadySaved() {
-        realmManagingMock.stubbedGetCreature = SeaCreature()
+    func testIsCreatureAlreadySaved() {
+        creatureManagingMock.stubbedGetCreature = SeaCreature()
         let fileName = "fileName"
         let isAlreadySaved = seaCreatureService.isCreatureAlreadySaved(fileName: fileName)
         XCTAssertEqual(isAlreadySaved, true)
-        XCTAssertEqual(realmManagingMock.invokedGetCreaturetCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedFileNameGetCreatureParameter, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, fileName)
     }
 
     func testSaveCreature() {
         let fileName = "fileName"
         seaCreatureService.saveCreature(fileName: fileName)
-        XCTAssertEqual(realmManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedSavedObjectParameter is SeaCreature, true)
-        XCTAssertEqual((realmManagingMock.invokedSavedObjectParameter as! SeaCreature).fileName, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is SeaCreature, true)
+        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! SeaCreature).fileName, fileName)
     }
 
     func testDeleteCreature() {
         let seaCreature = SeaCreature()
         let fileName = "fileName"
-        realmManagingMock.stubbedGetCreature = seaCreature
+        creatureManagingMock.stubbedGetCreature = seaCreature
         seaCreature.fileName = fileName
 
         seaCreatureService.saveCreature(fileName: fileName)
-        XCTAssertEqual(realmManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedSavedObjectParameter is SeaCreature, true)
-        XCTAssertEqual((realmManagingMock.invokedSavedObjectParameter as! SeaCreature).fileName, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is SeaCreature, true)
+        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! SeaCreature).fileName, fileName)
 
         seaCreatureService.deleteCreature(fileName: fileName)
-        XCTAssertEqual(realmManagingMock.invokedDeleteObjectCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedDeleteObjectParameter is SeaCreature, true)
-        XCTAssertEqual((realmManagingMock.invokedDeleteObjectParameter as! SeaCreature).fileName, fileName)
-        XCTAssertEqual(realmManagingMock.invokedGetCreaturetCount, 1)
-        XCTAssertEqual(realmManagingMock.invokedFileNameGetCreatureParameter, "fileName")
+        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectParameter is SeaCreature, true)
+        XCTAssertEqual((creatureManagingMock.invokedDeleteObjectParameter as! SeaCreature).fileName, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
+        XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
     }
 }

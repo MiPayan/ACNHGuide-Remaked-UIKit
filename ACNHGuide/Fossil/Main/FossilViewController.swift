@@ -18,7 +18,7 @@ final class FossilViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(
-            MainViewCollectionReusableView.self,
+            CreatureCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "AdaptiveHeader"
         )
@@ -78,12 +78,19 @@ private extension FossilViewController {
     }
 }
 
+// MARK: - ReloadDataDelegate
+
 extension FossilViewController: ReloadDataDelegate {
     func reloadData() {
         fossilCollectionView.reloadData()
     }
 }
+
+// MARK: - CollectionViewDataSource
+
 extension FossilViewController: UICollectionViewDataSource {
+    
+    // Header.
     func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
@@ -93,7 +100,7 @@ extension FossilViewController: UICollectionViewDataSource {
             ofKind: kind,
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
-        ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
+        ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
         headerView.configureHeaderLabel(with: fossilViewModel.headerText)
         return headerView
     }
@@ -105,7 +112,8 @@ extension FossilViewController: UICollectionViewDataSource {
     ) -> CGSize {
         return CGSize(width: view.frame.width, height: 40.0)
     }
-
+    
+    // Configure cells.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fossilViewModel.fossilsData.count
     }
@@ -120,9 +128,7 @@ extension FossilViewController: UICollectionViewDataSource {
         fossils.configureCell(with: fossilCollectionViewCellViewModel)
         return fossils
     }
-}
-
-extension FossilViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FossilDetailsViewController()
         let selectedFossil = fossilViewModel.fossilsData[indexPath.row]
@@ -133,7 +139,11 @@ extension FossilViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - CollectionViewLayout
+
 extension FossilViewController: UICollectionViewDelegateFlowLayout {
+    
+    // Defined margins around each section.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -142,6 +152,7 @@ extension FossilViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
     }
     
+    // Defined the width and height of each element in pixels.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

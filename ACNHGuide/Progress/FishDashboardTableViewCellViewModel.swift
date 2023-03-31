@@ -23,7 +23,7 @@ final class FishDashboardTableViewCellViewModel {
         self.creaturePeeker = creaturePeeker
         self.creatureWriter = creatureWriter
     }
-        
+    
     private var fishesSavedCount: Int {
         creaturePeeker.creaturesSaved.count
     }
@@ -38,6 +38,6 @@ final class FishDashboardTableViewCellViewModel {
     }
     
     var progressOfBar: Float {
-         Float(fishesSavedCount) / Float(fishesData.count)
+        Float(fishesSavedCount) / Float(fishesData.count)
     }
 }

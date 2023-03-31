@@ -10,20 +10,20 @@ import RealmSwift
 
 final class FishService {
     
-    private var realmManager: RealmManaging
+    private var creatureManager: CreatureManaging
     
-    init(realmManager: RealmManaging = CreatureManager()) {
-        self.realmManager = realmManager
+    init(creatureManager: CreatureManaging = CreatureManager()) {
+        self.creatureManager = creatureManager
     }
 }
 
 extension FishService: CreaturePeeking {
     var creaturesSaved: [Object] {
-        realmManager.getSavedCreatures(with: Fish.self)
+        creatureManager.getSavedCreatures(with: Fish.self)
     }
     
     func isCreatureAlreadySaved(fileName: String) -> Bool {
-        let fish = realmManager.getCreature(with: Fish.self, fileName: fileName)
+        let fish = creatureManager.getCreature(with: Fish.self, fileName: fileName)
         return fish != nil
     }
 }
@@ -32,12 +32,12 @@ extension FishService: CreatureWriting {
     func saveCreature(fileName: String) {
         let fish = Fish()
         fish.fileName = fileName
-        realmManager.saveObject(with: fish)
+        creatureManager.saveCreature(with: fish)
     }
     
     func deleteCreature(fileName: String) {
-        if let fish = realmManager.getCreature(with: Fish.self, fileName: fileName) {
-            realmManager.deleteObject(with: fish)
+        if let fish = creatureManager.getCreature(with: Fish.self, fileName: fileName) {
+            creatureManager.deleteCreature(with: fish)
         }
     }
 }

@@ -38,6 +38,6 @@ final class BugDashboardTableViewCellViewModel {
     }
     
     var progressOfBar: Float {
-         Float(bugsSavedCount) / Float(bugsData.count)
+        Float(bugsSavedCount) / Float(bugsData.count)
     }
 }

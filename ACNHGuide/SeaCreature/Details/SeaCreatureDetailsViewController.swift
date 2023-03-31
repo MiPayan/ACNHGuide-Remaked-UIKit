@@ -44,6 +44,8 @@ private extension SeaCreatureDetailsViewController {
     }
 }
 
+// MARK: - TableViewDataSource
+
 extension SeaCreatureDetailsViewController: UITableViewDataSource {    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let seaCreaturesDetailsViewModel else { return 0 }

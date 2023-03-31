@@ -44,7 +44,7 @@ final class BugDetailsTableViewCell: UITableViewCell {
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         return view
     }()
-
+    
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -191,7 +191,9 @@ private extension BugDetailsTableViewCell {
     }
 }
 
-extension BugDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+// MARK: - CollectionViewDataSource
+
+extension BugDetailsTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let viewModel else { return 0 }
         return viewModel.numberOfItemsInSection
@@ -200,9 +202,9 @@ extension BugDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let viewModel,
               let detailsCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "AdaptiveDetailsCell",
-            for: indexPath
-        ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
+                withReuseIdentifier: "AdaptiveDetailsCell",
+                for: indexPath
+              ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
         detailsCell.configureCell(
             imageNamed: viewModel.makeImageName(at: indexPath.row),
             title: viewModel.makeTitle(at: indexPath.row),
@@ -214,7 +216,11 @@ extension BugDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewD
     }
 }
 
+// MARK: - CollectionViewLayout
+
 extension BugDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
+    
+    // Defined margins around each section.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -223,6 +229,7 @@ extension BugDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8.0, left: 32.0, bottom: 8.0, right: 32.0)
     }
     
+    // Defined the width and height of each element in pixels.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

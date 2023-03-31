@@ -17,12 +17,12 @@ final class FishViewController: UIViewController {
         layout.minimumLineSpacing = 8
         layout.minimumInteritemSpacing = 8
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(
-            MainViewCollectionReusableView.self,
+            CreatureCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "AdaptiveHeader"
         )
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(FishCollectionViewCell.self, forCellWithReuseIdentifier: "FishCell")
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.dataSource = self
@@ -39,7 +39,7 @@ final class FishViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
-        setCollectionViewBackground()
+        setUpCollectionViewBackground()
         setUpUpdateDataHandler()
         fishViewModel.getFishesData()
     }
@@ -57,7 +57,7 @@ private extension FishViewController {
         }
     }
     
-    func setCollectionViewBackground() {
+    func setUpCollectionViewBackground() {
         guard let blueOcean = UIColor(named: "ColorBlueOcean")?.cgColor,
               let blueRoyal = UIColor(named: "ColorBlueRoyal")?.cgColor else { return }
         let colors = [blueOcean, blueRoyal]
@@ -80,13 +80,19 @@ private extension FishViewController {
     }
 }
 
+// MARK: - ReloadDataDelegate
+
 extension FishViewController: ReloadDataDelegate {
     func reloadData() {
         fishCollectionView.reloadData()
     }
 }
 
+// MARK: - CollectionViewDataSource
+
 extension FishViewController: UICollectionViewDataSource {
+    
+    // Header.
     func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
@@ -96,8 +102,8 @@ extension FishViewController: UICollectionViewDataSource {
             ofKind: kind,
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
-        ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
-        headerView.configureHeaderLabel(with: fishViewModel.setHeaderSection(with: indexPath.section))
+        ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
+        headerView.configureHeaderLabel(with: fishViewModel.configureHeaderSection(with: indexPath.section))
         return headerView
     }
     
@@ -109,6 +115,7 @@ extension FishViewController: UICollectionViewDataSource {
         return CGSize(width: view.frame.width, height: 40.0)
     }
     
+    // Configure cells.
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return fishViewModel.numberOfSections
     }
@@ -127,9 +134,7 @@ extension FishViewController: UICollectionViewDataSource {
         fishCell.configureCell(with: fishCollectionViewCellViewModel)
         return fishCell
     }
-}
-
-extension FishViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FishDetailsViewController()
         let selectedFish = fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
@@ -140,7 +145,11 @@ extension FishViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - CollectionViewLayout
+
 extension FishViewController: UICollectionViewDelegateFlowLayout {
+    
+    // Defined margins around each section.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -149,6 +158,7 @@ extension FishViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
     }
     
+    // Defined the width and height of each element in pixels.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

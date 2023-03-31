@@ -56,6 +56,8 @@ final class BugViewModel {
 }
 
 private extension BugViewModel {
+    
+    // Sorts the bugs from the northern hemisphere using the current month and time.
     var northernHemisphereBugs: [BugData] {
         let (hour, month) = currentCalendar.getCurrentDate()
         let filtered = bugsData.filter {
@@ -64,6 +66,7 @@ private extension BugViewModel {
         return filtered
     }
     
+    // Sorts the bugs from the southern hemisphere using the current month and time.
     var southernHemisphereBugs: [BugData] {
         let (hour, month) = currentCalendar.getCurrentDate()
         let filtered = bugsData.filter {

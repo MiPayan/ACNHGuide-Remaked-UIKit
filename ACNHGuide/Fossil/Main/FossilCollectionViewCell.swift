@@ -39,7 +39,7 @@ final class FossilCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
-        setContentView()
+        self.setUpContentView(color: "ColorBrownHeart")
     }
     
     required init?(coder: NSCoder) {
@@ -59,12 +59,6 @@ final class FossilCollectionViewCell: UICollectionViewCell {
 }
 
 private extension FossilCollectionViewCell {
-    func setContentView() {
-        self.backgroundColor = UIColor(named: "ColorBrownHeart")
-        self.layer.cornerRadius = 10
-        self.clipsToBounds = true
-    }
-    
     @objc func didTapSaveButton() {
         guard let viewModel else { return }
         let isSaved = viewModel.toggleSavedFossil()

@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-final class CreatureManager: RealmManaging {
+final class CreatureManager: CreatureManaging {
     
     var realm: Realm {
         try! Realm()
@@ -22,7 +22,7 @@ final class CreatureManager: RealmManaging {
         realm.objects(T.self).filter("fileName == %@", fileName).first
     }
     
-    func saveObject(with object: Object) {
+    func saveCreature(with object: Object) {
         do {
             try realm.write {
                 realm.add(object)
@@ -32,7 +32,7 @@ final class CreatureManager: RealmManaging {
         }
     }
     
-    func deleteObject(with object: Object) {
+    func deleteCreature(with object: Object) {
         do {
             try realm.write {
                 realm.delete(object)

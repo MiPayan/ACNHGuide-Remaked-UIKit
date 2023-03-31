@@ -33,13 +33,11 @@ final class SeaCreatureDashboardTableViewCellViewModel {
         return URL(string: iconURI)
     }
     
-
-    
     var totalText: String {
         "\(seaCreaturesSavedCount)/\(seaCreaturesData.count)"
     }
     
     var progressOfBar: Float {
-         Float(seaCreaturesSavedCount) / Float(seaCreaturesData.count)
+        Float(seaCreaturesSavedCount) / Float(seaCreaturesData.count)
     }
 }

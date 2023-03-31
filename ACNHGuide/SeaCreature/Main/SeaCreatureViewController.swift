@@ -18,7 +18,7 @@ final class SeaCreatureViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(
-            MainViewCollectionReusableView.self,
+            CreatureCollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "AdaptiveHeader"
         )
@@ -80,13 +80,19 @@ private extension SeaCreatureViewController {
     }
 }
 
+// MARK: - ReloadDataDelegate
+
 extension SeaCreatureViewController: ReloadDataDelegate {
     func reloadData() {
         seaCreatureCollectionView.reloadData()
     }
 }
 
+// MARK: - CollectionViewDataSource
+
 extension SeaCreatureViewController: UICollectionViewDataSource {
+    
+    // Header.
     func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
@@ -96,7 +102,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             ofKind: kind,
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
-        ) as? MainViewCollectionReusableView else { return UICollectionReusableView() }
+        ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
         headerView.configureHeaderLabel(with: seaCreatureViewModel.setHeaderSection(with: indexPath.section))
         return headerView
     }
@@ -109,6 +115,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
         return CGSize(width: view.frame.width, height: 40.0)
     }
     
+    // Configure cells.
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return seaCreatureViewModel.numberOfSections
     }
@@ -127,9 +134,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
         seaCreatureCell.configureCell(with: seaCreatureCollectionViewCellViewModel)
         return seaCreatureCell
     }
-}
-
-extension SeaCreatureViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = SeaCreatureDetailsViewController()
         let selectedSeaCreature = seaCreatureViewModel.makeSeaCreature(with: indexPath.section, index: indexPath.row)
@@ -140,7 +145,11 @@ extension SeaCreatureViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - CollectionViewLayout
+
 extension SeaCreatureViewController: UICollectionViewDelegateFlowLayout {
+    
+    // Defined margins around each section.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -149,6 +158,7 @@ extension SeaCreatureViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
     }
     
+    // Defined the width and height of each element in pixels.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

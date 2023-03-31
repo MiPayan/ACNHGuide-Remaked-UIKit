@@ -1,8 +1,8 @@
 //
 //  Networker.swift
-//  ACNHS
+//  ACNHGuide
 //
-//  Created by Mickael PAYAN on 03/05/2022.
+//  Created by Mickael PAYAN on 09/01/2023.
 //
 
 import Foundation
@@ -17,31 +17,31 @@ final class Networker: Networking {
     
     func fetchData<T: Decodable>(
         with urlString: String,
-        completion handler: @escaping ((Result<[T], NetworkingError>) -> Void)
+        completionHandler: @escaping ((Result<[T], NetworkingError>) -> Void)
     ) {
         guard let url = URL(string: urlString) else {
-            handler(.failure(.urlInvalid))
+            completionHandler(.failure(.urlInvalid))
             return
         }
         
         let request = URLRequest(url: url)
         urlSession.dataTask(with: request) { data, _, error in
             if error != nil {
-                handler(.failure(.error))
+                completionHandler(.failure(.error))
             }
             
             guard let data else {
-                handler(.failure(.noData))
+                completionHandler(.failure(.noData))
                 return
             }
             
             let decoder = JSONDecoder()
             do {
                 let decodedData = try decoder.decode([T].self, from: data)
-                handler(.success(decodedData))
+                completionHandler(.success(decodedData))
                 return
             } catch {
-                handler(.failure(.decodingFailure))
+                completionHandler(.failure(.decodingFailure))
                 return
             }
         }.resume()

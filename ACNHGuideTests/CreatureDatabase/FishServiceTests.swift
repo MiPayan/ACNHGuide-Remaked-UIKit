@@ -1,47 +1,47 @@
 //
-//  BugServiceTests.swift
+//  FishServiceTests.swift
 //  ACNHGuideTests
 //
-//  Created by Mickael PAYAN on 23/03/2023.
+//  Created by Mickael PAYAN on 07/03/2023.
 //
 
 import XCTest
 @testable import ACNHGuide
 
-final class BugServiceTests: XCTestCase {
+final class FishServiceTests: XCTestCase {
     
     private var creatureManagingMock: CreatureManagingMock!
-    private var bugService: BugService!
+    private var fishService: FishService!
     
     override func setUpWithError() throws {
         creatureManagingMock = CreatureManagingMock()
-        bugService = BugService(creatureManager: creatureManagingMock)
+        fishService = FishService(creatureManager: creatureManagingMock)
     }
     
     override func tearDownWithError() throws {
         creatureManagingMock = nil
-        bugService = nil
+        fishService = nil
     }
     
     func testCreaturesSaved() {
-        creatureManagingMock.stubbedGetSavedCreatures = [Bug()]
-        XCTAssertEqual(bugService.creaturesSaved.count, 1)
+        creatureManagingMock.stubbedGetSavedCreatures = [Fish(), Fish()]
+        XCTAssertEqual(fishService.creaturesSaved.count, 2)
         XCTAssertEqual(creatureManagingMock.invokedGetSavedCreaturesCount, 1)
     }
     
     func testIsNotCreatureAlreadySaved() {
         creatureManagingMock.stubbedGetCreature = nil
         let fileName = "fileName"
-        let isAlreadySaved = bugService.isCreatureAlreadySaved(fileName: fileName)
+        let isAlreadySaved = fishService.isCreatureAlreadySaved(fileName: fileName)
         XCTAssertEqual(isAlreadySaved, false)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, fileName)
     }
     
     func testIsCreatureAlreadySaved() {
-        creatureManagingMock.stubbedGetCreature = Bug()
+        creatureManagingMock.stubbedGetCreature = Fish()
         let fileName = "fileName"
-        let isAlreadySaved = bugService.isCreatureAlreadySaved(fileName: fileName)
+        let isAlreadySaved = fishService.isCreatureAlreadySaved(fileName: fileName)
         XCTAssertEqual(isAlreadySaved, true)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, fileName)
@@ -49,22 +49,22 @@ final class BugServiceTests: XCTestCase {
     
     func testSaveCreature() {
         let fileName = "fileName"
-        bugService.saveCreature(fileName: fileName)
+        fishService.saveCreature(fileName: fileName)
         XCTAssertEqual(creatureManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is Bug, true)
-        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! Bug).fileName, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is Fish, true)
+        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! Fish).fileName, "fileName")
     }
     
     func testDeleteCreature() {
-        let bug = Bug()
+        let fish = Fish()
         let fileName = "fileName"
-        creatureManagingMock.stubbedGetCreature = bug
-        bug.fileName = fileName
+        fish.fileName = fileName
+        creatureManagingMock.stubbedGetCreature = fish
         
-        bugService.deleteCreature(fileName: fileName)
+        fishService.deleteCreature(fileName: fileName)
         XCTAssertEqual(creatureManagingMock.invokedDeleteObjectCount, 1)
-        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectParameter is Bug, true)
-        XCTAssertEqual((creatureManagingMock.invokedDeleteObjectParameter as! Bug).fileName, fileName)
+        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectParameter is Fish, true)
+        XCTAssertEqual((creatureManagingMock.invokedDeleteObjectParameter as! Fish).fileName, fileName)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
     }

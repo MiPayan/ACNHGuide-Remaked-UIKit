@@ -56,6 +56,8 @@ final class SeaCreatureViewModel {
 }
 
 private extension SeaCreatureViewModel {
+    
+    // Sorts the sea creatures from the northern hemisphere using the current month and time.
     var northernHemisphereSeaCreatures: [SeaCreatureData] {
         let (hour, month) = currentCalendar.getCurrentDate()
         let filtered = seaCreaturesData.filter {
@@ -64,6 +66,7 @@ private extension SeaCreatureViewModel {
         return filtered
     }
     
+    // Sorts the sea creatures from the southern hemisphere using the current month and time.
     var southernHemisphereSeaCreatures: [SeaCreatureData] {
         let (hour, month) = currentCalendar.getCurrentDate()
         let filtered = seaCreaturesData.filter {

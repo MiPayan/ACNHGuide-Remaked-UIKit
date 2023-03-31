@@ -55,61 +55,6 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
         XCTAssertEqual(fishDetailsTableViewCellViewModel.catchPhrase, "\" I caught a bitterling! It's mad at me, but only a little. \"")
     }
     
-    func testPrice() {
-        guard let price = fishes.first?.price else {
-            fatalError("Tests failed: testPrice() from FishDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(price, 900)
-        XCTAssertEqual(fishDetailsTableViewCellViewModel.price, "900")
-    }
-    
-    func testAvailabilityLocation() {
-        guard let location = fishes.first?.availability.location else {
-            fatalError("Tests failed: testAvailabilityLocation() from FishDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(location, "River")
-        XCTAssertEqual(fishDetailsTableViewCellViewModel.availabilityLocation, location)
-    }
-    
-    func testShadow() {
-        guard let shadow = fishes.first?.shadow else {
-            fatalError("Tests failed: testShadow() from FishDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(shadow, "Smallest (1)")
-        XCTAssertEqual(fishDetailsTableViewCellViewModel.shadow, shadow)
-    }
-    
-    func testAvailabilityTime() {
-        guard let time = fishes.first?.availability.time else {
-            fatalError("Tests failed: testAvailabilityTime() from FishDetailsTableViewCellViewModelTests") }
-        XCTAssertEqual(time, "")
-        XCTAssertEqual(fishDetailsTableViewCellViewModel.availabilityTime, "Always")
-    }
-    
-    func testRarity() {
-        guard let rarity = fishes.first?.availability.rarity else {
-            fatalError("Tests failed: testRarity() from FishDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(rarity, "Common")
-        XCTAssertEqual(fishDetailsTableViewCellViewModel.rarity, rarity)
-    }
-    
-    func testNorthernHemisphereAvailability() {
-        guard let monthNorthern = fishes.first?.availability.monthNorthern else {
-            fatalError("Tests failed: testNorthernHemisphereAvailability() from FishDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(monthNorthern, "11-3")
-        XCTAssertEqual(fishDetailsTableViewCellViewModel.northernHemisphereAvailability, monthNorthern)
-    }
-    
-    func testSouthernHemisphereAvailability() {
-        guard let monthSouthern = fishes.first?.availability.monthSouthern else {
-            fatalError("Tests failed: testSouthernHemisphereAvailability() from FishDetailsTableViewCellViewModelTests")
-        }
-        XCTAssertEqual(monthSouthern, "5-9")
-        XCTAssertEqual(fishDetailsTableViewCellViewModel.southernHemisphereAvailability, monthSouthern)
-    }
-    
     func testMuseumPhrase() {
         guard let museumPhrase = fishes.first?.museumPhrase else {
             fatalError("Tests failed: testMuseumPhrase() from FishDetailsTableViewCellViewModelTests")

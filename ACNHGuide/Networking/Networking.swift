@@ -1,8 +1,8 @@
 //
-//  NetworkProtocol.swift
-//  ACNHS
+//  Networking.swift
+//  ACNHGuide
 //
-//  Created by Mickael PAYAN on 16/06/2022.
+//  Created by Mickael PAYAN on 09/01/2023.
 //
 
 import Foundation
@@ -10,6 +10,6 @@ import Foundation
 protocol Networking {
     func fetchData<T: Decodable>(
         with urlString: String,
-        completion handler: @escaping ((Result<[T], NetworkingError>) -> Void)
+        completionHandler: @escaping ((Result<[T], NetworkingError>) -> Void)
     )
 }

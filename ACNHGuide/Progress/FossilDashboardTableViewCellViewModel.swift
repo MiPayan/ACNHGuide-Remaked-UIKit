@@ -38,6 +38,6 @@ final class FossilDashboardTableViewCellViewModel {
     }
     
     var progressOfBar: Float {
-         Float(fossilsSavedCount) / Float(fossilsData.count)
+        Float(fossilsSavedCount) / Float(fossilsData.count)
     }
 }

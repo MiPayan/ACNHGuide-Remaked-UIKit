@@ -10,7 +10,7 @@ import UIKit
 final class ProgressDashboardViewController: UIViewController {
     
     private let progressDashboardViewModel = ProgressDashboardViewModel()
-    private lazy var dashboardTableView: UITableView = {
+    private lazy var progressDashboardTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DashboardTableViewCell.self, forCellReuseIdentifier: "DashboardCell")
@@ -36,7 +36,7 @@ final class ProgressDashboardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dashboardTableView.reloadData()
+        progressDashboardTableView.reloadData()
     }
     
     func setUpUpdateDataHandler() {
@@ -46,20 +46,20 @@ final class ProgressDashboardViewController: UIViewController {
         
         progressDashboardViewModel.successHandler = {
             self.errorView.isHidden = true
-            self.dashboardTableView.reloadData()
+            self.progressDashboardTableView.reloadData()
         }
     }
 }
 
 private extension ProgressDashboardViewController {
     func addSubviews() {
-        view.addSubview(dashboardTableView)
+        view.addSubview(progressDashboardTableView)
         view.addSubview(errorView)
         NSLayoutConstraint.activate([
-            dashboardTableView.topAnchor.constraint(equalTo: view.topAnchor),
-            dashboardTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dashboardTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            dashboardTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            progressDashboardTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            progressDashboardTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            progressDashboardTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            progressDashboardTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             errorView.topAnchor.constraint(equalTo: view.topAnchor),
             errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -68,11 +68,15 @@ private extension ProgressDashboardViewController {
     }
 }
 
-//extension ProgressDashboardViewController: ReloadDataDelegate {
-//    func reloadCollectionView() {
-//        <#code#>
-//    }
-//}
+// MARK: - ReloadDataDelegate
+
+extension ProgressDashboardViewController: ReloadDataDelegate {
+    func reloadData() {
+        progressDashboardTableView.reloadData()
+    }
+}
+
+// MARK: - TableViewDataSource
 
 extension ProgressDashboardViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

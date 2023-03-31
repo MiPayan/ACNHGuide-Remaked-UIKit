@@ -173,7 +173,9 @@ private extension FossilTableViewCell {
     }
 }
 
-extension FossilTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+// MARK: - CollectionViewDataSource
+
+extension FossilTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -195,7 +197,11 @@ extension FossilTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
     }
 }
 
+// MARK: - CollectionViewLayout
+
 extension FossilTableViewCell: UICollectionViewDelegateFlowLayout {
+    
+    // Defined margins around each section.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -204,6 +210,7 @@ extension FossilTableViewCell: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8.0, left: 32.0, bottom: 8.0, right: 32.0)
     }
     
+    // Defined the width and height of each element in pixels.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

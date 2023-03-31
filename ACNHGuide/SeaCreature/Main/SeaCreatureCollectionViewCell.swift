@@ -39,7 +39,7 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
-        setContentView()
+        self.setUpContentView(color: "ColorBlueNightLite")
     }
     
     required init?(coder: NSCoder) {
@@ -58,13 +58,7 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension SeaCreatureCollectionViewCell {
-    func setContentView() {
-        self.backgroundColor = UIColor(named: "ColorBlueNightLite")
-        self.layer.cornerRadius = 10
-        self.clipsToBounds = true
-    }
-    
+private extension SeaCreatureCollectionViewCell {    
     @objc func didTapSaveButton() {
         guard let viewModel else { return }
         let isSaved = viewModel.toggleSavedSeaCreature()

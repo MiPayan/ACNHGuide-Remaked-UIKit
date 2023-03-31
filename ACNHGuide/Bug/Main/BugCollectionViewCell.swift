@@ -39,7 +39,7 @@ final class BugCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
-        setContentView()
+        self.setUpContentView(color: "ColorGreenDark")
     }
     
     required init?(coder: NSCoder) {
@@ -58,13 +58,7 @@ final class BugCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension BugCollectionViewCell {
-    func setContentView() {
-        self.backgroundColor = UIColor(named: "ColorGreenDark")
-        self.layer.cornerRadius = 10
-        self.clipsToBounds = true
-    }
-    
+private extension BugCollectionViewCell {    
     @objc func didTapSaveButton() {
         guard let viewModel else { return }
         let isSaved = viewModel.toggleSavedBug()

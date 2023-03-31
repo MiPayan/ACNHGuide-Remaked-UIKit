@@ -37,6 +37,38 @@ final class SeaCreaturesDetailsTableViewCellViewModel {
         "\" \(seaCreatureData.catchPhrase) \""
     }
     
+    var museumPhrase: String {
+        seaCreatureData.museumPhrase
+    }
+    
+    func makeImageName(at index: Int) -> String {
+        ["Bells", "SeaCreatureShadow", "Timer", "Speedmeter", "North", "South"][index]
+    }
+    
+    func makeTitle(at index: Int) -> String {
+        [
+            "price".localized,
+            "shadow".localized,
+            "time".localized,
+            "speed".localized,
+            "northern_hemisphere".localized,
+            "southern_hemisphere".localized
+        ][index]
+    }
+    
+    func makeValue(at index: Int) -> String {
+        [
+            price,
+            shadow,
+            availabilityTime,
+            speed,
+            northernHemisphereAvailability,
+            southernHemisphereAvailability
+        ][index]
+    }
+}
+
+private extension SeaCreaturesDetailsTableViewCellViewModel {
     var price: String {
         String(seaCreatureData.price)
     }
@@ -59,29 +91,6 @@ final class SeaCreaturesDetailsTableViewCellViewModel {
     
     var southernHemisphereAvailability: String {
         seaCreatureData.availability.monthSouthern.isEmpty ? "availibility_always".localized : seaCreatureData.availability.monthSouthern
-    }
-    
-    var museumPhrase: String {
-        seaCreatureData.museumPhrase
-    }
-    
-    func makeImageName(at index: Int) -> String {
-        ["Bells", "SeaCreatureShadow", "Timer", "Speedmeter", "North", "South"][index]
-    }
-    
-    func makeTitle(at index: Int) -> String {
-        [
-            "price".localized,
-            "shadow".localized,
-            "time".localized,
-            "speed".localized,
-            "northern_hemisphere".localized,
-            "southern_hemisphere".localized
-        ][index]
-    }
-    
-    func makeValue(at index: Int) -> String {
-        [price, shadow, availabilityTime, speed, northernHemisphereAvailability, southernHemisphereAvailability][index]
     }
 }
 

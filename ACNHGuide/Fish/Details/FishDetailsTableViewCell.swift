@@ -106,7 +106,7 @@ final class FishDetailsTableViewCell: UITableViewCell {
         contentView.isUserInteractionEnabled = true
         addSubviews()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -119,7 +119,7 @@ final class FishDetailsTableViewCell: UITableViewCell {
         fishFilenameLabel.text = viewModel.fileName
         fishCatchPhraseLabel.text = viewModel.catchPhrase
         fishMuseumPhraseLabel.text = viewModel.museumPhrase
-
+        
         let isSaved = viewModel.isFishAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
@@ -132,6 +132,8 @@ final class FishDetailsTableViewCell: UITableViewCell {
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
     }
 }
+
+// MARK: - Layout constraints
 
 private extension FishDetailsTableViewCell {
     func addSubviews() {
@@ -191,9 +193,9 @@ private extension FishDetailsTableViewCell {
     }
 }
 
-// MARK: - CollectionView
+// MARK: - CollectionViewDataSource
 
-extension FishDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension FishDetailsTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let viewModel else { return 0 }
         return viewModel.numberOfItemsInSection
@@ -216,7 +218,11 @@ extension FishDetailsTableViewCell: UICollectionViewDataSource, UICollectionView
     }
 }
 
+// MARK: - CollectionViewLayout
+
 extension FishDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
+    
+    // Defined margins around each section.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -225,6 +231,7 @@ extension FishDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8.0, left: 32.0, bottom: 8.0, right: 32.0)
     }
     
+    // Defined the width and height of each element in pixels.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

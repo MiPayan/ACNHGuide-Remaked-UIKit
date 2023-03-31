@@ -1,5 +1,5 @@
 //
-//  MainViewCollectionReusableView.swift
+//  CreatureCollectionReusableView.swift
 //  ACNHGuide
 //
 //  Created by Mickael PAYAN on 11/01/2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainViewCollectionReusableView: UICollectionReusableView {
+final class CreatureCollectionReusableView: UICollectionReusableView {
     
     private let headerLabel: UILabel = {
         let label = UILabel()

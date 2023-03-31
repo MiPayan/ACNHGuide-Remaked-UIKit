@@ -42,7 +42,7 @@ final class FishViewModel {
         }
     }
     
-    func setHeaderSection(with section: Int) -> String {
+    func configureHeaderSection(with section: Int) -> String {
         section == 0 ? "northern_hemisphere".localized : "southern_hemisphere".localized
     }
     
@@ -56,6 +56,8 @@ final class FishViewModel {
 }
 
 private extension FishViewModel {
+    
+    // Sorts the fishes from the northern hemisphere using the current month and time.
     var northernHemisphereFishes: [FishData] {
         let (hour, month) = currentCalendar.getCurrentDate()
         let filtered = fishesData.filter {
@@ -64,6 +66,7 @@ private extension FishViewModel {
         return filtered
     }
     
+    // Sorts the fishes from the southern hemisphere using the current month and time.
     var southernHemisphereFishes: [FishData] {
         let (hour, month) = currentCalendar.getCurrentDate()
         let filtered = fishesData.filter {

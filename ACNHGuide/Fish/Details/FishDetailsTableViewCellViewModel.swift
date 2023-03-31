@@ -27,16 +27,50 @@ final class FishDetailsTableViewCellViewModel {
     var fileName: String {
         fishData.fileName.replaceCharacter("_", by: " ").capitalized
     }
-        
+    
     var iconURL: URL? {
         guard let iconURL = URL(string: fishData.iconURI) else { return nil }
         return iconURL
     }
-        
+    
     var catchPhrase: String {
         "\" \(fishData.catchPhrase) \""
     }
     
+    var museumPhrase: String {
+        fishData.museumPhrase
+    }
+    
+    func makeImageName(at index: Int) -> String {
+        ["Bells", "FishingRod", "FishShadow", "Timer", "Rarity", "North", "South"][index]
+    }
+    
+    func makeTitle(at index: Int) -> String {
+        [
+            "price".localized,
+            "location".localized,
+            "shadow".localized,
+            "time".localized,
+            "rarity".localized,
+            "northern_hemisphere".localized,
+            "southern_hemisphere".localized
+        ][index]
+    }
+    
+    func makeValue(at index: Int) -> String {
+        [
+            price,
+            availabilityLocation,
+            shadow,
+            availabilityTime,
+            rarity,
+            northernHemisphereAvailability,
+            southernHemisphereAvailability
+        ][index]
+    }
+}
+
+private extension FishDetailsTableViewCellViewModel {
     var price: String {
         String(fishData.price)
     }
@@ -63,30 +97,6 @@ final class FishDetailsTableViewCellViewModel {
     
     var southernHemisphereAvailability: String {
         fishData.availability.monthSouthern.isEmpty ? "availibility_always".localized : fishData.availability.monthSouthern
-    }
-    
-    var museumPhrase: String {
-        fishData.museumPhrase
-    }
-        
-    func makeImageName(at index: Int) -> String {
-        ["Bells", "FishingRod", "FishShadow", "Timer", "Rarity", "North", "South"][index]
-    }
-    
-    func makeTitle(at index: Int) -> String {
-        [
-            "price".localized,
-            "location".localized,
-            "shadow".localized,
-            "time".localized,
-            "rarity".localized,
-            "northern_hemisphere".localized,
-            "southern_hemisphere".localized
-        ][index]
-    }
-    
-    func makeValue(at index: Int) -> String {
-        [price, availabilityLocation, shadow, availabilityTime, rarity, northernHemisphereAvailability, southernHemisphereAvailability][index]
     }
 }
 

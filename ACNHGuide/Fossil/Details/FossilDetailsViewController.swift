@@ -42,6 +42,8 @@ final class FossilDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - TableViewDataSource
+
 extension FossilDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let fossilDetailsViewModel else { return 0 }

@@ -19,7 +19,7 @@ final class DashboardTableViewCell: UITableViewCell {
         view.layer.cornerRadius = 13
         return view
     }()
-        
+    
     private let creatureImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,7 +108,7 @@ final class DashboardTableViewCell: UITableViewCell {
         creatureProgressView.progressTintColor = .brown
     }
     
-    func addSubviews() {
+    private func addSubviews() {
         addSubview(containerView)
         containerView.addSubview(creatureImageView)
         containerView.addSubview(creatureTitleLabel)

@@ -191,7 +191,9 @@ private extension SeaCreatureDetailsTableViewCell {
     }
 }
 
-extension SeaCreatureDetailsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+// - MARK: - CollectionViewDataSource
+
+extension SeaCreatureDetailsTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let viewModel else { return 0 }
         return viewModel.numberOfItemsInSection
@@ -214,8 +216,11 @@ extension SeaCreatureDetailsTableViewCell: UICollectionViewDataSource, UICollect
     }
 }
 
+// MARK: - CollectionViewLayout
 
 extension SeaCreatureDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
+    
+    // Defined margins around each section.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -224,6 +229,7 @@ extension SeaCreatureDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 8.0, left: 32.0, bottom: 8.0, right: 32.0)
     }
     
+    // Defined the width and height of each element in pixels.
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

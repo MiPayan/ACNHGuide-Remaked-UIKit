@@ -13,10 +13,10 @@ final class NetworkingMock<T>: Networking {
     var invokedFetchDataCount = 0
     var stubbedFetchDataUrlStringParameter: String!
     
-    func fetchData<T: Decodable>(with urlString: String, completion handler: @escaping ((Result<[T], NetworkingError>) -> Void)) {
+    func fetchData<T: Decodable>(with urlString: String, completionHandler: @escaping ((Result<[T], NetworkingError>) -> Void)) {
         invokedFetchDataCount += 1
         stubbedFetchDataUrlStringParameter = urlString
         guard let stubbedResult = stubbedResult as? Result<[T], NetworkingError> else { return }
-        handler(stubbedResult)
+        completionHandler(stubbedResult)
     }
 }

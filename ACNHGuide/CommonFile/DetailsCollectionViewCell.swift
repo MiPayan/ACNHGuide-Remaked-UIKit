@@ -8,7 +8,7 @@
 import UIKit
 
 final class DetailsCollectionViewCell: UICollectionViewCell {
-    
+        
     private let imageValueImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

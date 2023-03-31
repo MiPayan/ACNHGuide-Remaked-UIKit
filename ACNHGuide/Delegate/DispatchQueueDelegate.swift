@@ -1,8 +1,8 @@
 //
 //  DispatchQueueDelegate.swift
-//  ACNHS
+//  ACNHGuide
 //
-//  Created by Mickael PAYAN on 12/12/2022.
+//  Created by Mickael PAYAN on 09/01/2023.
 //
 
 import Foundation

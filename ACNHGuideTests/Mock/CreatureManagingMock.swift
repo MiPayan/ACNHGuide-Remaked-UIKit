@@ -1,5 +1,5 @@
 //
-//  RealmManagingMock.swift
+//  CreatureManagingMock.swift
 //  ACNHGuideTests
 //
 //  Created by Mickael PAYAN on 03/03/2023.
@@ -8,7 +8,7 @@
 import RealmSwift
 @testable import ACNHGuide
 
-final class RealmManagingMock: RealmManaging {
+final class CreatureManagingMock: CreatureManaging {
 
     var invokedRealmCount = 0
     var stubbedRealm: Realm!
@@ -39,7 +39,7 @@ final class RealmManagingMock: RealmManaging {
     var invokedSavedObjectCount = 0
     var invokedSavedObjectParameter: Object?
     
-    func saveObject(with object: Object) {
+    func saveCreature(with object: Object) {
         invokedSavedObjectCount += 1
         invokedSavedObjectParameter = object
     }
@@ -47,7 +47,7 @@ final class RealmManagingMock: RealmManaging {
     var invokedDeleteObjectCount = 0
     var invokedDeleteObjectParameter: Object?
     
-    func deleteObject(with object: Object) {
+    func deleteCreature(with object: Object) {
         invokedDeleteObjectCount += 1
         invokedDeleteObjectParameter = object
     }
