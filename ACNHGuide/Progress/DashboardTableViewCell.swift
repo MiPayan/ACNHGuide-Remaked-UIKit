@@ -16,13 +16,18 @@ final class DashboardTableViewCell: UITableViewCell {
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 13
+        view.layer.cornerRadius = 10
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.4
+        view.layer.shadowOffset = CGSize(width: 5, height: -5)
+        view.layer.shadowRadius = 1
         return view
     }()
     
     private let creatureImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.makeShadow()
         return imageView
     }()
     
@@ -74,6 +79,7 @@ final class DashboardTableViewCell: UITableViewCell {
     
     func configureSeaCreatureCell(with viewModel: SeaCreatureDashboardTableViewCellViewModel) {
         containerView.backgroundColor = UIColor(named: "ColorBlueNightLite")
+        
         self.seaCreatureDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.iconURL {
             creatureImageView.loadImage(url: url)

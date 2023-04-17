@@ -9,7 +9,7 @@ import XCTest
 @testable import ACNHGuide
 
 final class FossilServiceTests: XCTestCase {
-
+    
     private var creatureManagingMock: CreatureManagingMock!
     private var fossilService: FossilService!
     
@@ -25,7 +25,8 @@ final class FossilServiceTests: XCTestCase {
     
     func testCreaturesSaved() {
         creatureManagingMock.stubbedGetSavedCreatures = []
-        XCTAssertEqual(fossilService.creaturesSaved.count, 0)
+        let fossilSavedCount = fossilService.creaturesSaved.count
+        XCTAssertEqual(fossilSavedCount, 0)
         XCTAssertEqual(creatureManagingMock.invokedGetSavedCreaturesCount, 1)
     }
     
@@ -49,10 +50,10 @@ final class FossilServiceTests: XCTestCase {
     
     func testSaveCreature() {
         let fileName = "fileName"
-        fossilService.saveCreature(fileName: fileName)
-        XCTAssertEqual(creatureManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is Fossil, true)
-        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! Fossil).fileName, fileName)
+        fossilService.saveCreature(fileName: fileName) {_ in }
+        XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectParameter is Fossil, true)
+        XCTAssertEqual((self.creatureManagingMock.invokedSavedObjectParameter as! Fossil).fileName, fileName)
     }
     
     func testDeleteCreature() {
@@ -61,15 +62,10 @@ final class FossilServiceTests: XCTestCase {
         creatureManagingMock.stubbedGetCreature = fossil
         fossil.fileName = fileName
         
-        fossilService.saveCreature(fileName: fileName)
-        XCTAssertEqual(creatureManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is Fossil, true)
-        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! Fossil).fileName, fileName)
-        
-        fossilService.deleteCreature(fileName: fileName)
-        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectCount, 1)
-        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectParameter is Fossil, true)
-        XCTAssertEqual((creatureManagingMock.invokedDeleteObjectParameter as! Fossil).fileName, fileName)
+        fossilService.deleteCreature(fileName: fileName) {_ in }
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectParameter is Fossil, true)
+        XCTAssertEqual((self.creatureManagingMock.invokedDeleteObjectParameter as! Fossil).fileName, fileName)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
     }

@@ -12,6 +12,7 @@ final class FishCollectionViewCellViewModel {
     private let fishData: FishData
     private let creaturePeeker: CreaturePeeking
     private let creatureWriter: CreatureWriting
+    var errorCreatureDatabase: ((String) -> Void) = {_ in}
     
     init(
         fishData: FishData,
@@ -40,9 +41,14 @@ extension FishCollectionViewCellViewModel {
     func toggleSavedFish() -> Bool {
         let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureWriter.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName) { [weak self] _ in
+                guard let self = self else { return }
+                self.errorCreatureDatabase("delete_database_error".localized)
+            }
         } else {
-            creatureWriter.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName) { _ in
+                self.errorCreatureDatabase("save_database_error".localized)
+            }
         }
         return !isSaved
     }

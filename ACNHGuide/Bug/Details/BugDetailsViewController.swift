@@ -42,6 +42,14 @@ final class BugDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - ErrorToastable
+
+extension BugDetailsViewController: ErrorToastable {
+    func showDatabaseError(with text: String) {
+        self.showToast(with: text)
+    }
+}
+
 // MARK: - TableViewDataSource
 
 extension BugDetailsViewController: UITableViewDataSource {
@@ -57,7 +65,7 @@ extension BugDetailsViewController: UITableViewDataSource {
                 for: indexPath
               ) as? BugDetailsTableViewCell else { return UITableViewCell() }
         let bugDetailsTableViewCellViewModel = BugDetailsTableViewCellViewModel(bugData: bugDetailsViewModel.bugData)
-        detailsCell.configureDetailsCell(with: bugDetailsTableViewCellViewModel)
+        detailsCell.configureDetailsCell(with: bugDetailsTableViewCellViewModel, view: self)
         return detailsCell
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 final class SeaCreatureViewModel {
     
-    private let service: Service
+    private let service: CreatureServicesProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var seaCreaturesData = [SeaCreatureData]()
@@ -18,7 +18,7 @@ final class SeaCreatureViewModel {
     var failureHandler: (() -> Void) = { }
     
     init(
-        service: Service = ACNHService(),
+        service: CreatureServicesProtocol = CreatureService(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
@@ -59,7 +59,7 @@ private extension SeaCreatureViewModel {
     
     // Sorts the sea creatures from the northern hemisphere using the current month and time.
     var northernHemisphereSeaCreatures: [SeaCreatureData] {
-        let (hour, month) = currentCalendar.getCurrentDate()
+        let (hour, month) = currentCalendar.currentDate
         let filtered = seaCreaturesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
         }
@@ -68,7 +68,7 @@ private extension SeaCreatureViewModel {
     
     // Sorts the sea creatures from the southern hemisphere using the current month and time.
     var southernHemisphereSeaCreatures: [SeaCreatureData] {
-        let (hour, month) = currentCalendar.getCurrentDate()
+        let (hour, month) = currentCalendar.currentDate
         let filtered = seaCreaturesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }

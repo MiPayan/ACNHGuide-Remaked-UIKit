@@ -64,28 +64,31 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
     }
     
     func testMakeImageName() {
-        for index in 0...6 {
+        for index in 0...7 {
             switch index {
             case 0:
                 XCTAssertEqual(index, 0)
                 XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "Bells")
             case 1:
                 XCTAssertEqual(index, 1)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "FishingRod")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "CJ")
             case 2:
                 XCTAssertEqual(index, 2)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "FishShadow")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "FishingRod")
             case 3:
                 XCTAssertEqual(index, 3)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "Timer")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "FishShadow")
             case 4:
                 XCTAssertEqual(index, 4)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "Rarity")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "Timer")
             case 5:
                 XCTAssertEqual(index, 5)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "North")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "Rarity")
             case 6:
                 XCTAssertEqual(index, 6)
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "North")
+            case 7:
+                XCTAssertEqual(index, 7)
                 XCTAssertEqual(fishDetailsTableViewCellViewModel.makeImageName(at: index), "South")
             default:
                 break
@@ -94,28 +97,31 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
     }
     
     func testMakeTitle() {
-        for index in 0...6 {
+        for index in 0...7 {
             switch index {
             case 0:
                 XCTAssertEqual(index, 0)
                 XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Price")
             case 1:
                 XCTAssertEqual(index, 1)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Location")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "C.J's price")
             case 2:
                 XCTAssertEqual(index, 2)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Shadow")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Location")
             case 3:
                 XCTAssertEqual(index, 3)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Time")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Shadow")
             case 4:
                 XCTAssertEqual(index, 4)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Rarity")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Time")
             case 5:
                 XCTAssertEqual(index, 5)
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Northern hemisphere")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Rarity")
             case 6:
                 XCTAssertEqual(index, 6)
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Northern hemisphere")
+            case 7:
+                XCTAssertEqual(index, 7)
                 XCTAssertEqual(fishDetailsTableViewCellViewModel.makeTitle(at: index), "Southern hemisphere")
             default:
                 break
@@ -125,6 +131,7 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
     
     func testMakeValue() {
         guard let price = fishes.first?.price,
+              let priceCJ = fishes.first?.priceCj,
               let location = fishes.first?.availability.location,
               let shadow = fishes.first?.shadow,
               let time = fishes.first?.availability.time,
@@ -134,7 +141,7 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
             fatalError("Tests failed: testMakeValue() from FishDetailsTableViewCellViewModelTests")
         }
         
-        for index in 0...6 {
+        for index in 0...7 {
             switch index {
             case 0:
                 XCTAssertEqual(index, 0)
@@ -142,26 +149,30 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
                 XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), "900")
             case 1:
                 XCTAssertEqual(index, 1)
-                XCTAssertEqual(location, "River")
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), location)
+                XCTAssertEqual(priceCJ, 1350)
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), "1350")
             case 2:
                 XCTAssertEqual(index, 2)
-                XCTAssertEqual(shadow, "Smallest (1)")
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), shadow)
+                XCTAssertEqual(location, "River")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), location)
             case 3:
                 XCTAssertEqual(index, 3)
-                XCTAssertEqual(time, "")
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), "Always")
+                XCTAssertEqual(shadow, "Smallest (1)")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), shadow)
             case 4:
                 XCTAssertEqual(index, 4)
-                XCTAssertEqual(rarity, "Common")
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), rarity)
+                XCTAssertEqual(time, "")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), "Always")
             case 5:
                 XCTAssertEqual(index, 5)
-                XCTAssertEqual(northernHemisphere, "11-3")
-                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), northernHemisphere)
+                XCTAssertEqual(rarity, "Common")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), rarity)
             case 6:
                 XCTAssertEqual(index, 6)
+                XCTAssertEqual(northernHemisphere, "11-3")
+                XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), northernHemisphere)
+            case 7:
+                XCTAssertEqual(index, 7)
                 XCTAssertEqual(southernHemisphere, "5-9")
                 XCTAssertEqual(fishDetailsTableViewCellViewModel.makeValue(at: index), southernHemisphere)
             default:

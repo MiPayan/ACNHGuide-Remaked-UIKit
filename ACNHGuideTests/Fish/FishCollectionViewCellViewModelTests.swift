@@ -54,7 +54,7 @@ final class FishCollectionViewCellViewModelTests: XCTestCase {
         XCTAssertEqual(creaturePeekerMock.invokedIsCreatureAlreadySavedCount, 1)
         XCTAssertEqual(isFishAlreadySaved, false)
     }
-    
+
     func testToggleSavedFishWhenIsNotAlreadySaved() {
         creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
         let toggleSaved = fishCollectionViewCellViewModel.toggleSavedFish()

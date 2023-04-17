@@ -12,14 +12,15 @@ final class CreatureWriterMock: CreatureWriting {
     
     var invokedSaveCreatureCount = 0
     var invokedSaveCreatureParameter: String?
-    func saveCreature(fileName: String) {
+    var invokedCompletionHandlerParameter: Error!
+    func saveCreature(fileName: String, completionHandler: @escaping (Error) -> Void) {
         invokedSaveCreatureCount += 1
         invokedSaveCreatureParameter = fileName
     }
     
     var invokedDeleteCreatureCount = 0
     var invokedDeleteCreatureParameter: String?
-    func deleteCreature(fileName: String) {
+    func deleteCreature(fileName: String, completionHandler: @escaping (Error) -> Void) {
         invokedDeleteCreatureCount += 1
         invokedDeleteCreatureParameter = fileName
     }

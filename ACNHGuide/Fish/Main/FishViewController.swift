@@ -88,6 +88,14 @@ extension FishViewController: ReloadDataDelegate {
     }
 }
 
+// MARK: - ErrorToastable
+
+extension FishViewController: ErrorToastable {
+    func showDatabaseError(with text: String) {
+        self.showToast(with: text)
+    }
+}
+
 // MARK: - CollectionViewDataSource
 
 extension FishViewController: UICollectionViewDataSource {
@@ -131,7 +139,7 @@ extension FishViewController: UICollectionViewDataSource {
         ) as? FishCollectionViewCell else { return UICollectionViewCell() }
         let fish = fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
         let fishCollectionViewCellViewModel = FishCollectionViewCellViewModel(fishData: fish)
-        fishCell.configureCell(with: fishCollectionViewCellViewModel)
+        fishCell.configureCell(with: fishCollectionViewCellViewModel, view: self)
         return fishCell
     }
     
@@ -142,30 +150,5 @@ extension FishViewController: UICollectionViewDataSource {
         detailsViewController.fishDetailsViewModel = fishDetailsViewModel
         detailsViewController.reloadDataDelegate = self
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
-    }
-}
-
-// MARK: - CollectionViewLayout
-
-extension FishViewController: UICollectionViewDelegateFlowLayout {
-    
-    // Defined margins around each section.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAt section: Int
-    ) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
-    }
-    
-    // Defined the width and height of each element in pixels.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
-        let widthPerItem = collectionView.frame.width / 3 - layout.minimumInteritemSpacing
-        return CGSize(width: widthPerItem - 8, height: 140)
     }
 }

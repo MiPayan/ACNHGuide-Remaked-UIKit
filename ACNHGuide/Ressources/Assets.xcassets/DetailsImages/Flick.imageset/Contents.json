@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "price_djason.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

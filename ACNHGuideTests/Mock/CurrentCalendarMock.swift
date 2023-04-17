@@ -12,7 +12,7 @@ final class CurrentCalendarMock: CalendarDelegate {
     var invockedMakeCurrentCalendarCount = 0
     var stubbedMakeCurrentCalendar: (Int, Int)!
     
-    func getCurrentDate() -> (Int, Int) {
+    var currentDate: (Int, Int) {
         invockedMakeCurrentCalendarCount += 1
        return stubbedMakeCurrentCalendar
     }

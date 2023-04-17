@@ -12,6 +12,7 @@ final class FossilDetailsTableViewCellViewModel {
     private let fossilData: FossilData
     private let creaturePeeker: CreaturePeeking
     private let creatureWriter: CreatureWriting
+    var errorCreatureDatabase: ((String) -> Void) = {_ in}
     
     init(
         fossilData: FossilData,
@@ -49,9 +50,13 @@ extension FossilDetailsTableViewCellViewModel {
     func toggleSavedFossil() -> Bool {
         let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureWriter.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName) { _ in
+                self.errorCreatureDatabase("delete_database_error".localized)
+            }
         } else {
-            creatureWriter.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName) { _ in
+                self.errorCreatureDatabase("save_database_error".localized)
+            }
         }
         return !isSaved
     }

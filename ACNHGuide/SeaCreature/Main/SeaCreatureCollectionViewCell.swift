@@ -24,6 +24,7 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.makeShadow()
         return imageView
     }()
     
@@ -46,7 +47,7 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(with viewModel: SeaCreatureCollectionViewCellViewModel) {
+    func configureCell(with viewModel: SeaCreatureCollectionViewCellViewModel, view: ErrorToastable) {
         self.viewModel = viewModel
         seaCreatureFilenameLabel.text = viewModel.fileName
         if let url = viewModel.iconURL {
@@ -55,6 +56,10 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         let isSaved = viewModel.isSeaCreatureAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+        
+        self.viewModel?.errorCreatureDatabase = { error in
+            view.showDatabaseError(with: error)
+        }
     }
 }
 

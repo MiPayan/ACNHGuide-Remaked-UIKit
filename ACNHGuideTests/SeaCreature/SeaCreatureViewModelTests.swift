@@ -10,13 +10,13 @@ import XCTest
 
 final class SeaCreatureViewModelTests: XCTestCase {
     
-    private var serviceMock: ServiceMock!
+    private var serviceMock: CreatureServicesMock!
     private var dispatchQueueMock: DispatchQueueMock!
     private var currentCalendarMock: CurrentCalendarMock!
     private var seaCreaturesViewModel: SeaCreatureViewModel!
 
     override func setUpWithError() throws {
-        serviceMock = ServiceMock()
+        serviceMock = CreatureServicesMock()
         dispatchQueueMock = DispatchQueueMock()
         currentCalendarMock = CurrentCalendarMock()
         seaCreaturesViewModel = SeaCreatureViewModel(

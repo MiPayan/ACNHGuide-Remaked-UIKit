@@ -33,6 +33,7 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
     private let seaCreatureImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.makeShadow()
         return imageView
     }()
     
@@ -111,7 +112,7 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(with viewModel: SeaCreaturesDetailsTableViewCellViewModel) {
+    func configureDetailsCell(with viewModel: SeaCreaturesDetailsTableViewCellViewModel, view: ErrorToastable) {
         self.viewModel = viewModel
         if let url = viewModel.iconURL {
             seaCreatureImageView.loadImage(url: url)
@@ -123,6 +124,10 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         let isSaved = viewModel.isSeaCreatureAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+        
+        self.viewModel?.errorCreatureDatabase = { error in
+            view.showDatabaseError(with: error)
+        }
     }
 }
 
@@ -213,30 +218,5 @@ extension SeaCreatureDetailsTableViewCell: UICollectionViewDataSource {
             valueColorNamed: "ColorBlueNight"
         )
         return detailsCell
-    }
-}
-
-// MARK: - CollectionViewLayout
-
-extension SeaCreatureDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
-    
-    // Defined margins around each section.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAt section: Int
-    ) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8.0, left: 32.0, bottom: 8.0, right: 32.0)
-    }
-    
-    // Defined the width and height of each element in pixels.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
-        let widthPerItem = collectionView.frame.width / 2 - layout.minimumInteritemSpacing
-        return CGSize(width: widthPerItem - 24, height: 60)
     }
 }

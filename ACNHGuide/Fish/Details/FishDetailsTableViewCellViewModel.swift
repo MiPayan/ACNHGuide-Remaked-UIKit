@@ -12,7 +12,8 @@ final class FishDetailsTableViewCellViewModel {
     private let fishData: FishData
     private let creaturePeeker: CreaturePeeking
     private let creatureWriter: CreatureWriting
-    let numberOfItemsInSection = 7
+    let numberOfItemsInSection = 8
+    var errorCreatureDatabase: ((String) -> Void) = {_ in}
     
     init(
         fishData: FishData,
@@ -42,12 +43,13 @@ final class FishDetailsTableViewCellViewModel {
     }
     
     func makeImageName(at index: Int) -> String {
-        ["Bells", "FishingRod", "FishShadow", "Timer", "Rarity", "North", "South"][index]
+        ["Bells", "CJ", "FishingRod", "FishShadow", "Timer", "Rarity", "North", "South"][index]
     }
     
     func makeTitle(at index: Int) -> String {
         [
             "price".localized,
+            "price_cj".localized,
             "location".localized,
             "shadow".localized,
             "time".localized,
@@ -60,6 +62,7 @@ final class FishDetailsTableViewCellViewModel {
     func makeValue(at index: Int) -> String {
         [
             price,
+            priceCJ,
             availabilityLocation,
             shadow,
             availabilityTime,
@@ -73,6 +76,10 @@ final class FishDetailsTableViewCellViewModel {
 private extension FishDetailsTableViewCellViewModel {
     var price: String {
         String(fishData.price)
+    }
+    
+    var priceCJ: String {
+        String(fishData.priceCj)
     }
     
     var availabilityLocation: String {
@@ -108,9 +115,14 @@ extension FishDetailsTableViewCellViewModel {
     func toggleSavedFish() -> Bool {
         let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
-            creatureWriter.deleteCreature(fileName: fileName)
+            creatureWriter.deleteCreature(fileName: fileName) { [weak self] _ in
+                guard let self = self else { return }
+                self.errorCreatureDatabase("delete_database_error".localized)
+            }
         } else {
-            creatureWriter.saveCreature(fileName: fileName)
+            creatureWriter.saveCreature(fileName: fileName) { _ in
+                self.errorCreatureDatabase("save_database_error".localized)
+            }
         }
         return !isSaved
     }

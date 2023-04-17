@@ -24,6 +24,7 @@ final class BugCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.makeShadow()
         return imageView
     }()
     
@@ -46,7 +47,7 @@ final class BugCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(with viewModel: BugCollectionViewCellViewModel) {
+    func configureCell(with viewModel: BugCollectionViewCellViewModel, view: ErrorToastable) {
         self.viewModel = viewModel
         bugFilenameLabel.text = viewModel.fileName
         if let url = viewModel.iconURL {
@@ -55,6 +56,10 @@ final class BugCollectionViewCell: UICollectionViewCell {
         let isSaved = viewModel.isBugAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+        
+        self.viewModel?.errorCreatureDatabase = { error in
+            view.showDatabaseError(with: error)
+        }
     }
 }
 

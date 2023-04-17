@@ -16,6 +16,8 @@
 "fossils" = "Fossils";
 "progress" = "Progress";
 "price" = "Price";
+"price_flick" = "Flick's price";
+"price_cj" = "C.J's price";
 "location" = "Location";
 "shadow" = "Shadow";
 "time" = "Time";
@@ -27,3 +29,5 @@
 "museum_phrase_title" = "Museum phrase";
 "fossils" = "Fossils";
 "error_text" = "A problem has occurred.\nCheck your internet connection and retry.";
+"save_database_error" = "Save did not work. Try again later.";
+"delete_database_error" = "Deletion did not work. Try again later.";

@@ -10,7 +10,7 @@ import RealmSwift
 
 final class SeaCreatureService {
     
-    private var creatureManager: CreatureManaging
+    private let creatureManager: CreatureManaging
     
     init(creatureManager: CreatureManaging = CreatureManager()) {
         self.creatureManager = creatureManager
@@ -29,15 +29,15 @@ extension SeaCreatureService: CreaturePeeking {
 }
 
 extension SeaCreatureService: CreatureWriting {
-    func saveCreature(fileName: String) {
+    func saveCreature(fileName: String, completionHandler: @escaping (Error) -> Void) {
         let seaCreature = SeaCreature()
         seaCreature.fileName = fileName
-        creatureManager.saveCreature(with: seaCreature)
+        creatureManager.saveCreature(with: seaCreature, completionHandler: completionHandler)
     }
     
-    func deleteCreature(fileName: String) {
+    func deleteCreature(fileName: String, completionHandler: @escaping (Error) -> Void) {
         if let seaCreature = creatureManager.getCreature(with: SeaCreature.self, fileName: fileName) {
-            creatureManager.deleteCreature(with: seaCreature)
+            creatureManager.deleteCreature(with: seaCreature, completionHandler: completionHandler)
         }
     }
 }

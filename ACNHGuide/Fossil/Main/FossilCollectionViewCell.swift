@@ -24,6 +24,7 @@ final class FossilCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.makeShadow()
         return imageView
     }()
     
@@ -46,7 +47,7 @@ final class FossilCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(with viewModel: FossilCollectionViewCellViewModel) {
+    func configureCell(with viewModel: FossilCollectionViewCellViewModel, view: ErrorToastable) {
         self.viewModel = viewModel
         fossilFilenameLabel.text = viewModel.fileName
         if let url = viewModel.imageURL {
@@ -55,6 +56,10 @@ final class FossilCollectionViewCell: UICollectionViewCell {
         let isSaved = viewModel.isFossilAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+        
+        self.viewModel?.errorCreatureDatabase = { error in
+            view.showDatabaseError(with: error)
+        }
     }
 }
 

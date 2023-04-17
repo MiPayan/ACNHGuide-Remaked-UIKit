@@ -1,5 +1,5 @@
 //
-//  ServiceMock.swift
+//  CreatureServicesMock.swift
 //  ACNHGuideTests
 //
 //  Created by Mickael PAYAN on 19/01/2023.
@@ -7,7 +7,7 @@
 
 @testable import ACNHGuide
 
-final class ServiceMock: Service {
+final class CreatureServicesMock: CreatureServicesProtocol {
 
     var invokedGetFishesCount = 0
     var stubbedFishResult: Result<[FishData], NetworkingError>!

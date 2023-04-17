@@ -42,6 +42,14 @@ final class FishDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - ErrorToastable
+
+extension FishDetailsViewController: ErrorToastable {
+    func showDatabaseError(with text: String) {
+        self.showToast(with: text)
+    }
+}
+
 // MARK: - TableViewDataSource
 
 extension FishDetailsViewController: UITableViewDataSource {
@@ -57,7 +65,7 @@ extension FishDetailsViewController: UITableViewDataSource {
                 for: indexPath
               ) as? FishDetailsTableViewCell else { return UITableViewCell() }
         let fishDetailsTableViewCellViewModel = FishDetailsTableViewCellViewModel(fishData: fishDetailsViewModel.fishData)
-        detailsCell.configureDetailsCell(with: fishDetailsTableViewCellViewModel)
+        detailsCell.configureDetailsCell(with: fishDetailsTableViewCellViewModel, view: self)
         return detailsCell
     }
 }

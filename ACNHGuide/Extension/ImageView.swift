@@ -19,4 +19,11 @@ extension UIImageView {
             }
         }
     }
+    
+    func makeShadow() {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.4
+        self.layer.shadowOffset = CGSize(width: 5, height: -3)
+        self.layer.shadowRadius = 1
+    }
 }

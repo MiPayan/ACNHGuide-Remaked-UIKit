@@ -10,13 +10,13 @@ import XCTest
 
 final class BugViewModelTests: XCTestCase {
 
-    private var serviceMock: ServiceMock!
+    private var serviceMock: CreatureServicesMock!
     private var dispatchQueueMock: DispatchQueueMock!
     private var currentCalendarMock: CurrentCalendarMock!
     private var bugsViewModel: BugViewModel!
     
     override func setUpWithError() throws {
-        serviceMock = ServiceMock()
+        serviceMock = CreatureServicesMock()
         dispatchQueueMock = DispatchQueueMock()
         currentCalendarMock = CurrentCalendarMock()
         bugsViewModel = BugViewModel(

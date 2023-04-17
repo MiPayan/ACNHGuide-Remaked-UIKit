@@ -42,6 +42,14 @@ final class FossilDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - ErrorToastable
+
+extension FossilDetailsViewController: ErrorToastable {
+    func showDatabaseError(with text: String) {
+        self.showToast(with: text)
+    }
+}
+
 // MARK: - TableViewDataSource
 
 extension FossilDetailsViewController: UITableViewDataSource {
@@ -57,7 +65,7 @@ extension FossilDetailsViewController: UITableViewDataSource {
                 for: indexPath
               ) as? FossilTableViewCell else { return UITableViewCell() }
         let fossilDetailsTableViewCellViewModel = FossilDetailsTableViewCellViewModel(fossilData: fossilDetailsViewModel.fossilData)
-        detailsCell.configureDetailsCell(with: fossilDetailsTableViewCellViewModel)
+        detailsCell.configureDetailsCell(with: fossilDetailsTableViewCellViewModel, view: self)
         return detailsCell
     }
 }

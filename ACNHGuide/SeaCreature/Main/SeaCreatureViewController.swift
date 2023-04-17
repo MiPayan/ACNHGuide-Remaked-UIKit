@@ -88,6 +88,14 @@ extension SeaCreatureViewController: ReloadDataDelegate {
     }
 }
 
+// MARK: - ErrorToastable
+
+extension SeaCreatureViewController: ErrorToastable {
+    func showDatabaseError(with text: String) {
+        self.showToast(with: text)
+    }
+}
+
 // MARK: - CollectionViewDataSource
 
 extension SeaCreatureViewController: UICollectionViewDataSource {
@@ -131,7 +139,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
         ) as? SeaCreatureCollectionViewCell else { return UICollectionViewCell() }
         let seaCreature = seaCreatureViewModel.makeSeaCreature(with: indexPath.section, index: indexPath.row)
         let seaCreatureCollectionViewCellViewModel = SeaCreatureCollectionViewCellViewModel(seaCreatureData: seaCreature)
-        seaCreatureCell.configureCell(with: seaCreatureCollectionViewCellViewModel)
+        seaCreatureCell.configureCell(with: seaCreatureCollectionViewCellViewModel, view: self)
         return seaCreatureCell
     }
     
@@ -142,30 +150,5 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
         detailsViewController.seaCreaturesDetailsViewModel = seaCreatureDetailsViewModel
         detailsViewController.reloadDataDelegate = self
         self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
-    }
-}
-
-// MARK: - CollectionViewLayout
-
-extension SeaCreatureViewController: UICollectionViewDelegateFlowLayout {
-    
-    // Defined margins around each section.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAt section: Int
-    ) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
-    }
-    
-    // Defined the width and height of each element in pixels.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
-        let widthPerItem = collectionView.frame.width / 3 - layout.minimumInteritemSpacing
-        return CGSize(width: widthPerItem - 8, height: 140)
     }
 }

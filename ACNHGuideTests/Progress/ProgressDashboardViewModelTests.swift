@@ -10,11 +10,11 @@ import XCTest
 
 final class ProgressDashboardViewModelTests: XCTestCase {
     
-    private var serviceMock: ServiceMock!
+    private var serviceMock: CreatureServicesMock!
     private var progressDashboardViewModel: ProgressDashboardViewModel!
     
     override func setUpWithError() throws {
-        serviceMock = ServiceMock()
+        serviceMock = CreatureServicesMock()
         progressDashboardViewModel = ProgressDashboardViewModel(service: serviceMock)
     }
     

@@ -44,6 +44,14 @@ private extension SeaCreatureDetailsViewController {
     }
 }
 
+// MARK: - ErrorToastable
+
+extension SeaCreatureDetailsViewController: ErrorToastable {
+    func showDatabaseError(with text: String) {
+        self.showToast(with: text)
+    }
+}
+
 // MARK: - TableViewDataSource
 
 extension SeaCreatureDetailsViewController: UITableViewDataSource {    
@@ -61,7 +69,7 @@ extension SeaCreatureDetailsViewController: UITableViewDataSource {
         let seaCreaturesDetailsTableViewCellViewModel = SeaCreaturesDetailsTableViewCellViewModel(
             seaCreatureData: seaCreaturesDetailsViewModel.seaCreatureData
         )
-        detailsCell.configureDetailsCell(with: seaCreaturesDetailsTableViewCellViewModel)
+        detailsCell.configureDetailsCell(with: seaCreaturesDetailsTableViewCellViewModel, view: self)
         return detailsCell
     }
 }

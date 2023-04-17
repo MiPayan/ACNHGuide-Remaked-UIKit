@@ -9,7 +9,7 @@ import Foundation
 
 final class CurrentCalendar: CalendarDelegate {
     
-    func getCurrentDate() -> (Int, Int) {
+    var currentDate: (Int, Int) {
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)

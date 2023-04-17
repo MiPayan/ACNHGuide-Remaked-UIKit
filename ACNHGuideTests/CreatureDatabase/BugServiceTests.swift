@@ -25,7 +25,8 @@ final class BugServiceTests: XCTestCase {
     
     func testCreaturesSaved() {
         creatureManagingMock.stubbedGetSavedCreatures = [Bug()]
-        XCTAssertEqual(bugService.creaturesSaved.count, 1)
+        let bugSavedCount = bugService.creaturesSaved.count
+        XCTAssertEqual(bugSavedCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedGetSavedCreaturesCount, 1)
     }
     
@@ -49,10 +50,10 @@ final class BugServiceTests: XCTestCase {
     
     func testSaveCreature() {
         let fileName = "fileName"
-        bugService.saveCreature(fileName: fileName)
-        XCTAssertEqual(creatureManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(creatureManagingMock.invokedSavedObjectParameter is Bug, true)
-        XCTAssertEqual((creatureManagingMock.invokedSavedObjectParameter as! Bug).fileName, fileName)
+        bugService.saveCreature(fileName: fileName) {_ in }
+        XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectParameter is Bug, true)
+        XCTAssertEqual((self.creatureManagingMock.invokedSavedObjectParameter as! Bug).fileName, fileName)
     }
     
     func testDeleteCreature() {
@@ -61,10 +62,10 @@ final class BugServiceTests: XCTestCase {
         creatureManagingMock.stubbedGetCreature = bug
         bug.fileName = fileName
         
-        bugService.deleteCreature(fileName: fileName)
-        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectCount, 1)
-        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectParameter is Bug, true)
-        XCTAssertEqual((creatureManagingMock.invokedDeleteObjectParameter as! Bug).fileName, fileName)
+        bugService.deleteCreature(fileName: fileName) {_ in }
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectParameter is Bug, true)
+        XCTAssertEqual((self.creatureManagingMock.invokedDeleteObjectParameter as! Bug).fileName, fileName)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
     }

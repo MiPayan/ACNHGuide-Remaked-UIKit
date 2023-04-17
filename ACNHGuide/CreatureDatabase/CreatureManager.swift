@@ -22,23 +22,23 @@ final class CreatureManager: CreatureManaging {
         realm.objects(T.self).filter("fileName == %@", fileName).first
     }
     
-    func saveCreature(with object: Object) {
+    func saveCreature(with object: Object, completionHandler: @escaping (Error) -> Void) {
         do {
             try realm.write {
                 realm.add(object)
             }
-        } catch {
-            print("Error deleting object: \(error)")
+        } catch let error {
+            completionHandler(error)
         }
     }
     
-    func deleteCreature(with object: Object) {
+    func deleteCreature(with object: Object, completionHandler: @escaping (Error) -> Void) {
         do {
             try realm.write {
                 realm.delete(object)
             }
-        } catch {
-            print("Error deleting object: \(error)")
+        } catch let error {
+            completionHandler(error)
         }
     }
 }

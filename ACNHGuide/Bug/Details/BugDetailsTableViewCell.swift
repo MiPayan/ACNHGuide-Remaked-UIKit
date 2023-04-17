@@ -33,6 +33,7 @@ final class BugDetailsTableViewCell: UITableViewCell {
     private let bugImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.makeShadow()
         return imageView
     }()
     
@@ -111,7 +112,7 @@ final class BugDetailsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureDetailsCell(with viewModel: BugDetailsTableViewCellViewModel) {
+    func configureDetailsCell(with viewModel: BugDetailsTableViewCellViewModel, view: ErrorToastable) {
         self.viewModel = viewModel
         if let url = viewModel.iconURL {
             bugImageView.loadImage(url: url)
@@ -123,6 +124,10 @@ final class BugDetailsTableViewCell: UITableViewCell {
         let isSaved = viewModel.isBugAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"
         saveButton.setImage(UIImage(systemName: imageString), for: .normal)
+        
+        self.viewModel?.errorCreatureDatabase = { error in
+            view.showDatabaseError(with: error)
+        }
     }
 }
 
@@ -177,7 +182,7 @@ private extension BugDetailsTableViewCell {
             detailsCollectionView.topAnchor.constraint(equalTo: bugCatchPhraseLabel.bottomAnchor, constant: 16),
             detailsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             detailsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            detailsCollectionView.heightAnchor.constraint(equalToConstant: 218),
+            detailsCollectionView.heightAnchor.constraint(equalToConstant: 278),
             
             museumTitleLabel.topAnchor.constraint(equalTo: detailsCollectionView.bottomAnchor, constant: 16),
             museumTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -213,30 +218,5 @@ extension BugDetailsTableViewCell: UICollectionViewDataSource {
             valueColorNamed: "ColorGreenDark"
         )
         return detailsCell
-    }
-}
-
-// MARK: - CollectionViewLayout
-
-extension BugDetailsTableViewCell: UICollectionViewDelegateFlowLayout {
-    
-    // Defined margins around each section.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAt section: Int
-    ) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8.0, left: 32.0, bottom: 8.0, right: 32.0)
-    }
-    
-    // Defined the width and height of each element in pixels.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
-        let widthPerItem = collectionView.frame.width / 2 - layout.minimumInteritemSpacing
-        return CGSize(width: widthPerItem - 24, height: 60)
     }
 }

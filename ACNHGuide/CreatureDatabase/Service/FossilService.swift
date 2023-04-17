@@ -10,7 +10,7 @@ import RealmSwift
 
 final class FossilService {
     
-    private var creatureManager: CreatureManaging
+    private let creatureManager: CreatureManaging
     
     init(creatureManager: CreatureManaging = CreatureManager()) {
         self.creatureManager = creatureManager
@@ -29,15 +29,15 @@ extension FossilService: CreaturePeeking {
 }
 
 extension FossilService: CreatureWriting {
-    func saveCreature(fileName: String) {
+    func saveCreature(fileName: String, completionHandler: @escaping (Error) -> Void) {
         let fossil = Fossil()
         fossil.fileName = fileName
-        creatureManager.saveCreature(with: fossil)
+        creatureManager.saveCreature(with: fossil, completionHandler: completionHandler)
     }
     
-    func deleteCreature(fileName: String) {
+    func deleteCreature(fileName: String, completionHandler: @escaping (Error) -> Void) {
         if let fossil = creatureManager.getCreature(with: Fossil.self, fileName: fileName) {
-            creatureManager.deleteCreature(with: fossil)
+            creatureManager.deleteCreature(with: fossil, completionHandler: completionHandler)
         }
     }
 }

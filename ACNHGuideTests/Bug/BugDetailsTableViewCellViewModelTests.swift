@@ -64,25 +64,28 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
     }
     
     func testMakeImageName() {
-        for index in 0...5 {
+        for index in 0...6 {
             switch index {
             case 0:
                 XCTAssertEqual(index, 0)
                 XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "Bells")
             case 1:
                 XCTAssertEqual(index, 1)
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "Grass")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "Flick")
             case 2:
                 XCTAssertEqual(index, 2)
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "Timer")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "Grass")
             case 3:
                 XCTAssertEqual(index, 3)
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "Rarity")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "Timer")
             case 4:
                 XCTAssertEqual(index, 4)
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "North")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "Rarity")
             case 5:
                 XCTAssertEqual(index, 5)
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "North")
+            case 6:
+                XCTAssertEqual(index, 6)
                 XCTAssertEqual(bugDetailsTableViewCellViewModel.makeImageName(at: index), "South")
             default:
                 break
@@ -91,25 +94,28 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
     }
     
     func testMakeTitle() {
-        for index in 0...5 {
+        for index in 0...6 {
             switch index {
             case 0:
                 XCTAssertEqual(index, 0)
                 XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Price")
             case 1:
                 XCTAssertEqual(index, 1)
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Location")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Flick's price")
             case 2:
                 XCTAssertEqual(index, 2)
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Time")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Location")
             case 3:
                 XCTAssertEqual(index, 3)
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Rarity")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Time")
             case 4:
                 XCTAssertEqual(index, 4)
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Northern hemisphere")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Rarity")
             case 5:
                 XCTAssertEqual(index, 5)
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Northern hemisphere")
+            case 6:
+                XCTAssertEqual(index, 6)
                 XCTAssertEqual(bugDetailsTableViewCellViewModel.makeTitle(at: index), "Southern hemisphere")
             default:
                 break
@@ -119,6 +125,7 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
     
     func testMakeValue() {
         guard let price = bugs.first?.price,
+              let priceFlick = bugs.first?.priceFlick,
               let location = bugs.first?.availability.location,
               let time = bugs.first?.availability.time,
               let rariry = bugs.first?.availability.rarity,
@@ -135,22 +142,26 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
                 XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), String(price))
             case 1:
                 XCTAssertEqual(index, 1)
-                XCTAssertEqual(location, "Flying")
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), location)
+                XCTAssertEqual(priceFlick, 240)
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), String(priceFlick))
             case 2:
                 XCTAssertEqual(index, 2)
-                XCTAssertEqual(time, "4am - 7pm")
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), time)
+                XCTAssertEqual(location, "Flying")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), location)
             case 3:
                 XCTAssertEqual(index, 3)
-                XCTAssertEqual(rariry, "Common")
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), rariry)
+                XCTAssertEqual(time, "4am - 7pm")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), time)
             case 4:
                 XCTAssertEqual(index, 4)
-                XCTAssertEqual(northernHemisphere, "9-6")
-                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), northernHemisphere)
+                XCTAssertEqual(rariry, "Common")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), rariry)
             case 5:
                 XCTAssertEqual(index, 5)
+                XCTAssertEqual(northernHemisphere, "9-6")
+                XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), northernHemisphere)
+            case 6:
+                XCTAssertEqual(index, 6)
                 XCTAssertEqual(southernHemisphere, "3-12")
                 XCTAssertEqual(bugDetailsTableViewCellViewModel.makeValue(at: index), southernHemisphere)
             default:

@@ -9,10 +9,10 @@ import RealmSwift
 @testable import ACNHGuide
 
 final class CreatureManagingMock: CreatureManaging {
-
+    
     var invokedRealmCount = 0
     var stubbedRealm: Realm!
-
+    
     var realm: Realm {
         invokedRealmCount += 1
         return stubbedRealm
@@ -39,7 +39,7 @@ final class CreatureManagingMock: CreatureManaging {
     var invokedSavedObjectCount = 0
     var invokedSavedObjectParameter: Object?
     
-    func saveCreature(with object: Object) {
+    func saveCreature(with object: Object, completionHandler: @escaping (Error) -> Void) {
         invokedSavedObjectCount += 1
         invokedSavedObjectParameter = object
     }
@@ -47,7 +47,7 @@ final class CreatureManagingMock: CreatureManaging {
     var invokedDeleteObjectCount = 0
     var invokedDeleteObjectParameter: Object?
     
-    func deleteCreature(with object: Object) {
+    func deleteCreature(with object: Object, completionHandler: @escaping (Error) -> Void) {
         invokedDeleteObjectCount += 1
         invokedDeleteObjectParameter = object
     }

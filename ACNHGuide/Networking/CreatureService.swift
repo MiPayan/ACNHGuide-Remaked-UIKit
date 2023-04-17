@@ -1,5 +1,5 @@
 //
-//  ACNHService.swift
+//  CreatureService.swift
 //  ACNHGuide
 //
 //  Created by Mickael PAYAN on 09/01/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ACNHService: Service {
+final class CreatureService: CreatureServicesProtocol {
     
     private let session: Networking
     private let endpoint = "https://acnhapi.com/v1a/"

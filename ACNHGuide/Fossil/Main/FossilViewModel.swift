@@ -9,7 +9,7 @@ import Foundation
 
 final class FossilViewModel {
     
-    private let service: Service
+    private let service: CreatureServicesProtocol
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private(set) var fossilsData = [FossilData]()
@@ -18,7 +18,7 @@ final class FossilViewModel {
     let headerText = "fossils".localized
     
     init(
-        service: Service = ACNHService(),
+        service: CreatureServicesProtocol = CreatureService(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {

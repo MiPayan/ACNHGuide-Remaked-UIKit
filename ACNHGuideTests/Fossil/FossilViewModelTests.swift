@@ -10,13 +10,13 @@ import XCTest
 
 final class FossilViewModelTests: XCTestCase {
     
-    private var serviceMock: ServiceMock!
+    private var serviceMock: CreatureServicesMock!
     private var dispatchQueueMock: DispatchQueueMock!
     private var currentCalendarMock: CurrentCalendarMock!
     private var fossilsViewModel: FossilViewModel!
     
     override func setUpWithError() throws {
-        serviceMock = ServiceMock()
+        serviceMock = CreatureServicesMock()
         dispatchQueueMock = DispatchQueueMock()
         currentCalendarMock = CurrentCalendarMock()
         fossilsViewModel = FossilViewModel(
