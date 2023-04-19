@@ -38,17 +38,25 @@ final class CreatureManagingMock: CreatureManaging {
     
     var invokedSavedObjectCount = 0
     var invokedSavedObjectParameter: Object?
+    var stubbedSaveCreatureCompletionHandlerError: Error?
     
     func saveCreature(with object: Object, completionHandler: @escaping (Error) -> Void) {
         invokedSavedObjectCount += 1
         invokedSavedObjectParameter = object
+        if let error = stubbedSaveCreatureCompletionHandlerError {
+            completionHandler(error)
+        }
     }
     
     var invokedDeleteObjectCount = 0
     var invokedDeleteObjectParameter: Object?
+    var stubbedDeleteCreatureCompletionHandlerError: Error?
     
     func deleteCreature(with object: Object, completionHandler: @escaping (Error) -> Void) {
         invokedDeleteObjectCount += 1
         invokedDeleteObjectParameter = object
+        if let error = stubbedDeleteCreatureCompletionHandlerError {
+            completionHandler(error)
+        }
     }
 }
