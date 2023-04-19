@@ -45,7 +45,7 @@ final class BugViewModelTests: XCTestCase {
         }
         bugsViewModel.getBugsData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     func testSuccessGetBugs() {
@@ -60,7 +60,7 @@ final class BugViewModelTests: XCTestCase {
         }
         bugsViewModel.getBugsData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     func testSetHeaderSection() {

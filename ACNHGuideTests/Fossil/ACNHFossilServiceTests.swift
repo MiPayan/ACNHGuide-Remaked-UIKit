@@ -24,7 +24,7 @@ final class ACNHFossilServiceTests: XCTestCase {
     }
     
     func testSuccessGetBugsData() {
-        let expectation = expectation(description: "Success to get fishes data.")
+        let expectation = expectation(description: "Success to get fossils data.")
         networkingMock.stubbedResult = .success(fossils)
         service.getFossilsData { result in
             switch result {
@@ -37,11 +37,11 @@ final class ACNHFossilServiceTests: XCTestCase {
             XCTAssertEqual(self.networkingMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/fossils/")
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     func testFailureGetBugsData() {
-        let expectation = expectation(description: "Failure to get fishes data.")
+        let expectation = expectation(description: "Failure to get fossils data.")
         networkingMock.stubbedResult = .failure(.error)
         service.getFossilsData { result in
             switch result {
@@ -54,6 +54,6 @@ final class ACNHFossilServiceTests: XCTestCase {
             XCTAssertEqual(self.networkingMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/fossils/")
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
 }

@@ -45,7 +45,7 @@ final class FishViewModelTests: XCTestCase {
         }
         fishesViewModel.getFishesData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     func testSuccessGetFishes() {
@@ -60,13 +60,13 @@ final class FishViewModelTests: XCTestCase {
         }
         fishesViewModel.getFishesData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     func testSetHeaderSection() {
         let northernSectionHeader = fishesViewModel.configureHeaderSection(with: 0)
         let southernSectionHeader = fishesViewModel.configureHeaderSection(with: 1)
-        XCTAssertEqual(northernSectionHeader, "Northern hemispher")
+        XCTAssertEqual(northernSectionHeader, "Northern hemisphere")
         XCTAssertEqual(southernSectionHeader, "Southern hemisphere")
     }
     
@@ -78,6 +78,7 @@ final class FishViewModelTests: XCTestCase {
         serviceMock.stubbedFishResult = {
             .success(fishes)
         }()
+        
         fishesViewModel.getFishesData()
         
         let northernSection = fishesViewModel.configureSectionCollectionView(with: 0)

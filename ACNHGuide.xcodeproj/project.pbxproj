@@ -78,7 +78,6 @@
 		377AA85829B2081C002104D1 /* BugDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377AA85729B2081C002104D1 /* BugDetailsViewModelTests.swift */; };
 		377AA85A29B208BF002104D1 /* FossilDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377AA85929B208BF002104D1 /* FossilDetailsViewModelTests.swift */; };
 		377AA85C29B2106B002104D1 /* CreatureManagingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377AA85B29B2106B002104D1 /* CreatureManagingMock.swift */; };
-		378D5D7029C1DB51004A2D6B /* ProgressDashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378D5D6F29C1DB51004A2D6B /* ProgressDashboardViewModelTests.swift */; };
 		378DC60929704F030062107C /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378DC60829704F030062107C /* DetailsCollectionViewCell.swift */; };
 		3792FF3829896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3729896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift */; };
 		3792FF3A298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */; };
@@ -232,7 +231,6 @@
 		377AA85B29B2106B002104D1 /* CreatureManagingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureManagingMock.swift; sourceTree = "<group>"; };
 		378D5D6D29C1CC2D004A2D6B /* ACNHGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACNHGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378D5D6E29C1CC2D004A2D6B /* ACNHGuideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACNHGuideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		378D5D6F29C1DB51004A2D6B /* ProgressDashboardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDashboardViewModelTests.swift; sourceTree = "<group>"; };
 		378DC60829704F030062107C /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		3792FF3729896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreaturesDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -744,7 +742,6 @@
 		37F18BE0299F991500FD4628 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
-				378D5D6F29C1DB51004A2D6B /* ProgressDashboardViewModelTests.swift */,
 				377AA84B29B1F16D002104D1 /* FishDashboardTableViewCellViewModelTests.swift */,
 				377AA84D29B1F8C7002104D1 /* SeaCreatureDashboardTableViewCellViewModelTests.swift */,
 				377AA84F29B1F8D6002104D1 /* BugDashboardTableViewCellViewModelTests.swift */,
@@ -921,7 +918,6 @@
 				37F9B4FE298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift in Sources */,
 				37A29F812978442000E043F0 /* FishesMapping.swift in Sources */,
 				37F18BDF299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift in Sources */,
-				378D5D7029C1DB51004A2D6B /* ProgressDashboardViewModelTests.swift in Sources */,
 				370385E929793D66002CC431 /* CurrentCalendarMock.swift in Sources */,
 				370385F12979411D002CC431 /* BugViewModelTests.swift in Sources */,
 				37B252D629CC53C000EB5B6A /* BugServiceTests.swift in Sources */,
@@ -1091,7 +1087,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 78PX5NWF8H;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuideTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1114,7 +1110,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 78PX5NWF8H;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuideTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

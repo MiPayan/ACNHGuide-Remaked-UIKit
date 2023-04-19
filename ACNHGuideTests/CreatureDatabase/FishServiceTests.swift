@@ -25,7 +25,9 @@ final class FishServiceTests: XCTestCase {
     
     func testCreaturesSaved() {
         creatureManagingMock.stubbedGetSavedCreatures = [Fish(), Fish()]
+        
         let fishSavedCount = fishService.creaturesSaved.count
+        
         XCTAssertEqual(fishSavedCount, 2)
         XCTAssertEqual(creatureManagingMock.invokedGetSavedCreaturesCount, 1)
     }
@@ -33,7 +35,9 @@ final class FishServiceTests: XCTestCase {
     func testIsNotCreatureAlreadySaved() {
         creatureManagingMock.stubbedGetCreature = nil
         let fileName = "fileName"
+        
         let isAlreadySaved = fishService.isCreatureAlreadySaved(fileName: fileName)
+        
         XCTAssertEqual(isAlreadySaved, false)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, fileName)
@@ -42,13 +46,15 @@ final class FishServiceTests: XCTestCase {
     func testIsCreatureAlreadySaved() {
         creatureManagingMock.stubbedGetCreature = Fish()
         let fileName = "fileName"
+        
         let isAlreadySaved = fishService.isCreatureAlreadySaved(fileName: fileName)
+        
         XCTAssertEqual(isAlreadySaved, true)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, fileName)
     }
     
-    func testSaveCreatureSuccess() {
+    func testSaveCreature() {
         let fileName = "fileName"
         creatureManagingMock.stubbedSaveCreatureCompletionHandlerError = nil
         
@@ -62,19 +68,19 @@ final class FishServiceTests: XCTestCase {
     }
     
     func testSaveCreatureCompletionHandlerError() {
-        let fileName = "fileName"
-        creatureManagingMock.stubbedSaveCreatureCompletionHandlerError = NSError(domain: "SaveCreatureCompletionHandler", code: 1)
-        
-        fishService.saveCreature(fileName: fileName) { error in
-            XCTAssertNotNil(error)
-        }
-        
-        XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectCount, 1)
-        XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectParameter is Fish, true)
-        XCTAssertEqual((self.creatureManagingMock.invokedSavedObjectParameter as! Fish).fileName, "fileName")
-    }
+          let fileName = "fileName"
+          creatureManagingMock.stubbedSaveCreatureCompletionHandlerError = NSError(domain: "SaveCreatureCompletionHandler", code: 1)
+          
+          fishService.saveCreature(fileName: fileName) { error in
+              XCTAssertNotNil(error)
+          }
+          
+          XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectCount, 1)
+          XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectParameter is Fish, true)
+          XCTAssertEqual((self.creatureManagingMock.invokedSavedObjectParameter as! Fish).fileName, "fileName")
+      }
     
-    func testDeleteCreatureSuccess() {
+    func testDeleteCreature() {
         let fish = Fish()
         let fileName = "fileName"
         fish.fileName = fileName
@@ -98,14 +104,14 @@ final class FishServiceTests: XCTestCase {
         fish.fileName = fileName
         creatureManagingMock.stubbedGetCreature = fish
         creatureManagingMock.stubbedDeleteCreatureCompletionHandlerError = NSError(domain: "DeleteCreatureCompletionHandler", code: 1)
-
+        
         fishService.deleteCreature(fileName: fileName) { error in
             XCTAssertNotNil(error)
         }
-
-        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectCount, 1)
-        XCTAssertEqual(creatureManagingMock.invokedDeleteObjectParameter is Fish, true)
-        XCTAssertEqual((creatureManagingMock.invokedDeleteObjectParameter as! Fish).fileName, fileName)
+        
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectParameter is Fish, true)
+        XCTAssertEqual((self.creatureManagingMock.invokedDeleteObjectParameter as! Fish).fileName, fileName)
         XCTAssertEqual(self.creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(self.creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
     }

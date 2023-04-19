@@ -24,7 +24,7 @@ final class ACNHSeaCreatureServiceTests: XCTestCase {
     }
     
     func testSuccessGetSeaCreaturesData() {
-        let expectation = expectation(description: "Success to get fishes data.")
+        let expectation = expectation(description: "Success to get sea creatures data.")
         networkingMock.stubbedResult = .success(seaCreatures)
         service.getSeaCreaturesData { result in
             switch result {
@@ -37,11 +37,11 @@ final class ACNHSeaCreatureServiceTests: XCTestCase {
             XCTAssertEqual(self.networkingMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/sea/")
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     func testFailureGetSeaCreaturesData() {
-        let expectation = expectation(description: "Failure to get fishes data.")
+        let expectation = expectation(description: "Failure to get sea creatures data.")
         networkingMock.stubbedResult = .failure(.noData)
         service.getSeaCreaturesData { result in
             switch result {
@@ -54,6 +54,6 @@ final class ACNHSeaCreatureServiceTests: XCTestCase {
             XCTAssertEqual(self.networkingMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/sea/")
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
 }

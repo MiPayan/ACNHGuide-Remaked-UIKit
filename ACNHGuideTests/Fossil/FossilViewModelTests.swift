@@ -43,7 +43,7 @@ final class FossilViewModelTests: XCTestCase {
         }
         fossilsViewModel.getFossilsData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     func testSuccessGetFossils() {
@@ -59,6 +59,6 @@ final class FossilViewModelTests: XCTestCase {
         }
         fossilsViewModel.getFossilsData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
 }

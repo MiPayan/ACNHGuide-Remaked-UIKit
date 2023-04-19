@@ -18,7 +18,7 @@ final class CreatureWriterMock: CreatureWriting {
         invokedSaveCreatureParameter = fileName
         if let error = stubbedSaveCreatureCompletionHandlerError {
             completionHandler(error)
-        } 
+        }
     }
     
     var invokedDeleteCreatureCount = 0
@@ -29,6 +29,6 @@ final class CreatureWriterMock: CreatureWriting {
         invokedDeleteCreatureParameter = fileName
         if let error = stubbedSaveCreatureCompletionHandlerError {
             completionHandler(error)
-        } 
+        }
     }
 }

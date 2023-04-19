@@ -50,23 +50,62 @@ final class SeaCreatureServiceTests: XCTestCase {
     
     func testSaveCreature() {
         let fileName = "fileName"
-        seaCreatureService.saveCreature(fileName: fileName) {_ in }
+        creatureManagingMock.stubbedSaveCreatureCompletionHandlerError = nil
+        
+        seaCreatureService.saveCreature(fileName: fileName) { error in
+            XCTAssertNil(error)
+        }
+        
         XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectCount, 1)
         XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectParameter is SeaCreature, true)
         XCTAssertEqual((self.creatureManagingMock.invokedSavedObjectParameter as! SeaCreature).fileName, fileName)
     }
     
+    func testSaveCreatureCompletionHandlerError() {
+          let fileName = "fileName"
+          creatureManagingMock.stubbedSaveCreatureCompletionHandlerError = NSError(domain: "SaveCreatureCompletionHandler", code: 1)
+          
+          seaCreatureService.saveCreature(fileName: fileName) { error in
+              XCTAssertNotNil(error)
+          }
+          
+          XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectCount, 1)
+          XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectParameter is SeaCreature, true)
+          XCTAssertEqual((self.creatureManagingMock.invokedSavedObjectParameter as! SeaCreature).fileName, "fileName")
+      }
+    
     func testDeleteCreature() {
         let seaCreature = SeaCreature()
         let fileName = "fileName"
-        creatureManagingMock.stubbedGetCreature = seaCreature
         seaCreature.fileName = fileName
+        creatureManagingMock.stubbedGetCreature = seaCreature
+        creatureManagingMock.stubbedDeleteCreatureCompletionHandlerError = nil
         
-        seaCreatureService.deleteCreature(fileName: fileName) {_ in }
+        seaCreatureService.deleteCreature(fileName: fileName) { error in
+            XCTAssertNil(error)
+        }
         XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectCount, 1)
         XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectParameter is SeaCreature, true)
         XCTAssertEqual((self.creatureManagingMock.invokedDeleteObjectParameter as! SeaCreature).fileName, fileName)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
+    }
+    
+    func testDeleteCreatureCompletionHandlerError() {
+        let seaCreature = SeaCreature()
+        let fileName = "fileName"
+        seaCreature.fileName = fileName
+        creatureManagingMock.stubbedGetCreature = seaCreature
+        creatureManagingMock.stubbedDeleteCreatureCompletionHandlerError = NSError(domain: "DeleteCreatureCompletionHandler", code: 1)
+        
+        seaCreatureService.deleteCreature(fileName: fileName) { error in
+            XCTAssertNotNil(error)
+        }
+        
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectParameter is SeaCreature, true)
+        XCTAssertEqual((self.creatureManagingMock.invokedDeleteObjectParameter as! SeaCreature).fileName, fileName)
+        XCTAssertEqual(self.creatureManagingMock.invokedGetCreaturetCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
     }
 }

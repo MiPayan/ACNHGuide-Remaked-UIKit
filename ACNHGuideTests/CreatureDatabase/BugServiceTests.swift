@@ -50,23 +50,64 @@ final class BugServiceTests: XCTestCase {
     
     func testSaveCreature() {
         let fileName = "fileName"
-        bugService.saveCreature(fileName: fileName) {_ in }
+        creatureManagingMock.stubbedSaveCreatureCompletionHandlerError = nil
+        
+        bugService.saveCreature(fileName: fileName) { error in
+            XCTAssertNil(error)
+        }
+        
         XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectCount, 1)
         XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectParameter is Bug, true)
         XCTAssertEqual((self.creatureManagingMock.invokedSavedObjectParameter as! Bug).fileName, fileName)
     }
     
+    func testSaveCreatureCompletionHandlerError() {
+          let fileName = "fileName"
+          creatureManagingMock.stubbedSaveCreatureCompletionHandlerError = NSError(domain: "SaveCreatureCompletionHandler", code: 1)
+          
+          bugService.saveCreature(fileName: fileName) { error in
+              XCTAssertNotNil(error)
+          }
+          
+          XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectCount, 1)
+          XCTAssertEqual(self.creatureManagingMock.invokedSavedObjectParameter is Bug, true)
+          XCTAssertEqual((self.creatureManagingMock.invokedSavedObjectParameter as! Bug).fileName, "fileName")
+      }
+
     func testDeleteCreature() {
         let bug = Bug()
         let fileName = "fileName"
-        creatureManagingMock.stubbedGetCreature = bug
         bug.fileName = fileName
+        creatureManagingMock.stubbedGetCreature = bug
+        creatureManagingMock.stubbedDeleteCreatureCompletionHandlerError = nil
         
-        bugService.deleteCreature(fileName: fileName) {_ in }
+        bugService.deleteCreature(fileName: fileName) { error in
+            XCTAssertNil(error)
+        }
+        
         XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectCount, 1)
         XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectParameter is Bug, true)
         XCTAssertEqual((self.creatureManagingMock.invokedDeleteObjectParameter as! Bug).fileName, fileName)
         XCTAssertEqual(creatureManagingMock.invokedGetCreaturetCount, 1)
         XCTAssertEqual(creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
+    }
+    
+    
+    func testDeleteCreatureCompletionHandlerError() {
+        let bug = Bug()
+        let fileName = "fileName"
+        bug.fileName = fileName
+        creatureManagingMock.stubbedGetCreature = bug
+        creatureManagingMock.stubbedDeleteCreatureCompletionHandlerError = NSError(domain: "DeleteCreatureCompletionHandler", code: 1)
+        
+        bugService.deleteCreature(fileName: fileName) { error in
+            XCTAssertNotNil(error)
+        }
+        
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedDeleteObjectParameter is Bug, true)
+        XCTAssertEqual((self.creatureManagingMock.invokedDeleteObjectParameter as! Bug).fileName, fileName)
+        XCTAssertEqual(self.creatureManagingMock.invokedGetCreaturetCount, 1)
+        XCTAssertEqual(self.creatureManagingMock.invokedFileNameGetCreatureParameter, "fileName")
     }
 }

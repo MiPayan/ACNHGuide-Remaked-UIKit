@@ -45,7 +45,7 @@ final class SeaCreatureViewModelTests: XCTestCase {
         }
         seaCreaturesViewModel.getSeaCreaturesData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     func testSuccessGetSeaCreatures() {
@@ -60,7 +60,7 @@ final class SeaCreatureViewModelTests: XCTestCase {
         }
         seaCreaturesViewModel.getSeaCreaturesData()
         XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1)
     }
     
     
