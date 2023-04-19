@@ -66,7 +66,7 @@ final class FishViewModelTests: XCTestCase {
     func testSetHeaderSection() {
         let northernSectionHeader = fishesViewModel.configureHeaderSection(with: 0)
         let southernSectionHeader = fishesViewModel.configureHeaderSection(with: 1)
-        XCTAssertEqual(northernSectionHeader, "Northern hemisphere")
+        XCTAssertEqual(northernSectionHeader, "Northern hemispher")
         XCTAssertEqual(southernSectionHeader, "Southern hemisphere")
     }
     
