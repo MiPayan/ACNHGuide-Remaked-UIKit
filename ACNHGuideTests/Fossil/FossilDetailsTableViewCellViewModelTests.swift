@@ -30,39 +30,35 @@ final class FossilDetailsTableViewCellViewModelTests: XCTestCase {
         fossilDetailsTableViewCellViewModel = nil
     }
     
-    func testFileName() {
-        guard let fileName = fossils.first?.fileName else {
-            fatalError("Tests failed: testFileName() from FossilDetailsTableViewCellViewModelTests")
-        }
+    func testFileName() throws {
+        let fileName = try XCTUnwrap(fossils.first?.fileName, "Tests failed: testFileName() from FossilDetailsTableViewCellViewModelTests")
         XCTAssertEqual(fileName, "acanthostega")
         XCTAssertEqual(fossilDetailsTableViewCellViewModel.fileName, "Acanthostega")
     }
     
-    func testImageURL() {
-        guard let imageURI = fossils.first?.imageURI,
-              let url = URL(string: imageURI) else {
-            fatalError("Tests failed: testImageURI() from FossilDetailsTableViewCellViewModelTests")
-        }
+    func testImageURL() throws {
+        let imageURI = try XCTUnwrap(fossils.first?.imageURI, "Tests failed: testImageURI() from FossilDetailsTableViewCellViewModelTests")
+        let url = URL(string: imageURI)
+        
         XCTAssertEqual(imageURI, "https://acnhapi.com/v1/images/fossils/acanthostega")
         XCTAssertEqual(fossilDetailsTableViewCellViewModel.imageURL, url)
     }
     
-    func testPrice() {
-        guard let price = fossils.first?.price else {
-            fatalError("Tests failed: testPrice() from FossilDetailsTableViewCellViewModelTests")
-        }
+    func testPrice() throws {
+        let price = try XCTUnwrap(fossils.first?.price, "Tests failed: testPrice() from FossilDetailsTableViewCellViewModelTests")
         XCTAssertEqual(price, 2000)
         XCTAssertEqual(fossilDetailsTableViewCellViewModel.price, "2000")
     }
     
-    func testMuseumPhrase() {
-        guard let museumPhrase = fossils.first?.museumPhrase else {
-            fatalError("Tests failed: testMuseumPhrase() from FossilDetailsTableViewCellViewModelTests")
-        }
+    func testMuseumPhrase() throws {
+        let museumPhrase = try XCTUnwrap(
+            fossils.first?.museumPhrase,
+            "Tests failed: testMuseumPhrase() from FossilDetailsTableViewCellViewModelTests"
+        )
         XCTAssertEqual(museumPhrase, "The acanthostega! Said to be one of the earliest amphibians, it existed well before dinosaurs. Because they lived as fish not long before, they still had gills and very webbed \"hands.\". To toss away the life they knew and venture onto unknown lands... they must have been very brave! Hmm... Does it still count as bravery if you have no understanding of what you're doing?")
         XCTAssertEqual(fossilDetailsTableViewCellViewModel.museumPhrase, museumPhrase)
     }
-        
+    
     func testIsFossilAlreadySaved() {
         creaturePeekerMock.stubbedIsCreatureAlreadySaved = false
         let isFossilAlreadySaved = fossilDetailsTableViewCellViewModel.isFossilAlreadySaved

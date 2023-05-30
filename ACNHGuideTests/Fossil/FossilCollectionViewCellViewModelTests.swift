@@ -30,19 +30,15 @@ final class FossilCollectionViewCellViewModelTests: XCTestCase {
         fossilCollectionViewCellViewModel = nil
     }
     
-    func testFileName() {
-        guard let filename = fossils.first?.fileName else {
-            fatalError("Tests failed: testFileName() from FossilCollectionViewCellViewModelTests")
-        }
-        XCTAssertEqual(filename, "acanthostega")
+    func testFileName() throws {
+        let fileName = try XCTUnwrap(fossils.first?.fileName, "Tests failed: testFileName() from FossilCollectionViewCellViewModelTests")
+        XCTAssertEqual(fileName, "acanthostega")
         XCTAssertEqual(fossilCollectionViewCellViewModel.fileName, "Acanthostega")
     }
     
-    func testImageURL() {
-        guard let imageURI = fossils.first?.imageURI,
-              let url = URL(string: imageURI) else {
-            fatalError("Tests failed: testImageURL() from FossilCollectionViewCellViewModelTests")
-        }
+    func testImageURL() throws {
+        let imageURI = try XCTUnwrap(fossils.first?.imageURI, "Tests failed: testImageURL() from FossilCollectionViewCellViewModelTests")
+        let url = URL(string: imageURI)
         XCTAssertEqual(imageURI, "https://acnhapi.com/v1/images/fossils/acanthostega")
         XCTAssertEqual(fossilCollectionViewCellViewModel.imageURL, url)
     }

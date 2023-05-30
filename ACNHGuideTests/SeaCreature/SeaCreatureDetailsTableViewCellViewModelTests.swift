@@ -117,15 +117,13 @@ final class SeaCreatureDetailsTableViewCellViewModelTests: XCTestCase {
         }
     }
     
-    func testMakeValue() {
-        guard let price = seaCreatures.first?.price,
-              let shadow = seaCreatures.first?.shadow,
-              let time = seaCreatures.first?.availability.time,
-              let speed = seaCreatures.first?.speed,
-              let northernHemisphere = seaCreatures.first?.availability.monthNorthern,
-              let southernHemisphere = seaCreatures.first?.availability.monthSouthern else {
-            fatalError("Tests failed: testMakeValue() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
+    func testMakeValue() throws {
+        let price = try XCTUnwrap(seaCreatures.first?.price)
+        let shadow = try XCTUnwrap(seaCreatures.first?.shadow)
+        let time = try XCTUnwrap(seaCreatures.first?.availability.time)
+        let speed = try XCTUnwrap(seaCreatures.first?.speed)
+        let northernHemisphere = try XCTUnwrap(seaCreatures.first?.availability.monthNorthern)
+        let southernHemisphere = try XCTUnwrap(seaCreatures.first?.availability.monthSouthern)
         
         for index in 0...6 {
             switch index {

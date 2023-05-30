@@ -30,11 +30,9 @@ final class BugDashboardTableViewCellViewModelTests: XCTestCase {
         bugDashboardTableViewCellViewModel = nil
     }
     
-    func testIconURL() {
-        guard let iconURI = bugs.first?.iconURI,
-              let url = URL(string: iconURI) else {
-            fatalError("Tests failed: testIconURL() from BugDashboardTableViewCellViewModelTests")
-        }
+    func testIconURL() throws {
+        let iconURI = try XCTUnwrap(bugs.first?.iconURI, "Tests failed: testIconURL() from BugDashboardTableViewCellViewModelTests")
+        let url = URL(string: iconURI)
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/bugs/1")
         XCTAssertEqual(bugDashboardTableViewCellViewModel.iconURL, url)
     }

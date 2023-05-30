@@ -11,41 +11,39 @@ import XCTest
 final class FishesMapping: XCTestCase {
     
     func testFishesJsonMapping() throws {
-        guard let id = fishes.first?.id,
-              let filename = fishes.first?.fileName,
-              let nameUSen = fishes.first?.name.nameUSen,
-              let nameEUen = fishes.first?.name.nameEUen,
-              let nameEUde = fishes.first?.name.nameEUde,
-              let nameEUes = fishes.first?.name.nameEUes,
-              let nameUSes = fishes.first?.name.nameUSes,
-              let nameEUfr = fishes.first?.name.nameEUfr,
-              let nameUSfr = fishes.first?.name.nameUSfr,
-              let nameEUit = fishes.first?.name.nameEUit,
-              let nameEUnl = fishes.first?.name.nameEUnl,
-              let nameCNzh = fishes.first?.name.nameCNzh,
-              let nameTWzh = fishes.first?.name.nameTWzh,
-              let nameJPja = fishes.first?.name.nameJPja,
-              let nameKRko = fishes.first?.name.nameKRko,
-              let nameEUru = fishes.first?.name.nameEUru,
-              let monthNorthern = fishes.first?.availability.monthNorthern,
-              let monthSouthern = fishes.first?.availability.monthSouthern,
-              let time = fishes.first?.availability.time,
-              let isAllDay = fishes.first?.availability.isAllDay,
-              let isAllYear = fishes.first?.availability.isAllYear,
-              let location = fishes.first?.availability.location,
-              let rarity = fishes.first?.availability.rarity,
-              let monthArrayNorthern = fishes.first?.availability.monthArrayNorthern,
-              let monthArraySouthern = fishes.first?.availability.monthArraySouthern,
-              let timeArray = fishes.first?.availability.timeArray,
-              let shadow = fishes.first?.shadow,
-              let price = fishes.first?.price,
-              let priceCj = fishes.first?.priceCj,
-              let catchPhrase = fishes.first?.catchPhrase,
-              let museumPhrase = fishes.first?.museumPhrase,
-              let imageURI = fishes.first?.imageURI,
-              let iconURI = fishes.first?.iconURI else {
-            fatalError("Tests failed: testFishesJsonMapping() from FishesMapping")
-        }
+        let id = fishes.first?.id
+        let filename = fishes.first?.fileName
+        let nameUSen = fishes.first?.name.nameUSen
+        let nameEUen = fishes.first?.name.nameEUen
+        let nameEUde = fishes.first?.name.nameEUde
+        let nameEUes = fishes.first?.name.nameEUes
+        let nameUSes = fishes.first?.name.nameUSes
+        let nameEUfr = fishes.first?.name.nameEUfr
+        let nameUSfr = fishes.first?.name.nameUSfr
+        let nameEUit = fishes.first?.name.nameEUit
+        let nameEUnl = fishes.first?.name.nameEUnl
+        let nameCNzh = fishes.first?.name.nameCNzh
+        let nameTWzh = fishes.first?.name.nameTWzh
+        let nameJPja = fishes.first?.name.nameJPja
+        let nameKRko = fishes.first?.name.nameKRko
+        let nameEUru = fishes.first?.name.nameEUru
+        let monthNorthern = fishes.first?.availability.monthNorthern
+        let monthSouthern = fishes.first?.availability.monthSouthern
+        let time = fishes.first?.availability.time
+        let isAllDay = fishes.first?.availability.isAllDay
+        let isAllYear = fishes.first?.availability.isAllYear
+        let location = fishes.first?.availability.location
+        let rarity = fishes.first?.availability.rarity
+        let monthArrayNorthern = fishes.first?.availability.monthArrayNorthern
+        let monthArraySouthern = fishes.first?.availability.monthArraySouthern
+        let timeArray = fishes.first?.availability.timeArray
+        let shadow = fishes.first?.shadow
+        let price = fishes.first?.price
+        let priceCj = fishes.first?.priceCj
+        let catchPhrase = fishes.first?.catchPhrase
+        let museumPhrase = fishes.first?.museumPhrase
+        let imageURI = fishes.first?.imageURI
+        let iconURI = fishes.first?.iconURI
         XCTAssertEqual(id, 1)
         XCTAssertEqual(filename, "bitterling")
         XCTAssertEqual(nameUSen, "bitterling")

@@ -30,35 +30,27 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
         fishDetailsTableViewCellViewModel = nil
     }
     
-    func testFilename() {
-        guard let fileName = fishes.first?.fileName else {
-            fatalError("Tests failed: testFileName() from FishDetailsTableViewCellViewModelTests")
-        }
+    func testFilename() throws {
+        let fileName = try XCTUnwrap(fishes.first?.fileName, "Tests failed: testFilename() from FishDetailsTableViewCellViewModelTests")
         XCTAssertEqual(fileName, "bitterling")
         XCTAssertEqual(fishDetailsTableViewCellViewModel.fileName, "Bitterling")
     }
     
-    func testIconURL() {
-        guard let iconURI = fishes.first?.iconURI,
-              let url = URL(string: iconURI) else {
-            fatalError("Tests failed: testIconURL() from FishDetailsTableViewCellViewModelTests")
-        }
+    func testIconURL() throws {
+        let iconURI = try XCTUnwrap(fishes.first?.iconURI, "Tests failed: testIconURL() from FishDetailsTableViewCellViewModelTests")
+        let url = URL(string: iconURI)
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/fish/1")
         XCTAssertEqual(fishDetailsTableViewCellViewModel.iconURL, url)
     }
     
-    func testCatchPhrase() {
-        guard let catchPhrase = fishes.first?.catchPhrase else {
-            fatalError("Tests failed: testCatchPhrase() from FishDetailsTableViewCellViewModelTests")
-        }
+    func testCatchPhrase() throws {
+        let catchPhrase = try XCTUnwrap(fishes.first?.catchPhrase, "Tests failed: testCatchPhrase() from FishDetailsTableViewCellViewModelTests")
         XCTAssertEqual(catchPhrase, "I caught a bitterling! It's mad at me, but only a little.")
         XCTAssertEqual(fishDetailsTableViewCellViewModel.catchPhrase, "\" I caught a bitterling! It's mad at me, but only a little. \"")
     }
     
-    func testMuseumPhrase() {
-        guard let museumPhrase = fishes.first?.museumPhrase else {
-            fatalError("Tests failed: testMuseumPhrase() from FishDetailsTableViewCellViewModelTests")
-        }
+    func testMuseumPhrase() throws {
+        let museumPhrase = try XCTUnwrap(fishes.first?.museumPhrase, "Tests failed: testMuseumPhrase() from FishDetailsTableViewCellViewModelTests")
         XCTAssertEqual(museumPhrase, "Bitterlings hide their eggs inside large bivalves—like clams—where the young can stay safe until grown. The bitterling isn't being sneaky. No, their young help keep the bivalve healthy by eating invading parasites! It's a wonderful bit of evolutionary deal making, don't you think? Each one keeping the other safe... Though eating parasites does not sound like a happy childhood... Is that why the fish is so bitter?")
         XCTAssertEqual(fishDetailsTableViewCellViewModel.museumPhrase, museumPhrase)
     }
@@ -129,17 +121,15 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
         }
     }
     
-    func testMakeValue() {
-        guard let price = fishes.first?.price,
-              let priceCJ = fishes.first?.priceCj,
-              let location = fishes.first?.availability.location,
-              let shadow = fishes.first?.shadow,
-              let time = fishes.first?.availability.time,
-              let rarity = fishes.first?.availability.rarity,
-              let northernHemisphere = fishes.first?.availability.monthNorthern,
-              let southernHemisphere = fishes.first?.availability.monthSouthern else {
-            fatalError("Tests failed: testMakeValue() from FishDetailsTableViewCellViewModelTests")
-        }
+    func testMakeValue() throws {
+        let price = try XCTUnwrap(fishes.first?.price)
+        let priceCJ = try XCTUnwrap(fishes.first?.priceCj)
+        let location = try XCTUnwrap(fishes.first?.availability.location)
+        let shadow = try XCTUnwrap(fishes.first?.shadow)
+        let time = try XCTUnwrap(fishes.first?.availability.time)
+        let rarity = try XCTUnwrap(fishes.first?.availability.rarity)
+        let northernHemisphere = try XCTUnwrap(fishes.first?.availability.monthNorthern)
+        let southernHemisphere = try XCTUnwrap(fishes.first?.availability.monthSouthern)
         
         for index in 0...7 {
             switch index {

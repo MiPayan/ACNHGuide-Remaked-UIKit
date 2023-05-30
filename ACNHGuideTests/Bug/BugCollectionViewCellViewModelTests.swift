@@ -30,19 +30,15 @@ final class BugCollectionViewCellViewModelTests: XCTestCase {
         bugCollectionViewCellViewModel = nil
     }
     
-    func testFileName() {
-        guard let fileName = bugs.first?.fileName else {
-            fatalError("Tests failed: testFileName() from BugCollectionViewCellViewModelTests")
-        }
+    func testFileName() throws {
+        let fileName = try XCTUnwrap(bugs.first?.fileName, "Tests failed: testFileName() from BugCollectionViewCellViewModelTests")
         XCTAssertEqual(fileName, "common_butterfly")
         XCTAssertEqual(bugCollectionViewCellViewModel.fileName, "Common Butterfly")
     }
     
-    func testIconURL() {
-        guard let iconURI = bugs.first?.iconURI,
-              let url = URL(string: iconURI) else {
-            fatalError("Tests failed: testIconURL() from BugCollectionViewCellViewModelTests")
-        }
+    func testIconURL() throws {
+        let iconURI = try XCTUnwrap(bugs.first?.iconURI, "Tests failed: testIconURL() from BugCollectionViewCellViewModelTests")
+        let url = URL(string: iconURI)
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/bugs/1")
         XCTAssertEqual(bugCollectionViewCellViewModel.iconURL, url)
     }

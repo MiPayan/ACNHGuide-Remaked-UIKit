@@ -11,27 +11,25 @@ import XCTest
 final class FossilsMapping: XCTestCase {
     
     func testFossilJsonMapping() throws {
-        guard let filename = fossils.first?.fileName,
-              let nameUSen = fossils.first?.name.nameUSen,
-              let nameEUen = fossils.first?.name.nameEUen,
-              let nameEUde = fossils.first?.name.nameEUde,
-              let nameEUes = fossils.first?.name.nameEUes,
-              let nameUSes = fossils.first?.name.nameUSes,
-              let nameEUfr = fossils.first?.name.nameEUfr,
-              let nameUSfr = fossils.first?.name.nameUSfr,
-              let nameEUit = fossils.first?.name.nameEUit,
-              let nameEUnl = fossils.first?.name.nameEUnl,
-              let nameCNzh = fossils.first?.name.nameCNzh,
-              let nameTWzh = fossils.first?.name.nameTWzh,
-              let nameJPja = fossils.first?.name.nameJPja,
-              let nameKRko = fossils.first?.name.nameKRko,
-              let nameEUru = fossils.first?.name.nameEUru,
-              let price = fossils.first?.price,
-              let museumPhrase = fossils.first?.museumPhrase,
-              let imageURI = fossils.first?.imageURI,
-              let partOf = fossils.first?.partOf else {
-            fatalError("Tests failed: testFossilJsonMapping() from FossilsMapping")
-        }
+        let filename = fossils.first?.fileName
+        let nameUSen = fossils.first?.name.nameUSen
+        let nameEUen = fossils.first?.name.nameEUen
+        let nameEUde = fossils.first?.name.nameEUde
+        let nameEUes = fossils.first?.name.nameEUes
+        let nameUSes = fossils.first?.name.nameUSes
+        let nameEUfr = fossils.first?.name.nameEUfr
+        let nameUSfr = fossils.first?.name.nameUSfr
+        let nameEUit = fossils.first?.name.nameEUit
+        let nameEUnl = fossils.first?.name.nameEUnl
+        let nameCNzh = fossils.first?.name.nameCNzh
+        let nameTWzh = fossils.first?.name.nameTWzh
+        let nameJPja = fossils.first?.name.nameJPja
+        let nameKRko = fossils.first?.name.nameKRko
+        let nameEUru = fossils.first?.name.nameEUru
+        let price = fossils.first?.price
+        let museumPhrase = fossils.first?.museumPhrase
+        let imageURI = fossils.first?.imageURI
+        let partOf = fossils.first?.partOf
         XCTAssertEqual(filename, "acanthostega")
         XCTAssertEqual(nameUSen, "acanthostega")
         XCTAssertEqual(nameEUen, "acanthostega")

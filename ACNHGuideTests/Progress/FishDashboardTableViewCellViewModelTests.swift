@@ -30,11 +30,9 @@ final class FishDashboardTableViewCellViewModelTests: XCTestCase {
         fishDashboardTableViewCellViewModel = nil
     }
     
-    func testIconURL() {
-        guard let iconURI = fishes.first?.iconURI,
-              let url = URL(string: iconURI) else {
-            fatalError("Tests failed: testIconURL() from FishDashboardTableViewCellViewModelTests")
-        }
+    func testIconURL() throws {
+        let iconURI = try XCTUnwrap(fishes.first?.iconURI, "Tests failed: testIconURL() from FishDashboardTableViewCellViewModelTests")
+        let url = URL(string: iconURI)
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/fish/1")
         XCTAssertEqual(fishDashboardTableViewCellViewModel.iconURL, url)
     }

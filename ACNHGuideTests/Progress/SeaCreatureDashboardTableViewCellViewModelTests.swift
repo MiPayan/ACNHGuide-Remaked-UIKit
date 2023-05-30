@@ -30,11 +30,9 @@ final class SeaCreatureDashboardTableViewCellViewModelTests: XCTestCase {
         seaCreatureDashboardTableViewCellViewModel = nil
     }
     
-    func testIconURL() {
-        guard let iconURI = seaCreatures.first?.iconURI,
-              let url = URL(string: iconURI) else {
-            fatalError("Tests failed: testIconURL() from SeaCreatureDashboardTableViewCellViewModelTests")
-        }
+    func testIconURL() throws {
+        let iconURI = try XCTUnwrap(seaCreatures.first?.iconURI, "Tests failed: testIconURL() from SeaCreatureDashboardTableViewCellViewModelTests")
+        let url = URL(string: iconURI)
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/sea/1")
         XCTAssertEqual(seaCreatureDashboardTableViewCellViewModel.iconURL, url)
     }

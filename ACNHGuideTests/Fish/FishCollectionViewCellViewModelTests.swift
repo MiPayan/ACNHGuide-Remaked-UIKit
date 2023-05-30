@@ -30,19 +30,15 @@ final class FishCollectionViewCellViewModelTests: XCTestCase {
         fishCollectionViewCellViewModel = nil
     }
     
-    func testFileName() {
-        guard let fileName = fishes.first?.fileName else {
-            fatalError("Tests failed: testFileName() from FishCollectionViewCellViewModelTests")
-        }
+    func testFileName() throws {
+        let fileName = try XCTUnwrap(fishes.first?.fileName, "Tests failed: testFileName() from FishCollectionViewCellViewModelTests")
         XCTAssertEqual(fileName, "bitterling")
         XCTAssertEqual(fishCollectionViewCellViewModel.fileName, "Bitterling")
     }
     
-    func testIconURL() {
-        guard let iconURI = fishes.first?.iconURI,
-              let url = URL(string: iconURI) else {
-            fatalError("Tests failed: testIconURL() from FishCollectionViewCellViewModelTests")
-        }
+    func testIconURL() throws {
+        let iconURI = try XCTUnwrap(fishes.first?.iconURI, "Tests failed: testIconURL() from FishCollectionViewCellViewModelTests")
+        let url = URL(string: iconURI)
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/fish/1")
         XCTAssertEqual(fishCollectionViewCellViewModel.iconURL, url)
     }

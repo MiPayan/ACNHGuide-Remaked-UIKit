@@ -30,35 +30,27 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
         bugDetailsTableViewCellViewModel = nil
     }
     
-    func testFileName() {
-        guard let fileName = bugs.first?.fileName else {
-            fatalError("Tests failed: testFileName() from BugDetailsTableViewCellViewModelTests")
-        }
+    func testFileName() throws {
+        let fileName = try XCTUnwrap(bugs.first?.fileName, "Tests failed: testFileName() from BugDetailsTableViewCellViewModelTests")
         XCTAssertEqual(fileName, "common_butterfly")
         XCTAssertEqual(bugDetailsTableViewCellViewModel.fileName, "Common Butterfly")
     }
     
-    func testIconURL() {
-        guard let iconURI = bugs.first?.iconURI,
-              let url = URL(string: iconURI) else {
-            fatalError("Tests failed: testIconURL() from BugDetailsTableViewCellViewModelTests")
-        }
+    func testIconURL() throws {
+        let iconURI = try XCTUnwrap(bugs.first?.iconURI, "Tests failed: testIconURL() from BugDetailsTableViewCellViewModelTests")
+        let url = URL(string: iconURI)
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/bugs/1")
         XCTAssertEqual(bugDetailsTableViewCellViewModel.iconURL, url)
     }
     
-    func testCatchPhrase() {
-        guard let catchPhrase = bugs.first?.catchPhrase else {
-            fatalError("Tests failed: testCatchPhrase() from BugDetailsTableViewCellViewModelTests")
-        }
+    func testCatchPhrase() throws {
+        let catchPhrase = try XCTUnwrap(bugs.first?.catchPhrase, "Tests failed: testCatchPhrase() from BugDetailsTableViewCellViewModelTests")
         XCTAssertEqual(catchPhrase, "I caught a common butterfly! They often flutter by!")
         XCTAssertEqual(bugDetailsTableViewCellViewModel.catchPhrase, "\" I caught a common butterfly! They often flutter by! \"")
     }
     
-    func testMuseumPhrase() {
-        guard let museumPhrase = bugs.first?.museumPhrase else {
-            fatalError("Tests failed: testMuseumPhrase() from BugDetailsTableViewCellViewModelTests")
-        }
+    func testMuseumPhrase() throws {
+        let museumPhrase = try XCTUnwrap(bugs.first?.museumPhrase, "Tests failed: testMuseumPhrase() from BugDetailsTableViewCellViewModelTests")
         XCTAssertEqual(museumPhrase, "The common butterfly would have you believe it is but a beautiful friend flitting prettily about the flowers. Bah, I say! They may seem innocent things with their pretty white wings, but they hide a dark side! The common butterfly caterpillar is called a cabbage worm, you see, and it's a most voracious pest. The ravenous beasts chew through cabbage, broccoli, kale and the like with a devastating gusto. And my feathers! Their green coloring is truly GROSS! A hoo-rrific hue, I say.")
         XCTAssertEqual(bugDetailsTableViewCellViewModel.museumPhrase, museumPhrase)
     }
@@ -123,16 +115,14 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
         }
     }
     
-    func testMakeValue() {
-        guard let price = bugs.first?.price,
-              let priceFlick = bugs.first?.priceFlick,
-              let location = bugs.first?.availability.location,
-              let time = bugs.first?.availability.time,
-              let rariry = bugs.first?.availability.rarity,
-              let northernHemisphere = bugs.first?.availability.monthNorthern,
-              let southernHemisphere = bugs.first?.availability.monthSouthern else {
-            fatalError("Tests failed: testMakeValue() from BugDetailsTableViewCellViewModelTests")
-        }
+    func testMakeValue() throws {
+        let price = try XCTUnwrap(bugs.first?.price)
+        let priceFlick = try XCTUnwrap(bugs.first?.priceFlick)
+        let location = try XCTUnwrap(bugs.first?.availability.location)
+        let time = try XCTUnwrap(bugs.first?.availability.time)
+        let rariry = try XCTUnwrap(bugs.first?.availability.rarity)
+        let northernHemisphere = try XCTUnwrap(bugs.first?.availability.monthNorthern)
+        let southernHemisphere = try XCTUnwrap(bugs.first?.availability.monthSouthern)
         
         for index in 0...6 {
             switch index {

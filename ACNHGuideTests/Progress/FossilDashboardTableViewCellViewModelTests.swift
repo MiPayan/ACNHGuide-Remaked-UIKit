@@ -13,7 +13,7 @@ final class FossilDashboardTableViewCellViewModelTests: XCTestCase {
     private var creaturePeekerMock: CreaturePeekerMock!
     private var creatueWriterMock: CreatureWriterMock!
     private var fossilDashboardTableViewCellViewModel: FossilDashboardTableViewCellViewModel!
-
+    
     override func setUpWithError() throws {
         creaturePeekerMock = CreaturePeekerMock()
         creatueWriterMock = CreatureWriterMock()
@@ -23,18 +23,16 @@ final class FossilDashboardTableViewCellViewModelTests: XCTestCase {
             creatureWriter: creatueWriterMock
         )
     }
-
+    
     override func tearDownWithError() throws {
         creaturePeekerMock = nil
         creatueWriterMock = nil
         fossilDashboardTableViewCellViewModel = nil
     }
     
-    func testImageURL() {
-        guard let imageURI = fossils.first?.imageURI,
-              let url = URL(string: imageURI) else {
-            fatalError("Tests failed: testIconURL() from FossilDashboardTableViewCellViewModelTests")
-        }
+    func testImageURL() throws {
+        let imageURI = try XCTUnwrap(fossils.first?.imageURI, "Tests failed: testImageURL() from FossilDashboardTableViewCellViewModelTests")
+        let url = URL(string: imageURI)
         XCTAssertEqual(imageURI, "https://acnhapi.com/v1/images/fossils/acanthostega")
         XCTAssertEqual(fossilDashboardTableViewCellViewModel.imageURL, url)
     }
