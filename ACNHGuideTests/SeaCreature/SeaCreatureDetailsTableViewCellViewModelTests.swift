@@ -30,35 +30,27 @@ final class SeaCreatureDetailsTableViewCellViewModelTests: XCTestCase {
         seaCreatureDetailsTableViewCellViewModel = nil
     }
     
-    func testFileName() {
-        guard let fileName = seaCreatures.first?.fileName else {
-            fatalError("Tests failed: testFileName() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
+    func testFileName() throws {
+        let fileName = try XCTUnwrap(seaCreatures.first?.fileName, "Tests failed: testFileName() from SeaCreatureDetailsTableViewCellViewModelTests")
         XCTAssertEqual(fileName, "seaweed")
         XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.fileName, "Seaweed")
     }
     
-    func testIconURL() {
-        guard let iconURI = seaCreatures.first?.iconURI,
-              let url = URL(string: iconURI) else {
-            fatalError("Tests failed: testIconURL() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
+    func testIconURL() throws {
+        let iconURI = try XCTUnwrap(seaCreatures.first?.iconURI, "Tests failed: testIconURL() from SeaCreatureDetailsTableViewCellViewModelTests")
+        let url = URL(string: iconURI)
         XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/sea/1")
         XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.iconURL, url)
     }
     
-    func testCatchPhrase() {
-        guard let catchPhrase = seaCreatures.first?.catchPhrase else {
-            fatalError("Tests failed: testCatchPhrase() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
+    func testCatchPhrase() throws {
+        let catchPhrase = try XCTUnwrap(seaCreatures.first?.catchPhrase, "Tests failed: testCatchPhrase() from SeaCreatureDetailsTableViewCellViewModelTests")
         XCTAssertEqual(catchPhrase, "I got some seaweed! I couldn't kelp myself.")
         XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.catchPhrase, "\" I got some seaweed! I couldn't kelp myself. \"")
     }
     
-    func testMuseumPhrase() {
-        guard let museumPhrase = seaCreatures.first?.museumPhrase else {
-            fatalError("Tests failed: testMuseumPhrase() from SeaCreatureDetailsTableViewCellViewModelTests")
-        }
+    func testMuseumPhrase() throws {
+        let museumPhrase = try XCTUnwrap(seaCreatures.first?.museumPhrase, "Tests failed: testMuseumPhrase() from SeaCreatureDetailsTableViewCellViewModelTests")
         XCTAssertEqual(museumPhrase, "Let it be known that seaweed is a misnomer of the highest order! That is, it is not a noxious weed so much as it is a marine algae most beneficial to life on land and sea. Seaweed, you see, provides essential habitat and food for all manner of marine creatures. And it creates a great deal of the oxygen we land lovers love to breath too, hoo! And yet, I can't help but shudder when the slimy stuff touches my toes during a swim. Hoot! The horror!")
         XCTAssertEqual(seaCreatureDetailsTableViewCellViewModel.museumPhrase, museumPhrase)
     }
