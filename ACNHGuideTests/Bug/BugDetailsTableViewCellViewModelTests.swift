@@ -48,7 +48,7 @@ final class BugDetailsTableViewCellViewModelTests: XCTestCase {
         XCTAssertEqual(catchPhrase, "I caught a common butterfly! They often flutter by!")
         XCTAssertEqual(bugDetailsTableViewCellViewModel.catchPhrase, "\" I caught a common butterfly! They often flutter by! \"")
     }
-    
+        
     func testMuseumPhrase() throws {
         let museumPhrase = try XCTUnwrap(bugs.first?.museumPhrase, "Tests failed: testMuseumPhrase() from BugDetailsTableViewCellViewModelTests")
         XCTAssertEqual(museumPhrase, "The common butterfly would have you believe it is but a beautiful friend flitting prettily about the flowers. Bah, I say! They may seem innocent things with their pretty white wings, but they hide a dark side! The common butterfly caterpillar is called a cabbage worm, you see, and it's a most voracious pest. The ravenous beasts chew through cabbage, broccoli, kale and the like with a devastating gusto. And my feathers! Their green coloring is truly GROSS! A hoo-rrific hue, I say.")

@@ -30,7 +30,7 @@ final class BugViewModel {
     func getBugsData() {
         service.getBugsData { [weak self] result in
             guard let self else { return }
-            self.mainDispatchQueue.async {
+            mainDispatchQueue.async {
                 switch result {
                 case .success(let bugsData):
                     self.bugsData = bugsData

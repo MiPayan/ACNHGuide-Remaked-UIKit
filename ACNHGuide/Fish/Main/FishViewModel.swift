@@ -30,7 +30,7 @@ final class FishViewModel {
     func getFishesData() {
         service.getFishesData { [weak self] result in
             guard let self else { return }
-            self.mainDispatchQueue.async {
+            mainDispatchQueue.async {
                 switch result {
                 case .success(let fishesData):
                     self.fishesData = fishesData

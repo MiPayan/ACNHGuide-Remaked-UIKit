@@ -42,12 +42,13 @@ extension SeaCreatureCollectionViewCellViewModel {
         let isSaved = creaturePeeker.isCreatureAlreadySaved(fileName: fileName)
         if isSaved {
             creatureWriter.deleteCreature(fileName: fileName) { [weak self] _ in
-                guard let self = self else { return }
-                self.errorCreatureDatabase("delete_database_error".localized)
+                guard let self else { return }
+                errorCreatureDatabase("delete_database_error".localized)
             }
         } else {
-            creatureWriter.saveCreature(fileName: fileName) { _ in
-                self.errorCreatureDatabase("save_database_error".localized)
+            creatureWriter.saveCreature(fileName: fileName) { [weak self] _ in
+                guard let self else { return }
+                errorCreatureDatabase("save_database_error".localized)
             }
         }
         return !isSaved
