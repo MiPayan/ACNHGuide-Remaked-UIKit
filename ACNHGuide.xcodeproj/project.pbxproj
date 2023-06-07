@@ -54,6 +54,13 @@
 		373F034C29D1FC6F0058949B /* ACNHBugServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373F034B29D1FC6F0058949B /* ACNHBugServiceTests.swift */; };
 		373F034E29D1FFCA0058949B /* ACNHFossilServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373F034D29D1FFCA0058949B /* ACNHFossilServiceTests.swift */; };
 		37563CF229911C1D00739397 /* FishDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37563CF129911C1D00739397 /* FishDetailsViewModel.swift */; };
+		37569FF82A309340007E6D67 /* CreaturesTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37569FF72A309340007E6D67 /* CreaturesTableViewHeaderView.swift */; };
+		37569FFA2A309578007E6D67 /* CreaturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37569FF92A309578007E6D67 /* CreaturesViewModel.swift */; };
+		37569FFC2A309F3D007E6D67 /* FishesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37569FFB2A309F3D007E6D67 /* FishesTableViewCell.swift */; };
+		3756A0022A309F96007E6D67 /* FishesTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756A0012A309F96007E6D67 /* FishesTableViewCellViewModel.swift */; };
+		3756A0042A30A15E007E6D67 /* FishesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756A0032A30A15E007E6D67 /* FishesCollectionViewCell.swift */; };
+		3756A0062A30A6E6007E6D67 /* FishesCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756A0052A30A6E5007E6D67 /* FishesCollectionViewCellViewModel.swift */; };
+		375A8BA92A2F31900016ADFA /* CreaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375A8BA82A2F31900016ADFA /* CreaturesViewController.swift */; };
 		375B9D2B2987D37C00E5B36D /* CreatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375B9D2A2987D37C00E5B36D /* CreatureManager.swift */; };
 		376035862983E181001498C3 /* FishDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */; };
 		3765CE56298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3765CE55298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift */; };
@@ -101,8 +108,8 @@
 		37A7137A29681F2B0075BF25 /* FossilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137929681F2B0075BF25 /* FossilViewController.swift */; };
 		37A7138229682B9B0075BF25 /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137C29682B9B0075BF25 /* Networker.swift */; };
 		37A7138329682B9B0075BF25 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137D29682B9B0075BF25 /* Networking.swift */; };
-		37A7138429682B9B0075BF25 /* CreatureServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137E29682B9B0075BF25 /* CreatureServicesProtocol.swift */; };
-		37A7138529682B9B0075BF25 /* CreatureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137F29682B9B0075BF25 /* CreatureService.swift */; };
+		37A7138429682B9B0075BF25 /* CreatureLoaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137E29682B9B0075BF25 /* CreatureLoaderDelegate.swift */; };
+		37A7138529682B9B0075BF25 /* CreatureLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137F29682B9B0075BF25 /* CreatureLoader.swift */; };
 		37A7138629682B9B0075BF25 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138029682B9B0075BF25 /* NetworkingError.swift */; };
 		37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */; };
 		37A7138E29682C940075BF25 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138929682C940075BF25 /* Name.swift */; };
@@ -206,6 +213,13 @@
 		373F034B29D1FC6F0058949B /* ACNHBugServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNHBugServiceTests.swift; sourceTree = "<group>"; };
 		373F034D29D1FFCA0058949B /* ACNHFossilServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNHFossilServiceTests.swift; sourceTree = "<group>"; };
 		37563CF129911C1D00739397 /* FishDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModel.swift; sourceTree = "<group>"; };
+		37569FF72A309340007E6D67 /* CreaturesTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreaturesTableViewHeaderView.swift; sourceTree = "<group>"; };
+		37569FF92A309578007E6D67 /* CreaturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreaturesViewModel.swift; sourceTree = "<group>"; };
+		37569FFB2A309F3D007E6D67 /* FishesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishesTableViewCell.swift; sourceTree = "<group>"; };
+		3756A0012A309F96007E6D67 /* FishesTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishesTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		3756A0032A30A15E007E6D67 /* FishesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishesCollectionViewCell.swift; sourceTree = "<group>"; };
+		3756A0052A30A6E5007E6D67 /* FishesCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishesCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		375A8BA82A2F31900016ADFA /* CreaturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreaturesViewController.swift; sourceTree = "<group>"; };
 		375B9D2A2987D37C00E5B36D /* CreatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureManager.swift; sourceTree = "<group>"; };
 		376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		3765CE55298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -248,8 +262,8 @@
 		37A7137929681F2B0075BF25 /* FossilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilViewController.swift; sourceTree = "<group>"; };
 		37A7137C29682B9B0075BF25 /* Networker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
 		37A7137D29682B9B0075BF25 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		37A7137E29682B9B0075BF25 /* CreatureServicesProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureServicesProtocol.swift; sourceTree = "<group>"; };
-		37A7137F29682B9B0075BF25 /* CreatureService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureService.swift; sourceTree = "<group>"; };
+		37A7137E29682B9B0075BF25 /* CreatureLoaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureLoaderDelegate.swift; sourceTree = "<group>"; };
+		37A7137F29682B9B0075BF25 /* CreatureLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureLoader.swift; sourceTree = "<group>"; };
 		37A7138029682B9B0075BF25 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueueDelegate.swift; sourceTree = "<group>"; };
 		37A7138929682C940075BF25 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
@@ -502,6 +516,52 @@
 			path = CreatureDatabase;
 			sourceTree = "<group>";
 		};
+		37569FFD2A309F44007E6D67 /* Fishes */ = {
+			isa = PBXGroup;
+			children = (
+				3756A0012A309F96007E6D67 /* FishesTableViewCellViewModel.swift */,
+				37569FFB2A309F3D007E6D67 /* FishesTableViewCell.swift */,
+				3756A0052A30A6E5007E6D67 /* FishesCollectionViewCellViewModel.swift */,
+				3756A0032A30A15E007E6D67 /* FishesCollectionViewCell.swift */,
+			);
+			path = Fishes;
+			sourceTree = "<group>";
+		};
+		37569FFE2A309F4D007E6D67 /* SeaCreatures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SeaCreatures;
+			sourceTree = "<group>";
+		};
+		37569FFF2A309F61007E6D67 /* Bugs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bugs;
+			sourceTree = "<group>";
+		};
+		3756A0002A309F77007E6D67 /* Fossils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fossils;
+			sourceTree = "<group>";
+		};
+		375A8BA52A2F31400016ADFA /* Creatures */ = {
+			isa = PBXGroup;
+			children = (
+				37569FF92A309578007E6D67 /* CreaturesViewModel.swift */,
+				37569FF72A309340007E6D67 /* CreaturesTableViewHeaderView.swift */,
+				375A8BA82A2F31900016ADFA /* CreaturesViewController.swift */,
+				37569FFD2A309F44007E6D67 /* Fishes */,
+				37569FFE2A309F4D007E6D67 /* SeaCreatures */,
+				37569FFF2A309F61007E6D67 /* Bugs */,
+				3756A0002A309F77007E6D67 /* Fossils */,
+			);
+			path = Creatures;
+			sourceTree = "<group>";
+		};
 		37671B78299CF8CA00453F70 /* Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -596,6 +656,7 @@
 				37A7136B29681A700075BF25 /* Info.plist */,
 				372AF6C029BA232800821E87 /* GoogleService-Info.plist */,
 				37A7137229681B130075BF25 /* Ressources */,
+				375A8BA52A2F31400016ADFA /* Creatures */,
 				37137583296C58C800F39C83 /* Extension */,
 				374732C62976A832005363BE /* CreatureDatabase */,
 				37A7138829682BCD0075BF25 /* ACNHData */,
@@ -627,8 +688,8 @@
 		37A7137B29682B130075BF25 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				37A7137E29682B9B0075BF25 /* CreatureServicesProtocol.swift */,
-				37A7137F29682B9B0075BF25 /* CreatureService.swift */,
+				37A7137E29682B9B0075BF25 /* CreatureLoaderDelegate.swift */,
+				37A7137F29682B9B0075BF25 /* CreatureLoader.swift */,
 				37A7137D29682B9B0075BF25 /* Networking.swift */,
 				37A7137C29682B9B0075BF25 /* Networker.swift */,
 				37A7138029682B9B0075BF25 /* NetworkingError.swift */,
@@ -949,6 +1010,7 @@
 			files = (
 				37FCA94A29E56D9E00270D65 /* ErrorToastable.swift in Sources */,
 				37671B7A299CF93E00453F70 /* Fish.swift in Sources */,
+				3756A0042A30A15E007E6D67 /* FishesCollectionViewCell.swift in Sources */,
 				37A7138329682B9B0075BF25 /* Networking.swift in Sources */,
 				37A713AD29682DBB0075BF25 /* FishAvailability.swift in Sources */,
 				3702B456296EFF67008AB36D /* FishCollectionViewCell.swift in Sources */,
@@ -961,6 +1023,7 @@
 				37B02E16296D5F820084178D /* CurrentCalendar.swift in Sources */,
 				3702B46D296F1010008AB36D /* FossilDetailsViewController.swift in Sources */,
 				37D7D8B7299E602500BBA73F /* FossilCollectionViewCellViewModel.swift in Sources */,
+				375A8BA92A2F31900016ADFA /* CreaturesViewController.swift in Sources */,
 				373349BC29DC33BD005B64B0 /* UIViewController+UILabel.swift in Sources */,
 				3702B466296F0CDF008AB36D /* FossilCollectionViewCell.swift in Sources */,
 				37E7BA6329C0C1BB00BFF7BE /* ProgressDashboardViewModel.swift in Sources */,
@@ -968,13 +1031,13 @@
 				37A7137629681F130075BF25 /* SeaCreatureViewController.swift in Sources */,
 				37A7137829681F1C0075BF25 /* BugViewController.swift in Sources */,
 				37D7D8B5299E5A7900BBA73F /* BugCollectionViewCellViewModel.swift in Sources */,
-				37A7138529682B9B0075BF25 /* CreatureService.swift in Sources */,
+				37A7138529682B9B0075BF25 /* CreatureLoader.swift in Sources */,
 				37B02E14296D5EEF0084178D /* CalendarDelegate.swift in Sources */,
 				3700B87629719652005D975D /* BugDetailsTableViewCell.swift in Sources */,
 				37A7137A29681F2B0075BF25 /* FossilViewController.swift in Sources */,
 				37A7138229682B9B0075BF25 /* Networker.swift in Sources */,
 				37D197BC296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift in Sources */,
-				37A7138429682B9B0075BF25 /* CreatureServicesProtocol.swift in Sources */,
+				37A7138429682B9B0075BF25 /* CreatureLoaderDelegate.swift in Sources */,
 				37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */,
 				373349C029DC73E5005B64B0 /* UITableViewCell+CollectionViewLayout.swift in Sources */,
 				37E7BA6529C0C39E00BFF7BE /* Creatures.swift in Sources */,
@@ -986,9 +1049,12 @@
 				3792FF3829896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift in Sources */,
 				3792FF3A298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift in Sources */,
 				37D7D8B1299E4CB600BBA73F /* FishCollectionViewCellViewModel.swift in Sources */,
+				3756A0062A30A6E6007E6D67 /* FishesCollectionViewCellViewModel.swift in Sources */,
 				37D7D8B3299E4E6000BBA73F /* SeaCreatureCollectionViewCellViewModel.swift in Sources */,
+				37569FFC2A309F3D007E6D67 /* FishesTableViewCell.swift in Sources */,
 				37DD38DD298187440013BF3A /* DashboardTableViewCell.swift in Sources */,
 				37ACFB6E29685CDE008B065C /* SeaCreatureViewModel.swift in Sources */,
+				37569FFA2A309578007E6D67 /* CreaturesViewModel.swift in Sources */,
 				37A7138629682B9B0075BF25 /* NetworkingError.swift in Sources */,
 				3702B44A296EAEE1008AB36D /* SeaCreatureDetailsViewController.swift in Sources */,
 				37ACFB7029685DAB008B065C /* FishViewController.swift in Sources */,
@@ -1016,6 +1082,7 @@
 				37C8A301299B9AC8002E74F5 /* FossilDetailsViewModel.swift in Sources */,
 				37A713A329682D090075BF25 /* SeaCreatureData.swift in Sources */,
 				37A29F83297844F300E043F0 /* DecodableBundle.swift in Sources */,
+				37569FF82A309340007E6D67 /* CreaturesTableViewHeaderView.swift in Sources */,
 				373349BE29DC733D005B64B0 /* UIViewController+CollectionViewLayout.swift in Sources */,
 				37A7136029681A6F0075BF25 /* SceneDelegate.swift in Sources */,
 				37C8A2FD299B7DAE002E74F5 /* SeaCreaturesDetailsViewModel.swift in Sources */,
@@ -1028,6 +1095,7 @@
 				376035862983E181001498C3 /* FishDetailsTableViewCellViewModel.swift in Sources */,
 				37E135B529B0EE53006C1EDC /* FossilDashboardTableViewCellViewModel.swift in Sources */,
 				3772530229AF839600F08602 /* BugService.swift in Sources */,
+				3756A0022A309F96007E6D67 /* FishesTableViewCellViewModel.swift in Sources */,
 				3702B462296F09BB008AB36D /* BugDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1257,7 +1325,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1289,7 +1357,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

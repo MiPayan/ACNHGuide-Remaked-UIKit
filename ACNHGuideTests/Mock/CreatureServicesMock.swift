@@ -7,7 +7,7 @@
 
 @testable import ACNHGuide
 
-final class CreatureServicesMock: CreatureServicesProtocol {
+final class CreatureServicesMock: CreatureLoaderDelegate {
 
     var invokedGetFishesCount = 0
     var stubbedFishResult: Result<[FishData], NetworkingError>!

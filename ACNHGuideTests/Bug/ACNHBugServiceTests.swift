@@ -11,11 +11,11 @@ import XCTest
 final class ACNHBugServiceTests: XCTestCase {
 
     private var networkingMock: NetworkingMock<BugData>!
-    private var service: CreatureService!
+    private var service: CreatureLoader!
     
     override func setUpWithError() throws {
         networkingMock = NetworkingMock()
-        service = CreatureService(session: networkingMock)
+        service = CreatureLoader(session: networkingMock)
     }
     
     override func tearDownWithError() throws {

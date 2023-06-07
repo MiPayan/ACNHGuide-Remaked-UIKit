@@ -9,7 +9,7 @@ import Foundation
 
 final class FishViewModel {
     
-    private let service: CreatureServicesProtocol
+    private let service: CreatureLoaderDelegate
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var fishesData = [FishData]()
@@ -18,7 +18,7 @@ final class FishViewModel {
     var failureHandler: (() -> Void) = { }
     
     init(
-        service: CreatureServicesProtocol = CreatureService(),
+        service: CreatureLoaderDelegate = CreatureLoader(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {

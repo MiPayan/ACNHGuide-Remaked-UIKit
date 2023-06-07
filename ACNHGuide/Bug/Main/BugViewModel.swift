@@ -9,7 +9,7 @@ import Foundation
 
 final class BugViewModel {
     
-    private let service: CreatureServicesProtocol
+    private let service: CreatureLoaderDelegate
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var bugsData = [BugData]()
@@ -18,7 +18,7 @@ final class BugViewModel {
     var failureHandler: (() -> Void) = { }
     
     init(
-        service: CreatureServicesProtocol = CreatureService(),
+        service: CreatureLoaderDelegate = CreatureLoader(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {

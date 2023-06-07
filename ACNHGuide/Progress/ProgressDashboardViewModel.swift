@@ -10,7 +10,7 @@ import Dispatch
 
 final class ProgressDashboardViewModel {
     
-    private let service: CreatureServicesProtocol
+    private let service: CreatureLoaderDelegate
     private(set) var fishesData = [FishData]()
     private(set) var seaCreaturesData = [SeaCreatureData]()
     private(set) var bugsData = [BugData]()
@@ -19,7 +19,7 @@ final class ProgressDashboardViewModel {
     var failureHandler: (() -> Void) = { }
     let numberOfRowsInSection = 4
     
-    init(service: CreatureServicesProtocol = CreatureService()) {
+    init(service: CreatureLoaderDelegate = CreatureLoader()) {
         self.service = service
     }
     
