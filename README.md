@@ -30,7 +30,7 @@ Hemispheres correspond to the player’s location in the world.
 <br />
 <br />
 
-The user can select a creature to get details. It will be able to find data about the creature like its resale price, accommodation, scarcity, etc... Not all creatures have the same data. 
+The user can select a creature to get details. It will be able to find data about the creature like its resale price, location, rarity, etc... Not all creatures have the same data. 
 Let’s take sea creatures and fish as an example of comparison :
 <br />
 <br />
@@ -41,7 +41,7 @@ Let’s take sea creatures and fish as an example of comparison :
 <br />
 <br />
 
-Finally, the user can save or delete the selected creature using the leaf button and see its progress. When the leaf button is filled, the creature is saved, otherwise it is not saved.
+To finish, the user can save or delete the selected creature using the leaf button and see its progress. When the leaf button is filled, the creature is saved, otherwise it is not saved.
 <br />
 <br />
 <div align="center">
@@ -51,6 +51,7 @@ Finally, the user can save or delete the selected creature using the leaf button
 
 ## Technical details :
 - Architectural pattern : <b>MVVM</b>
+- API : <b>https://acnhapi.com</b>
 - Database : <b>RealmSwift</b>
 - Performance monitoring : <b>Firebase Performance</b>
 - Crash reporter : <b>Firebase Crashlytics</b>
