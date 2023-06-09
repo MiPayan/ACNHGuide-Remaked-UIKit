@@ -18,6 +18,36 @@ It consists of 5 tabs :
 </div>
 <br />
 <br />
+Except for fossils, each creature is filtered into two parts. 
+- The first is the northern hemisphere (at the top).
+- The second is the southern hemisphere (down when you scroll). 
+Hemispheres correspond to the player’s location in the world.
+<br />
+<br />
+<div align="center">
+  <img width="185" height="400" src="https://github.com/MiPayan/ACNHGuide-Remaked-UIKit/assets/71004452/40530bb1-63f4-4002-92fc-54badb350e15">
+</div>
+<br />
+<br />
+
+The user can select a creature to get details. It will be able to find data about the creature like its resale price, accommodation, scarcity, etc... Not all creatures have the same data. 
+Let’s take sea creatures and fish as an example of comparison :
+<br />
+<br />
+<div align="center">
+  <img width="185" height="400" src="https://github.com/MiPayan/ACNHGuide-Remaked-UIKit/assets/71004452/d716212a-9410-481a-92a9-694a30bf713f">
+  <img width="185" height="400" src="https://github.com/MiPayan/ACNHGuide-Remaked-UIKit/assets/71004452/98a9f7a3-41ab-4a54-b2f8-5241d9f1b7a5">
+</div>
+<br />
+<br />
+
+Finally, the user can save or delete the selected creature using the leaf button and see its progress. When the leaf button is filled, the creature is saved, otherwise it is not saved.
+<br />
+<br />
+<div align="center">
+  <img width="185" height="400" src="https://github.com/MiPayan/ACNHGuide-Remaked-UIKit/assets/71004452/59183426-dad1-4cca-9505-352f7f306527">
+  <img width="185" height="400" src="https://github.com/MiPayan/ACNHGuide-Remaked-UIKit/assets/71004452/e7ea50c2-231c-4f04-9fa1-fe9ce6e01c79">
+</div>
 
 ## Technical details :
 - Architectural pattern : <b>MVVM</b>
