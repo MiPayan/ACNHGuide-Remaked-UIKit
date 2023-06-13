@@ -6,10 +6,8 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol Networking {
-    func fetchData<T: Decodable>(
-        with urlString: String,
-        completionHandler: @escaping ((Result<[T], NetworkingError>) -> Void)
-    )
+    func fetchData<T: Decodable>(with urlString: String) -> Observable<Result<[T], NetworkingError>>
 }

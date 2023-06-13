@@ -6,11 +6,13 @@
 //
 
 import UIKit
-import RealmSwift
+import RxSwift
+import RxCocoa
 
 final class FishViewController: UIViewController {
     
     private let fishViewModel = FishViewModel()
+    private let disposeBag = DisposeBag()
     private lazy var fishCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -25,7 +27,7 @@ final class FishViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(FishCollectionViewCell.self, forCellWithReuseIdentifier: "FishCell")
         collectionView.setCollectionViewLayout(layout, animated: true)
-        collectionView.dataSource = self
+        collectionView.dataSource = nil
         collectionView.delegate = self
         return collectionView
     }()
@@ -33,6 +35,7 @@ final class FishViewController: UIViewController {
     private lazy var errorView: UIView = {
         let view = ErrorView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
         return view
     }()
     
@@ -40,21 +43,43 @@ final class FishViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         setUpCollectionViewBackground()
-        setUpUpdateDataHandler()
+        bindViewModel()
         fishViewModel.getFishesData()
     }
 }
 
 private extension FishViewController {
-    func setUpUpdateDataHandler() {
-        fishViewModel.failureHandler = {
-            self.errorView.isHidden = false
-        }
+    func bindViewModel() {
+        fishViewModel.onError
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                errorView.isHidden = false
+            })
+            .disposed(by: disposeBag)
         
-        fishViewModel.successHandler = {
-            self.errorView.isHidden = true
-            self.fishCollectionView.reloadData()
-        }
+        fishViewModel.fishesData
+            .observe(on: MainScheduler.instance)
+            .bind(to: fishCollectionView.rx.items(cellIdentifier: "FishCell", cellType: FishCollectionViewCell.self)) { row, fishData, fishCell in
+                let fishCollectionViewCellViewModel = FishCollectionViewCellViewModel(fishData: fishData)
+                fishCell.configureCell(with: fishCollectionViewCellViewModel, view: self)
+            }
+            .disposed(by: disposeBag)
+        
+        fishCollectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self else { return }
+                let detailsViewController = FishDetailsViewController()
+                let selectedFishObservable = self.fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
+                selectedFishObservable.subscribe(onNext: { selectedFish in
+                    let fishDetailsViewModel = FishDetailsViewModel(fishData: selectedFish)
+                    detailsViewController.fishDetailsViewModel = fishDetailsViewModel
+                    detailsViewController.reloadDataDelegate = self
+                    self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
+                })
+                .disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
     
     func setUpCollectionViewBackground() {
@@ -96,59 +121,12 @@ extension FishViewController: ErrorToastable {
     }
 }
 
-// MARK: - CollectionViewDataSource
-
-extension FishViewController: UICollectionViewDataSource {
-    
-    // Header.
-    func collectionView(
-        _ collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        at indexPath: IndexPath
-    ) -> UICollectionReusableView {
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: "AdaptiveHeader",
-            for: indexPath
-        ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
-        headerView.configureHeaderLabel(with: fishViewModel.configureHeaderSection(with: indexPath.section))
-        return headerView
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        referenceSizeForHeaderInSection section: Int
-    ) -> CGSize {
-        return CGSize(width: view.frame.width, height: 40.0)
-    }
-    
-    // Configure cells.
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return fishViewModel.numberOfSections
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        fishViewModel.configureSectionCollectionView(with: section)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let fishCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "FishCell",
-            for: indexPath
-        ) as? FishCollectionViewCell else { return UICollectionViewCell() }
-        let fish = fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
-        let fishCollectionViewCellViewModel = FishCollectionViewCellViewModel(fishData: fish)
-        fishCell.configureCell(with: fishCollectionViewCellViewModel, view: self)
-        return fishCell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailsViewController = FishDetailsViewController()
-        let selectedFish = fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
-        let fishDetailsViewModel = FishDetailsViewModel(fishData: selectedFish)
-        detailsViewController.fishDetailsViewModel = fishDetailsViewModel
-        detailsViewController.reloadDataDelegate = self
-        self.navigationController?.showDetailViewController(detailsViewController, sender: nil)
+extension Reactive where Base: UICollectionView {
+    func numberOfItemsInSection() -> Binder<(section: Int, count: Int)> {
+        return Binder(self.base) { collectionView, data in
+            let section = data.section
+            let count = data.count
+            collectionView.performBatchUpdates(nil, completion: nil)
+        }
     }
 }

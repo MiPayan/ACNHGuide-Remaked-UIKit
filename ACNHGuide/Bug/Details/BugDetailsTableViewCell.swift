@@ -78,7 +78,7 @@ final class BugDetailsTableViewCell: UITableViewCell {
         collectionView.allowsSelection = false
         collectionView.isScrollEnabled = false
         collectionView.dataSource = self
-//        collectionView.delegate = self
+        collectionView.delegate = self
         return collectionView
     }()
     

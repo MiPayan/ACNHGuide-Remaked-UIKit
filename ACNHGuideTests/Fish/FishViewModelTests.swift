@@ -39,7 +39,7 @@ final class FishViewModelTests: XCTestCase {
             .failure(.urlInvalid)
         )
         
-        fishesViewModel.failureHandler = {
+        fishesViewModel.errorSubject = {
             XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
             expectation.fulfill()
         }

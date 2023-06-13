@@ -9,7 +9,7 @@ import Foundation
 
 final class FossilViewModel {
     
-    private let service: CreatureLoaderDelegate
+    private let service: Loader
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private(set) var fossilsData = [FossilData]()
@@ -18,7 +18,7 @@ final class FossilViewModel {
     let headerText = "fossils".localized
     
     init(
-        service: CreatureLoaderDelegate = CreatureLoader(),
+        service: Loader = CreatureLoader(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
@@ -28,17 +28,17 @@ final class FossilViewModel {
     }
     
     func getFossilsData() {
-        service.getFossilsData { [weak self] result in
-            guard let self else { return }
-            mainDispatchQueue.async {
-                switch result {
-                case .success(let fossilData):
-                    self.fossilsData = fossilData
-                    self.successHandler()
-                case .failure(_):
-                    self.failureHandler()
-                }
-            }
-        }
+//        service.getFossilsData { [weak self] result in
+//            guard let self else { return }
+//            mainDispatchQueue.async {
+//                switch result {
+//                case .success(let fossilData):
+//                    self.fossilsData = fossilData
+//                    self.successHandler()
+//                case .failure(_):
+//                    self.failureHandler()
+//                }
+//            }
+//        }
     }
 }

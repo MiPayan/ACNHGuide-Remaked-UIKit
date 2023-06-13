@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 final class Networker: Networking {
     
@@ -15,35 +16,44 @@ final class Networker: Networking {
         self.urlSession = urlSession
     }
     
-    func fetchData<T: Decodable>(
-        with urlString: String,
-        completionHandler: @escaping ((Result<[T], NetworkingError>) -> Void)
-    ) {
-        guard let url = URL(string: urlString) else {
-            completionHandler(.failure(.urlInvalid))
-            return
+    func fetchData<T: Decodable>(with urlString: String) -> Observable<Result<[T], NetworkingError>> {
+        return Observable.create { observer in
+            guard let url = URL(string: urlString) else {
+                observer.onNext(.failure(.urlInvalid))
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            let request = URLRequest(url: url)
+            let task = self.urlSession.dataTask(with: request) { data, _, error in
+                if error != nil {
+                    observer.onNext(.failure(.error))
+                    observer.onCompleted()
+                    return
+                }
+                
+                guard let data else {
+                    observer.onNext(.failure(.noData))
+                    observer.onCompleted()
+                    return
+                }
+                
+                let decoder = JSONDecoder()
+                do {
+                    let decodedData = try decoder.decode([T].self, from: data)
+                    observer.onNext(.success(decodedData))
+                    observer.onCompleted()
+                } catch {
+                    observer.onNext(.failure(.decodingFailure))
+                    observer.onCompleted()
+                }
+            }
+            
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
         }
-        
-        let request = URLRequest(url: url)
-        urlSession.dataTask(with: request) { data, _, error in
-            if error != nil {
-                completionHandler(.failure(.error))
-            }
-            
-            guard let data else {
-                completionHandler(.failure(.noData))
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            do {
-                let decodedData = try decoder.decode([T].self, from: data)
-                completionHandler(.success(decodedData))
-                return
-            } catch {
-                completionHandler(.failure(.decodingFailure))
-                return
-            }
-        }.resume()
     }
 }

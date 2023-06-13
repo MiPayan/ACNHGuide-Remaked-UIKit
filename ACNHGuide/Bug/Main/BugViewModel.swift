@@ -9,7 +9,7 @@ import Foundation
 
 final class BugViewModel {
     
-    private let service: CreatureLoaderDelegate
+    private let service: Loader
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var bugsData = [BugData]()
@@ -18,7 +18,7 @@ final class BugViewModel {
     var failureHandler: (() -> Void) = { }
     
     init(
-        service: CreatureLoaderDelegate = CreatureLoader(),
+        service: Loader = CreatureLoader(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
@@ -28,18 +28,18 @@ final class BugViewModel {
     }
     
     func getBugsData() {
-        service.getBugsData { [weak self] result in
-            guard let self else { return }
-            mainDispatchQueue.async {
-                switch result {
-                case .success(let bugsData):
-                    self.bugsData = bugsData
-                    self.successHandler()
-                case .failure(_):
-                    self.failureHandler()
-                }
-            }
-        }
+//        service.getBugsData { [weak self] result in
+//            guard let self else { return }
+//            mainDispatchQueue.async {
+//                switch result {
+//                case .success(let bugsData):
+//                    self.bugsData = bugsData
+//                    self.successHandler()
+//                case .failure(_):
+//                    self.failureHandler()
+//                }
+//            }
+//        }
     }
     
     func setHeaderSection(with section: Int) -> String {
