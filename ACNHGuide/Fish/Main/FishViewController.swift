@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 import RealmSwift
 
 final class FishViewController: UIViewController {
@@ -41,7 +42,29 @@ final class FishViewController: UIViewController {
         addSubviews()
         setUpCollectionViewBackground()
         setUpUpdateDataHandler()
-        fishViewModel.getFishesData()
+        fishViewModel.loadFishesData()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleNetworkConnectivityChange(notification:)),
+            name: Notification.Name("NetworkConnectivityDidChange"),
+            object: nil
+        )
+    }
+    
+    @objc private func handleNetworkConnectivityChange(notification: Notification) {
+        guard let isNetworkAvailable = notification.userInfo?["isNetworkAvailable"] as? Bool else {
+            return
+        }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            if !isNetworkAvailable {
+                errorView.isHidden = false
+            } else {
+                errorView.isHidden = true
+                fishViewModel.loadFishesData()
+                fishCollectionView.reloadData()
+            }
+        }
     }
 }
 
@@ -52,14 +75,15 @@ private extension FishViewController {
         }
         
         fishViewModel.successHandler = {
-            self.errorView.isHidden = true
             self.fishCollectionView.reloadData()
         }
     }
     
     func setUpCollectionViewBackground() {
         guard let blueOcean = UIColor(named: "ColorBlueOcean")?.cgColor,
-              let blueRoyal = UIColor(named: "ColorBlueRoyal")?.cgColor else { return }
+              let blueRoyal = UIColor(named: "ColorBlueRoyal")?.cgColor else {
+            return
+        }
         let colors = [blueOcean, blueRoyal]
         view.setCollectionViewBackground(collectionView: fishCollectionView, colors: colors)
     }
@@ -98,8 +122,14 @@ extension FishViewController: ErrorToastable {
 
 // MARK: - CollectionViewDataSource
 
-extension FishViewController: UICollectionViewDataSource {
-    
+extension FishViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        cellIdentifierForItemAt indexPath: IndexPath
+    ) -> ReusableCellIdentifier {
+        "FishCell"
+    }
+
     // Header.
     func collectionView(
         _ collectionView: UICollectionView,
@@ -125,7 +155,7 @@ extension FishViewController: UICollectionViewDataSource {
     
     // Configure cells.
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return fishViewModel.numberOfSections
+        fishViewModel.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

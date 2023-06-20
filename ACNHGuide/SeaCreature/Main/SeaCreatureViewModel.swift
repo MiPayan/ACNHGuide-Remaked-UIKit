@@ -9,7 +9,7 @@ import Foundation
 
 final class SeaCreatureViewModel {
     
-    private let service: CreatureServicesProtocol
+    private let loader: Loader
     private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var seaCreaturesData = [SeaCreatureData]()
@@ -18,17 +18,17 @@ final class SeaCreatureViewModel {
     var failureHandler: (() -> Void) = { }
     
     init(
-        service: CreatureServicesProtocol = CreatureService(),
+        loader: Loader = CreatureLoader(),
         mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
-        self.service = service
+        self.loader = loader
         self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
     
     func getSeaCreaturesData() {
-        service.getSeaCreaturesData { [weak self] result in
+        loader.loadSeaCreaturesData { [weak self] result in
             guard let self else { return }
             mainDispatchQueue.async {
                 switch result {

@@ -10,7 +10,7 @@ import Dispatch
 
 final class ProgressDashboardViewModel {
     
-    private let service: CreatureServicesProtocol
+    private let loader: Loader
     private(set) var fishesData = [FishData]()
     private(set) var seaCreaturesData = [SeaCreatureData]()
     private(set) var bugsData = [BugData]()
@@ -19,8 +19,8 @@ final class ProgressDashboardViewModel {
     var failureHandler: (() -> Void) = { }
     let numberOfRowsInSection = 4
     
-    init(service: CreatureServicesProtocol = CreatureService()) {
-        self.service = service
+    init(loader: Loader = CreatureLoader()) {
+        self.loader = loader
     }
     
     /*
@@ -37,7 +37,7 @@ final class ProgressDashboardViewModel {
     func getDatas() {
         let group = DispatchGroup()
         group.enter()
-        service.getFishesData { [weak self] result in
+        loader.loadFishesData { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let fishesData):
@@ -49,7 +49,7 @@ final class ProgressDashboardViewModel {
         }
         
         group.enter()
-        service.getSeaCreaturesData { [weak self] result in
+        loader.loadSeaCreaturesData { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let seaCreatures):
@@ -61,7 +61,7 @@ final class ProgressDashboardViewModel {
         }
         
         group.enter()
-        service.getBugsData { [weak self] result in
+        loader.loadBugsData { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let bugsData):
@@ -73,7 +73,7 @@ final class ProgressDashboardViewModel {
         }
         
         group.enter()
-        service.getFossilsData { [weak self] result in
+        loader.loadFossilsData { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let fossilsData):

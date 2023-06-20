@@ -60,6 +60,7 @@ final class ErrorView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(named: "ColorSand")
+        self.isHidden = true
         addSubviews()
     }
     
