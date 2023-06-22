@@ -12,4 +12,5 @@ enum NetworkingError: Error {
     case noData
     case decodingFailure
     case error
+    case noInternetConnection
 }

@@ -36,7 +36,7 @@ final class FishCollectionViewCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
         return button
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
