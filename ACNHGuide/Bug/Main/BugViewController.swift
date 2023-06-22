@@ -40,7 +40,7 @@ final class BugViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        bugViewModel.getBugsData()
+        bugViewModel.loadBugs()
     }
 }
 

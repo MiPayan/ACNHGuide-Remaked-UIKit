@@ -6,22 +6,23 @@
 //
 
 import Foundation
+import Combine
 import Network
 
 final class Networker: Networking {
     
-    private let networkPathMonitor: NWPathMonitor
+    private let networkPathMonitor = NWPathMonitor()
+    private let queue = DispatchQueue(label: "PathMonitor")
     
-    init(networkPathMonitor: NWPathMonitor = .init()) {
-        self.networkPathMonitor = networkPathMonitor
+    init() {
         startMonitoringMonitor()
     }
     
     private func startMonitoringMonitor() {
-        networkPathMonitor.start(queue: .global())
+        networkPathMonitor.start(queue: queue)
         networkPathMonitor.pathUpdateHandler = { [weak self] path in
             guard let self else { return }
-            self.handleNetworkConnectivityChange(path)
+            handleNetworkConnectivityChange(path)
         }
     }
     
@@ -42,43 +43,28 @@ final class Networker: Networking {
         return configuration
     }
     
-    func fetchData<T: Decodable>(
-        with urlString: String,
-        completionHandler: @escaping ((Result<[T], NetworkingError>) -> Void)
-    ) {
+    
+    func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkingError> {
         
         guard isNetworkAvailable else {
-            completionHandler(.failure(.noInternetConnection))
-            return
+            return Fail(error: NetworkingError.noInternetConnection).eraseToAnyPublisher()
         }
         
         guard let url = URL(string: urlString) else {
-            completionHandler(.failure(.urlInvalid))
-            return
+            return Fail(error: NetworkingError.urlInvalid).eraseToAnyPublisher()
         }
         
-        let urlSession = URLSession(configuration: configuration)
-        let request = URLRequest(url: url)
-        urlSession.dataTask(with: request) { data, _, error in
-            guard error == nil else {
-                completionHandler(.failure(.error))
-                return
+        let session = URLSession(configuration: configuration)
+        let decoder = JSONDecoder()
+        
+        return session.dataTaskPublisher(for: url)
+            .tryMap { data, response in
+                return data
             }
-            
-            guard let data else {
-                completionHandler(.failure(.noData))
-                return
+            .decode(type: [T].self, decoder: decoder)
+            .mapError { error in
+                NetworkingError.decodingFailure
             }
-            
-            let decoder = JSONDecoder()
-            do {
-                let decodedData = try decoder.decode([T].self, from: data)
-                completionHandler(.success(decodedData))
-                return
-            } catch {
-                completionHandler(.failure(.decodingFailure))
-                return
-            }
-        }.resume()
+            .eraseToAnyPublisher()
     }
 }

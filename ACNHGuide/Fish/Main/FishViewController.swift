@@ -8,6 +8,7 @@
 import UIKit
 import SkeletonView
 import RealmSwift
+import Combine
 
 final class FishViewController: UIViewController {
     
@@ -41,7 +42,7 @@ final class FishViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         setUpCollectionViewBackground()
-        setUpUpdateDataHandler()
+        bindViewModel()
         fishViewModel.loadFishesData()
         NotificationCenter.default.addObserver(
             self,
@@ -57,10 +58,8 @@ final class FishViewController: UIViewController {
         }
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            if !isNetworkAvailable {
-                errorView.isHidden = false
-            } else {
-                errorView.isHidden = true
+            errorView.isHidden = isNetworkAvailable
+            if isNetworkAvailable {
                 fishViewModel.loadFishesData()
                 fishCollectionView.reloadData()
             }
@@ -69,14 +68,20 @@ final class FishViewController: UIViewController {
 }
 
 private extension FishViewController {
-    func setUpUpdateDataHandler() {
-        fishViewModel.failureHandler = {
-            self.errorView.isHidden = false
-        }
+    func bindViewModel() {
+        fishViewModel.failureHandler
+            .sink { [weak self] error in
+                guard let self else { return }
+                errorView.isHidden = false
+            }
+            .store(in: &fishViewModel.cancellables)
         
-        fishViewModel.successHandler = {
-            self.fishCollectionView.reloadData()
-        }
+        fishViewModel.reloadData
+            .sink { [weak self] _ in
+                guard let self else { return }
+                fishCollectionView.reloadData()
+            }
+            .store(in: &fishViewModel.cancellables)
     }
     
     func setUpCollectionViewBackground() {
@@ -129,7 +134,7 @@ extension FishViewController: SkeletonCollectionViewDataSource {
     ) -> ReusableCellIdentifier {
         "FishCell"
     }
-
+    
     // Header.
     func collectionView(
         _ collectionView: UICollectionView,

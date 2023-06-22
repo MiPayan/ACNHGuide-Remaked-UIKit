@@ -6,10 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol Networking {
-    func fetchData<T: Decodable>(
-        with urlString: String,
-        completionHandler: @escaping ((Result<[T], NetworkingError>) -> Void)
-    )
+    func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkingError>
 }

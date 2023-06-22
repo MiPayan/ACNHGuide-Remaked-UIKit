@@ -6,40 +6,42 @@
 //
 
 import Foundation
+import Combine
 
 final class FishViewModel {
     
     private let loader: Loader
-    private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
-    private var fishesData = [FishData]()
+    private(set) var fishesData = [FishData]()
+    private let subject = PassthroughSubject<Void, Never>()
+    var cancellables = Set<AnyCancellable>()
     let numberOfSections = 2
-    var successHandler: (() -> Void) = { }
-    var failureHandler: (() -> Void) = { }
+    let failureHandler = PassthroughSubject<Error, Never>()
+    var reloadData: AnyPublisher<Void, Never> {
+           subject.eraseToAnyPublisher()
+       }
     
-    init(
-        loader: Loader = CreatureLoader(),
-        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
-        currentCalendar: CalendarDelegate = CurrentCalendar()
-    ) {
+    init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
         self.loader = loader
-        self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
     
     func loadFishesData() {
-        loader.loadFishesData { [weak self] result in
-            guard let self else { return }
-            mainDispatchQueue.async {
-                switch result {
-                case .success(let fishesData):
-                    self.fishesData = fishesData
-                    self.successHandler()
-                case .failure(_):
-                    self.failureHandler()
+        loader.loadFishesData()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.failureHandler.send(error)
                 }
+            } receiveValue: { [weak self] fishes in
+                guard let self else { return }
+                fishesData = fishes
+                subject.send()
             }
-        }
+            .store(in: &cancellables)
     }
     
     func configureHeaderSection(with section: Int) -> String {

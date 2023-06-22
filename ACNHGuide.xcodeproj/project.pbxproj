@@ -508,10 +508,10 @@
 		375F67BA2A42039E008A17F1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				375F67BC2A4203B6008A17F1 /* FishCollectionViewCell.swift */,
-				375F67BE2A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift */,
-				375F67BB2A4203B6008A17F1 /* FishViewController.swift */,
 				375F67BD2A4203B6008A17F1 /* FishViewModel.swift */,
+				375F67BC2A4203B6008A17F1 /* FishCollectionViewCell.swift */,
+				375F67BB2A4203B6008A17F1 /* FishViewController.swift */,
+				375F67BE2A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";

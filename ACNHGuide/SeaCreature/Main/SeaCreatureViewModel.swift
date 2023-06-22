@@ -6,40 +6,40 @@
 //
 
 import Foundation
+import Combine
 
 final class SeaCreatureViewModel {
     
     private let loader: Loader
-    private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var seaCreaturesData = [SeaCreatureData]()
+    private let subject = PassthroughSubject<Void, Never>()
+    private var cancellables = Set<AnyCancellable>()
     let numberOfSections = 2
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     
-    init(
-        loader: Loader = CreatureLoader(),
-        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
-        currentCalendar: CalendarDelegate = CurrentCalendar()
-    ) {
+    init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
         self.loader = loader
-        self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
     
-    func getSeaCreaturesData() {
-        loader.loadSeaCreaturesData { [weak self] result in
-            guard let self else { return }
-            mainDispatchQueue.async {
-                switch result {
-                case .success(let seaCreature):
-                    self.seaCreaturesData = seaCreature
-                    self.successHandler()
+    func loadSeaCreatures() {
+        loader.loadSeaCreaturesData()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
                 case .failure(_):
-                    self.failureHandler()
+                    print("Is failed.")
                 }
+            } receiveValue: { [weak self] seaCreatures in
+                guard let self else { return }
+                seaCreaturesData = seaCreatures
+                subject.send()
             }
-        }
+            .store(in: &cancellables)
     }
     
     func setHeaderSection(with section: Int) -> String {

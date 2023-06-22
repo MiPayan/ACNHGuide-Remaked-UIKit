@@ -6,40 +6,40 @@
 //
 
 import Foundation
+import Combine
 
 final class BugViewModel {
     
     private let loader: Loader
-    private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var bugsData = [BugData]()
+    private let subject = PassthroughSubject<Void, Never>()
+    private var cancellables = Set<AnyCancellable>()
     let numberOfSections = 2
     var successHandler: (() -> Void) = { }
     var failureHandler: (() -> Void) = { }
     
-    init(
-        loader: Loader = CreatureLoader(),
-        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
-        currentCalendar: CalendarDelegate = CurrentCalendar()
-    ) {
+    init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
         self.loader = loader
-        self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
     
-    func getBugsData() {
-        loader.loadBugsData { [weak self] result in
-            guard let self else { return }
-            mainDispatchQueue.async {
-                switch result {
-                case .success(let bugsData):
-                    self.bugsData = bugsData
-                    self.successHandler()
+    func loadBugs() {
+        loader.loadBugsData()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
                 case .failure(_):
-                    self.failureHandler()
+                    print("Is failed.")
                 }
+            } receiveValue: { [weak self] bugs in
+                guard let self else { return }
+                bugsData = bugs
+                subject.send()
             }
-        }
+            .store(in: &cancellables)
     }
     
     func setHeaderSection(with section: Int) -> String {

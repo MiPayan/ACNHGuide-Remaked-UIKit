@@ -40,7 +40,7 @@ final class SeaCreatureViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        seaCreatureViewModel.getSeaCreaturesData()
+        seaCreatureViewModel.loadSeaCreatures()
     }
 }
 
