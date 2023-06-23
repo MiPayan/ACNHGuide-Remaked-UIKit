@@ -39,8 +39,8 @@ final class FishCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews()
         self.setUpContentView(color: "ColorBlueRoyal")
+        addSubviews()
     }
     
     required init?(coder: NSCoder) {

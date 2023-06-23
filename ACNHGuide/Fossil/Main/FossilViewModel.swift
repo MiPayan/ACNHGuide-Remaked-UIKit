@@ -12,11 +12,13 @@ final class FossilViewModel {
     
     private let loader: Loader
     private(set) var fossilsData = [FossilData]()
-    private let subject = PassthroughSubject<Void, Never>()
-    private var cancellables = Set<AnyCancellable>()
-    var successHandler: (() -> Void) = { }
-    var failureHandler: (() -> Void) = { }
     let headerText = "fossils".localized
+    private let subject = PassthroughSubject<Void, Never>()
+    var cancellables = Set<AnyCancellable>()
+    let failureHandler = PassthroughSubject<Error, Never>()
+    var reloadData: AnyPublisher<Void, Never> {
+        subject.eraseToAnyPublisher()
+    }
     
     init(loader: Loader = CreatureLoader()) {
         self.loader = loader
@@ -29,8 +31,8 @@ final class FossilViewModel {
                 switch completion {
                 case .finished:
                     break
-                case .failure(_):
-                    print("Is failed.")
+                case .failure(let error):
+                    self.failureHandler.send(error)
                 }
             } receiveValue: { [weak self] fossils in
                 guard let self else { return }

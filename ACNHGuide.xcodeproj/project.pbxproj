@@ -107,7 +107,6 @@
 		37A7137629681F130075BF25 /* SeaCreatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137529681F130075BF25 /* SeaCreatureViewController.swift */; };
 		37A7137829681F1C0075BF25 /* BugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137729681F1C0075BF25 /* BugViewController.swift */; };
 		37A7137A29681F2B0075BF25 /* FossilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137929681F2B0075BF25 /* FossilViewController.swift */; };
-		37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */; };
 		37A7138E29682C940075BF25 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138929682C940075BF25 /* Name.swift */; };
 		37A7139D29682CF40075BF25 /* BugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139B29682CF40075BF25 /* BugData.swift */; };
 		37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139C29682CF40075BF25 /* BugAvailability.swift */; };
@@ -254,7 +253,6 @@
 		37A7137529681F130075BF25 /* SeaCreatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureViewController.swift; sourceTree = "<group>"; };
 		37A7137729681F1C0075BF25 /* BugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugViewController.swift; sourceTree = "<group>"; };
 		37A7137929681F2B0075BF25 /* FossilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilViewController.swift; sourceTree = "<group>"; };
-		37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueueDelegate.swift; sourceTree = "<group>"; };
 		37A7138929682C940075BF25 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
 		37A7139B29682CF40075BF25 /* BugData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugData.swift; sourceTree = "<group>"; };
 		37A7139C29682CF40075BF25 /* BugAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugAvailability.swift; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 		3704920E297FF6E200B58CC7 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */,
 				37B02E13296D5EEF0084178D /* CalendarDelegate.swift */,
 				37747C08297EFEB400514352 /* ReloadDataDelegate.swift */,
 			);
@@ -509,9 +506,9 @@
 			isa = PBXGroup;
 			children = (
 				375F67BD2A4203B6008A17F1 /* FishViewModel.swift */,
-				375F67BC2A4203B6008A17F1 /* FishCollectionViewCell.swift */,
-				375F67BB2A4203B6008A17F1 /* FishViewController.swift */,
 				375F67BE2A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift */,
+				375F67BB2A4203B6008A17F1 /* FishViewController.swift */,
+				375F67BC2A4203B6008A17F1 /* FishCollectionViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -998,7 +995,6 @@
 				370492122980274300B58CC7 /* ProgressDashboardViewController.swift in Sources */,
 				3772530029AF838B00F08602 /* SeaCreatureService.swift in Sources */,
 				375F67B92A42035F008A17F1 /* NetworkingError.swift in Sources */,
-				37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */,
 				3702B44C296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift in Sources */,
 				375F67C22A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift in Sources */,
 				37E135B329B0ED83006C1EDC /* BugDashboardTableViewCellViewModel.swift in Sources */,

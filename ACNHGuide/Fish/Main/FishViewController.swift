@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SkeletonView
 import RealmSwift
 import Combine
 
@@ -51,20 +50,6 @@ final class FishViewController: UIViewController {
             object: nil
         )
     }
-    
-    @objc private func handleNetworkConnectivityChange(notification: Notification) {
-        guard let isNetworkAvailable = notification.userInfo?["isNetworkAvailable"] as? Bool else {
-            return
-        }
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            errorView.isHidden = isNetworkAvailable
-            if isNetworkAvailable {
-                fishViewModel.loadFishesData()
-                fishCollectionView.reloadData()
-            }
-        }
-    }
 }
 
 private extension FishViewController {
@@ -93,6 +78,20 @@ private extension FishViewController {
         view.setCollectionViewBackground(collectionView: fishCollectionView, colors: colors)
     }
     
+    @objc private func handleNetworkConnectivityChange(notification: Notification) {
+        guard let isNetworkAvailable = notification.userInfo?["isNetworkAvailable"] as? Bool else {
+            return
+        }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            errorView.isHidden = isNetworkAvailable
+            if isNetworkAvailable {
+                fishViewModel.loadFishesData()
+                fishCollectionView.reloadData()
+            }
+        }
+    }
+    
     func addSubviews() {
         view.addSubview(fishCollectionView)
         view.addSubview(errorView)
@@ -101,6 +100,7 @@ private extension FishViewController {
             fishCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             fishCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             fishCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             errorView.topAnchor.constraint(equalTo: view.topAnchor),
             errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -127,13 +127,7 @@ extension FishViewController: ErrorToastable {
 
 // MARK: - CollectionViewDataSource
 
-extension FishViewController: SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(
-        _ skeletonView: UICollectionView,
-        cellIdentifierForItemAt indexPath: IndexPath
-    ) -> ReusableCellIdentifier {
-        "FishCell"
-    }
+extension FishViewController: UICollectionViewDataSource {
     
     // Header.
     func collectionView(
@@ -146,7 +140,15 @@ extension FishViewController: SkeletonCollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
-        headerView.configureHeaderLabel(with: fishViewModel.configureHeaderSection(with: indexPath.section))
+        headerView.configureHeaderLabel(with: fishViewModel.header)
+        headerView.cancellables.removeAll()
+        headerView.switchButtonAction
+            .sink { [weak self] in
+                guard let self else { return }
+                fishViewModel.isShowingNorthFish.toggle()
+                collectionView.reloadData()
+            }
+            .store(in: &headerView.cancellables)
         return headerView
     }
     
@@ -155,16 +157,11 @@ extension FishViewController: SkeletonCollectionViewDataSource {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int
     ) -> CGSize {
-        return CGSize(width: view.frame.width, height: 40.0)
-    }
-    
-    // Configure cells.
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        fishViewModel.numberOfSections
+        return CGSize(width: view.frame.width, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        fishViewModel.configureSectionCollectionView(with: section)
+        fishViewModel.numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -172,7 +169,7 @@ extension FishViewController: SkeletonCollectionViewDataSource {
             withReuseIdentifier: "FishCell",
             for: indexPath
         ) as? FishCollectionViewCell else { return UICollectionViewCell() }
-        let fish = fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
+        let fish = fishViewModel.makeFish(with: indexPath.row)
         let fishCollectionViewCellViewModel = FishCollectionViewCellViewModel(fishData: fish)
         fishCell.configureCell(with: fishCollectionViewCellViewModel, view: self)
         return fishCell
@@ -180,7 +177,7 @@ extension FishViewController: SkeletonCollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FishDetailsViewController()
-        let selectedFish = fishViewModel.makeFish(with: indexPath.section, index: indexPath.row)
+        let selectedFish = fishViewModel.makeFish(with: indexPath.row)
         let fishDetailsViewModel = FishDetailsViewModel(fishData: selectedFish)
         detailsViewController.fishDetailsViewModel = fishDetailsViewModel
         detailsViewController.reloadDataDelegate = self

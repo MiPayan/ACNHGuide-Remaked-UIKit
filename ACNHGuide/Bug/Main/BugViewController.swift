@@ -46,14 +46,19 @@ final class BugViewController: UIViewController {
 
 private extension BugViewController {
     func setUpUpdateDataHandler() {
-        bugViewModel.failureHandler = {
-            self.errorView.isHidden = false
-        }
+        bugViewModel.failureHandler
+            .sink { [weak self] error in
+                guard let self else { return }
+                errorView.isHidden = false
+            }
+            .store(in: &bugViewModel.cancellables)
         
-        bugViewModel.successHandler = {
-            self.errorView.isHidden = true
-            self.bugCollectionView.reloadData()
-        }
+        bugViewModel.reloadData
+            .sink { [weak self] in
+                guard let self else { return }
+                bugCollectionView.reloadData()
+            }
+            .store(in: &bugViewModel.cancellables)
     }
     
     func setCollectionViewBackground() {
@@ -110,7 +115,15 @@ extension BugViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
-        headerView.configureHeaderLabel(with: bugViewModel.setHeaderSection(with: indexPath.section))
+        headerView.cancellables.removeAll()
+        headerView.configureHeaderLabel(with: bugViewModel.header)
+        headerView.switchButtonAction
+            .sink { [weak self] in
+                guard let self else { return }
+                bugViewModel.isShowingNorthBug.toggle()
+                collectionView.reloadData()
+            }
+            .store(in: &headerView.cancellables)
         return headerView
     }
     
@@ -122,13 +135,8 @@ extension BugViewController: UICollectionViewDataSource {
         return CGSize(width: view.frame.width, height: 40.0)
     }
     
-    // Configure cells.
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return bugViewModel.numberOfSections
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        bugViewModel.configureSectionCollectionView(with: section)
+        bugViewModel.numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -136,7 +144,7 @@ extension BugViewController: UICollectionViewDataSource {
             withReuseIdentifier: "BugCell",
             for: indexPath
         ) as? BugCollectionViewCell else { return UICollectionViewCell() }
-        let bug = bugViewModel.makeBug(with: indexPath.section, index: indexPath.row)
+        let bug = bugViewModel.makeBug(with: indexPath.row)
         let bugCollecitonViewCellViewModel = BugCollectionViewCellViewModel(bugData: bug)
         bugCell.configureCell(with: bugCollecitonViewCellViewModel, view: self)
         return bugCell
@@ -144,7 +152,7 @@ extension BugViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = BugDetailsViewController()
-        let selectedBug = bugViewModel.makeBug(with: indexPath.section, index: indexPath.row)
+        let selectedBug = bugViewModel.makeBug(with: indexPath.row)
         let bugDetailsViewModel = BugDetailsViewModel(bugData: selectedBug)
         detailsViewController.bugDetailsViewModel = bugDetailsViewModel
         detailsViewController.reloadDataDelegate = self

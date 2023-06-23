@@ -13,11 +13,13 @@ final class SeaCreatureViewModel {
     private let loader: Loader
     private let currentCalendar: CalendarDelegate
     private var seaCreaturesData = [SeaCreatureData]()
+    var isShowingNorthSeaCreature = true
+    var cancellables = Set<AnyCancellable>()
     private let subject = PassthroughSubject<Void, Never>()
-    private var cancellables = Set<AnyCancellable>()
-    let numberOfSections = 2
-    var successHandler: (() -> Void) = { }
-    var failureHandler: (() -> Void) = { }
+    let failureHandler = PassthroughSubject<Error, Never>()
+    var reloadData: AnyPublisher<Void, Never> {
+        subject.eraseToAnyPublisher()
+    }
     
     init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
         self.loader = loader
@@ -31,8 +33,8 @@ final class SeaCreatureViewModel {
                 switch completion {
                 case .finished:
                     break
-                case .failure(_):
-                    print("Is failed.")
+                case .failure(let error):
+                    self.failureHandler.send(error)
                 }
             } receiveValue: { [weak self] seaCreatures in
                 guard let self else { return }
@@ -41,24 +43,14 @@ final class SeaCreatureViewModel {
             }
             .store(in: &cancellables)
     }
-    
-    func setHeaderSection(with section: Int) -> String {
-        section == 0 ? "northern_hemisphere".localized : "southern_hemisphere".localized
-    }
-    
-    func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? northernHemisphereSeaCreatures.count : southernHemisphereSeaCreatures.count
-    }
-    
-    func makeSeaCreature(with section: Int, index: Int) -> SeaCreatureData {
-        section == 0 ? northernHemisphereSeaCreatures[index] : southernHemisphereSeaCreatures[index]
-    }
 }
 
-private extension SeaCreatureViewModel {
+// MARK: - Configure CollectionView
+
+extension SeaCreatureViewModel {
     
     // Sorts the sea creatures from the northern hemisphere using the current month and time.
-    var northernHemisphereSeaCreatures: [SeaCreatureData] {
+    private var northernHemisphereSeaCreatures: [SeaCreatureData] {
         let (hour, month) = currentCalendar.currentDate
         let filtered = seaCreaturesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
@@ -67,11 +59,23 @@ private extension SeaCreatureViewModel {
     }
     
     // Sorts the sea creatures from the southern hemisphere using the current month and time.
-    var southernHemisphereSeaCreatures: [SeaCreatureData] {
+    private var southernHemisphereSeaCreatures: [SeaCreatureData] {
         let (hour, month) = currentCalendar.currentDate
         let filtered = seaCreaturesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
+    }
+    
+    var header: String {
+        isShowingNorthSeaCreature ? "northern_hemisphere".localized : "southern_hemisphere".localized
+    }
+    
+    var numberOfItemsInSection: Int {
+        isShowingNorthSeaCreature ? northernHemisphereSeaCreatures.count : southernHemisphereSeaCreatures.count
+    }
+    
+    func makeSeaCreature(with index: Int) -> SeaCreatureData {
+        isShowingNorthSeaCreature ? northernHemisphereSeaCreatures[index] : southernHemisphereSeaCreatures[index]
     }
 }

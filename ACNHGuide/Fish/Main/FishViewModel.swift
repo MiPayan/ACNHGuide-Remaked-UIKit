@@ -12,14 +12,14 @@ final class FishViewModel {
     
     private let loader: Loader
     private let currentCalendar: CalendarDelegate
-    private(set) var fishesData = [FishData]()
+    private var fishesData = [FishData]()
+    var isShowingNorthFish = true
     private let subject = PassthroughSubject<Void, Never>()
     var cancellables = Set<AnyCancellable>()
-    let numberOfSections = 2
     let failureHandler = PassthroughSubject<Error, Never>()
     var reloadData: AnyPublisher<Void, Never> {
-           subject.eraseToAnyPublisher()
-       }
+        subject.eraseToAnyPublisher()
+    }
     
     init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
         self.loader = loader
@@ -43,24 +43,14 @@ final class FishViewModel {
             }
             .store(in: &cancellables)
     }
-    
-    func configureHeaderSection(with section: Int) -> String {
-        section == 0 ? "northern_hemisphere".localized : "southern_hemisphere".localized
-    }
-    
-    func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? northernHemisphereFishes.count : southernHemisphereFishes.count
-    }
-    
-    func makeFish(with section: Int, index: Int) -> FishData {
-        section == 0 ? northernHemisphereFishes[index] : southernHemisphereFishes[index]
-    }
 }
 
-private extension FishViewModel {
+// MARK: - Configure CollectionView
+
+extension FishViewModel {
     
     // Sorts the fishes from the northern hemisphere using the current month and time.
-    var northernHemisphereFishes: [FishData] {
+    private var northernHemisphereFishes: [FishData] {
         let (hour, month) = currentCalendar.currentDate
         let filtered = fishesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
@@ -69,11 +59,23 @@ private extension FishViewModel {
     }
     
     // Sorts the fishes from the southern hemisphere using the current month and time.
-    var southernHemisphereFishes: [FishData] {
+    private var southernHemisphereFishes: [FishData] {
         let (hour, month) = currentCalendar.currentDate
         let filtered = fishesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
+    }
+    
+    var header: String {
+        isShowingNorthFish ? "northern_hemisphere".localized : "southern_hemisphere".localized
+    }
+    
+    var numberOfItemsInSection: Int {
+        isShowingNorthFish ? northernHemisphereFishes.count : southernHemisphereFishes.count
+    }
+    
+    func makeFish(with index: Int) -> FishData {
+        isShowingNorthFish ? northernHemisphereFishes[index] : southernHemisphereFishes[index]
     }
 }

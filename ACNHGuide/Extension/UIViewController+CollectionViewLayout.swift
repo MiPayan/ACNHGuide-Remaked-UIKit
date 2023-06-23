@@ -15,7 +15,7 @@ extension UIViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
+        return UIEdgeInsets(top: 8, left: 16, bottom: 16, right: 16)
     }
     
     // Defined the width and height of each element in pixels.
