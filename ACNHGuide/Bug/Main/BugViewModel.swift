@@ -6,56 +6,56 @@
 //
 
 import Foundation
+import Combine
 
 final class BugViewModel {
     
     private let loader: Loader
-    private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var bugsData = [BugData]()
-    let numberOfSections = 2
-    var successHandler: (() -> Void) = { }
-    var failureHandler: (() -> Void) = { }
-    
-    init(
-        loader: Loader = CreatureLoader(),
-        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
-        currentCalendar: CalendarDelegate = CurrentCalendar()
-    ) {
-        self.loader = loader
-        self.mainDispatchQueue = mainDispatchQueue
-        self.currentCalendar = currentCalendar
+    private let subject = PassthroughSubject<Void, Never>()
+    var cancellables = Set<AnyCancellable>()
+    let failureHandler = PassthroughSubject<Error, Never>()
+    var reloadData: AnyPublisher<Void, Never> {
+        subject.eraseToAnyPublisher()
     }
     
-    func getBugsData() {
-        loader.loadBugsData { [weak self] result in
-            guard let self else { return }
-            mainDispatchQueue.async {
-                switch result {
-                case .success(let bugsData):
-                    self.bugsData = bugsData
-                    self.successHandler()
-                case .failure(_):
-                    self.failureHandler()
-                }
-            }
+    var isShowingNorthBug: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "Hemisphere")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "Hemisphere")
         }
     }
     
-    func setHeaderSection(with section: Int) -> String {
-        section == 0 ? "northern_hemisphere".localized : "southern_hemisphere".localized
+    init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
+        self.loader = loader
+        self.currentCalendar = currentCalendar
     }
     
-    func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? northernHemisphereBugs.count : southernHemisphereBugs.count
-    }
-    
-    func makeBug(with section: Int, index: Int) -> BugData {
-        section == 0 ? northernHemisphereBugs[index] : southernHemisphereBugs[index]
+    func loadBugs() {
+        loader.loadBugsData()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.failureHandler.send(error)
+                }
+            } receiveValue: { [weak self] bugs in
+                guard let self else { return }
+                bugsData = bugs
+                subject.send()
+            }
+            .store(in: &cancellables)
     }
 }
 
-private extension BugViewModel {
+// MARK: - Configure CollectionView
+
+extension BugViewModel {
     
     // Sorts the bugs from the northern hemisphere using the current month and time.
     var northernHemisphereBugs: [BugData] {
@@ -73,5 +73,17 @@ private extension BugViewModel {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
+    }
+    
+    var header: String {
+        isShowingNorthBug ? "northern_hemisphere".localized : "southern_hemisphere".localized
+    }
+    
+    var numberOfItemsInSection: Int {
+        isShowingNorthBug ? northernHemisphereBugs.count : southernHemisphereBugs.count
+    }
+    
+    func makeBug(with index: Int) -> BugData {
+        isShowingNorthBug ? northernHemisphereBugs[index] : southernHemisphereBugs[index]
     }
 }

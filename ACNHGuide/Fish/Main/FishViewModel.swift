@@ -6,59 +6,61 @@
 //
 
 import Foundation
+import Combine
 
 final class FishViewModel {
     
     private let loader: Loader
-    private let mainDispatchQueue: DispatchQueueDelegate
     private let currentCalendar: CalendarDelegate
     private var fishesData = [FishData]()
-    let numberOfSections = 2
-    var successHandler: (() -> Void) = { }
-    var failureHandler: (() -> Void) = { }
+    private let subject = PassthroughSubject<Void, Never>()
+    var cancellables = Set<AnyCancellable>()
+    let failureHandler = PassthroughSubject<Error, Never>()
+    var reloadData: AnyPublisher<Void, Never> {
+        subject.eraseToAnyPublisher()
+    }
+    var isShowingNorthFish: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "Hemisphere")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "Hemisphere")
+        }
+    }
     
     init(
         loader: Loader = CreatureLoader(),
-        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
         currentCalendar: CalendarDelegate = CurrentCalendar()
     ) {
         self.loader = loader
-        self.mainDispatchQueue = mainDispatchQueue
         self.currentCalendar = currentCalendar
     }
     
     func loadFishesData() {
-        loader.loadFishesData { [weak self] result in
-            guard let self else { return }
-            mainDispatchQueue.async {
-                switch result {
-                case .success(let fishesData):
-                    self.fishesData = fishesData
-                    self.successHandler()
-                case .failure(_):
-                    self.failureHandler()
+        loader.loadFishesData()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.failureHandler.send(error)
                 }
+            } receiveValue: { [weak self] fishes in
+                guard let self else { return }
+                fishesData = fishes
+                subject.send()
             }
-        }
-    }
-    
-    func configureHeaderSection(with section: Int) -> String {
-        section == 0 ? "northern_hemisphere".localized : "southern_hemisphere".localized
-    }
-    
-    func configureSectionCollectionView(with section: Int) -> Int {
-        section == 0 ? northernHemisphereFishes.count : southernHemisphereFishes.count
-    }
-    
-    func makeFish(with section: Int, index: Int) -> FishData {
-        section == 0 ? northernHemisphereFishes[index] : southernHemisphereFishes[index]
+            .store(in: &cancellables)
     }
 }
 
-private extension FishViewModel {
+// MARK: - Configure CollectionView
+
+extension FishViewModel {
     
     // Sorts the fishes from the northern hemisphere using the current month and time.
-    var northernHemisphereFishes: [FishData] {
+    private var northernHemisphereFishes: [FishData] {
         let (hour, month) = currentCalendar.currentDate
         let filtered = fishesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
@@ -67,11 +69,23 @@ private extension FishViewModel {
     }
     
     // Sorts the fishes from the southern hemisphere using the current month and time.
-    var southernHemisphereFishes: [FishData] {
+    private var southernHemisphereFishes: [FishData] {
         let (hour, month) = currentCalendar.currentDate
         let filtered = fishesData.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
+    }
+    
+    var header: String {
+        isShowingNorthFish ? "northern_hemisphere".localized : "southern_hemisphere".localized
+    }
+    
+    var numberOfItemsInSection: Int {
+        isShowingNorthFish ? northernHemisphereFishes.count : southernHemisphereFishes.count
+    }
+    
+    func makeFish(with index: Int) -> FishData {
+        isShowingNorthFish ? northernHemisphereFishes[index] : southernHemisphereFishes[index]
     }
 }

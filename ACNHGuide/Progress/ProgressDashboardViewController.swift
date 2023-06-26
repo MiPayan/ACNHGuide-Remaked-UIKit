@@ -30,8 +30,8 @@ final class ProgressDashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
-        setUpUpdateDataHandler()
-        progressDashboardViewModel.getDatas()
+        bindViewModel()
+        progressDashboardViewModel.loadCreatures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,15 +39,20 @@ final class ProgressDashboardViewController: UIViewController {
         progressDashboardTableView.reloadData()
     }
     
-    func setUpUpdateDataHandler() {
-        progressDashboardViewModel.failureHandler = {
-            self.errorView.isHidden = false
-        }
+    func bindViewModel() {
+        progressDashboardViewModel.failureHandler
+            .sink { [weak self] _ in
+                guard let self else { return }
+                errorView.isHidden = false
+            }
+            .store(in: &progressDashboardViewModel.cancellables)
         
-        progressDashboardViewModel.successHandler = {
-            self.errorView.isHidden = true
-            self.progressDashboardTableView.reloadData()
-        }
+        progressDashboardViewModel.reloadData
+            .sink { [weak self] in
+                guard let self else { return }
+                self.progressDashboardTableView.reloadData()
+            }
+            .store(in: &progressDashboardViewModel.cancellables)
     }
 }
 
@@ -90,24 +95,16 @@ extension ProgressDashboardViewController: UITableViewDataSource {
         ) as? DashboardTableViewCell else { return UITableViewCell() }
         switch indexPath.row {
         case 0:
-            let fishDashboardTableViewCellViewModel = FishDashboardTableViewCellViewModel(
-                fishesData: progressDashboardViewModel.fishesData
-            )
+            let fishDashboardTableViewCellViewModel = FishDashboardTableViewCellViewModel(fishesData: progressDashboardViewModel.fishes)
             dashboardCell.configureFishCell(with: fishDashboardTableViewCellViewModel)
         case 1:
-            let seaCreatureDashboardTableViewCellViewModel = SeaCreatureDashboardTableViewCellViewModel(
-                seaCreaturesData: progressDashboardViewModel.seaCreaturesData
-            )
+            let seaCreatureDashboardTableViewCellViewModel = SeaCreatureDashboardTableViewCellViewModel(seaCreaturesData: progressDashboardViewModel.seaCreatures)
             dashboardCell.configureSeaCreatureCell(with: seaCreatureDashboardTableViewCellViewModel)
         case 2:
-            let bugDashboardTableViewCellViewModel = BugDashboardTableViewCellViewModel(
-                bugsData: progressDashboardViewModel.bugsData
-            )
+            let bugDashboardTableViewCellViewModel = BugDashboardTableViewCellViewModel(bugsData: progressDashboardViewModel.bugs)
             dashboardCell.configureBugCell(with: bugDashboardTableViewCellViewModel)
         case 3:
-            let fossilDashboardTableViewCellViewModel = FossilDashboardTableViewCellViewModel(
-                fossilsData: progressDashboardViewModel.fossilsData
-            )
+            let fossilDashboardTableViewCellViewModel = FossilDashboardTableViewCellViewModel(fossilsData: progressDashboardViewModel.fossils)
             dashboardCell.configureFossilCell(with: fossilDashboardTableViewCellViewModel)
         default:
             break

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class SeaCreatureCollectionViewCell: UICollectionViewCell {
     
     private var viewModel: SeaCreatureCollectionViewCellViewModel?
+    private var cancellables = Set<AnyCancellable>()
     private let seaCreatureFilenameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +54,11 @@ final class SeaCreatureCollectionViewCell: UICollectionViewCell {
         seaCreatureFilenameLabel.text = viewModel.fileName
         if let url = viewModel.iconURL {
             seaCreatureImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    seaCreatureImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         let isSaved = viewModel.isSeaCreatureAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"

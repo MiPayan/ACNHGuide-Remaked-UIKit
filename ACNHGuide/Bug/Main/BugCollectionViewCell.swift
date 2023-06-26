@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class BugCollectionViewCell: UICollectionViewCell {
     
     private var viewModel: BugCollectionViewCellViewModel?
+    private var cancellables = Set<AnyCancellable>()
     private let bugFilenameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -52,6 +54,11 @@ final class BugCollectionViewCell: UICollectionViewCell {
         bugFilenameLabel.text = viewModel.fileName
         if let url = viewModel.iconURL {
             bugImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    bugImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         let isSaved = viewModel.isBugAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"

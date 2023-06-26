@@ -39,8 +39,8 @@ final class SeaCreatureViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         setCollectionViewBackground()
-        setUpUpdateDataHandler()
-        seaCreatureViewModel.getSeaCreaturesData()
+        bindViewModel()
+        seaCreatureViewModel.loadSeaCreatures()
     }
 }
 
@@ -52,15 +52,20 @@ private extension SeaCreatureViewController {
         view.setCollectionViewBackground(collectionView: seaCreatureCollectionView, colors: colors)
     }
     
-    func setUpUpdateDataHandler() {
-        seaCreatureViewModel.failureHandler = {
-            self.errorView.isHidden = false
-        }
+    func bindViewModel() {
+        seaCreatureViewModel.failureHandler
+            .sink { [weak self] error in
+                guard let self else { return }
+                errorView.isHidden = false
+            }
+            .store(in: &seaCreatureViewModel.cancellables)
         
-        seaCreatureViewModel.successHandler = {
-            self.errorView.isHidden = true
-            self.seaCreatureCollectionView.reloadData()
-        }
+        seaCreatureViewModel.reloadData
+            .sink { [weak self] in
+                guard let self else { return }
+                seaCreatureCollectionView.reloadData()
+            }
+            .store(in: &seaCreatureViewModel.cancellables)
     }
     
     func addSubviews() {
@@ -111,7 +116,15 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
-        headerView.configureHeaderLabel(with: seaCreatureViewModel.setHeaderSection(with: indexPath.section))
+        headerView.cancellables.removeAll()
+        headerView.configureHeaderLabel(with: seaCreatureViewModel.header)
+        headerView.switchButtonAction
+            .sink { [weak self] in
+                guard let self else { return }
+                seaCreatureViewModel.isShowingNorthSeaCreature.toggle()
+                collectionView.reloadData()
+            }
+            .store(in: &headerView.cancellables)
         return headerView
     }
     
@@ -123,13 +136,8 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
         return CGSize(width: view.frame.width, height: 40.0)
     }
     
-    // Configure cells.
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return seaCreatureViewModel.numberOfSections
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return seaCreatureViewModel.configureSectionCollectionView(with: section)
+        seaCreatureViewModel.numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -137,7 +145,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             withReuseIdentifier: "SeaCreaturesCell",
             for: indexPath
         ) as? SeaCreatureCollectionViewCell else { return UICollectionViewCell() }
-        let seaCreature = seaCreatureViewModel.makeSeaCreature(with: indexPath.section, index: indexPath.row)
+        let seaCreature = seaCreatureViewModel.makeSeaCreature(with: indexPath.row)
         let seaCreatureCollectionViewCellViewModel = SeaCreatureCollectionViewCellViewModel(seaCreatureData: seaCreature)
         seaCreatureCell.configureCell(with: seaCreatureCollectionViewCellViewModel, view: self)
         return seaCreatureCell
@@ -145,7 +153,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = SeaCreatureDetailsViewController()
-        let selectedSeaCreature = seaCreatureViewModel.makeSeaCreature(with: indexPath.section, index: indexPath.row)
+        let selectedSeaCreature = seaCreatureViewModel.makeSeaCreature(with: indexPath.row)
         let seaCreatureDetailsViewModel = SeaCreaturesDetailsViewModel(seaCreatureData: selectedSeaCreature)
         detailsViewController.seaCreaturesDetailsViewModel = seaCreatureDetailsViewModel
         detailsViewController.reloadDataDelegate = self

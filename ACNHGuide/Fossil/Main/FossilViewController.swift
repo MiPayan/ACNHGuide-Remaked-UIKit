@@ -39,21 +39,26 @@ final class FossilViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         setCollectionViewBackground()
-        setUpUpdateDataHandler()
-        fossilViewModel.getFossilsData()
+        bindViewModel()
+        fossilViewModel.loadFossils()
     }
 }
 
 private extension FossilViewController {
-    func setUpUpdateDataHandler() {
-        fossilViewModel.failureHandler = {
-            self.errorView.isHidden = false
-        }
+    func bindViewModel() {
+        fossilViewModel.failureHandler
+            .sink { [weak self] error in
+                guard let self else { return }
+                errorView.isHidden = false
+            }
+            .store(in: &fossilViewModel.cancellables)
         
-        fossilViewModel.successHandler = {
-            self.errorView.isHidden = true
-            self.fossilCollectionView.reloadData()
-        }
+        fossilViewModel.reloadData
+            .sink { [weak self] in
+                guard let self else { return }
+                fossilCollectionView.reloadData()
+            }
+            .store(in: &fossilViewModel.cancellables)
     }
     
     func setCollectionViewBackground() {
@@ -109,6 +114,7 @@ extension FossilViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
+        headerView.switchHemisphereButton.isHidden = true
         headerView.configureHeaderLabel(with: fossilViewModel.headerText)
         return headerView
     }
@@ -118,12 +124,12 @@ extension FossilViewController: UICollectionViewDataSource {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int
     ) -> CGSize {
-        return CGSize(width: view.frame.width, height: 40.0)
+        CGSize(width: view.frame.width, height: 40.0)
     }
     
     // Configure cells.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fossilViewModel.fossilsData.count
+        fossilViewModel.fossilsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class SeaCreatureDetailsTableViewCell: UITableViewCell {
     
@@ -14,6 +15,7 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
             self.detailsCollectionView.reloadData()
         }
     }
+    private var cancellables = Set<AnyCancellable>()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -116,6 +118,11 @@ final class SeaCreatureDetailsTableViewCell: UITableViewCell {
         self.viewModel = viewModel
         if let url = viewModel.iconURL {
             seaCreatureImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    seaCreatureImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         seaCreatureFilenameLabel.text = viewModel.fileName
         seaCreatureCatchPhraseLabel.text = viewModel.catchPhrase

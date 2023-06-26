@@ -107,7 +107,6 @@
 		37A7137629681F130075BF25 /* SeaCreatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137529681F130075BF25 /* SeaCreatureViewController.swift */; };
 		37A7137829681F1C0075BF25 /* BugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137729681F1C0075BF25 /* BugViewController.swift */; };
 		37A7137A29681F2B0075BF25 /* FossilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7137929681F2B0075BF25 /* FossilViewController.swift */; };
-		37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */; };
 		37A7138E29682C940075BF25 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7138929682C940075BF25 /* Name.swift */; };
 		37A7139D29682CF40075BF25 /* BugData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139B29682CF40075BF25 /* BugData.swift */; };
 		37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7139C29682CF40075BF25 /* BugAvailability.swift */; };
@@ -144,7 +143,6 @@
 		37E135B329B0ED83006C1EDC /* BugDashboardTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E135B229B0ED83006C1EDC /* BugDashboardTableViewCellViewModel.swift */; };
 		37E135B529B0EE53006C1EDC /* FossilDashboardTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E135B429B0EE53006C1EDC /* FossilDashboardTableViewCellViewModel.swift */; };
 		37E7BA6329C0C1BB00BFF7BE /* ProgressDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E7BA6229C0C1BB00BFF7BE /* ProgressDashboardViewModel.swift */; };
-		37E7BA6529C0C39E00BFF7BE /* Creatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E7BA6429C0C39E00BFF7BE /* Creatures.swift */; };
 		37F18BDF299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F18BDE299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift */; };
 		37F9B4FE298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift */; };
 		37F9B500298AB436007DEB5E /* BugDetailsTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F9B4FF298AB436007DEB5E /* BugDetailsTableViewCellViewModelTests.swift */; };
@@ -254,7 +252,6 @@
 		37A7137529681F130075BF25 /* SeaCreatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureViewController.swift; sourceTree = "<group>"; };
 		37A7137729681F1C0075BF25 /* BugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugViewController.swift; sourceTree = "<group>"; };
 		37A7137929681F2B0075BF25 /* FossilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilViewController.swift; sourceTree = "<group>"; };
-		37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueueDelegate.swift; sourceTree = "<group>"; };
 		37A7138929682C940075BF25 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
 		37A7139B29682CF40075BF25 /* BugData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugData.swift; sourceTree = "<group>"; };
 		37A7139C29682CF40075BF25 /* BugAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugAvailability.swift; sourceTree = "<group>"; };
@@ -290,7 +287,6 @@
 		37E135B229B0ED83006C1EDC /* BugDashboardTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDashboardTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		37E135B429B0EE53006C1EDC /* FossilDashboardTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilDashboardTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		37E7BA6229C0C1BB00BFF7BE /* ProgressDashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDashboardViewModel.swift; sourceTree = "<group>"; };
-		37E7BA6429C0C39E00BFF7BE /* Creatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creatures.swift; sourceTree = "<group>"; };
 		37F18BDE299F976C00FD4628 /* FossilCollectionViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilCollectionViewCellViewModelTests.swift; sourceTree = "<group>"; };
 		37F9B4FD298AB14C007DEB5E /* SeaCreatureDetailsTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaCreatureDetailsTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
 		37F9B4FF298AB436007DEB5E /* BugDetailsTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugDetailsTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
@@ -461,7 +457,6 @@
 		3704920E297FF6E200B58CC7 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				37A7138129682B9B0075BF25 /* DispatchQueueDelegate.swift */,
 				37B02E13296D5EEF0084178D /* CalendarDelegate.swift */,
 				37747C08297EFEB400514352 /* ReloadDataDelegate.swift */,
 			);
@@ -496,11 +491,11 @@
 		375F67AF2A42034B008A17F1 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				375F67B22A42035F008A17F1 /* CreatureLoader.swift */,
-				375F67B32A42035F008A17F1 /* Loader.swift */,
 				375F67B12A42035F008A17F1 /* Networker.swift */,
 				375F67B02A42035E008A17F1 /* Networking.swift */,
 				375F67B42A42035F008A17F1 /* NetworkingError.swift */,
+				375F67B22A42035F008A17F1 /* CreatureLoader.swift */,
+				375F67B32A42035F008A17F1 /* Loader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -508,10 +503,10 @@
 		375F67BA2A42039E008A17F1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				375F67BC2A4203B6008A17F1 /* FishCollectionViewCell.swift */,
+				375F67BD2A4203B6008A17F1 /* FishViewModel.swift */,
 				375F67BE2A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift */,
 				375F67BB2A4203B6008A17F1 /* FishViewController.swift */,
-				375F67BD2A4203B6008A17F1 /* FishViewModel.swift */,
+				375F67BC2A4203B6008A17F1 /* FishCollectionViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -552,7 +547,6 @@
 		378DC5FF297026000062107C /* Progress */ = {
 			isa = PBXGroup;
 			children = (
-				37E7BA6429C0C39E00BFF7BE /* Creatures.swift */,
 				37E7BA6229C0C1BB00BFF7BE /* ProgressDashboardViewModel.swift */,
 				37E135AE29B0E77B006C1EDC /* FishDashboardTableViewCellViewModel.swift */,
 				37E135B029B0EACD006C1EDC /* SeaCreatureDashboardTableViewCellViewModel.swift */,
@@ -980,7 +974,6 @@
 				37D197BC296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift in Sources */,
 				37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */,
 				373349C029DC73E5005B64B0 /* UITableViewCell+CollectionViewLayout.swift in Sources */,
-				37E7BA6529C0C39E00BFF7BE /* Creatures.swift in Sources */,
 				37A7137429681DA60075BF25 /* TabBarViewController.swift in Sources */,
 				37C8A2FF299B933B002E74F5 /* BugDetailsViewModel.swift in Sources */,
 				37A7135E29681A6F0075BF25 /* AppDelegate.swift in Sources */,
@@ -998,7 +991,6 @@
 				370492122980274300B58CC7 /* ProgressDashboardViewController.swift in Sources */,
 				3772530029AF838B00F08602 /* SeaCreatureService.swift in Sources */,
 				375F67B92A42035F008A17F1 /* NetworkingError.swift in Sources */,
-				37A7138729682B9B0075BF25 /* DispatchQueueDelegate.swift in Sources */,
 				3702B44C296EB622008AB36D /* SeaCreatureDetailsTableViewCell.swift in Sources */,
 				375F67C22A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift in Sources */,
 				37E135B329B0ED83006C1EDC /* BugDashboardTableViewCellViewModel.swift in Sources */,

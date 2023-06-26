@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class DashboardTableViewCell: UITableViewCell {
     
@@ -13,6 +14,7 @@ final class DashboardTableViewCell: UITableViewCell {
     private var seaCreatureDashboardTableViewCellViewModel: SeaCreatureDashboardTableViewCellViewModel?
     private var bugDashboardTableViewCellViewModel: BugDashboardTableViewCellViewModel?
     private var fossilDashboardTableViewCellViewModel: FossilDashboardTableViewCellViewModel?
+    private var cancellables = Set<AnyCancellable>()
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +72,11 @@ final class DashboardTableViewCell: UITableViewCell {
         self.fishDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.iconURL {
             creatureImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    creatureImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         creatureTitleLabel.text = viewModel.titleText
         creatureProgressView.progress = viewModel.progressOfBar
@@ -83,6 +90,11 @@ final class DashboardTableViewCell: UITableViewCell {
         self.seaCreatureDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.iconURL {
             creatureImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    creatureImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         creatureTitleLabel.text = viewModel.titleText
         creatureProgressView.progress = viewModel.progressOfBar
@@ -95,6 +107,11 @@ final class DashboardTableViewCell: UITableViewCell {
         self.bugDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.iconURL {
             creatureImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    creatureImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         creatureTitleLabel.text = viewModel.titleText
         creatureProgressView.progress = viewModel.progressOfBar
@@ -107,6 +124,11 @@ final class DashboardTableViewCell: UITableViewCell {
         self.fossilDashboardTableViewCellViewModel = viewModel
         if let url = viewModel.imageURL {
             creatureImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    creatureImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         creatureProgressView.progress = viewModel.progressOfBar
         creatureTotalLabel.text = viewModel.totalText

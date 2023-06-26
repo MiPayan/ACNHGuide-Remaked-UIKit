@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class CreatureLoader: Loader {
     
@@ -16,51 +17,38 @@ final class CreatureLoader: Loader {
         self.session = session
     }
     
-    func loadFishesData(completionHandler: @escaping ((Result<[FishData], NetworkingError>)) -> Void) {
+    func loadFishesData() -> AnyPublisher<[FishData], NetworkingError> {
         let urlString = "\(endpoint)fish/"
-        session.fetchData(with: urlString) { (result: Result<[FishData], NetworkingError>) in
-            switch result {
-            case .success(let success):
-                completionHandler(.success(success))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
+        return session.fetchData(with: urlString)
     }
     
-    func loadSeaCreaturesData(completionHandler: @escaping ((Result<[SeaCreatureData], NetworkingError>)) -> Void) {
+    func loadSeaCreaturesData() -> AnyPublisher<[SeaCreatureData], NetworkingError> {
         let urlString = "\(endpoint)sea/"
-        session.fetchData(with: urlString) { (result: Result<[SeaCreatureData], NetworkingError>) in
-            switch result {
-            case .success(let success):
-                completionHandler(.success(success))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
+        return session.fetchData(with: urlString)
     }
     
-    func loadBugsData(completionHandler: @escaping ((Result<[BugData], NetworkingError>)) -> Void) {
+    func loadBugsData() -> AnyPublisher<[BugData], NetworkingError> {
         let urlString = "\(endpoint)bugs/"
-        session.fetchData(with: urlString) { (result: Result<[BugData], NetworkingError>) in
-            switch result {
-            case .success(let success):
-                completionHandler(.success(success))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
+        return session.fetchData(with: urlString)
     }
     
-    func loadFossilsData(completionHandler: @escaping ((Result<[FossilData], NetworkingError>)) -> Void) {
+    func loadFossilsData() -> AnyPublisher<[FossilData], NetworkingError> {
         let urlString = "\(endpoint)fossils/"
-        session.fetchData(with: urlString) { (result: Result<[FossilData], NetworkingError>) in
-            switch result {
-            case .success(let success):
-                completionHandler(.success(success))
-            case .failure(let error):
-                completionHandler(.failure(error))
+        return session.fetchData(with: urlString)
+    }
+    
+    func loadCreaturesData() -> AnyPublisher<(fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]), NetworkingError> {
+        let fishesPublisher = loadFishesData()
+        let seaCreaturesPublisher = loadSeaCreaturesData()
+        let bugsPublisher = loadBugsData()
+        let fossilsPublisher = loadFossilsData()
+        
+        return Publishers.Zip4(fishesPublisher, seaCreaturesPublisher, bugsPublisher, fossilsPublisher)
+            .flatMap { fishes, seaCreatures, bugs, fossils in
+                return Just((fishes, seaCreatures, bugs, fossils))
+                    .setFailureType(to: NetworkingError.self)
+                    .eraseToAnyPublisher()
             }
-        }
+            .eraseToAnyPublisher()
     }
 }

@@ -6,39 +6,39 @@
 //
 
 import Foundation
+import Combine
 
 final class FossilViewModel {
     
     private let loader: Loader
-    private let mainDispatchQueue: DispatchQueueDelegate
-    private let currentCalendar: CalendarDelegate
     private(set) var fossilsData = [FossilData]()
-    var successHandler: (() -> Void) = { }
-    var failureHandler: (() -> Void) = { }
     let headerText = "fossils".localized
-    
-    init(
-        loader: Loader = CreatureLoader(),
-        mainDispatchQueue: DispatchQueueDelegate = DispatchQueue.main,
-        currentCalendar: CalendarDelegate = CurrentCalendar()
-    ) {
-        self.loader = loader
-        self.mainDispatchQueue = mainDispatchQueue
-        self.currentCalendar = currentCalendar
+    private let subject = PassthroughSubject<Void, Never>()
+    var cancellables = Set<AnyCancellable>()
+    let failureHandler = PassthroughSubject<Error, Never>()
+    var reloadData: AnyPublisher<Void, Never> {
+        subject.eraseToAnyPublisher()
     }
     
-    func getFossilsData() {
-        loader.loadFossilsData { [weak self] result in
-            guard let self else { return }
-            mainDispatchQueue.async {
-                switch result {
-                case .success(let fossilData):
-                    self.fossilsData = fossilData
-                    self.successHandler()
-                case .failure(_):
-                    self.failureHandler()
+    init(loader: Loader = CreatureLoader()) {
+        self.loader = loader
+    }
+    
+    func loadFossils() {
+        loader.loadFossilsData()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.failureHandler.send(error)
                 }
+            } receiveValue: { [weak self] fossils in
+                guard let self else { return }
+                fossilsData = fossils
+                subject.send()
             }
-        }
+            .store(in: &cancellables)
     }
 }
