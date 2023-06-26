@@ -43,12 +43,6 @@ final class FishViewController: UIViewController {
         setUpCollectionViewBackground()
         bindViewModel()
         fishViewModel.loadFishesData()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(handleNetworkConnectivityChange(notification:)),
-            name: Notification.Name("NetworkConnectivityDidChange"),
-            object: nil
-        )
     }
 }
 
@@ -77,21 +71,7 @@ private extension FishViewController {
         let colors = [blueOcean, blueRoyal]
         view.setCollectionViewBackground(collectionView: fishCollectionView, colors: colors)
     }
-    
-    @objc private func handleNetworkConnectivityChange(notification: Notification) {
-        guard let isNetworkAvailable = notification.userInfo?["isNetworkAvailable"] as? Bool else {
-            return
-        }
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            errorView.isHidden = isNetworkAvailable
-            if isNetworkAvailable {
-                fishViewModel.loadFishesData()
-                fishCollectionView.reloadData()
-            }
-        }
-    }
-    
+        
     func addSubviews() {
         view.addSubview(fishCollectionView)
         view.addSubview(errorView)
