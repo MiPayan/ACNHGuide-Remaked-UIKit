@@ -13,12 +13,20 @@ final class SeaCreatureViewModel {
     private let loader: Loader
     private let currentCalendar: CalendarDelegate
     private var seaCreaturesData = [SeaCreatureData]()
-    var isShowingNorthSeaCreature = true
     var cancellables = Set<AnyCancellable>()
     private let subject = PassthroughSubject<Void, Never>()
     let failureHandler = PassthroughSubject<Error, Never>()
     var reloadData: AnyPublisher<Void, Never> {
         subject.eraseToAnyPublisher()
+    }
+    
+    var isShowingNorthSeaCreature: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "Hemisphere")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "Hemisphere")
+        }
     }
     
     init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {

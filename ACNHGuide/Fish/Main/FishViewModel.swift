@@ -13,12 +13,19 @@ final class FishViewModel {
     private let loader: Loader
     private let currentCalendar: CalendarDelegate
     private var fishesData = [FishData]()
-    var isShowingNorthFish = true
     private let subject = PassthroughSubject<Void, Never>()
     var cancellables = Set<AnyCancellable>()
     let failureHandler = PassthroughSubject<Error, Never>()
     var reloadData: AnyPublisher<Void, Never> {
         subject.eraseToAnyPublisher()
+    }
+    var isShowingNorthFish: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "Hemisphere")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "Hemisphere")
+        }
     }
     
     init(

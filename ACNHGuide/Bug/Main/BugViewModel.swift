@@ -14,11 +14,19 @@ final class BugViewModel {
     private let currentCalendar: CalendarDelegate
     private var bugsData = [BugData]()
     private let subject = PassthroughSubject<Void, Never>()
-    var isShowingNorthBug = true
     var cancellables = Set<AnyCancellable>()
     let failureHandler = PassthroughSubject<Error, Never>()
     var reloadData: AnyPublisher<Void, Never> {
         subject.eraseToAnyPublisher()
+    }
+    
+    var isShowingNorthBug: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "Hemisphere")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "Hemisphere")
+        }
     }
     
     init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {

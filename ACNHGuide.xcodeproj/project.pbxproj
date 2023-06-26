@@ -491,11 +491,11 @@
 		375F67AF2A42034B008A17F1 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				375F67B22A42035F008A17F1 /* CreatureLoader.swift */,
-				375F67B32A42035F008A17F1 /* Loader.swift */,
 				375F67B12A42035F008A17F1 /* Networker.swift */,
 				375F67B02A42035E008A17F1 /* Networking.swift */,
 				375F67B42A42035F008A17F1 /* NetworkingError.swift */,
+				375F67B22A42035F008A17F1 /* CreatureLoader.swift */,
+				375F67B32A42035F008A17F1 /* Loader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
