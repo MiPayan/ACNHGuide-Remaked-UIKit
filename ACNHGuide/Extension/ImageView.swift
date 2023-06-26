@@ -6,19 +6,17 @@
 //
 
 import UIKit
+import Combine
 
 extension UIImageView {
-    func loadImage(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
+    func loadImage(url: URL) -> AnyPublisher<UIImage?, Never> {
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map { data, _ in UIImage(data: data) }
+            .receive(on: DispatchQueue.main)
+            .replaceError(with: nil)
+            .eraseToAnyPublisher()
     }
+    
     
     func makeShadow() {
         self.layer.shadowColor = UIColor.black.cgColor

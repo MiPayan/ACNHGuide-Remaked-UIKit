@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class FishCollectionViewCell: UICollectionViewCell {
     
     private var viewModel: FishCollectionViewCellViewModel?
+    private var cancellables = Set<AnyCancellable>()
     private let fishFilenameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +38,7 @@ final class FishCollectionViewCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
         return button
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUpContentView(color: "ColorBlueRoyal")
@@ -52,6 +54,11 @@ final class FishCollectionViewCell: UICollectionViewCell {
         fishFilenameLabel.text = viewModel.fileName
         if let url = viewModel.iconURL {
             fishImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    fishImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         let isSaved = viewModel.isFishAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"

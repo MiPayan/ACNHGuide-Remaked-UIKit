@@ -9,13 +9,24 @@ import Foundation
 import Combine
 import Network
 
-final class Networker: Networking {
+final class Networker {
     
     private let networkPathMonitor = NWPathMonitor()
-    private let queue = DispatchQueue(label: "PathMonitor")
+    private let queue = DispatchQueue.main
     
     init() {
         startMonitoringMonitor()
+    }
+    
+    private var isNetworkAvailable: Bool {
+        networkPathMonitor.currentPath.status == .satisfied ? true : false
+    }
+    
+    private var configuration: URLSessionConfiguration {
+        let configuration = URLSessionConfiguration.default
+        configuration.allowsCellularAccess = true
+        configuration.allowsConstrainedNetworkAccess = true
+        return configuration
     }
     
     private func startMonitoringMonitor() {
@@ -31,18 +42,9 @@ final class Networker: Networking {
         let notificationName = Notification.Name("NetworkConnectivityDidChange")
         NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["isNetworkAvailable": isNetworkAvailable])
     }
-    
-    private var isNetworkAvailable: Bool {
-        networkPathMonitor.currentPath.status == .satisfied ? true : false
-    }
-    
-    private var configuration: URLSessionConfiguration {
-        let configuration = URLSessionConfiguration.default
-        configuration.allowsCellularAccess = true
-        configuration.allowsConstrainedNetworkAccess = true
-        return configuration
-    }
-    
+}
+
+extension Networker: Networking {
     
     func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkingError> {
         

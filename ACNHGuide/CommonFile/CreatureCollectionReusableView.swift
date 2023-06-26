@@ -10,11 +10,11 @@ import Combine
 
 final class CreatureCollectionReusableView: UICollectionReusableView {
     
+    var cancellables = Set<AnyCancellable>()
     private let switchButtonSubject = PassthroughSubject<Void, Never>()
     var switchButtonAction: AnyPublisher<Void, Never> {
         switchButtonSubject.eraseToAnyPublisher()
     }
-    var cancellables = Set<AnyCancellable>()
     
     private let headerLabel: UILabel = {
         let label = UILabel()

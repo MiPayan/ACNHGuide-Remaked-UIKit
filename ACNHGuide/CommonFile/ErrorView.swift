@@ -44,7 +44,7 @@ final class ErrorView: UIView {
         return label
     }()
     
-    private lazy var refreshButton: UIButton = {
+    private let refreshButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "arrow.counterclockwise"), for: .normal)
@@ -53,7 +53,6 @@ final class ErrorView: UIView {
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(didTapRefreshButton), for: .touchUpInside)
         return button
     }()
     
@@ -76,10 +75,6 @@ private extension ErrorView {
         blurEffectView.frame = self.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(blurEffectView)
-    }
-    
-    @objc func didTapRefreshButton() {
-        reloadDataDelegate?.reloadData()
     }
     
     func addSubviews() {

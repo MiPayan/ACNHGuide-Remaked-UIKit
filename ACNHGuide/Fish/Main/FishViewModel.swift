@@ -21,7 +21,10 @@ final class FishViewModel {
         subject.eraseToAnyPublisher()
     }
     
-    init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
+    init(
+        loader: Loader = CreatureLoader(),
+        currentCalendar: CalendarDelegate = CurrentCalendar()
+    ) {
         self.loader = loader
         self.currentCalendar = currentCalendar
     }

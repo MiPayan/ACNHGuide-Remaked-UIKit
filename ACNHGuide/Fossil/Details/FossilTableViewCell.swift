@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class FossilTableViewCell: UITableViewCell {
     
@@ -14,6 +15,7 @@ final class FossilTableViewCell: UITableViewCell {
             detailsCollectionView.reloadData()
         }
     }
+    private var cancellables = Set<AnyCancellable>()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -106,6 +108,11 @@ final class FossilTableViewCell: UITableViewCell {
         self.viewModel = viewModel
         if let url = viewModel.imageURL {
             fossilImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    fossilImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         fossilFilenameLabel.text = viewModel.fileName
         fossilMuseumPhraseLabel.text = viewModel.museumPhrase

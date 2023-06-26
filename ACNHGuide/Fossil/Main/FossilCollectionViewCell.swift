@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class FossilCollectionViewCell: UICollectionViewCell {
     
     private var viewModel: FossilCollectionViewCellViewModel?
+    private var cancellables = Set<AnyCancellable>()
     private let fossilFilenameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -52,6 +54,11 @@ final class FossilCollectionViewCell: UICollectionViewCell {
         fossilFilenameLabel.text = viewModel.fileName
         if let url = viewModel.imageURL {
             fossilImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    fossilImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         let isSaved = viewModel.isFossilAlreadySaved
         let imageString = isSaved ? "leaf.fill" : "leaf"

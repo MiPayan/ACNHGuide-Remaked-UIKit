@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class BugDetailsTableViewCell: UITableViewCell {
     
@@ -14,6 +15,7 @@ final class BugDetailsTableViewCell: UITableViewCell {
             detailsCollectionView.reloadData()
         }
     }
+    private var cancellables = Set<AnyCancellable>()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -116,6 +118,11 @@ final class BugDetailsTableViewCell: UITableViewCell {
         self.viewModel = viewModel
         if let url = viewModel.iconURL {
             bugImageView.loadImage(url: url)
+                .sink { [weak self] image in
+                    guard let self else { return }
+                    bugImageView.image = image
+                }
+                .store(in: &cancellables)
         }
         bugFilenameLabel.text = viewModel.fileName
         bugCatchPhraseLabel.text = viewModel.catchPhrase
