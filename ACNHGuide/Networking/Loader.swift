@@ -13,4 +13,5 @@ protocol Loader {
     func loadSeaCreaturesData() -> AnyPublisher<[SeaCreatureData], NetworkingError>
     func loadBugsData() -> AnyPublisher<[BugData], NetworkingError>
     func loadFossilsData() -> AnyPublisher<[FossilData], NetworkingError>
+    func loadCreaturesData() -> AnyPublisher<(fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]), NetworkingError>
 }

@@ -11,10 +11,10 @@ import Combine
 final class ProgressDashboardViewModel {
     
     private let loader: Loader
-    private(set) var fishesData = [FishData]()
-    private(set) var seaCreaturesData = [SeaCreatureData]()
-    private(set) var bugsData = [BugData]()
-    private(set) var fossilsData = [FossilData]()
+    private(set) var fishes = [FishData]()
+    private(set) var seaCreatures = [SeaCreatureData]()
+    private(set) var bugs = [BugData]()
+    private(set) var fossils = [FossilData]()
     let numberOfRowsInSection = 4
     private let subject = PassthroughSubject<Void, Never>()
     var cancellables = Set<AnyCancellable>()
@@ -27,8 +27,24 @@ final class ProgressDashboardViewModel {
         self.loader = loader
     }
     
-//    TODO: Replace DispatchGroup using Combine to load the creatures.
-    
     func loadCreatures() {
+        loader.loadCreaturesData()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                guard let self else { return }
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    failureHandler.send(error)
+                }
+            } receiveValue: { [unowned self] (fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]) in
+                self.fishes = fishes
+                self.seaCreatures = seaCreatures
+                self.bugs = bugs
+                self.fossils = fossils
+                self.subject.send()
+            }
+            .store(in: &cancellables)
     }
 }

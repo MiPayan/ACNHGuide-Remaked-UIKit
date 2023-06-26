@@ -36,4 +36,19 @@ final class CreatureLoader: Loader {
         let urlString = "\(endpoint)fossils/"
         return session.fetchData(with: urlString)
     }
+    
+    func loadCreaturesData() -> AnyPublisher<(fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]), NetworkingError> {
+        let fishesPublisher = loadFishesData()
+        let seaCreaturesPublisher = loadSeaCreaturesData()
+        let bugsPublisher = loadBugsData()
+        let fossilsPublisher = loadFossilsData()
+        
+        return Publishers.Zip4(fishesPublisher, seaCreaturesPublisher, bugsPublisher, fossilsPublisher)
+            .flatMap { fishes, seaCreatures, bugs, fossils in
+                return Just((fishes, seaCreatures, bugs, fossils))
+                    .setFailureType(to: NetworkingError.self)
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
 }

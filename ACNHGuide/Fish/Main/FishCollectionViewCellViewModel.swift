@@ -9,7 +9,7 @@ import Foundation
 
 final class FishCollectionViewCellViewModel {
     
-    private let fishData: FishData
+    private let fish: FishData
     private let creaturePeeker: CreaturePeeking
     private let creatureWriter: CreatureWriting
     var errorCreatureDatabase: ((String) -> Void) = {_ in}
@@ -19,17 +19,17 @@ final class FishCollectionViewCellViewModel {
         creaturePeeker: CreaturePeeking = FishService(),
         creatureWriter: CreatureWriting = FishService()
     ) {
-        self.fishData = fishData
+        self.fish = fishData
         self.creaturePeeker = creaturePeeker
         self.creatureWriter = creatureWriter
     }
     
     var fileName: String {
-        fishData.fileName.replaceCharacter("_", by: " ").capitalized
+        fish.fileName.replaceCharacter("_", by: " ").capitalized
     }
     
     var iconURL: URL? {
-        URL(string: fishData.iconURI)
+        URL(string: fish.iconURI)
     }
 }
 
