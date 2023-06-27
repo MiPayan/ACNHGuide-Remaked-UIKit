@@ -40,7 +40,7 @@ final class SeaCreatureViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         bindViewModel()
-        seaCreatureViewModel.loadSeaCreatures()
+        seaCreatureViewModel.loadCreatures()
     }
 }
 
@@ -121,7 +121,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
         headerView.switchButtonAction
             .sink { [weak self] in
                 guard let self else { return }
-                seaCreatureViewModel.isShowingNorthSeaCreature.toggle()
+                seaCreatureViewModel.isShowingNorthCreature.toggle()
                 collectionView.reloadData()
             }
             .store(in: &headerView.cancellables)

@@ -8,33 +8,9 @@
 import Foundation
 import Combine
 
-final class SeaCreatureViewModel {
+final class SeaCreatureViewModel: CreatureViewModel<SeaCreatureData> {
     
-    private let loader: Loader
-    private let currentCalendar: CalendarDelegate
-    private var seaCreaturesData = [SeaCreatureData]()
-    var cancellables = Set<AnyCancellable>()
-    private let subject = PassthroughSubject<Void, Never>()
-    let failureHandler = PassthroughSubject<Error, Never>()
-    var reloadData: AnyPublisher<Void, Never> {
-        subject.eraseToAnyPublisher()
-    }
-    
-    var isShowingNorthSeaCreature: Bool {
-        get {
-            return UserDefaults.standard.bool(forKey: "Hemisphere")
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "Hemisphere")
-        }
-    }
-    
-    init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
-        self.loader = loader
-        self.currentCalendar = currentCalendar
-    }
-    
-    func loadSeaCreatures() {
+    override func loadCreatures() {
         loader.loadSeaCreaturesData()
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -46,7 +22,7 @@ final class SeaCreatureViewModel {
                 }
             } receiveValue: { [weak self] seaCreatures in
                 guard let self else { return }
-                seaCreaturesData = seaCreatures
+                creature = seaCreatures
                 subject.send()
             }
             .store(in: &cancellables)
@@ -60,7 +36,7 @@ extension SeaCreatureViewModel {
     // Sorts the sea creatures from the northern hemisphere using the current month and time.
     private var northernHemisphereSeaCreatures: [SeaCreatureData] {
         let (hour, month) = currentCalendar.currentDate
-        let filtered = seaCreaturesData.filter {
+        let filtered = creature.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
         }
         return filtered
@@ -69,21 +45,21 @@ extension SeaCreatureViewModel {
     // Sorts the sea creatures from the southern hemisphere using the current month and time.
     private var southernHemisphereSeaCreatures: [SeaCreatureData] {
         let (hour, month) = currentCalendar.currentDate
-        let filtered = seaCreaturesData.filter {
+        let filtered = creature.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered
     }
     
     var header: String {
-        isShowingNorthSeaCreature ? "northern_hemisphere".localized : "southern_hemisphere".localized
+        isShowingNorthCreature ? "northern_hemisphere".localized : "southern_hemisphere".localized
     }
     
     var numberOfItemsInSection: Int {
-        isShowingNorthSeaCreature ? northernHemisphereSeaCreatures.count : southernHemisphereSeaCreatures.count
+        isShowingNorthCreature ? northernHemisphereSeaCreatures.count : southernHemisphereSeaCreatures.count
     }
     
     func makeSeaCreature(with index: Int) -> SeaCreatureData {
-        isShowingNorthSeaCreature ? northernHemisphereSeaCreatures[index] : southernHemisphereSeaCreatures[index]
+        isShowingNorthCreature ? northernHemisphereSeaCreatures[index] : southernHemisphereSeaCreatures[index]
     }
 }

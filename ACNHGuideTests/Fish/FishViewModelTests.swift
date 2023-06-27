@@ -6,107 +6,54 @@
 //
 
 import XCTest
+import Combine
 @testable import ACNHGuide
 
 final class FishViewModelTests: XCTestCase {
     
-    private var serviceMock: CreatureServicesMock!
-    private var dispatchQueueMock: DispatchQueueMock!
+    private var loaderMock: CreatureLoaderMock!
     private var currentCalendarMock: CurrentCalendarMock!
     private var fishesViewModel: FishViewModel!
     
     override func setUpWithError() throws {
-        serviceMock = CreatureServicesMock()
-        dispatchQueueMock = DispatchQueueMock()
+        loaderMock = CreatureLoaderMock()
         currentCalendarMock = CurrentCalendarMock()
         fishesViewModel = FishViewModel(
-            service: serviceMock,
-            mainDispatchQueue: dispatchQueueMock,
+            loader: loaderMock,
             currentCalendar: currentCalendarMock
         )
     }
     
     override func tearDownWithError() throws {
         currentCalendarMock = nil
-        dispatchQueueMock = nil
         fishesViewModel = nil
-        serviceMock = nil
+        loaderMock = nil
     }
     
-    func testFailureGetFishes() {
-        let expectation = expectation(description: "Failure to get fishes.")
-        serviceMock.stubbedFishResult = (
-            .failure(.urlInvalid)
-        )
+    func testFailureLoadFishes() {
+        let expectation = expectation(description: "Failure to load fishes data.")
+        loaderMock.stubbedFishesPublisher = Fail(error: .urlInvalid)
+            .eraseToAnyPublisher()
         
-        fishesViewModel.failureHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
-            expectation.fulfill()
-        }
-        fishesViewModel.getFishesData()
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        fishesViewModel.failureHandler
+            .sink { error in
+                XCTAssertEqual(error as! NetworkingError, NetworkingError.urlInvalid)
+                XCTAssertEqual(1, self.loaderMock.invokedLoadFishesData)
+                expectation.fulfill()
+            }
+            .store(in: &fishesViewModel.cancellables)
+        
+        fishesViewModel.loadCreatures()
         waitForExpectations(timeout: 1)
     }
     
-    func testSuccessGetFishes() {
-        let expectation = expectation(description: "Success to get fishes.")
-        serviceMock.stubbedFishResult = (
-            .success(fishes)
-        )
-        
-        fishesViewModel.successHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
-            expectation.fulfill()
+        func testSuccessLoadFishes() {
+            let expectation = expectation(description: "Success to load fishes data.")
+            loaderMock.stubbedFishesPublisher = Result.success(fishes)
+                .publisher
+                .eraseToAnyPublisher()
+
+            fishesViewModel.loadCreatures()
+            waitForExpectations(timeout: 1)
         }
-        fishesViewModel.getFishesData()
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        waitForExpectations(timeout: 1)
-    }
-    
-    func testSetHeaderSection() {
-        let northernSectionHeader = fishesViewModel.configureHeaderSection(with: 0)
-        let southernSectionHeader = fishesViewModel.configureHeaderSection(with: 1)
-        XCTAssertEqual(northernSectionHeader, "Northern hemisphere")
-        XCTAssertEqual(southernSectionHeader, "Southern hemisphere")
-    }
-    
-    func testConfigureSectionCollectionView() {
-        currentCalendarMock.stubbedMakeCurrentCalendar = {
-            (11, 12)
-        }()
-        
-        serviceMock.stubbedFishResult = {
-            .success(fishes)
-        }()
-        
-        fishesViewModel.getFishesData()
-        
-        let northernSection = fishesViewModel.configureSectionCollectionView(with: 0)
-        let southernSection = fishesViewModel.configureSectionCollectionView(with: 1)
-        
-        XCTAssertEqual(1, serviceMock.invokedGetFishesCount)
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
-        XCTAssertEqual(northernSection, 25)
-        XCTAssertEqual(southernSection, 39)
-    }
-    
-    func testMakeFish() {
-        currentCalendarMock.stubbedMakeCurrentCalendar = {
-            (11, 12)
-        }()
-        
-        serviceMock.stubbedFishResult = {
-            .success(fishes)
-        }()
-        fishesViewModel.getFishesData()
-        
-        let section = 0
-        let index = 0
-        let fish = fishesViewModel.makeFish(with: section, index: index)
-        XCTAssertEqual(fish.id, 1)
-        XCTAssertEqual(1, serviceMock.invokedGetFishesCount)
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
-    }
 }

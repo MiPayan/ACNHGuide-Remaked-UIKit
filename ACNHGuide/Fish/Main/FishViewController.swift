@@ -42,7 +42,7 @@ final class FishViewController: UIViewController {
         addSubviews()
         setUpCollectionViewBackground()
         bindViewModel()
-        fishViewModel.loadFishesData()
+        fishViewModel.loadCreatures()
     }
 }
 
@@ -125,7 +125,7 @@ extension FishViewController: UICollectionViewDataSource {
         headerView.switchButtonAction
             .sink { [weak self] in
                 guard let self else { return }
-                fishViewModel.isShowingNorthFish.toggle()
+                fishViewModel.isShowingNorthCreature.toggle()
                 collectionView.reloadData()
             }
             .store(in: &headerView.cancellables)

@@ -40,7 +40,7 @@ final class BugViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        bugViewModel.loadBugs()
+        bugViewModel.loadCreatures()
     }
 }
 
@@ -120,7 +120,7 @@ extension BugViewController: UICollectionViewDataSource {
         headerView.switchButtonAction
             .sink { [weak self] in
                 guard let self else { return }
-                bugViewModel.isShowingNorthBug.toggle()
+                bugViewModel.isShowingNorthCreature.toggle()
                 collectionView.reloadData()
             }
             .store(in: &headerView.cancellables)
