@@ -12,7 +12,7 @@ class CreatureViewModel<CreatureData>: ObservableObject {
     
     let loader: Loader
     let currentCalendar: CalendarDelegate
-    var creature = [CreatureData]()
+    var creatures = [CreatureData]()
     let subject = PassthroughSubject<Void, Never>()
     var cancellables = Set<AnyCancellable>()
     let failureHandler = PassthroughSubject<Error, Never>()

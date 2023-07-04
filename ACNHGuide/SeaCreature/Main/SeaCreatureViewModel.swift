@@ -22,7 +22,7 @@ final class SeaCreatureViewModel: CreatureViewModel<SeaCreatureData> {
                 }
             } receiveValue: { [weak self] seaCreatures in
                 guard let self else { return }
-                creature = seaCreatures
+                creatures = seaCreatures
                 subject.send()
             }
             .store(in: &cancellables)
@@ -36,7 +36,7 @@ extension SeaCreatureViewModel {
     // Sorts the sea creatures from the northern hemisphere using the current month and time.
     private var northernHemisphereSeaCreatures: [SeaCreatureData] {
         let (hour, month) = currentCalendar.currentDate
-        let filtered = creature.filter {
+        let filtered = creatures.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
         }
         return filtered
@@ -45,7 +45,7 @@ extension SeaCreatureViewModel {
     // Sorts the sea creatures from the southern hemisphere using the current month and time.
     private var southernHemisphereSeaCreatures: [SeaCreatureData] {
         let (hour, month) = currentCalendar.currentDate
-        let filtered = creature.filter {
+        let filtered = creatures.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered

@@ -11,19 +11,8 @@ final class FossilViewController: UIViewController {
     
     private let fossilViewModel = FossilViewModel()
     private lazy var fossilCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 8
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(
-            CreatureCollectionReusableView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: "AdaptiveHeader"
-        )
+        let collectionView = CreatureCollectionView()
         collectionView.register(FossilCollectionViewCell.self, forCellWithReuseIdentifier: "FossilCell")
-        collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView

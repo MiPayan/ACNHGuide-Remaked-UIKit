@@ -13,19 +13,8 @@ final class FishViewController: UIViewController {
     
     private let fishViewModel = FishViewModel()
     private lazy var fishCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 8
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(
-            CreatureCollectionReusableView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: "AdaptiveHeader"
-        )
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        let collectionView = CreatureCollectionView()
         collectionView.register(FishCollectionViewCell.self, forCellWithReuseIdentifier: "FishCell")
-        collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
@@ -71,7 +60,7 @@ private extension FishViewController {
         let colors = [blueOcean, blueRoyal]
         view.setCollectionViewBackground(collectionView: fishCollectionView, colors: colors)
     }
-        
+    
     func addSubviews() {
         view.addSubview(fishCollectionView)
         view.addSubview(errorView)

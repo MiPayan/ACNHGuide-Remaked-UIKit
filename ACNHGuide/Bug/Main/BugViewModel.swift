@@ -22,7 +22,7 @@ final class BugViewModel: CreatureViewModel<BugData> {
                 }
             } receiveValue: { [weak self] bugs in
                 guard let self else { return }
-                creature = bugs
+                creatures = bugs
                 subject.send()
             }
             .store(in: &cancellables)
@@ -37,7 +37,7 @@ extension BugViewModel {
     // Sorts the bugs from the northern hemisphere using the current month and time.
     var northernHemisphereBugs: [BugData] {
         let (hour, month) = currentCalendar.currentDate
-        let filtered = creature.filter {
+        let filtered = creatures.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
         }
         return filtered
@@ -46,7 +46,7 @@ extension BugViewModel {
     // Sorts the bugs from the southern hemisphere using the current month and time.
     var southernHemisphereBugs: [BugData] {
         let (hour, month) = currentCalendar.currentDate
-        let filtered = creature.filter {
+        let filtered = creatures.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)
         }
         return filtered

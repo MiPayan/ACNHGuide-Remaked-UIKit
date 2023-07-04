@@ -64,7 +64,7 @@ final class FossilTableViewCell: UITableViewCell {
         layout.minimumInteritemSpacing = 16
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(DetailsCollectionViewCell.self, forCellWithReuseIdentifier: "AdaptiveDetailsCell")
+        collectionView.register(CreatureDetailsCollectionViewCell.self, forCellWithReuseIdentifier: "AdaptiveDetailsCell")
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.backgroundColor = .clear
         collectionView.allowsSelection = false
@@ -197,7 +197,7 @@ extension FossilTableViewCell: UICollectionViewDataSource {
               let detailsCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "AdaptiveDetailsCell",
                 for: indexPath
-              ) as? DetailsCollectionViewCell else { return UICollectionViewCell() }
+              ) as? CreatureDetailsCollectionViewCell else { return UICollectionViewCell() }
         detailsCell.configureCell(
             imageNamed: "Bells",
             title: "price".localized,

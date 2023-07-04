@@ -1,25 +1,27 @@
 //
-//  FishViewModelTests.swift
+//  v.swift
 //  ACNHGuideTests
 //
-//  Created by Mickael PAYAN on 19/01/2023.
+//  Created by Mickael PAYAN on 04/07/2023.
 //
+
+import Foundation
 
 import XCTest
 import Combine
 @testable import ACNHGuide
 
-final class FishViewModelTests: XCTestCase {
+final class SeaCreatureViewModelTests: XCTestCase {
     
     private var loaderMock: CreatureLoaderMock!
     private var currentCalendarMock: CurrentCalendarMock!
-    private var fishViewModel: FishViewModel!
+    private var seaCreatureViewModel: SeaCreatureViewModel!
     private var cancellables = Set<AnyCancellable>()
     
     override func setUpWithError() throws {
         loaderMock = CreatureLoaderMock()
         currentCalendarMock = CurrentCalendarMock()
-        fishViewModel = FishViewModel(
+        seaCreatureViewModel = SeaCreatureViewModel(
             loader: loaderMock,
             currentCalendar: currentCalendarMock
         )
@@ -27,42 +29,42 @@ final class FishViewModelTests: XCTestCase {
     
     override func tearDownWithError() throws {
         currentCalendarMock = nil
-        fishViewModel = nil
+        seaCreatureViewModel = nil
         loaderMock = nil
     }
     
-    func testFailureLoadFishes() {
-        let expectation = expectation(description: "Failure to load fishes data.")
-        loaderMock.stubbedFishesPublisher = Fail(error: .urlInvalid)
+    func testFailureLoadSeaCreatures() {
+        let expectation = expectation(description: "Failure to load sea creatures data.")
+        loaderMock.stubbedSeaCreaturesPublisher = Fail(error: .urlInvalid)
             .eraseToAnyPublisher()
         
-        fishViewModel.failureHandler
+        seaCreatureViewModel.failureHandler
             .sink { error in
                 XCTAssertEqual(error as! NetworkingError, NetworkingError.urlInvalid)
-                XCTAssertEqual(1, self.loaderMock.invokedLoadFishesData)
+                XCTAssertEqual(1, self.loaderMock.invokedLoadSeaCreaturesData)
                 expectation.fulfill()
             }
             .store(in: &cancellables)
         
-        fishViewModel.loadCreatures()
+        seaCreatureViewModel.loadCreatures()
         waitForExpectations(timeout: 1)
     }
     
-    func testSuccessLoadFishes() {
-        let expectation = expectation(description: "Success to load fishes data.")
-        loaderMock.stubbedFishesPublisher = Result.success(fishes)
+    func testSuccessLoadSeaCreatures() {
+        let expectation = expectation(description: "Success to load sea creatures data.")
+        loaderMock.stubbedSeaCreaturesPublisher = Result.success(seaCreatures)
             .publisher
             .eraseToAnyPublisher()
         
-        fishViewModel.reloadData
+        seaCreatureViewModel.reloadData
             .sink { _ in
-                XCTAssertEqual(self.fishViewModel.creatures, fishes)
-                XCTAssertEqual(1, self.loaderMock.invokedLoadFishesData)
+                XCTAssertEqual(self.seaCreatureViewModel.creatures, seaCreatures)
+                XCTAssertEqual(1, self.loaderMock.invokedLoadSeaCreaturesData)
                 expectation.fulfill()
             }
             .store(in: &cancellables)
         
-        fishViewModel.loadCreatures()
+        seaCreatureViewModel.loadCreatures()
         waitForExpectations(timeout: 1)
     }
 }

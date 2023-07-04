@@ -11,19 +11,8 @@ final class BugViewController: UIViewController {
     
     private let bugViewModel = BugViewModel()
     private lazy var bugCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 8
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(
-            CreatureCollectionReusableView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: "AdaptiveHeader"
-        )
+        let collectionView = CreatureCollectionView()
         collectionView.register(BugCollectionViewCell.self, forCellWithReuseIdentifier: "BugCell")
-        collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView

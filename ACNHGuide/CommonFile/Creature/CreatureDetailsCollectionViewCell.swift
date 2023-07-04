@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class DetailsCollectionViewCell: UICollectionViewCell {
-        
+final class CreatureDetailsCollectionViewCell: UICollectionViewCell {
+    
     private let imageValueImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,13 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(imageNamed: String, title: String, titleColorNamed: String, value: String, valueColorNamed: String) {
+    func configureCell(
+        imageNamed: String,
+        title: String,
+        titleColorNamed: String,
+        value: String,
+        valueColorNamed: String
+    ) {
         imageValueImageView.image = UIImage(named: imageNamed)
         titleValueLabel.text = title
         titleValueLabel.textColor = UIColor(named: titleColorNamed)
@@ -51,7 +57,7 @@ final class DetailsCollectionViewCell: UICollectionViewCell {
     }
 }
 
-private extension DetailsCollectionViewCell {
+private extension CreatureDetailsCollectionViewCell {
     func addSubviews() {
         addSubview(imageValueImageView)
         addSubview(titleValueLabel)
