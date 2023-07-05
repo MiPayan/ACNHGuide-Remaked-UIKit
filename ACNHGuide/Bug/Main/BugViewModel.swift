@@ -10,7 +10,7 @@ import Combine
 
 final class BugViewModel: CreatureViewModel<BugData> {
     
-    override func loadCreatures() {
+    override func loadCreature() {
         loader.loadBugsData()
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -26,7 +26,7 @@ final class BugViewModel: CreatureViewModel<BugData> {
                 subject.send()
             }
             .store(in: &cancellables)
-        super.loadCreatures()
+        super.loadCreature()
     }
 }
 
@@ -35,7 +35,7 @@ final class BugViewModel: CreatureViewModel<BugData> {
 extension BugViewModel {
     
     // Sorts the bugs from the northern hemisphere using the current month and time.
-    var northernHemisphereBugs: [BugData] {
+    private var northernHemisphereBugs: [BugData] {
         let (hour, month) = currentCalendar.currentDate
         let filtered = creatures.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArrayNorthern.contains(month)
@@ -44,7 +44,7 @@ extension BugViewModel {
     }
     
     // Sorts the bugs from the southern hemisphere using the current month and time.
-    var southernHemisphereBugs: [BugData] {
+    private var southernHemisphereBugs: [BugData] {
         let (hour, month) = currentCalendar.currentDate
         let filtered = creatures.filter {
             $0.availability.timeArray.contains(hour) && $0.availability.monthArraySouthern.contains(month)

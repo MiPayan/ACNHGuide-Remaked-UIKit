@@ -10,7 +10,7 @@ import Combine
 
 final class SeaCreatureViewModel: CreatureViewModel<SeaCreatureData> {
     
-    override func loadCreatures() {
+    override func loadCreature() {
         loader.loadSeaCreaturesData()
             .receive(on: DispatchQueue.main)
             .sink { completion in

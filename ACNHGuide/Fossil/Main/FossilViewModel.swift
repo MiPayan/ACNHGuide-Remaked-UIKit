@@ -8,23 +8,11 @@
 import Foundation
 import Combine
 
-final class FossilViewModel {
-    
-    private let loader: Loader
-    private(set) var fossilsData = [FossilData]()
+final class FossilViewModel: CreatureViewModel<FossilData> {
+
     let headerText = "fossils".localized
-    private let subject = PassthroughSubject<Void, Never>()
-    var cancellables = Set<AnyCancellable>()
-    let failureHandler = PassthroughSubject<Error, Never>()
-    var reloadData: AnyPublisher<Void, Never> {
-        subject.eraseToAnyPublisher()
-    }
-    
-    init(loader: Loader = CreatureLoader()) {
-        self.loader = loader
-    }
-    
-    func loadFossils() {
+
+    override func loadCreature() {
         loader.loadFossilsData()
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -36,7 +24,7 @@ final class FossilViewModel {
                 }
             } receiveValue: { [weak self] fossils in
                 guard let self else { return }
-                fossilsData = fossils
+                creatures = fossils
                 subject.send()
             }
             .store(in: &cancellables)

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class SeaCreatureViewController: UIViewController {
     
     private let seaCreatureViewModel = SeaCreatureViewModel()
+    private var cancellables = Set<AnyCancellable>()
     private lazy var seaCreatureCollectionView: UICollectionView = {
         let collectionView = CreatureCollectionView()
         collectionView.register(SeaCreatureCollectionViewCell.self, forCellWithReuseIdentifier: "SeaCreaturesCell")
@@ -29,7 +31,7 @@ final class SeaCreatureViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         bindViewModel()
-        seaCreatureViewModel.loadCreatures()
+        seaCreatureViewModel.loadCreature()
     }
 }
 
@@ -105,7 +107,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
-        headerView.cancellables.removeAll()
+        cancellables.removeAll()
         headerView.configureHeaderLabel(with: seaCreatureViewModel.header)
         headerView.switchButtonAction
             .sink { [weak self] in
@@ -113,7 +115,7 @@ extension SeaCreatureViewController: UICollectionViewDataSource {
                 seaCreatureViewModel.isShowingNorthCreature.toggle()
                 collectionView.reloadData()
             }
-            .store(in: &headerView.cancellables)
+            .store(in: &cancellables)
         return headerView
     }
     

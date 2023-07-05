@@ -24,7 +24,6 @@
 		370385E929793D66002CC431 /* CurrentCalendarMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385E829793D65002CC431 /* CurrentCalendarMock.swift */; };
 		370385EB29793D75002CC431 /* CreatureLoaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385EA29793D75002CC431 /* CreatureLoaderMock.swift */; };
 		3703860329799102002CC431 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703860229799102002CC431 /* ErrorView.swift */; };
-		3703860B29799AA3002CC431 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3703860A29799AA3002CC431 /* RealmSwift */; };
 		370492122980274300B58CC7 /* ProgressDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370492112980274300B58CC7 /* ProgressDashboardViewController.swift */; };
 		3712569F298BF31800507D2D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 371256A1298BF31800507D2D /* Localizable.strings */; };
 		37137585296C58F500F39C83 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37137584296C58F500F39C83 /* ImageView.swift */; };
@@ -47,7 +46,12 @@
 		373349BC29DC33BD005B64B0 /* UIViewController+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373349BB29DC33BD005B64B0 /* UIViewController+UILabel.swift */; };
 		373349BE29DC733D005B64B0 /* UIViewController+CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373349BD29DC733D005B64B0 /* UIViewController+CollectionViewLayout.swift */; };
 		373349C029DC73E5005B64B0 /* UITableViewCell+CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373349BF29DC73E5005B64B0 /* UITableViewCell+CollectionViewLayout.swift */; };
-		373F034829D1ABCC0058949B /* ACNHFishServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373F034729D1ABCC0058949B /* ACNHFishServiceTests.swift */; };
+		373E439C2A55B5B200D93778 /* BugViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E439B2A55B5B200D93778 /* BugViewModelTests.swift */; };
+		373E439E2A55B67000D93778 /* FossilViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E439D2A55B67000D93778 /* FossilViewModelTests.swift */; };
+		373E43A02A55B80300D93778 /* FossilsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E439F2A55B80300D93778 /* FossilsMapping.swift */; };
+		373E43A22A55B81000D93778 /* BugsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E43A12A55B81000D93778 /* BugsMapping.swift */; };
+		373E43A42A55B82500D93778 /* SeaCreaturesMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E43A32A55B82500D93778 /* SeaCreaturesMapping.swift */; };
+		373F034829D1ABCC0058949B /* LoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373F034729D1ABCC0058949B /* LoaderTests.swift */; };
 		37563CF229911C1D00739397 /* FishDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37563CF129911C1D00739397 /* FishDetailsViewModel.swift */; };
 		375F67B52A42035F008A17F1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375F67B02A42035E008A17F1 /* Networking.swift */; };
 		375F67B62A42035F008A17F1 /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375F67B12A42035F008A17F1 /* Networker.swift */; };
@@ -60,7 +64,18 @@
 		375F67C22A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375F67BE2A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift */; };
 		376035862983E181001498C3 /* FishDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */; };
 		3765CE56298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3765CE55298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift */; };
-		3765CE59298AA253009E6CCF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3765CE58298AA253009E6CCF /* RealmSwift */; };
+		3769C11D2A558723009F4783 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3769C11C2A558723009F4783 /* FirebaseAnalytics */; };
+		3769C11F2A558723009F4783 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3769C11E2A558723009F4783 /* FirebaseCrashlytics */; };
+		3769C1212A558723009F4783 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 3769C1202A558723009F4783 /* FirebasePerformance */; };
+		3769C1262A558741009F4783 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3769C1252A558741009F4783 /* RealmSwift */; };
+		3769C1282A559EC7009F4783 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3769C1272A559EC7009F4783 /* RealmSwift */; };
+		3769C12A2A55A002009F4783 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3769C1292A55A002009F4783 /* FirebaseAnalytics */; };
+		3769C12C2A55A002009F4783 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3769C12B2A55A002009F4783 /* FirebaseAuth */; };
+		3769C12E2A55A002009F4783 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3769C12D2A55A002009F4783 /* FirebaseCrashlytics */; };
+		3769C1332A55A4D3009F4783 /* Bugs.json in Resources */ = {isa = PBXBuildFile; fileRef = 3769C1352A55A4D3009F4783 /* Bugs.json */; };
+		3769C1362A55A4D6009F4783 /* Bugs.json in Resources */ = {isa = PBXBuildFile; fileRef = 3769C1352A55A4D3009F4783 /* Bugs.json */; };
+		3769C13A2A55A4ED009F4783 /* Fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 3769C13D2A55A4ED009F4783 /* Fossils.json */; };
+		3769C13B2A55A4ED009F4783 /* Fossils.json in Resources */ = {isa = PBXBuildFile; fileRef = 3769C13D2A55A4ED009F4783 /* Fossils.json */; };
 		377252F829AF6D8200F08602 /* CreaturePeekerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377252F729AF6D8200F08602 /* CreaturePeekerMock.swift */; };
 		377252FA29AF6EB400F08602 /* CreatureWriterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377252F929AF6EB400F08602 /* CreatureWriterMock.swift */; };
 		37747C09297EFEB400514352 /* ReloadDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37747C08297EFEB400514352 /* ReloadDataDelegate.swift */; };
@@ -70,12 +85,6 @@
 		3792FF3829896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3729896223005673E9 /* SeaCreaturesDetailsTableViewCellViewModel.swift */; };
 		3792FF3A298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */; };
 		3792FF3C29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792FF3B29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift */; };
-		379B3A0B29C9EECA008FFD79 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 379B3A0A29C9EECA008FFD79 /* FirebaseAnalytics */; };
-		379B3A0D29C9EECA008FFD79 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 379B3A0C29C9EECA008FFD79 /* FirebasePerformance */; };
-		379B3A0F29C9F555008FFD79 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 379B3A0E29C9F555008FFD79 /* FirebaseCrashlytics */; };
-		379B3A1129C9F56C008FFD79 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 379B3A1029C9F56C008FFD79 /* FirebaseAnalytics */; };
-		379B3A1329C9F56C008FFD79 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 379B3A1229C9F56C008FFD79 /* FirebaseCrashlytics */; };
-		379B3A1529C9F56C008FFD79 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 379B3A1429C9F56C008FFD79 /* FirebasePerformance */; };
 		379E8D6E298D0F3000ACEEF5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370385F4297942DF002CC431 /* Constant.swift */; };
 		37A29F812978442000E043F0 /* FishesMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A29F802978442000E043F0 /* FishesMapping.swift */; };
 		37A29F83297844F300E043F0 /* DecodableBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A29F82297844F300E043F0 /* DecodableBundle.swift */; };
@@ -175,7 +184,12 @@
 		373349BB29DC33BD005B64B0 /* UIViewController+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UILabel.swift"; sourceTree = "<group>"; };
 		373349BD29DC733D005B64B0 /* UIViewController+CollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CollectionViewLayout.swift"; sourceTree = "<group>"; };
 		373349BF29DC73E5005B64B0 /* UITableViewCell+CollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+CollectionViewLayout.swift"; sourceTree = "<group>"; };
-		373F034729D1ABCC0058949B /* ACNHFishServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNHFishServiceTests.swift; sourceTree = "<group>"; };
+		373E439B2A55B5B200D93778 /* BugViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugViewModelTests.swift; sourceTree = "<group>"; };
+		373E439D2A55B67000D93778 /* FossilViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FossilViewModelTests.swift; sourceTree = "<group>"; };
+		373E439F2A55B80300D93778 /* FossilsMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FossilsMapping.swift; sourceTree = "<group>"; };
+		373E43A12A55B81000D93778 /* BugsMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BugsMapping.swift; sourceTree = "<group>"; };
+		373E43A32A55B82500D93778 /* SeaCreaturesMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeaCreaturesMapping.swift; sourceTree = "<group>"; };
+		373F034729D1ABCC0058949B /* LoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderTests.swift; sourceTree = "<group>"; };
 		37563CF129911C1D00739397 /* FishDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsViewModel.swift; sourceTree = "<group>"; };
 		375F67B02A42035E008A17F1 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		375F67B12A42035F008A17F1 /* Networker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
@@ -188,6 +202,8 @@
 		375F67BE2A4203B6008A17F1 /* FishCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		376035852983E181001498C3 /* FishDetailsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		3765CE55298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishDetailsTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		3769C1342A55A4D3009F4783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Bugs.json; sourceTree = "<group>"; };
+		3769C13C2A55A4ED009F4783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Fossils.json; sourceTree = "<group>"; };
 		377252F729AF6D8200F08602 /* CreaturePeekerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreaturePeekerMock.swift; sourceTree = "<group>"; };
 		377252F929AF6EB400F08602 /* CreatureWriterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureWriterMock.swift; sourceTree = "<group>"; };
 		37747C08297EFEB400514352 /* ReloadDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadDataDelegate.swift; sourceTree = "<group>"; };
@@ -252,10 +268,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				379B3A1329C9F56C008FFD79 /* FirebaseCrashlytics in Frameworks */,
-				379B3A1129C9F56C008FFD79 /* FirebaseAnalytics in Frameworks */,
-				379B3A1529C9F56C008FFD79 /* FirebasePerformance in Frameworks */,
-				3765CE59298AA253009E6CCF /* RealmSwift in Frameworks */,
+				3769C12A2A55A002009F4783 /* FirebaseAnalytics in Frameworks */,
+				3769C12E2A55A002009F4783 /* FirebaseCrashlytics in Frameworks */,
+				3769C12C2A55A002009F4783 /* FirebaseAuth in Frameworks */,
+				3769C1282A559EC7009F4783 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,10 +279,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3703860B29799AA3002CC431 /* RealmSwift in Frameworks */,
-				379B3A0F29C9F555008FFD79 /* FirebaseCrashlytics in Frameworks */,
-				379B3A0D29C9EECA008FFD79 /* FirebasePerformance in Frameworks */,
-				379B3A0B29C9EECA008FFD79 /* FirebaseAnalytics in Frameworks */,
+				3769C11D2A558723009F4783 /* FirebaseAnalytics in Frameworks */,
+				3769C11F2A558723009F4783 /* FirebaseCrashlytics in Frameworks */,
+				3769C1262A558741009F4783 /* RealmSwift in Frameworks */,
+				3769C1212A558723009F4783 /* FirebasePerformance in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				3728104A2A54777B00A2B694 /* SeaCreatureViewModelTests.swift */,
+				373E43A32A55B82500D93778 /* SeaCreaturesMapping.swift */,
 				372810522A54796400A2B694 /* SeaCreatures.json */,
 			);
 			path = SeaCreature;
@@ -469,6 +486,34 @@
 				375F67BC2A4203B6008A17F1 /* FishCollectionViewCell.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		376078452A558141007EC476 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				373F034729D1ABCC0058949B /* LoaderTests.swift */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
+		3769C12F2A55A470009F4783 /* Bug */ = {
+			isa = PBXGroup;
+			children = (
+				373E439B2A55B5B200D93778 /* BugViewModelTests.swift */,
+				373E43A12A55B81000D93778 /* BugsMapping.swift */,
+				3769C1352A55A4D3009F4783 /* Bugs.json */,
+			);
+			path = Bug;
+			sourceTree = "<group>";
+		};
+		3769C1302A55A48D009F4783 /* Fossil */ = {
+			isa = PBXGroup;
+			children = (
+				3769C13D2A55A4ED009F4783 /* Fossils.json */,
+				373E439F2A55B80300D93778 /* FossilsMapping.swift */,
+				373E439D2A55B67000D93778 /* FossilViewModelTests.swift */,
+			);
+			path = Fossil;
 			sourceTree = "<group>";
 		};
 		377AA85F29B22688002104D1 /* CreatureDatabase */ = {
@@ -502,8 +547,11 @@
 				370385F4297942DF002CC431 /* Constant.swift */,
 				370385E729793D51002CC431 /* Mock */,
 				377AA85F29B22688002104D1 /* CreatureDatabase */,
+				376078452A558141007EC476 /* Loader */,
 				37A29F842978460E00E043F0 /* Fish */,
 				372810492A5476DD00A2B694 /* SeaCreature */,
+				3769C12F2A55A470009F4783 /* Bug */,
+				3769C1302A55A48D009F4783 /* Fossil */,
 			);
 			path = ACNHGuideTests;
 			sourceTree = "<group>";
@@ -516,7 +564,6 @@
 				377AA85329B1FE5E002104D1 /* FishDetailsViewModelTests.swift */,
 				3765CE55298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift */,
 				37A29F802978442000E043F0 /* FishesMapping.swift */,
-				373F034729D1ABCC0058949B /* ACNHFishServiceTests.swift */,
 				37C4134229785BBE001F6EE0 /* Fishes.json */,
 			);
 			path = Fish;
@@ -686,10 +733,10 @@
 			);
 			name = ACNHGuideTests;
 			packageProductDependencies = (
-				3765CE58298AA253009E6CCF /* RealmSwift */,
-				379B3A1029C9F56C008FFD79 /* FirebaseAnalytics */,
-				379B3A1229C9F56C008FFD79 /* FirebaseCrashlytics */,
-				379B3A1429C9F56C008FFD79 /* FirebasePerformance */,
+				3769C1272A559EC7009F4783 /* RealmSwift */,
+				3769C1292A55A002009F4783 /* FirebaseAnalytics */,
+				3769C12B2A55A002009F4783 /* FirebaseAuth */,
+				3769C12D2A55A002009F4783 /* FirebaseCrashlytics */,
 			);
 			productName = ACNHGuideTests;
 			productReference = 378D5D6E29C1CC2D004A2D6B /* ACNHGuideTests.xctest */;
@@ -710,10 +757,10 @@
 			);
 			name = ACNHGuide;
 			packageProductDependencies = (
-				3703860A29799AA3002CC431 /* RealmSwift */,
-				379B3A0A29C9EECA008FFD79 /* FirebaseAnalytics */,
-				379B3A0C29C9EECA008FFD79 /* FirebasePerformance */,
-				379B3A0E29C9F555008FFD79 /* FirebaseCrashlytics */,
+				3769C11C2A558723009F4783 /* FirebaseAnalytics */,
+				3769C11E2A558723009F4783 /* FirebaseCrashlytics */,
+				3769C1202A558723009F4783 /* FirebasePerformance */,
+				3769C1252A558741009F4783 /* RealmSwift */,
 			);
 			productName = ACNHGuide;
 			productReference = 378D5D6D29C1CC2D004A2D6B /* ACNHGuide.app */;
@@ -748,8 +795,8 @@
 			);
 			mainGroup = 37A7135129681A6F0075BF25;
 			packageReferences = (
-				3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				379B3A0929C9EECA008FFD79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3769C11B2A558723009F4783 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3769C1222A558741009F4783 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 37A7135129681A6F0075BF25;
 			projectDirPath = "";
@@ -766,8 +813,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3769C1332A55A4D3009F4783 /* Bugs.json in Resources */,
 				372810502A54796400A2B694 /* SeaCreatures.json in Resources */,
 				37C4134029785BBE001F6EE0 /* Fishes.json in Resources */,
+				3769C13B2A55A4ED009F4783 /* Fossils.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,6 +826,8 @@
 			files = (
 				372AF6C129BA232800821E87 /* GoogleService-Info.plist in Resources */,
 				37A7136A29681A700075BF25 /* LaunchScreen.storyboard in Resources */,
+				3769C13A2A55A4ED009F4783 /* Fossils.json in Resources */,
+				3769C1362A55A4D6009F4783 /* Bugs.json in Resources */,
 				37C4134329785BDC001F6EE0 /* Fishes.json in Resources */,
 				37A7136729681A700075BF25 /* Assets.xcassets in Resources */,
 				3702B44E296EE22F008AB36D /* FinkHeavy.ttf in Resources */,
@@ -821,13 +872,18 @@
 				37B252D429CC53AC00EB5B6A /* SeaCreatureServiceTests.swift in Sources */,
 				37A29F812978442000E043F0 /* FishesMapping.swift in Sources */,
 				370385E929793D66002CC431 /* CurrentCalendarMock.swift in Sources */,
+				373E43A02A55B80300D93778 /* FossilsMapping.swift in Sources */,
+				373E43A22A55B81000D93778 /* BugsMapping.swift in Sources */,
 				3728104B2A54777B00A2B694 /* SeaCreatureViewModelTests.swift in Sources */,
+				373E43A42A55B82500D93778 /* SeaCreaturesMapping.swift in Sources */,
 				37B252D629CC53C000EB5B6A /* BugServiceTests.swift in Sources */,
 				3765CE56298AA14E009E6CCF /* FishDetailsTableViewCellViewModelTests.swift in Sources */,
+				373E439C2A55B5B200D93778 /* BugViewModelTests.swift in Sources */,
 				37B252D829CC53D300EB5B6A /* FossilServiceTests.swift in Sources */,
 				37BEADB629B78E850005F66E /* FishServiceTests.swift in Sources */,
 				377252FA29AF6EB400F08602 /* CreatureWriterMock.swift in Sources */,
-				373F034829D1ABCC0058949B /* ACNHFishServiceTests.swift in Sources */,
+				373E439E2A55B67000D93778 /* FossilViewModelTests.swift in Sources */,
+				373F034829D1ABCC0058949B /* LoaderTests.swift in Sources */,
 				377252F829AF6D8200F08602 /* CreaturePeekerMock.swift in Sources */,
 				377AA85C29B2106B002104D1 /* CreatureManagingMock.swift in Sources */,
 				370385E629793CC9002CC431 /* FishViewModelTests.swift in Sources */,
@@ -951,6 +1007,22 @@
 			name = SeaCreatures.json;
 			sourceTree = "<group>";
 		};
+		3769C1352A55A4D3009F4783 /* Bugs.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3769C1342A55A4D3009F4783 /* Base */,
+			);
+			name = Bugs.json;
+			sourceTree = "<group>";
+		};
+		3769C13D2A55A4ED009F4783 /* Fossils.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3769C13C2A55A4ED009F4783 /* Base */,
+			);
+			name = Fossils.json;
+			sourceTree = "<group>";
+		};
 		37A7136829681A700075BF25 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -979,6 +1051,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 78PX5NWF8H;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuideTests;
@@ -990,6 +1063,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ACNHGuide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ACNHGuide";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -1002,6 +1076,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 78PX5NWF8H;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PayanMickael.ACNHGuideTests;
@@ -1013,6 +1088,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ACNHGuide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ACNHGuide";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
@@ -1227,17 +1303,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		379B3A0929C9EECA008FFD79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		3769C11B2A558723009F4783 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		3769C1222A558741009F4783 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1246,45 +1322,45 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3703860A29799AA3002CC431 /* RealmSwift */ = {
+		3769C11C2A558723009F4783 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-		3765CE58298AA253009E6CCF /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3703860729799AA3002CC431 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-		379B3A0A29C9EECA008FFD79 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 379B3A0929C9EECA008FFD79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 3769C11B2A558723009F4783 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		379B3A0C29C9EECA008FFD79 /* FirebasePerformance */ = {
+		3769C11E2A558723009F4783 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 379B3A0929C9EECA008FFD79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebasePerformance;
-		};
-		379B3A0E29C9F555008FFD79 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 379B3A0929C9EECA008FFD79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 3769C11B2A558723009F4783 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
-		379B3A1029C9F56C008FFD79 /* FirebaseAnalytics */ = {
+		3769C1202A558723009F4783 /* FirebasePerformance */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 379B3A0929C9EECA008FFD79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 3769C11B2A558723009F4783 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		3769C1252A558741009F4783 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3769C1222A558741009F4783 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		3769C1272A559EC7009F4783 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3769C1222A558741009F4783 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		3769C1292A55A002009F4783 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3769C11B2A558723009F4783 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		379B3A1229C9F56C008FFD79 /* FirebaseCrashlytics */ = {
+		3769C12B2A55A002009F4783 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 379B3A0929C9EECA008FFD79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
+			package = 3769C11B2A558723009F4783 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
-		379B3A1429C9F56C008FFD79 /* FirebasePerformance */ = {
+		3769C12D2A55A002009F4783 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 379B3A0929C9EECA008FFD79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebasePerformance;
+			package = 3769C11B2A558723009F4783 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

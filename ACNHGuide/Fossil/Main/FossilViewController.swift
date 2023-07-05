@@ -29,7 +29,7 @@ final class FossilViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         bindViewModel()
-        fossilViewModel.loadFossils()
+        fossilViewModel.loadCreature()
     }
 }
 
@@ -118,7 +118,7 @@ extension FossilViewController: UICollectionViewDataSource {
     
     // Configure cells.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        fossilViewModel.fossilsData.count
+        fossilViewModel.creatures.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -126,7 +126,7 @@ extension FossilViewController: UICollectionViewDataSource {
             withReuseIdentifier: "FossilCell",
             for: indexPath
         ) as? FossilCollectionViewCell else { return UICollectionViewCell() }
-        let fossil = fossilViewModel.fossilsData[indexPath.row]
+        let fossil = fossilViewModel.creatures[indexPath.row]
         let fossilCollectionViewCellViewModel = FossilCollectionViewCellViewModel(fossilData: fossil)
         fossils.configureCell(with: fossilCollectionViewCellViewModel, view: self)
         return fossils
@@ -134,7 +134,7 @@ extension FossilViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsViewController = FossilDetailsViewController()
-        let selectedFossil = fossilViewModel.fossilsData[indexPath.row]
+        let selectedFossil = fossilViewModel.creatures[indexPath.row]
         let fossilDetailsViewModel = FossilDetailsViewModel(fossilData: selectedFossil)
         detailsViewController.fossilDetailsViewModel = fossilDetailsViewModel
         detailsViewController.reloadDataDelegate = self

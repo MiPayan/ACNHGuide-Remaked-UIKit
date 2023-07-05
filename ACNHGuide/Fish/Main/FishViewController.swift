@@ -12,6 +12,7 @@ import Combine
 final class FishViewController: UIViewController {
     
     private let fishViewModel = FishViewModel()
+    private var cancellables = Set<AnyCancellable>()
     private lazy var fishCollectionView: UICollectionView = {
         let collectionView = CreatureCollectionView()
         collectionView.register(FishCollectionViewCell.self, forCellWithReuseIdentifier: "FishCell")
@@ -31,7 +32,7 @@ final class FishViewController: UIViewController {
         addSubviews()
         setUpCollectionViewBackground()
         bindViewModel()
-        fishViewModel.loadCreatures()
+        fishViewModel.loadCreature()
     }
 }
 
@@ -42,14 +43,14 @@ private extension FishViewController {
                 guard let self else { return }
                 errorView.isHidden = false
             }
-            .store(in: &fishViewModel.cancellables)
+            .store(in: &cancellables)
         
         fishViewModel.reloadData
             .sink { [weak self] _ in
                 guard let self else { return }
                 fishCollectionView.reloadData()
             }
-            .store(in: &fishViewModel.cancellables)
+            .store(in: &cancellables)
     }
     
     func setUpCollectionViewBackground() {

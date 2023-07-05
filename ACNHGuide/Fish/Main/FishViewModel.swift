@@ -11,7 +11,7 @@ import Combine
 
 final class FishViewModel: CreatureViewModel<FishData> {
     
-    override func loadCreatures() {
+    override func loadCreature() {
         loader.loadFishesData()
             .receive(on: DispatchQueue.main)
             .sink { completion in

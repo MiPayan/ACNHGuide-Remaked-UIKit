@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class CreatureViewModel<CreatureData>: ObservableObject {
+class CreatureViewModel<CreatureData> {
     
     let loader: Loader
     let currentCalendar: CalendarDelegate
@@ -19,24 +19,14 @@ class CreatureViewModel<CreatureData>: ObservableObject {
     var reloadData: AnyPublisher<Void, Never> {
         subject.eraseToAnyPublisher()
     }
-    var isShowingNorthCreature: Bool {
-        get {
-            return UserDefaults.standard.bool(forKey: "Hemisphere")
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "Hemisphere")
-        }
-    }
-    
-    init(
-        loader: Loader = CreatureLoader(),
-        currentCalendar: CalendarDelegate = CurrentCalendar()
-    ) {
+    var isShowingNorthCreature = true
+
+    init(loader: Loader = CreatureLoader(), currentCalendar: CalendarDelegate = CurrentCalendar()) {
         self.loader = loader
         self.currentCalendar = currentCalendar
     }
     
-    open func loadCreatures() {
+    open func loadCreature() {
         //        Implement in subclass.
     }
 }

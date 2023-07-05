@@ -44,7 +44,7 @@ final class FishViewModelTests: XCTestCase {
             }
             .store(in: &cancellables)
         
-        fishViewModel.loadCreatures()
+        fishViewModel.loadCreature()
         waitForExpectations(timeout: 1)
     }
     
@@ -62,7 +62,49 @@ final class FishViewModelTests: XCTestCase {
             }
             .store(in: &cancellables)
         
-        fishViewModel.loadCreatures()
+        fishViewModel.loadCreature()
         waitForExpectations(timeout: 1)
+    }
+    
+    func testHeaderForNorthernHemisphere() {
+        fishViewModel.isShowingNorthCreature = true
+        XCTAssertTrue(fishViewModel.isShowingNorthCreature)
+        XCTAssertEqual(fishViewModel.header, "Northern hemisphere")
+    }
+    
+    func testHeaderForSouthernHemisphere() {
+        fishViewModel.isShowingNorthCreature = false
+        XCTAssertFalse(fishViewModel.isShowingNorthCreature)
+        XCTAssertEqual(fishViewModel.header, "Southern hemisphere")
+    }
+    
+    func testNumberOfItemsInSectionFromNorthernHemisphere() {
+        
+    }
+    
+    func testMakeFishFromNorthernHemisphere() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = (1, 7)
+        fishViewModel.creatures = fishes
+        fishViewModel.isShowingNorthCreature = true
+        
+        let index = 0
+        let fish = fishViewModel.makeFish(with: index)
+        
+        XCTAssertTrue(fishViewModel.isShowingNorthCreature)
+        XCTAssertEqual(3, fish.id)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
+    }
+    
+    func testMakeFishFromSouthernHemisphere() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = (1, 7)
+        fishViewModel.creatures = fishes
+        fishViewModel.isShowingNorthCreature = false
+        
+        let index = 0
+        let fish = fishViewModel.makeFish(with: index)
+        
+        XCTAssertFalse(fishViewModel.isShowingNorthCreature)
+        XCTAssertEqual(1, fish.id)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
     }
 }

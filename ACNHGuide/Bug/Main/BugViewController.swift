@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class BugViewController: UIViewController {
     
     private let bugViewModel = BugViewModel()
+    private var cancellables = Set<AnyCancellable>()
     private lazy var bugCollectionView: UICollectionView = {
         let collectionView = CreatureCollectionView()
         collectionView.register(BugCollectionViewCell.self, forCellWithReuseIdentifier: "BugCell")
@@ -29,7 +31,7 @@ final class BugViewController: UIViewController {
         addSubviews()
         setCollectionViewBackground()
         setUpUpdateDataHandler()
-        bugViewModel.loadCreatures()
+        bugViewModel.loadCreature()
     }
 }
 
@@ -104,7 +106,7 @@ extension BugViewController: UICollectionViewDataSource {
             withReuseIdentifier: "AdaptiveHeader",
             for: indexPath
         ) as? CreatureCollectionReusableView else { return UICollectionReusableView() }
-        headerView.cancellables.removeAll()
+        cancellables.removeAll()
         headerView.configureHeaderLabel(with: bugViewModel.header)
         headerView.switchButtonAction
             .sink { [weak self] in
@@ -112,7 +114,7 @@ extension BugViewController: UICollectionViewDataSource {
                 bugViewModel.isShowingNorthCreature.toggle()
                 collectionView.reloadData()
             }
-            .store(in: &headerView.cancellables)
+            .store(in: &cancellables)
         return headerView
     }
     
