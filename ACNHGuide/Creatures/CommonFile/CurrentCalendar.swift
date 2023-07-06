@@ -7,6 +7,14 @@
 
 import Foundation
 
+protocol ReloadDataDelegate: AnyObject {
+    func reloadData()
+}
+
+protocol CalendarDelegate {
+    var currentDate: (Int, Int) { get }
+}
+
 final class CurrentCalendar: CalendarDelegate {
     
     var currentDate: (Int, Int) {

@@ -17,6 +17,7 @@ final class FishViewModelTests: XCTestCase {
     private var cancellables = Set<AnyCancellable>()
     
     override func setUpWithError() throws {
+        cancellables.removeAll()
         loaderMock = CreatureLoaderMock()
         currentCalendarMock = CurrentCalendarMock()
         fishViewModel = FishViewModel(

@@ -17,6 +17,7 @@ final class BugViewModelTests: XCTestCase {
     private var cancellables = Set<AnyCancellable>()
     
     override func setUpWithError() throws {
+        cancellables.removeAll()
         loaderMock = CreatureLoaderMock()
         currentCalendarMock = CurrentCalendarMock()
         bugViewModel = BugViewModel(

@@ -17,6 +17,7 @@ final class FossilViewModelTests: XCTestCase {
     private var cancellables = Set<AnyCancellable>()
     
     override func setUpWithError() throws {
+        cancellables.removeAll()
         loaderMock = CreatureLoaderMock()
         fossilViewModel = FossilViewModel(loader: loaderMock)
     }

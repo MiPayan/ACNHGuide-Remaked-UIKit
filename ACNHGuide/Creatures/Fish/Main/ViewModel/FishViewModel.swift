@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-
 final class FishViewModel: CreatureViewModel<FishData> {
     
     override func loadCreature() {
