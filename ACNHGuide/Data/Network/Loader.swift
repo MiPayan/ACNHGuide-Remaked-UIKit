@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 protocol Loader {
-    func loadFishesData() -> AnyPublisher<[FishData], NetworkingError>
-    func loadSeaCreaturesData() -> AnyPublisher<[SeaCreatureData], NetworkingError>
-    func loadBugsData() -> AnyPublisher<[BugData], NetworkingError>
-    func loadFossilsData() -> AnyPublisher<[FossilData], NetworkingError>
-    func loadCreaturesData() -> AnyPublisher<(fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]), NetworkingError>
+    func loadFishesData() -> AnyPublisher<[FishData], NetworkerError>
+    func loadSeaCreaturesData() -> AnyPublisher<[SeaCreatureData], NetworkerError>
+    func loadBugsData() -> AnyPublisher<[BugData], NetworkerError>
+    func loadFossilsData() -> AnyPublisher<[FossilData], NetworkerError>
+    func loadCreaturesData() -> AnyPublisher<(fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]), NetworkerError>
 }

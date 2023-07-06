@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol Networking {
-    func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkingError>
+    func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkerError>
 }

@@ -18,9 +18,9 @@ final class Networker: Networking {
         return configuration
     }
     
-    func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkingError> {
+    func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkerError> {
         guard let url = URL(string: urlString) else {
-            return Fail(error: NetworkingError.urlInvalid).eraseToAnyPublisher()
+            return Fail(error: NetworkerError.urlInvalid).eraseToAnyPublisher()
         }
         
         let session = URLSession(configuration: configuration)
@@ -32,7 +32,7 @@ final class Networker: Networking {
             }
             .decode(type: [T].self, decoder: decoder)
             .mapError { error in
-                NetworkingError.decodingFailure
+                NetworkerError.decodingFailure
             }
             .eraseToAnyPublisher()
     }

@@ -34,7 +34,7 @@ final class FossilViewModelTests: XCTestCase {
         
         fossilViewModel.failureHandler
             .sink { error in
-                XCTAssertEqual(error as! NetworkingError, NetworkingError.urlInvalid)
+                XCTAssertEqual(error as! NetworkerError, NetworkerError.urlInvalid)
                 XCTAssertEqual(1, self.loaderMock.invokedLoadFossilsData)
                 expectation.fulfill()
             }

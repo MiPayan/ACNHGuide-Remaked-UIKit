@@ -17,27 +17,27 @@ final class CreatureLoader: Loader {
         self.session = session
     }
     
-    func loadFishesData() -> AnyPublisher<[FishData], NetworkingError> {
+    func loadFishesData() -> AnyPublisher<[FishData], NetworkerError> {
         let urlString = "\(endpoint)fish/"
         return session.fetchData(with: urlString)
     }
     
-    func loadSeaCreaturesData() -> AnyPublisher<[SeaCreatureData], NetworkingError> {
+    func loadSeaCreaturesData() -> AnyPublisher<[SeaCreatureData], NetworkerError> {
         let urlString = "\(endpoint)sea/"
         return session.fetchData(with: urlString)
     }
     
-    func loadBugsData() -> AnyPublisher<[BugData], NetworkingError> {
+    func loadBugsData() -> AnyPublisher<[BugData], NetworkerError> {
         let urlString = "\(endpoint)bugs/"
         return session.fetchData(with: urlString)
     }
     
-    func loadFossilsData() -> AnyPublisher<[FossilData], NetworkingError> {
+    func loadFossilsData() -> AnyPublisher<[FossilData], NetworkerError> {
         let urlString = "\(endpoint)fossils/"
         return session.fetchData(with: urlString)
     }
     
-    func loadCreaturesData() -> AnyPublisher<(fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]), NetworkingError> {
+    func loadCreaturesData() -> AnyPublisher<(fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]), NetworkerError> {
         let fishesPublisher = loadFishesData()
         let seaCreaturesPublisher = loadSeaCreaturesData()
         let bugsPublisher = loadBugsData()
@@ -46,7 +46,7 @@ final class CreatureLoader: Loader {
         return Publishers.Zip4(fishesPublisher, seaCreaturesPublisher, bugsPublisher, fossilsPublisher)
             .flatMap { fishes, seaCreatures, bugs, fossils in
                 return Just((fishes, seaCreatures, bugs, fossils))
-                    .setFailureType(to: NetworkingError.self)
+                    .setFailureType(to: NetworkerError.self)
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()

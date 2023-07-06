@@ -39,7 +39,7 @@ final class BugViewModelTests: XCTestCase {
         
         bugViewModel.failureHandler
             .sink { error in
-                XCTAssertEqual(error as! NetworkingError, NetworkingError.urlInvalid)
+                XCTAssertEqual(error as! NetworkerError, NetworkerError.urlInvalid)
                 XCTAssertEqual(1, self.loaderMock.invokedBugsData)
                 expectation.fulfill()
             }
@@ -65,5 +65,44 @@ final class BugViewModelTests: XCTestCase {
         
         bugViewModel.loadCreature()
         waitForExpectations(timeout: 1)
+    }
+    
+    func testHeaderForNorthernHemisphere() {
+        bugViewModel.isShowingNorthCreature = true
+        XCTAssertTrue(bugViewModel.isShowingNorthCreature)
+        XCTAssertEqual(bugViewModel.header, "Northern hemisphere")
+    }
+    
+    func testHeaderForSouthernHemisphere() {
+        bugViewModel.isShowingNorthCreature = false
+        XCTAssertFalse(bugViewModel.isShowingNorthCreature)
+        XCTAssertEqual(bugViewModel.header, "Southern hemisphere")
+    }
+    
+    
+    func testMakeBugFromNorthernHemisphere() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = (1, 7)
+        bugViewModel.creatures = bugs
+        bugViewModel.isShowingNorthCreature = true
+        
+        let index = 0
+        let bug = bugViewModel.makeBug(with: index)
+        
+        XCTAssertTrue(bugViewModel.isShowingNorthCreature)
+        XCTAssertEqual(9, bug.id)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
+    }
+    
+    func testMakeBugFromSouthernHemisphere() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = (1, 7)
+        bugViewModel.creatures = bugs
+        bugViewModel.isShowingNorthCreature = false
+        
+        let index = 0
+        let bug = bugViewModel.makeBug(with: index)
+        
+        XCTAssertFalse(bugViewModel.isShowingNorthCreature)
+        XCTAssertEqual(9, bug.id)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
     }
 }

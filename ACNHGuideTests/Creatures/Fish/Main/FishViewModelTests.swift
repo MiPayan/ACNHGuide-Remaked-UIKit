@@ -39,7 +39,7 @@ final class FishViewModelTests: XCTestCase {
         
         fishViewModel.failureHandler
             .sink { error in
-                XCTAssertEqual(error as! NetworkingError, NetworkingError.urlInvalid)
+                XCTAssertEqual(error as! NetworkerError, NetworkerError.urlInvalid)
                 XCTAssertEqual(1, self.loaderMock.invokedLoadFishesData)
                 expectation.fulfill()
             }
@@ -77,10 +77,6 @@ final class FishViewModelTests: XCTestCase {
         fishViewModel.isShowingNorthCreature = false
         XCTAssertFalse(fishViewModel.isShowingNorthCreature)
         XCTAssertEqual(fishViewModel.header, "Southern hemisphere")
-    }
-    
-    func testNumberOfItemsInSectionFromNorthernHemisphere() {
-        
     }
     
     func testMakeFishFromNorthernHemisphere() {

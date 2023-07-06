@@ -41,7 +41,7 @@ final class SeaCreatureViewModelTests: XCTestCase {
         
         seaCreatureViewModel.failureHandler
             .sink { error in
-                XCTAssertEqual(error as! NetworkingError, NetworkingError.urlInvalid)
+                XCTAssertEqual(error as! NetworkerError, NetworkerError.urlInvalid)
                 XCTAssertEqual(1, self.loaderMock.invokedLoadSeaCreaturesData)
                 expectation.fulfill()
             }
@@ -67,5 +67,43 @@ final class SeaCreatureViewModelTests: XCTestCase {
         
         seaCreatureViewModel.loadCreature()
         waitForExpectations(timeout: 1)
+    }
+    
+    func testHeaderForNorthernHemisphere() {
+        seaCreatureViewModel.isShowingNorthCreature = true
+        XCTAssertTrue(seaCreatureViewModel.isShowingNorthCreature)
+        XCTAssertEqual(seaCreatureViewModel.header, "Northern hemisphere")
+    }
+    
+    func testHeaderForSouthernHemisphere() {
+        seaCreatureViewModel.isShowingNorthCreature = false
+        XCTAssertFalse(seaCreatureViewModel.isShowingNorthCreature)
+        XCTAssertEqual(seaCreatureViewModel.header, "Southern hemisphere")
+    }
+    
+    func testMakeSeaCreatureFromNorthernHemisphere() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = (1, 7)
+        seaCreatureViewModel.creatures = seaCreatures
+        seaCreatureViewModel.isShowingNorthCreature = true
+        
+        let index = 0
+        let seaCreature = seaCreatureViewModel.makeSeaCreature(with: index)
+        
+        XCTAssertTrue(seaCreatureViewModel.isShowingNorthCreature)
+        XCTAssertEqual(1, seaCreature.id)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
+    }
+    
+    func testMakeSeaCreatureFromSouthernHemisphere() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = (1, 7)
+        seaCreatureViewModel.creatures = seaCreatures
+        seaCreatureViewModel.isShowingNorthCreature = false
+        
+        let index = 0
+        let seaCreature = seaCreatureViewModel.makeSeaCreature(with: index)
+        
+        XCTAssertFalse(seaCreatureViewModel.isShowingNorthCreature)
+        XCTAssertEqual(1, seaCreature.id)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
     }
 }
