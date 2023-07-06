@@ -6,17 +6,31 @@
 //
 
 @testable import ACNHGuide
+import Combine
 
-final class NetworkingMock<T>: Networking {
+final class NetworkingMock: Networking {
     
-    var stubbedResult: Result<[T], NetworkingError>!
     var invokedFetchDataCount = 0
     var stubbedFetchDataUrlStringParameter: String!
+    var stubbedFishData: AnyPublisher<[FishData], NetworkingError>!
+    var stubbedSeaCreatureData: AnyPublisher<[SeaCreatureData], NetworkingError>!
+    var stubbedBugData: AnyPublisher<[BugData], NetworkingError>!
+    var stubbedFossilData: AnyPublisher<[FossilData], NetworkingError>!
     
-    func fetchData<T: Decodable>(with urlString: String, completionHandler: @escaping ((Result<[T], NetworkingError>) -> Void)) {
+    func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkingError> {
         invokedFetchDataCount += 1
         stubbedFetchDataUrlStringParameter = urlString
-        guard let stubbedResult = stubbedResult as? Result<[T], NetworkingError> else { return }
-        completionHandler(stubbedResult)
+        
+        if let fishData = stubbedFishData as? AnyPublisher<[T], NetworkingError>, T.self == FishData.self {
+            return fishData
+        } else if let seaCreatureData = stubbedSeaCreatureData as? AnyPublisher<[T], NetworkingError>, T.self == SeaCreatureData.self {
+            return seaCreatureData
+        } else if let bugData = stubbedBugData as? AnyPublisher<[T], NetworkingError>, T.self == BugData.self {
+            return bugData
+        } else if let fossilData = stubbedFossilData as? AnyPublisher<[T], NetworkingError>, T.self == FossilData.self {
+            return fossilData
+        } else {
+            return Fail(error: NetworkingError.decodingFailure).eraseToAnyPublisher()
+        }
     }
 }

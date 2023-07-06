@@ -5,18 +5,10 @@
 //  Created by Mickael PAYAN on 03/03/2023.
 //
 
-import RealmSwift
 @testable import ACNHGuide
+import RealmSwift
 
 final class CreatureManagingMock: CreatureManaging {
-    
-    var invokedRealmCount = 0
-    var stubbedRealm: Realm!
-    
-    var realm: Realm {
-        invokedRealmCount += 1
-        return stubbedRealm
-    }
     
     var stubbedGetSavedCreatures: [Object]!
     var invokedGetSavedCreaturesCount = 0

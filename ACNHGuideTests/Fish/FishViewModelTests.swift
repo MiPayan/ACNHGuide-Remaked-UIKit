@@ -6,107 +6,106 @@
 //
 
 import XCTest
+import Combine
 @testable import ACNHGuide
 
 final class FishViewModelTests: XCTestCase {
     
-    private var serviceMock: CreatureServicesMock!
-    private var dispatchQueueMock: DispatchQueueMock!
+    private var loaderMock: CreatureLoaderMock!
     private var currentCalendarMock: CurrentCalendarMock!
-    private var fishesViewModel: FishViewModel!
+    private var fishViewModel: FishViewModel!
+    private var cancellables = Set<AnyCancellable>()
     
     override func setUpWithError() throws {
-        serviceMock = CreatureServicesMock()
-        dispatchQueueMock = DispatchQueueMock()
+        cancellables.removeAll()
+        loaderMock = CreatureLoaderMock()
         currentCalendarMock = CurrentCalendarMock()
-        fishesViewModel = FishViewModel(
-            service: serviceMock,
-            mainDispatchQueue: dispatchQueueMock,
+        fishViewModel = FishViewModel(
+            loader: loaderMock,
             currentCalendar: currentCalendarMock
         )
     }
     
     override func tearDownWithError() throws {
         currentCalendarMock = nil
-        dispatchQueueMock = nil
-        fishesViewModel = nil
-        serviceMock = nil
+        fishViewModel = nil
+        loaderMock = nil
     }
     
-    func testFailureGetFishes() {
-        let expectation = expectation(description: "Failure to get fishes.")
-        serviceMock.stubbedFishResult = (
-            .failure(.urlInvalid)
-        )
+    func testFailureLoadFishes() {
+        let expectation = expectation(description: "Failure to load fishes data.")
+        loaderMock.stubbedFishesPublisher = Fail(error: .urlInvalid)
+            .eraseToAnyPublisher()
         
-        fishesViewModel.failureHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
-            expectation.fulfill()
-        }
-        fishesViewModel.getFishesData()
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        fishViewModel.failureHandler
+            .sink { error in
+                XCTAssertEqual(error as! NetworkingError, NetworkingError.urlInvalid)
+                XCTAssertEqual(1, self.loaderMock.invokedLoadFishesData)
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        fishViewModel.loadCreature()
         waitForExpectations(timeout: 1)
     }
     
-    func testSuccessGetFishes() {
-        let expectation = expectation(description: "Success to get fishes.")
-        serviceMock.stubbedFishResult = (
-            .success(fishes)
-        )
+    func testSuccessLoadFishes() {
+        let expectation = expectation(description: "Success to load fishes data.")
+        loaderMock.stubbedFishesPublisher = Result.success(fishes)
+            .publisher
+            .eraseToAnyPublisher()
         
-        fishesViewModel.successHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetFishesCount)
-            expectation.fulfill()
-        }
-        fishesViewModel.getFishesData()
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        fishViewModel.reloadData
+            .sink { _ in
+                XCTAssertEqual(self.fishViewModel.creatures, fishes)
+                XCTAssertEqual(1, self.loaderMock.invokedLoadFishesData)
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        fishViewModel.loadCreature()
         waitForExpectations(timeout: 1)
     }
     
-    func testSetHeaderSection() {
-        let northernSectionHeader = fishesViewModel.configureHeaderSection(with: 0)
-        let southernSectionHeader = fishesViewModel.configureHeaderSection(with: 1)
-        XCTAssertEqual(northernSectionHeader, "Northern hemisphere")
-        XCTAssertEqual(southernSectionHeader, "Southern hemisphere")
+    func testHeaderForNorthernHemisphere() {
+        fishViewModel.isShowingNorthCreature = true
+        XCTAssertTrue(fishViewModel.isShowingNorthCreature)
+        XCTAssertEqual(fishViewModel.header, "Northern hemisphere")
     }
     
-    func testConfigureSectionCollectionView() {
-        currentCalendarMock.stubbedMakeCurrentCalendar = {
-            (11, 12)
-        }()
-        
-        serviceMock.stubbedFishResult = {
-            .success(fishes)
-        }()
-        
-        fishesViewModel.getFishesData()
-        
-        let northernSection = fishesViewModel.configureSectionCollectionView(with: 0)
-        let southernSection = fishesViewModel.configureSectionCollectionView(with: 1)
-        
-        XCTAssertEqual(1, serviceMock.invokedGetFishesCount)
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
-        XCTAssertEqual(2, currentCalendarMock.invockedMakeCurrentCalendarCount)
-        XCTAssertEqual(northernSection, 25)
-        XCTAssertEqual(southernSection, 39)
+    func testHeaderForSouthernHemisphere() {
+        fishViewModel.isShowingNorthCreature = false
+        XCTAssertFalse(fishViewModel.isShowingNorthCreature)
+        XCTAssertEqual(fishViewModel.header, "Southern hemisphere")
     }
     
-    func testMakeFish() {
-        currentCalendarMock.stubbedMakeCurrentCalendar = {
-            (11, 12)
-        }()
+    func testNumberOfItemsInSectionFromNorthernHemisphere() {
         
-        serviceMock.stubbedFishResult = {
-            .success(fishes)
-        }()
-        fishesViewModel.getFishesData()
+    }
+    
+    func testMakeFishFromNorthernHemisphere() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = (1, 7)
+        fishViewModel.creatures = fishes
+        fishViewModel.isShowingNorthCreature = true
         
-        let section = 0
         let index = 0
-        let fish = fishesViewModel.makeFish(with: section, index: index)
-        XCTAssertEqual(fish.id, 1)
-        XCTAssertEqual(1, serviceMock.invokedGetFishesCount)
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        let fish = fishViewModel.makeFish(with: index)
+        
+        XCTAssertTrue(fishViewModel.isShowingNorthCreature)
+        XCTAssertEqual(3, fish.id)
+        XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
+    }
+    
+    func testMakeFishFromSouthernHemisphere() {
+        currentCalendarMock.stubbedMakeCurrentCalendar = (1, 7)
+        fishViewModel.creatures = fishes
+        fishViewModel.isShowingNorthCreature = false
+        
+        let index = 0
+        let fish = fishViewModel.makeFish(with: index)
+        
+        XCTAssertFalse(fishViewModel.isShowingNorthCreature)
+        XCTAssertEqual(1, fish.id)
         XCTAssertEqual(1, currentCalendarMock.invockedMakeCurrentCalendarCount)
     }
 }

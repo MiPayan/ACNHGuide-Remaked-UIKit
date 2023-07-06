@@ -2,63 +2,63 @@
 //  FossilViewModelTests.swift
 //  ACNHGuideTests
 //
-//  Created by Mickael PAYAN on 19/01/2023.
+//  Created by Mickael PAYAN on 05/07/2023.
 //
 
 import XCTest
+import Foundation
+import Combine
 @testable import ACNHGuide
 
 final class FossilViewModelTests: XCTestCase {
-    
-    private var serviceMock: CreatureServicesMock!
-    private var dispatchQueueMock: DispatchQueueMock!
-    private var currentCalendarMock: CurrentCalendarMock!
-    private var fossilsViewModel: FossilViewModel!
+
+    private var loaderMock: CreatureLoaderMock!
+    private var fossilViewModel: FossilViewModel!
+    private var cancellables = Set<AnyCancellable>()
     
     override func setUpWithError() throws {
-        serviceMock = CreatureServicesMock()
-        dispatchQueueMock = DispatchQueueMock()
-        currentCalendarMock = CurrentCalendarMock()
-        fossilsViewModel = FossilViewModel(
-            service: serviceMock,
-            mainDispatchQueue: dispatchQueueMock,
-            currentCalendar: currentCalendarMock
-        )
-    }
-
-    override func tearDownWithError() throws {
-        fossilsViewModel = nil
+        cancellables.removeAll()
+        loaderMock = CreatureLoaderMock()
+        fossilViewModel = FossilViewModel(loader: loaderMock)
     }
     
-    func testFailureGetFossils() {
-        let expectation = expectation(description: "Failure to get fossils.")
+    override func tearDownWithError() throws {
+        fossilViewModel = nil
+        loaderMock = nil
+    }
+    
+    func testFailureLoadBugs() {
+        let expectation = expectation(description: "Failure to load fossils data.")
+        loaderMock.stubbedFossilsPublisher = Fail(error: .urlInvalid)
+            .eraseToAnyPublisher()
         
-        serviceMock.stubbedFossilResult = (
-            .failure(.urlInvalid)
-        )
+        fossilViewModel.failureHandler
+            .sink { error in
+                XCTAssertEqual(error as! NetworkingError, NetworkingError.urlInvalid)
+                XCTAssertEqual(1, self.loaderMock.invokedLoadFossilsData)
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
         
-        fossilsViewModel.failureHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetFossilsCount)
-            expectation.fulfill()
-        }
-        fossilsViewModel.getFossilsData()
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        fossilViewModel.loadCreature()
         waitForExpectations(timeout: 1)
     }
     
-    func testSuccessGetFossils() {
-        let expectation = expectation(description: "Success to get fossils.")
+    func testSuccessLoadBugs() {
+        let expectation = expectation(description: "Success to load fossils data.")
+        loaderMock.stubbedFossilsPublisher = Result.success(fossils)
+            .publisher
+            .eraseToAnyPublisher()
         
-        serviceMock.stubbedFossilResult = (
-            .success(fossils)
-        )
+        fossilViewModel.reloadData
+            .sink { _ in
+                XCTAssertEqual(self.fossilViewModel.creatures, fossils)
+                XCTAssertEqual(1, self.loaderMock.invokedLoadFossilsData)
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
         
-        fossilsViewModel.successHandler = {
-            XCTAssertEqual(1, self.serviceMock.invokedGetFossilsCount)
-            expectation.fulfill()
-        }
-        fossilsViewModel.getFossilsData()
-        XCTAssertEqual(1, dispatchQueueMock.invokedAsyncCount)
+        fossilViewModel.loadCreature()
         waitForExpectations(timeout: 1)
     }
 }
