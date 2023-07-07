@@ -113,7 +113,7 @@ extension FossilViewController: UICollectionViewDataSource {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int
     ) -> CGSize {
-        CGSize(width: view.frame.width, height: 40.0)
+        CGSize(width: view.frame.width, height: 50)
     }
     
     // Configure cells.

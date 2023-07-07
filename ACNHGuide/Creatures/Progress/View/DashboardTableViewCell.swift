@@ -18,10 +18,10 @@ final class DashboardTableViewCell: UITableViewCell {
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 5
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.4
-        view.layer.shadowOffset = CGSize(width: 5, height: -5)
+        view.layer.shadowOffset = CGSize(width: 0, height: 3)
         view.layer.shadowRadius = 1
         return view
     }()

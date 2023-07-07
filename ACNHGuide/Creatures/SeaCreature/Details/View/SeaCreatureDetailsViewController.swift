@@ -17,6 +17,7 @@ final class SeaCreatureDetailsViewController: UIViewController {
         tableView.register(SeaCreatureDetailsTableViewCell.self, forCellReuseIdentifier: "DetailsCell")
         tableView.allowsSelection = false
         tableView.backgroundColor = UIColor(named: "ColorSand")
+        tableView.separatorStyle = .none
         return tableView
     }()
     

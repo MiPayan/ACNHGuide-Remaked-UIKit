@@ -21,11 +21,7 @@ final class FishViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var errorView: UIView = {
-        let view = ErrorView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let errorView = ErrorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,7 +123,7 @@ extension FishViewController: UICollectionViewDataSource {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int
     ) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        CGSize(width: view.frame.width, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

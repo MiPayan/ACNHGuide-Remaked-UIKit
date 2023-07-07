@@ -17,6 +17,7 @@ final class FossilDetailsViewController: UIViewController {
         tableView.register(FossilTableViewCell.self, forCellReuseIdentifier: "DetailsCell")
         tableView.allowsSelection = false
         tableView.backgroundColor = UIColor(named: "ColorSand")
+        tableView.separatorStyle = .none
         return tableView
     }()
     

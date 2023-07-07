@@ -12,6 +12,7 @@ final class FishCollectionViewCell: UICollectionViewCell {
     
     private var viewModel: FishCollectionViewCellViewModel?
     private var cancellables = Set<AnyCancellable>()
+    
     private let fishFilenameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -83,17 +84,20 @@ private extension FishCollectionViewCell {
         addSubview(fishImageView)
         addSubview(saveButton)
         NSLayoutConstraint.activate([
-            fishFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            fishFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             fishFilenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             fishFilenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            fishFilenameLabel.heightAnchor.constraint(equalToConstant: 44),
             
-            fishImageView.topAnchor.constraint(equalTo: fishFilenameLabel.bottomAnchor, constant: 4),
-            fishImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            fishImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            fishImageView.topAnchor.constraint(equalTo: fishFilenameLabel.bottomAnchor),
+            fishImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            fishImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            saveButton.topAnchor.constraint(equalTo: fishImageView.bottomAnchor, constant: 4),
+            saveButton.topAnchor.constraint(equalTo: fishImageView.bottomAnchor),
             saveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            saveButton.heightAnchor.constraint(equalToConstant: 44),
+            saveButton.widthAnchor.constraint(equalToConstant: 44),
+            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

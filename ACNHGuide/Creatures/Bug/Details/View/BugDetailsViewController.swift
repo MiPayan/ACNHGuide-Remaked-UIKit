@@ -17,6 +17,7 @@ final class BugDetailsViewController: UIViewController {
         tableView.register(BugDetailsTableViewCell.self, forCellReuseIdentifier: "DetailsCell")
         tableView.allowsSelection = false
         tableView.backgroundColor = UIColor(named: "ColorSand")
+        tableView.separatorStyle = .none
         tableView.dataSource = self
         return tableView
     }()

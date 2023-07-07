@@ -15,7 +15,7 @@ extension UIViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8, left: 16, bottom: 16, right: 16)
+        return UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
     }
     
     // Defined the width and height of each element in pixels.
@@ -26,6 +26,6 @@ extension UIViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGSize {
         guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
         let widthPerItem = collectionView.frame.width / 3 - layout.minimumInteritemSpacing
-        return CGSize(width: widthPerItem - 8, height: 140)
+        return CGSize(width: widthPerItem - 8, height: 150)
     }
 }

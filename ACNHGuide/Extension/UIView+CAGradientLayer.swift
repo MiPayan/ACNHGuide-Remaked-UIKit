@@ -18,7 +18,7 @@ extension UIView {
     
     func setUpContentView(color: String) {
         self.backgroundColor = UIColor(named: color)
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = 5
         self.clipsToBounds = true
     }
 }

@@ -14,10 +14,12 @@ final class ProgressDashboardViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DashboardTableViewCell.self, forCellReuseIdentifier: "DashboardCell")
-        tableView.backgroundColor = UIColor(named: "ColorSand")
-        tableView.allowsSelection = false
+        tableView.register(DashboardTableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         tableView.dataSource = self
+        tableView.delegate = self
         return tableView
     }()
     
@@ -29,6 +31,7 @@ final class ProgressDashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(named: "ColorSand")
         addSubviews()
         bindViewModel()
         progressDashboardViewModel.loadCreatures()
@@ -61,7 +64,7 @@ private extension ProgressDashboardViewController {
         view.addSubview(progressDashboardTableView)
         view.addSubview(errorView)
         NSLayoutConstraint.activate([
-            progressDashboardTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            progressDashboardTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             progressDashboardTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             progressDashboardTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             progressDashboardTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -110,5 +113,12 @@ extension ProgressDashboardViewController: UITableViewDataSource {
             break
         }
         return dashboardCell
+    }
+}
+
+extension ProgressDashboardViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? DashboardTableViewHeaderFooterView else { return UIView() }
+        return headerView
     }
 }

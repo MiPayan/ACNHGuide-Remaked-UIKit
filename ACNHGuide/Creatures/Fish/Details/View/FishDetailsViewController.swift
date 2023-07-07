@@ -17,6 +17,7 @@ final class FishDetailsViewController: UIViewController {
         tableView.register(FishDetailsTableViewCell.self, forCellReuseIdentifier: "DetailsCell")
         tableView.allowsSelection = false
         tableView.backgroundColor = UIColor(named: "ColorSand")
+        tableView.separatorStyle = .none
         tableView.dataSource = self
         return tableView
     }()

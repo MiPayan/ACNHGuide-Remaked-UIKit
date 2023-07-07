@@ -83,17 +83,20 @@ private extension BugCollectionViewCell {
         addSubview(bugImageView)
         addSubview(saveButton)
         NSLayoutConstraint.activate([
-            bugFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            bugFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             bugFilenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             bugFilenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            bugFilenameLabel.heightAnchor.constraint(equalToConstant: 44),
             
-            bugImageView.topAnchor.constraint(equalTo: bugFilenameLabel.bottomAnchor, constant: 4),
-            bugImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            bugImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            bugImageView.topAnchor.constraint(equalTo: bugFilenameLabel.bottomAnchor),
+            bugImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            bugImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            saveButton.topAnchor.constraint(equalTo: bugImageView.bottomAnchor, constant: 4),
+            saveButton.topAnchor.constraint(equalTo: bugImageView.bottomAnchor),
             saveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            saveButton.heightAnchor.constraint(equalToConstant: 44),
+            saveButton.widthAnchor.constraint(equalToConstant: 44),
+            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

@@ -145,6 +145,7 @@
 		37E6ADA52A4AF01D00AAD6BC /* CreatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E6ADA42A4AF01D00AAD6BC /* CreatureViewModel.swift */; };
 		37E7BA6329C0C1BB00BFF7BE /* ProgressDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E7BA6229C0C1BB00BFF7BE /* ProgressDashboardViewModel.swift */; };
 		37FCA94A29E56D9E00270D65 /* ErrorToastable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FCA94929E56D9E00270D65 /* ErrorToastable.swift */; };
+		37FFF6FD2A585A42005104E0 /* DashboardTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FFF6FC2A585A42005104E0 /* DashboardTableViewHeaderFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +288,7 @@
 		37E6ADA42A4AF01D00AAD6BC /* CreatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureViewModel.swift; sourceTree = "<group>"; };
 		37E7BA6229C0C1BB00BFF7BE /* ProgressDashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDashboardViewModel.swift; sourceTree = "<group>"; };
 		37FCA94929E56D9E00270D65 /* ErrorToastable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorToastable.swift; sourceTree = "<group>"; };
+		37FFF6FC2A585A42005104E0 /* DashboardTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,10 +356,8 @@
 		3702B45E296F053F008AB36D /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				37C8A2FE299B933B002E74F5 /* BugDetailsViewModel.swift */,
-				3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */,
-				3702B461296F09BB008AB36D /* BugDetailsViewController.swift */,
-				3700B87529719652005D975D /* BugDetailsTableViewCell.swift */,
+				37FFF6FE2A58617E005104E0 /* ViewModel */,
+				37FFF6FF2A586187005104E0 /* View */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -374,10 +374,8 @@
 		3702B46A296F0FEE008AB36D /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				37C8A300299B9AC8002E74F5 /* FossilDetailsViewModel.swift */,
-				3792FF3B29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift */,
-				3702B46C296F1010008AB36D /* FossilDetailsViewController.swift */,
-				37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */,
+				37FFF7012A5861B1005104E0 /* ViewModel */,
+				37FFF7002A5861A9005104E0 /* View */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -703,6 +701,7 @@
 			children = (
 				370492112980274300B58CC7 /* ProgressDashboardViewController.swift */,
 				37DD38DC298187440013BF3A /* DashboardTableViewCell.swift */,
+				37FFF6FC2A585A42005104E0 /* DashboardTableViewHeaderFooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1010,6 +1009,42 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		37FFF6FE2A58617E005104E0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				37C8A2FE299B933B002E74F5 /* BugDetailsViewModel.swift */,
+				3792FF39298967BB005673E9 /* BugDetailsTableViewCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		37FFF6FF2A586187005104E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3702B461296F09BB008AB36D /* BugDetailsViewController.swift */,
+				3700B87529719652005D975D /* BugDetailsTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		37FFF7002A5861A9005104E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3702B46C296F1010008AB36D /* FossilDetailsViewController.swift */,
+				37DD38DA298137B90013BF3A /* FossilTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		37FFF7012A5861B1005104E0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				37C8A300299B9AC8002E74F5 /* FossilDetailsViewModel.swift */,
+				3792FF3B29896BF0005673E9 /* FossilDetailsTableViewCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1228,6 +1263,7 @@
 				375F67B52A42035F008A17F1 /* Networking.swift in Sources */,
 				375F67C12A4203B6008A17F1 /* FishViewModel.swift in Sources */,
 				3700B87629719652005D975D /* BugDetailsTableViewCell.swift in Sources */,
+				37FFF6FD2A585A42005104E0 /* DashboardTableViewHeaderFooterView.swift in Sources */,
 				37A7137A29681F2B0075BF25 /* FossilViewController.swift in Sources */,
 				37D197BC296DBC1B00BBB5DF /* UIView+CAGradientLayer.swift in Sources */,
 				37A7139E29682CF40075BF25 /* BugAvailability.swift in Sources */,

@@ -83,17 +83,20 @@ private extension FossilCollectionViewCell {
         addSubview(fossilImageView)
         addSubview(saveButton)
         NSLayoutConstraint.activate([
-            fossilFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            fossilFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             fossilFilenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             fossilFilenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            fossilFilenameLabel.heightAnchor.constraint(equalToConstant: 44),
             
-            fossilImageView.topAnchor.constraint(equalTo: fossilFilenameLabel.bottomAnchor, constant: 4),
-            fossilImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            fossilImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            fossilImageView.topAnchor.constraint(equalTo: fossilFilenameLabel.bottomAnchor),
+            fossilImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            fossilImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            saveButton.topAnchor.constraint(equalTo: fossilImageView.bottomAnchor, constant: 4),
+            saveButton.topAnchor.constraint(equalTo: fossilImageView.bottomAnchor),
             saveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            saveButton.heightAnchor.constraint(equalToConstant: 44),
+            saveButton.widthAnchor.constraint(equalToConstant: 44),
+            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

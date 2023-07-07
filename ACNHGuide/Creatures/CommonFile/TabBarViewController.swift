@@ -12,7 +12,7 @@ final class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigation()
-        configureTabBar()
+        configureTabBarAppareance()
     }
     
     func configureNavigation() {
@@ -43,15 +43,13 @@ final class TabBarViewController: UITabBarController {
         let navigationControllers = controllers.enumerated().map { (index, controller) in
             let navigationController = UINavigationController(rootViewController: controller)
             navigationController.tabBarItem = UITabBarItem(title: titles[index], image: images[index], tag: index)
-            navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationController.navigationBar.shadowImage = UIImage()
-            navigationController.navigationBar.isTranslucent = true
+            navigationController.navigationBar.isHidden = true
             return navigationController
         }
         setViewControllers(navigationControllers, animated: true)
     }
     
-    func configureTabBar() {
+    func configureTabBarAppareance() {
         UITabBar.appearance().barTintColor = UIColor(named: "ColorSand")
         UITabBar.appearance().backgroundColor = UIColor(named: "ColorSand")
         UITabBar.appearance().unselectedItemTintColor = .black

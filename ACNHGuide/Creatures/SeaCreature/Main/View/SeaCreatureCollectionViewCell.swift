@@ -84,17 +84,20 @@ private extension SeaCreatureCollectionViewCell {
         addSubview(saveButton)
         
         NSLayoutConstraint.activate([
-            seaCreatureFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            seaCreatureFilenameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             seaCreatureFilenameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             seaCreatureFilenameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            seaCreatureFilenameLabel.heightAnchor.constraint(equalToConstant: 44),
             
-            seaCreatureImageView.topAnchor.constraint(equalTo: seaCreatureFilenameLabel.bottomAnchor, constant: 4),
-            seaCreatureImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            seaCreatureImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            seaCreatureImageView.topAnchor.constraint(equalTo: seaCreatureFilenameLabel.bottomAnchor),
+            seaCreatureImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            seaCreatureImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            saveButton.topAnchor.constraint(equalTo: seaCreatureImageView.bottomAnchor, constant: 4),
+            saveButton.topAnchor.constraint(equalTo: seaCreatureImageView.bottomAnchor),
             saveButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            saveButton.heightAnchor.constraint(equalToConstant: 44),
+            saveButton.widthAnchor.constraint(equalToConstant: 44),
+            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

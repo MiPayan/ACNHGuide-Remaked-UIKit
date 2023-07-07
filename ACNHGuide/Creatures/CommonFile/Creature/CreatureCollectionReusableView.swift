@@ -58,13 +58,13 @@ final class CreatureCollectionReusableView: UICollectionReusableView {
         NSLayoutConstraint.activate([
             headerLabel.topAnchor.constraint(equalTo: topAnchor),
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            headerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             headerLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             switchHemisphereButton.centerYAnchor.constraint(equalTo: headerLabel.centerYAnchor),
+            switchHemisphereButton.leadingAnchor.constraint(equalTo: headerLabel.trailingAnchor, constant: 16),
             switchHemisphereButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            switchHemisphereButton.widthAnchor.constraint(equalToConstant: 47),
-            switchHemisphereButton.heightAnchor.constraint(equalToConstant: 47)
+            switchHemisphereButton.widthAnchor.constraint(equalToConstant: 44),
+            switchHemisphereButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 }
