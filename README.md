@@ -2,7 +2,7 @@
 
 ## What is ACNHGuide App ?
 
-ACNHGuide is an unofficial guide app for Animal Crossing: New Horizons (Nintendo's game).
+ACNHGuide is an unofficial guide app for Animal Crossing: New Horizons.
 
 The currently features are simple. Look up information about fishes, bugs, sea creatures and fossils and save them to follow your progress.
 
