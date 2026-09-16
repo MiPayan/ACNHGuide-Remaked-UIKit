@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# Xcode — état local de l'IDE, propre à chaque développeur
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Build
+build/
+DerivedData/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+# Package.resolved reste versionné : c'est lui qui fige les versions
+# des dépendances et rend les builds reproductibles.
+.build/
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+
+# CocoaPods / Carthage (non utilisés ici, gardés par précaution)
+Pods/
+Carthage/Build/
+
+# Secrets
+# GoogleService-Info.plist est volontairement versionné : la clé qu'il contient
+# est publique par conception côté client. La sécurité repose sur les règles
+# Firebase et la restriction de la clé, pas sur le secret du fichier.
+*.p12
+*.pem
+*.mobileprovision
+.env
