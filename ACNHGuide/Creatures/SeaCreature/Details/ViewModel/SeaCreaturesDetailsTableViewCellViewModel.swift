@@ -30,8 +30,7 @@ final class SeaCreaturesDetailsTableViewCellViewModel {
     }
     
     var iconURL: URL? {
-        guard let iconURL = URL(string: seaCreatureData.iconURI) else { return nil }
-        return iconURL
+        seaCreatureData.iconURL
     }
     
     var catchPhrase: String {

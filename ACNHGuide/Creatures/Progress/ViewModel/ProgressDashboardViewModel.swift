@@ -38,7 +38,8 @@ final class ProgressDashboardViewModel {
                 case .failure(let error):
                     failureHandler.send(error)
                 }
-            } receiveValue: { [unowned self] (fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]) in
+            } receiveValue: { [weak self] (fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]) in
+                guard let self else { return }
                 self.fishes = fishes
                 self.seaCreatures = seaCreatures
                 self.bugs = bugs

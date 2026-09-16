@@ -11,41 +11,55 @@ import Combine
 final class CreatureLoader: Loader {
     
     private let session: Networking
-    private let endpoint = "https://acnhapi.com/v1a/"
+    private let bundle: Bundle
     
-    init(session: Networking = Networker()) {
+    init(session: Networking = Networker(), bundle: Bundle = .main) {
         self.session = session
+        self.bundle = bundle
     }
     
     func loadFishesData() -> AnyPublisher<[FishData], NetworkingError> {
-        let urlString = "\(endpoint)fish/"
-        return session.fetchData(with: urlString)
+        loadCreature(.fish)
     }
     
     func loadSeaCreaturesData() -> AnyPublisher<[SeaCreatureData], NetworkingError> {
-        let urlString = "\(endpoint)sea/"
-        return session.fetchData(with: urlString)
+        loadCreature(.sea)
     }
     
     func loadBugsData() -> AnyPublisher<[BugData], NetworkingError> {
-        let urlString = "\(endpoint)bugs/"
-        return session.fetchData(with: urlString)
+        loadCreature(.bugs)
     }
     
     func loadFossilsData() -> AnyPublisher<[FossilData], NetworkingError> {
-        let urlString = "\(endpoint)fossils/"
-        return session.fetchData(with: urlString)
+        loadCreature(.fossils)
     }
     
     func loadCreaturesData() -> AnyPublisher<(fishes: [FishData], seaCreatures: [SeaCreatureData], bugs: [BugData], fossils: [FossilData]), NetworkingError> {
-        let fishesPublisher = loadFishesData()
-        let seaCreaturesPublisher = loadSeaCreaturesData()
-        let bugsPublisher = loadBugsData()
-        let fossilsPublisher = loadFossilsData()
-        
-        return Publishers.Zip4(fishesPublisher, seaCreaturesPublisher, bugsPublisher, fossilsPublisher)
-            .flatMap { fishes, seaCreatures, bugs, fossils in
-                return Just((fishes, seaCreatures, bugs, fossils))
+        Publishers.Zip4(
+            loadFishesData(),
+            loadSeaCreaturesData(),
+            loadBugsData(),
+            loadFossilsData()
+        )
+        .map { fishes, seaCreatures, bugs, fossils in
+            (fishes: fishes, seaCreatures: seaCreatures, bugs: bugs, fossils: fossils)
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+private extension CreatureLoader {
+    
+    // Quand le réseau échoue, on repart sur la copie embarquée plutôt que d'afficher
+    // un écran vide : seuls les visuels, eux, restent indisponibles hors ligne.
+    // L'erreur d'origine est propagée si cette copie est absente ou illisible.
+    func loadCreature<T: Decodable>(_ category: ACNHAPI.Category) -> AnyPublisher<[T], NetworkingError> {
+        session.fetchData(with: ACNHAPI.endpoint(for: category))
+            .catch { [bundle] error -> AnyPublisher<[T], NetworkingError> in
+                guard let bundledCreatures: [T] = bundle.decodeIfPresent(ACNHAPI.bundledFileName(for: category)) else {
+                    return Fail(error: error).eraseToAnyPublisher()
+                }
+                return Just(bundledCreatures)
                     .setFailureType(to: NetworkingError.self)
                     .eraseToAnyPublisher()
             }

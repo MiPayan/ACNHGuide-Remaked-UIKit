@@ -15,7 +15,9 @@ struct FishData: Decodable {
     let shadow: String
     let price, priceCj: Int
     let catchPhrase, museumPhrase: String
-    let imageURI, iconURI: String
+    // Conservées telles quelles dans le JSON, mais elles pointent vers acnhapi.com,
+    // hors ligne : utiliser imageURL et iconURL pour afficher un visuel.
+    let legacyImageURI, legacyIconURI: String
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -24,8 +26,18 @@ struct FishData: Decodable {
         case priceCj = "price-cj"
         case catchPhrase = "catch-phrase"
         case museumPhrase = "museum-phrase"
-        case imageURI = "image_uri"
-        case iconURI = "icon_uri"
+        case legacyImageURI = "image_uri"
+        case legacyIconURI = "icon_uri"
+    }
+}
+
+extension FishData {
+    var imageURL: URL? {
+        ACNHAPI.imageURL(for: .fish, fileName: fileName)
+    }
+    
+    var iconURL: URL? {
+        ACNHAPI.iconURL(for: .fish, fileName: fileName)
     }
 }
 

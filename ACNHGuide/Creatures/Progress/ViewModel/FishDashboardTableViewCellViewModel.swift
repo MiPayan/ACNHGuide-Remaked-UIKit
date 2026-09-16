@@ -29,8 +29,7 @@ final class FishDashboardTableViewCellViewModel {
     }
     
     var iconURL: URL? {
-        guard let iconURI = fishesData.first?.iconURI else { return nil }
-        return URL(string: iconURI)
+        fishesData.first?.iconURL
     }
     
     var totalText: String {

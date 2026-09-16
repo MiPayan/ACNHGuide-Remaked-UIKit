@@ -29,8 +29,7 @@ final class BugDashboardTableViewCellViewModel {
     }
     
     var iconURL: URL? {
-        guard let iconURI = bugsData.first?.iconURI else { return nil }
-        return URL(string: iconURI)
+        bugsData.first?.iconURL
     }
     
     var totalText: String {

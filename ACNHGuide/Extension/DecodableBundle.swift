@@ -24,4 +24,14 @@ extension Bundle {
         }
         return decodedData
     }
+    
+    // Variante tolérante de decode(_:) : le repli hors ligne doit pouvoir échouer
+    // sans faire planter l'app, contrairement au chargement des fixtures.
+    func decodeIfPresent<T: Decodable>(_ file: String) -> T? {
+        guard let url = url(forResource: file, withExtension: nil),
+              let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        return try? JSONDecoder().decode(T.self, from: data)
+    }
 }

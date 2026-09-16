@@ -29,8 +29,7 @@ final class SeaCreatureDashboardTableViewCellViewModel {
     }
     
     var iconURL: URL? {
-        guard let iconURI = seaCreaturesData.first?.iconURI else { return nil }
-        return URL(string: iconURI)
+        seaCreaturesData.first?.iconURL
     }
     
     var totalText: String {

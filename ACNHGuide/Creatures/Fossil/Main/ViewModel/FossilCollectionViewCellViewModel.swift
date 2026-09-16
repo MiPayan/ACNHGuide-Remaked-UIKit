@@ -29,7 +29,7 @@ final class FossilCollectionViewCellViewModel {
     }
     
     var imageURL: URL? {
-        URL(string: fossilData.imageURI)
+        fossilData.imageURL
     }
 }
 

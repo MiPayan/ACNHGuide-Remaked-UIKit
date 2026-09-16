@@ -7,7 +7,9 @@
 
 import Foundation
 
-enum NetworkingError: Error {
+enum NetworkingError: Error, Equatable {
     case urlInvalid
+    case requestFailed(statusCode: Int)
+    case unreachable
     case decodingFailure
 }

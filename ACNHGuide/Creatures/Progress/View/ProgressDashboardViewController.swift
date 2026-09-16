@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class ProgressDashboardViewController: UIViewController {
     
     private let progressDashboardViewModel = ProgressDashboardViewModel()
+    private var cancellables = Set<AnyCancellable>()
     private lazy var progressDashboardTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,14 +47,14 @@ final class ProgressDashboardViewController: UIViewController {
                 guard let self else { return }
                 errorView.isHidden = false
             }
-            .store(in: &progressDashboardViewModel.cancellables)
+            .store(in: &cancellables)
         
         progressDashboardViewModel.reloadData
             .sink { [weak self] in
                 guard let self else { return }
                 self.progressDashboardTableView.reloadData()
             }
-            .store(in: &progressDashboardViewModel.cancellables)
+            .store(in: &cancellables)
     }
 }
 

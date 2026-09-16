@@ -30,8 +30,7 @@ final class FishDetailsTableViewCellViewModel {
     }
     
     var iconURL: URL? {
-        guard let iconURL = URL(string: fishData.iconURI) else { return nil }
-        return iconURL
+        fishData.iconURL
     }
     
     var catchPhrase: String {

@@ -7,15 +7,16 @@
 
 import Foundation
 import Combine
-import Network
 
 final class Networker: Networking {
     
-    private var configuration: URLSessionConfiguration {
+    private let session: URLSession
+    
+    init() {
         let configuration = URLSessionConfiguration.default
         configuration.allowsCellularAccess = true
         configuration.allowsConstrainedNetworkAccess = true
-        return configuration
+        session = URLSession(configuration: configuration)
     }
     
     func fetchData<T: Decodable>(with urlString: String) -> AnyPublisher<[T], NetworkingError> {
@@ -23,16 +24,28 @@ final class Networker: Networking {
             return Fail(error: NetworkingError.urlInvalid).eraseToAnyPublisher()
         }
         
-        let session = URLSession(configuration: configuration)
         let decoder = JSONDecoder()
         
         return session.dataTaskPublisher(for: url)
             .tryMap { data, response in
+                // Sans ce contrôle, une page d'erreur du serveur est transmise au
+                // décodeur et l'échec est signalé comme un problème de décodage.
+                guard let httpResponse = response as? HTTPURLResponse else { return data }
+                guard 200..<300 ~= httpResponse.statusCode else {
+                    throw NetworkingError.requestFailed(statusCode: httpResponse.statusCode)
+                }
                 return data
             }
             .decode(type: [T].self, decoder: decoder)
             .mapError { error in
-                NetworkingError.decodingFailure
+                switch error {
+                case let networkingError as NetworkingError:
+                    return networkingError
+                case is URLError:
+                    return .unreachable
+                default:
+                    return .decodingFailure
+                }
             }
             .eraseToAnyPublisher()
     }

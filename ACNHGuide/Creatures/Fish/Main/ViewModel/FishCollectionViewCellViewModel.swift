@@ -29,7 +29,7 @@ final class FishCollectionViewCellViewModel {
     }
     
     var iconURL: URL? {
-        URL(string: fish.iconURI)
+        fish.iconURL
     }
 }
 

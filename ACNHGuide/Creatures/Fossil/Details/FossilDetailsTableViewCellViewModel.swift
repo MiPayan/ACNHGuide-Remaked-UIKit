@@ -29,8 +29,7 @@ final class FossilDetailsTableViewCellViewModel {
     }
     
     var imageURL: URL? {
-        guard let imageURL = URL(string: fossilData.imageURI) else { return nil }
-        return imageURL
+        fossilData.imageURL
     }
     
     var price: String {

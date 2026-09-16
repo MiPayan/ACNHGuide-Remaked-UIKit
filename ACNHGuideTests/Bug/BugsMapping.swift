@@ -41,8 +41,8 @@ final class BugsMapping: XCTestCase {
         let priceFlick = bugs.first?.priceFlick
         let catchPhrase = bugs.first?.catchPhrase
         let museumPhrase = bugs.first?.museumPhrase
-        let imageURI = bugs.first?.imageURI
-        let iconURI = bugs.first?.iconURI
+        let imageURI = bugs.first?.legacyImageURI
+        let iconURI = bugs.first?.legacyIconURI
         XCTAssertEqual(id, 1)
         XCTAssertEqual(filename, "common_butterfly")
         XCTAssertEqual(nameUSen, "common butterfly")

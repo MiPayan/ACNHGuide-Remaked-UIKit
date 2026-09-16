@@ -40,8 +40,8 @@ final class SeaCreaturesMapping: XCTestCase {
         let price = seaCreatures.first?.price
         let catchPhrase = seaCreatures.first?.catchPhrase
         let museumPhrase = seaCreatures.first?.museumPhrase
-        let imageURI = seaCreatures.first?.imageURI
-        let iconURI = seaCreatures.first?.iconURI
+        let imageURI = seaCreatures.first?.legacyImageURI
+        let iconURI = seaCreatures.first?.legacyIconURI
         XCTAssertEqual(id, 1)
         XCTAssertEqual(filename, "seaweed")
         XCTAssertEqual(nameUSen, "seaweed")

@@ -28,7 +28,7 @@ final class FossilsMapping: XCTestCase {
         let nameEUru = fossils.first?.name.nameEUru
         let price = fossils.first?.price
         let museumPhrase = fossils.first?.museumPhrase
-        let imageURI = fossils.first?.imageURI
+        let imageURI = fossils.first?.legacyImageURI
         let partOf = fossils.first?.partOf
         XCTAssertEqual(filename, "acanthostega")
         XCTAssertEqual(nameUSen, "acanthostega")

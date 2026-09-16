@@ -13,12 +13,13 @@ final class SeaCreatureViewModel: CreatureViewModel<SeaCreatureData> {
     override func loadCreature() {
         loader.loadSeaCreaturesData()
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink { [weak self] completion in
+                guard let self else { return }
                 switch completion {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.failureHandler.send(error)
+                    failureHandler.send(error)
                 }
             } receiveValue: { [weak self] seaCreatures in
                 guard let self else { return }

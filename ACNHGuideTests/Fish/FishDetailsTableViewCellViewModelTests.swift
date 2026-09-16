@@ -37,10 +37,10 @@ final class FishDetailsTableViewCellViewModelTests: XCTestCase {
     }
     
     func testIconURL() throws {
-        let iconURI = try XCTUnwrap(fishes.first?.iconURI, "Tests failed: testIconURL() from FishDetailsTableViewCellViewModelTests")
-        let url = URL(string: iconURI)
-        XCTAssertEqual(iconURI, "https://acnhapi.com/v1/icons/fish/1")
-        XCTAssertEqual(fishDetailsTableViewCellViewModel.iconURL, url)
+        let legacyIconURI = try XCTUnwrap(fishes.first?.legacyIconURI, "Tests failed: testIconURL() from FishDetailsTableViewCellViewModelTests")
+        // Le JSON reference toujours acnhapi.com, hors ligne : le visuel doit venir du miroir.
+        XCTAssertEqual(legacyIconURI, "https://acnhapi.com/v1/icons/fish/1")
+        XCTAssertEqual(fishDetailsTableViewCellViewModel.iconURL, URL(string: "https://raw.githubusercontent.com/alexislours/ACNHAPI/6df0d7318a97/icons/fish/bitterling.png"))
     }
     
     func testCatchPhrase() throws {

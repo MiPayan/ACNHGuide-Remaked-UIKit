@@ -15,12 +15,13 @@ final class FossilViewModel: CreatureViewModel<FossilData> {
     override func loadCreature() {
         loader.loadFossilsData()
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink { [weak self] completion in
+                guard let self else { return }
                 switch completion {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.failureHandler.send(error)
+                    failureHandler.send(error)
                 }
             } receiveValue: { [weak self] fossils in
                 guard let self else { return }

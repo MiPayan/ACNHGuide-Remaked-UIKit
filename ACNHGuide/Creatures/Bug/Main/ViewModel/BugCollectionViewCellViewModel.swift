@@ -29,7 +29,7 @@ final class BugCollectionViewCellViewModel {
     }
     
     var iconURL: URL? {
-        URL(string: bugData.iconURI)
+        bugData.iconURL
     }
 }
 

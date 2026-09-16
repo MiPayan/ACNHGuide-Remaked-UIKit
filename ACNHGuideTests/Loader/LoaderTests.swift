@@ -14,9 +14,15 @@ final class LoaderTests: XCTestCase {
     private var sessionMock: NetworkingMock!
     private var loader: Loader!
     
+    // Le bundle de tests ne contient pas les copies embarquées : le repli hors ligne
+    // est donc inactif ici, sauf dans le test qui le vise explicitement.
+    private var bundleWithoutOfflineData: Bundle {
+        Bundle(for: type(of: self))
+    }
+    
     override func setUpWithError() throws {
         sessionMock = NetworkingMock()
-        loader = CreatureLoader(session: sessionMock)
+        loader = CreatureLoader(session: sessionMock, bundle: bundleWithoutOfflineData)
     }
     
     override func tearDownWithError() throws {
@@ -44,7 +50,27 @@ final class LoaderTests: XCTestCase {
         } receiveValue: { _ in }
         
         XCTAssertEqual(sessionMock.invokedFetchDataCount, 1)
-        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/fish/")
+        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://raw.githubusercontent.com/alexislours/ACNHAPI/6df0d7318a97/v1a/fish.json")
+        waitForExpectations(timeout: 1)
+        cancellable.cancel()
+    }
+    
+    func testFallbackOnBundledDataWhenRequestFails() {
+        let expectation = expectation(description: "Fallback on bundled fishes data.")
+        let loaderWithOfflineData = CreatureLoader(session: sessionMock, bundle: .main)
+        sessionMock.stubbedFishData = Fail(error: .unreachable)
+            .eraseToAnyPublisher()
+        
+        let cancellable = loaderWithOfflineData.loadFishesData().sink { completion in
+            if case .failure = completion {
+                XCTFail("Unexpected completion: failure")
+            }
+        } receiveValue: { fishesData in
+            XCTAssertEqual(fishesData.count, 80)
+            XCTAssertEqual(fishesData.first?.fileName, "bitterling")
+            expectation.fulfill()
+        }
+        
         waitForExpectations(timeout: 1)
         cancellable.cancel()
     }
@@ -63,7 +89,7 @@ final class LoaderTests: XCTestCase {
         }
         
         XCTAssertEqual(sessionMock.invokedFetchDataCount, 1)
-        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/fish/")
+        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://raw.githubusercontent.com/alexislours/ACNHAPI/6df0d7318a97/v1a/fish.json")
         waitForExpectations(timeout: 1)
         cancellable.cancel()
     }
@@ -84,7 +110,7 @@ final class LoaderTests: XCTestCase {
         }
         
         XCTAssertEqual(sessionMock.invokedFetchDataCount, 1)
-        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/sea/")
+        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://raw.githubusercontent.com/alexislours/ACNHAPI/6df0d7318a97/v1a/sea.json")
         waitForExpectations(timeout: 1)
         cancellable.cancel()
     }
@@ -105,7 +131,7 @@ final class LoaderTests: XCTestCase {
         }
         
         XCTAssertEqual(sessionMock.invokedFetchDataCount, 1)
-        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/bugs/")
+        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://raw.githubusercontent.com/alexislours/ACNHAPI/6df0d7318a97/v1a/bugs.json")
         waitForExpectations(timeout: 1)
         cancellable.cancel()
     }
@@ -126,7 +152,7 @@ final class LoaderTests: XCTestCase {
         }
         
         XCTAssertEqual(sessionMock.invokedFetchDataCount, 1)
-        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://acnhapi.com/v1a/fossils/")
+        XCTAssertEqual(sessionMock.stubbedFetchDataUrlStringParameter, "https://raw.githubusercontent.com/alexislours/ACNHAPI/6df0d7318a97/v1a/fossils.json")
         waitForExpectations(timeout: 1)
         cancellable.cancel()
     }

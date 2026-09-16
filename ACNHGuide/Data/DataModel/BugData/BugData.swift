@@ -14,7 +14,9 @@ struct BugData: Decodable {
     let availability: BugAvailability
     let price, priceFlick: Int
     let catchPhrase, museumPhrase: String
-    let imageURI, iconURI: String
+    // Conservées telles quelles dans le JSON, mais elles pointent vers acnhapi.com,
+    // hors ligne : utiliser imageURL et iconURL pour afficher un visuel.
+    let legacyImageURI, legacyIconURI: String
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -23,8 +25,18 @@ struct BugData: Decodable {
         case priceFlick = "price-flick"
         case catchPhrase = "catch-phrase"
         case museumPhrase = "museum-phrase"
-        case imageURI = "image_uri"
-        case iconURI = "icon_uri"
+        case legacyImageURI = "image_uri"
+        case legacyIconURI = "icon_uri"
+    }
+}
+
+extension BugData {
+    var imageURL: URL? {
+        ACNHAPI.imageURL(for: .bugs, fileName: fileName)
+    }
+    
+    var iconURL: URL? {
+        ACNHAPI.iconURL(for: .bugs, fileName: fileName)
     }
 }
 

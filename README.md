@@ -51,7 +51,7 @@ To finish, the user can save or delete the selected creature using the leaf butt
 
 ## Technical details :
 - Architectural pattern : <b>MVVM</b>
-- API : <b>https://acnhapi.com</b>
+- API : <b>Miroir d'ACNHAPI</b> (<a href="https://github.com/alexislours/ACNHAPI">alexislours/ACNHAPI</a>, archivé, MIT), servi par raw.githubusercontent.com et épinglé à un commit. Le service acnhapi.com d'origine n'est plus en ligne.
 - Database : <b>RealmSwift</b>
 - Performance monitoring : <b>Firebase Performance</b>
 - Crash reporter : <b>Firebase Crashlytics</b>

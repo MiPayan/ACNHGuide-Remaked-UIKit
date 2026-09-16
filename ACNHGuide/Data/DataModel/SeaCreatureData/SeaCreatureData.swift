@@ -15,7 +15,9 @@ struct SeaCreatureData: Decodable {
     let speed, shadow: String
     let price: Int
     let catchPhrase: String
-    let imageURI, iconURI: String
+    // Conservées telles quelles dans le JSON, mais elles pointent vers acnhapi.com,
+    // hors ligne : utiliser imageURL et iconURL pour afficher un visuel.
+    let legacyImageURI, legacyIconURI: String
     let museumPhrase: String
     
     private enum CodingKeys: String, CodingKey {
@@ -23,9 +25,19 @@ struct SeaCreatureData: Decodable {
         case fileName = "file-name"
         case name, availability, speed, shadow, price
         case catchPhrase = "catch-phrase"
-        case imageURI = "image_uri"
-        case iconURI = "icon_uri"
+        case legacyImageURI = "image_uri"
+        case legacyIconURI = "icon_uri"
         case museumPhrase = "museum-phrase"
+    }
+}
+
+extension SeaCreatureData {
+    var imageURL: URL? {
+        ACNHAPI.imageURL(for: .sea, fileName: fileName)
+    }
+    
+    var iconURL: URL? {
+        ACNHAPI.iconURL(for: .sea, fileName: fileName)
     }
 }
 

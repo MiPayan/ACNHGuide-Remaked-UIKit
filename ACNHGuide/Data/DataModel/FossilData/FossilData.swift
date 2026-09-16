@@ -12,15 +12,24 @@ struct FossilData: Decodable {
     let name: Name
     let price: Int
     let museumPhrase: String
-    let imageURI: String
+    // Conservée telle quelle dans le JSON, mais elle pointe vers acnhapi.com,
+    // hors ligne : utiliser imageURL pour afficher un visuel.
+    let legacyImageURI: String
     let partOf: String
 
     private enum CodingKeys: String, CodingKey {
         case fileName = "file-name"
         case name, price
         case museumPhrase = "museum-phrase"
-        case imageURI = "image_uri"
+        case legacyImageURI = "image_uri"
         case partOf = "part-of"
+    }
+}
+
+extension FossilData {
+    // Les fossiles n'ont pas d'icône dédiée dans le miroir, seulement un visuel.
+    var imageURL: URL? {
+        ACNHAPI.imageURL(for: .fossils, fileName: fileName)
     }
 }
 

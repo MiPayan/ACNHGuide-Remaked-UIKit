@@ -30,8 +30,7 @@ final class BugDetailsTableViewCellViewModel {
     }
     
     var iconURL: URL? {
-        guard let iconURL = URL(string: bugData.iconURI) else { return nil }
-        return iconURL
+        bugData.iconURL
     }
     
     var catchPhrase: String {

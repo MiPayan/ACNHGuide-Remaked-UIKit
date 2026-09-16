@@ -103,6 +103,14 @@ final class FossilTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // Sans cela, la requête de la cellule précédente aboutit après le recyclage
+        // et affiche son visuel dans la nouvelle cellule.
+        cancellables.removeAll()
+        fossilImageView.image = nil
+    }
     
     func configureDetailsCell(with viewModel: FossilDetailsTableViewCellViewModel, view: ErrorToastable) {
         self.viewModel = viewModel

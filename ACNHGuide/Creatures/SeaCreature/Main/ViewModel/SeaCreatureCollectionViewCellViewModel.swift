@@ -29,7 +29,7 @@ final class SeaCreatureCollectionViewCellViewModel {
     }
     
     var iconURL: URL? {
-        URL(string: seaCreatureData.iconURI)
+        seaCreatureData.iconURL
     }
 }
 

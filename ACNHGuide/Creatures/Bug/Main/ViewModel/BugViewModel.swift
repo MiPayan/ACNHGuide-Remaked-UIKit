@@ -13,12 +13,13 @@ final class BugViewModel: CreatureViewModel<BugData> {
     override func loadCreature() {
         loader.loadBugsData()
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink { [weak self] completion in
+                guard let self else { return }
                 switch completion {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.failureHandler.send(error)
+                    failureHandler.send(error)
                 }
             } receiveValue: { [weak self] bugs in
                 guard let self else { return }
@@ -26,7 +27,6 @@ final class BugViewModel: CreatureViewModel<BugData> {
                 subject.send()
             }
             .store(in: &cancellables)
-        super.loadCreature()
     }
 }
 

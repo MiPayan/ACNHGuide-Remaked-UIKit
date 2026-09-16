@@ -29,8 +29,7 @@ final class FossilDashboardTableViewCellViewModel {
     }
     
     var imageURL: URL? {
-        guard let imageURI = fossilsData.first?.imageURI else { return nil }
-        return URL(string: imageURI)
+        fossilsData.first?.imageURL
     }
     
     var totalText: String {
