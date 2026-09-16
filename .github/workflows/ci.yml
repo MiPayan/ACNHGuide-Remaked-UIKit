@@ -1,0 +1,123 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+# Un push qui en suit un autre annule l'exécution précédente sur la même branche.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build et tests
+    runs-on: macos-26
+    timeout-minutes: 45
+
+    env:
+      WORKSPACE: ACNHGuide.xcworkspace
+      SCHEME: ACNHGuide
+      DERIVED_DATA: DerivedData
+      # Aligné sur l'environnement de développement. Si l'image du runner ne
+      # propose plus cette version, l'étape bascule sur le Xcode par défaut
+      # au lieu d'échouer : la CI survit à la rotation des images.
+      XCODE_VERSION: "26.4"
+
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v7
+
+      - name: Sélection de Xcode
+        run: |
+          APP="/Applications/Xcode_${XCODE_VERSION}.app"
+          if [ -d "$APP" ]; then
+            sudo xcode-select -s "$APP"
+          else
+            echo "::warning::Xcode ${XCODE_VERSION} absent de l'image du runner, bascule sur le Xcode par défaut."
+          fi
+          xcodebuild -version
+
+      # Realm et Firebase représentent plusieurs centaines de Mo à cloner.
+      # La clé dépend de Package.resolved : le cache est invalidé dès qu'une
+      # version de dépendance change.
+      - name: Cache des dépendances SwiftPM
+        uses: actions/cache@v6
+        with:
+          path: ${{ env.DERIVED_DATA }}/SourcePackages
+          key: spm-${{ runner.os }}-${{ hashFiles('ACNHGuide.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: |
+            spm-${{ runner.os }}-
+
+      # Garde-fou chaîne d'approvisionnement : une dépendance suivant une branche
+      # livrerait en production le HEAD d'un dépôt tiers, sans barrière de version.
+      - name: Vérification du verrouillage des dépendances
+        run: |
+          if grep -q "kind = branch" ACNHGuide.xcodeproj/project.pbxproj; then
+            echo "::error::Une dépendance SwiftPM suit une branche au lieu d'une version taguée."
+            grep -B 4 "kind = branch" ACNHGuide.xcodeproj/project.pbxproj
+            exit 1
+          fi
+          echo "Toutes les dépendances sont épinglées sur une version."
+
+      - name: Résolution des dépendances
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -derivedDataPath "$DERIVED_DATA"
+
+      # Le nom des simulateurs change d'une image à l'autre : on demande à
+      # xcodebuild les destinations qu'il accepte réellement pour ce scheme,
+      # et on retient l'identifiant du premier iPhone disponible.
+      - name: Choix du simulateur
+        run: |
+          DESTINATIONS=$(xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -showdestinations 2>/dev/null)
+          DEST_ID=$(echo "$DESTINATIONS" \
+            | grep 'platform:iOS Simulator' \
+            | grep -v 'placeholder' \
+            | grep 'name:iPhone' \
+            | head -1 \
+            | sed -E 's/.*id:([0-9A-Fa-f-]+).*/\1/')
+          if [ -z "$DEST_ID" ]; then
+            echo "::error::Aucun simulateur iPhone disponible sur ce runner."
+            echo "$DESTINATIONS"
+            exit 1
+          fi
+          echo "$DESTINATIONS" | grep "$DEST_ID"
+          echo "DEST_ID=$DEST_ID" >> "$GITHUB_ENV"
+
+      # Compilation et exécution sont séparées pour distinguer, en cas d'échec,
+      # une erreur de compilation d'un test rouge.
+      # La signature est désactivée : inutile pour le simulateur, et aucun
+      # certificat n'est disponible sur un runner.
+      - name: Compilation
+        run: |
+          set -o pipefail
+          xcodebuild build-for-testing \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -destination "id=$DEST_ID" \
+            -derivedDataPath "$DERIVED_DATA" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Tests
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -destination "id=$DEST_ID" \
+            -derivedDataPath "$DERIVED_DATA" \
+            -resultBundlePath TestResults.xcresult \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Publication des résultats de test
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: resultats-tests
+          path: TestResults.xcresult
+          retention-days: 14
