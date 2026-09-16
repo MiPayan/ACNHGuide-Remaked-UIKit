@@ -34,3 +34,6 @@ Carthage/Build/
 *.pem
 *.mobileprovision
 .env
+
+# Resultats de tests produits par xcodebuild (CI et local)
+*.xcresult
